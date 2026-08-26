@@ -1,0 +1,298 @@
+{
+  "index_name": "2341d1d1-34bd-4471-88b5-815d45a919d0",
+  "title": "Project-wise Ongoing Delayed Inter State Transmission Systems (ISTS) Transmission Projects (in reply to Unstarred Question on 5 April, 2022)",
+  "desc": "Project-wise Ongoing Delayed Inter State Transmission Systems (ISTS) Transmission Projects (in reply to Unstarred Question on 5 April, 2022)",
+  "org_type": "Central",
+  "org": [
+    "Rajya Sabha"
+  ],
+  "sector": [
+    "All"
+  ],
+  "source": "data.gov.in",
+  "catalog_uuid": "4367dc29-493d-4076-9521-a6dec4ecc3a7",
+  "visualizable": "1",
+  "active": "1",
+  "created": 1700247368,
+  "updated": 1700400946,
+  "created_date": "2023-11-17T19:56:08Z",
+  "updated_date": "2023-11-19T19:05:46Z",
+  "external_ws": 0,
+  "external_ws_url": "",
+  "target_bucket": {
+    "index": "api",
+    "type": "4367dc29-493d-4076-9521-a6dec4ecc3a7",
+    "field": "2341d1d1-34bd-4471-88b5-815d45a919d0"
+  },
+  "field": [
+    {
+      "id": "_sl__no_",
+      "name": "Sl. No.",
+      "type": "double"
+    },
+    {
+      "id": "name_of_project",
+      "name": "Name of Project",
+      "type": "keyword"
+    },
+    {
+      "id": "executing_agency",
+      "name": "Executing Agency",
+      "type": "keyword"
+    },
+    {
+      "id": "latest_approved_schedule",
+      "name": "Latest Approved Schedule",
+      "type": "keyword"
+    },
+    {
+      "id": "anticipated_date",
+      "name": "Anticipated date",
+      "type": "keyword"
+    },
+    {
+      "id": "approved_cost_in_rs__cr_",
+      "name": "Approved cost in Rs. Cr.",
+      "type": "double"
+    },
+    {
+      "id": "delay_in_months",
+      "name": "Delay in Months",
+      "type": "double"
+    }
+  ],
+  "message": "Resource lists",
+  "version": "2.2.0",
+  "status": "ok",
+  "total": 25,
+  "count": 25,
+  "limit": "1000",
+  "offset": "0",
+  "records": [
+    {
+      "_sl__no_": 1,
+      "name_of_project": "North East / Northern Western Interconnector-I Project Part-C : Transmission System for immediate evacuation of Power from Lower Subhansiri HEP",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Nov'22",
+      "anticipated_date": "Mar'23",
+      "approved_cost_in_rs__cr_": 1520,
+      "delay_in_months": 4
+    },
+    {
+      "_sl__no_": 2,
+      "name_of_project": "POWERGRID Bhuj Transmission Limited",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Aug'21",
+      "anticipated_date": "Apr'22",
+      "approved_cost_in_rs__cr_": 1031,
+      "delay_in_months": 8
+    },
+    {
+      "_sl__no_": 3,
+      "name_of_project": "Transmission System for Solar Energy Zones in Rajasthan",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Aug'21",
+      "anticipated_date": "Mar'22",
+      "approved_cost_in_rs__cr_": 2578.47,
+      "delay_in_months": 7
+    },
+    {
+      "_sl__no_": 4,
+      "name_of_project": "Creation of 400/220 kV Substations in NCT of Delhi during 12th Plan Period (Part-A)",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Dec'21",
+      "anticipated_date": "Mar'22",
+      "approved_cost_in_rs__cr_": 1394.52,
+      "delay_in_months": 3
+    },
+    {
+      "_sl__no_": 5,
+      "name_of_project": "Transmission system for evacuation of power from 2x500 MW Neyveli Lignite Corp. Ltd. TS-I (Replacement) (NNTPS) in Neyveli, Tamil Nadu",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "July'21",
+      "anticipated_date": "Aug'22",
+      "approved_cost_in_rs__cr_": 219.66,
+      "delay_in_months": 13
+    },
+    {
+      "_sl__no_": 6,
+      "name_of_project": "Eastern Region Strengthening Scheme - XXIII",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Sep'21",
+      "anticipated_date": "Mar'22",
+      "approved_cost_in_rs__cr_": 239.89,
+      "delay_in_months": 6
+    },
+    {
+      "_sl__no_": 7,
+      "name_of_project": "Eastern Region strengthening Scheme - XVIII SPV, Name: Powergrid Medinipur Jeerat Transmission Limited",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Dec'20",
+      "anticipated_date": "Apr'22",
+      "approved_cost_in_rs__cr_": 3500,
+      "delay_in_months": 16
+    },
+    {
+      "_sl__no_": 8,
+      "name_of_project": "Transmission System for providing connectivity to RE Projects at Bhuj-II (2000 MW ) in Gujarat",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Aug'21",
+      "anticipated_date": "Apr'22",
+      "approved_cost_in_rs__cr_": 1108,
+      "delay_in_months": 8
+    },
+    {
+      "_sl__no_": 9,
+      "name_of_project": "Implementation of 500 MVAR Thyristor Controlled Reactor at Kurukshetra",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Mar'22",
+      "anticipated_date": "June'22",
+      "approved_cost_in_rs__cr_": 267.33,
+      "delay_in_months": 3
+    },
+    {
+      "_sl__no_": 10,
+      "name_of_project": "Northern Region System Strengthening - XL",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Aug'21",
+      "anticipated_date": "Mar'22",
+      "approved_cost_in_rs__cr_": 572.98,
+      "delay_in_months": 7
+    },
+    {
+      "_sl__no_": 11,
+      "name_of_project": "Scheme to control fault level in Northern Region (Phase-II)",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Feb'22",
+      "anticipated_date": "Apr'22",
+      "approved_cost_in_rs__cr_": 124.21,
+      "delay_in_months": 2
+    },
+    {
+      "_sl__no_": 12,
+      "name_of_project": "Northern Region System Strengthening - XLI",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Jan'22",
+      "anticipated_date": "Mar'22",
+      "approved_cost_in_rs__cr_": 25.57,
+      "delay_in_months": 2
+    },
+    {
+      "_sl__no_": 13,
+      "name_of_project": "Transmission System for Providing connectivity to RE projects at Bikaner (PG), Fatehgarh-II & Bhadla-II",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Sep'21",
+      "anticipated_date": "June'22",
+      "approved_cost_in_rs__cr_": 562.86,
+      "delay_in_months": 9
+    },
+    {
+      "_sl__no_": 14,
+      "name_of_project": "2 nos. of 220 kV Line Bays at Saharanpur (PG)",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Feb'22",
+      "anticipated_date": "Mar'22",
+      "approved_cost_in_rs__cr_": 5,
+      "delay_in_months": 1
+    },
+    {
+      "_sl__no_": 15,
+      "name_of_project": "Transmission system for controlling high Short Circuit Current level at 400 kV Thiruvalam S/S",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Nov'21",
+      "anticipated_date": "Mar'22",
+      "approved_cost_in_rs__cr_": 88.39,
+      "delay_in_months": 4
+    },
+    {
+      "_sl__no_": 16,
+      "name_of_project": "Eastern Region Strengthening Scheme - XXIII",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Sep'21",
+      "anticipated_date": "Mar'22",
+      "approved_cost_in_rs__cr_": 239.89,
+      "delay_in_months": 6
+    },
+    {
+      "_sl__no_": 17,
+      "name_of_project": "Eastern Region Strengthening Scheme-XXIV (ERSSXXIV)",
+      "executing_agency": "Power Grid",
+      "latest_approved_schedule": "Mar'22",
+      "anticipated_date": "Apr'22",
+      "approved_cost_in_rs__cr_": 3,
+      "delay_in_months": 1
+    },
+    {
+      "_sl__no_": 18,
+      "name_of_project": "Additional 400 kV Feed to Goa and Additional System for Power Evacuation from Generation Projects pooled at Raigarh (Tamnar) Pool",
+      "executing_agency": "Goa-Tamnar Transmission Project Limited (A Subsidiary of Sterlite Power TL)",
+      "latest_approved_schedule": "NA",
+      "anticipated_date": "NA",
+      "approved_cost_in_rs__cr_": 1531,
+      "delay_in_months": 8
+    },
+    {
+      "_sl__no_": 19,
+      "name_of_project": "WRSS - 21 Part - B - Transmission System Strengthening for Relieving Over Loadings Observed in Gujarat Intra-State System Due to Re-injections in Bhuj PS",
+      "executing_agency": "NA",
+      "latest_approved_schedule": "NA",
+      "anticipated_date": "NA",
+      "approved_cost_in_rs__cr_": 1865,
+      "delay_in_months": 9
+    },
+    {
+      "_sl__no_": 20,
+      "name_of_project": "Additional inter regional AC link for import into southern region i.e Warora-Warangal and Chilakaluripeta - Hyderabad - Kurnool 765 kV link.",
+      "executing_agency": "Warora Kurnool Transmission Ltd. (A Subsidiary of Adani TL)",
+      "latest_approved_schedule": "NA",
+      "anticipated_date": "NA",
+      "approved_cost_in_rs__cr_": 4805,
+      "delay_in_months": 32
+    },
+    {
+      "_sl__no_": 21,
+      "name_of_project": "System strengthening in northern region (NRSS XXXVI) along with LILO of Sikar-Neemrana 400 kV D/C line at Babai (RVPNL).",
+      "executing_agency": "NRSS XXXVI Transmission Ltd. (A Subsidiary of Essel Infrapower TL)",
+      "latest_approved_schedule": "NA",
+      "anticipated_date": "NA",
+      "approved_cost_in_rs__cr_": 255,
+      "delay_in_months": 33
+    },
+    {
+      "_sl__no_": 22,
+      "name_of_project": "Immediate evacuation for North Karanpura (3x660MW) generation project of NTPC (ERSS-XXIX).",
+      "executing_agency": "North Karanpura Transco Ltd (ASubsidiary of Adani TL)",
+      "latest_approved_schedule": "NA",
+      "anticipated_date": "NA",
+      "approved_cost_in_rs__cr_": 472,
+      "delay_in_months": 33
+    },
+    {
+      "_sl__no_": 23,
+      "name_of_project": "Transmission System for Western Region Strengthening Scheme - 21 (WRSS - 21) Part - A - Transmission System Strengthening for Relieving Over Loadings Observed in Gujarat Intra-State System Due to Re-injections in Bhuj PS",
+      "executing_agency": "WRSS XXI(A) Transco Limited (A Subsidiary of Adani TL)",
+      "latest_approved_schedule": "NA",
+      "anticipated_date": "NA",
+      "approved_cost_in_rs__cr_": 1090,
+      "delay_in_months": 9
+    },
+    {
+      "_sl__no_": 24,
+      "name_of_project": "Transmission System for Transmission System Associated with RE Generations at Bhuj-II, Dwarka & Lakadia",
+      "executing_agency": "Lakadia Banaskantha Transco Limited (A Subsidiary of Adani TL)",
+      "latest_approved_schedule": "NA",
+      "anticipated_date": "NA",
+      "approved_cost_in_rs__cr_": 1052,
+      "delay_in_months": 4
+    },
+    {
+      "_sl__no_": 25,
+      "name_of_project": "Transmission System for Jam Khambaliya Pooling Station and Interconnection of Jam Khambaliya Pooling Station for Providing Connectivity to RE Projects (1500 MW) in Dwarka (Gujarat) and Installation of 400/220 kV ICT along with Associated Bays at CGPL Switchyard",
+      "executing_agency": "Jam Khambaliya Transco Limited (A Subsidiary of Adani TL)",
+      "latest_approved_schedule": "NA",
+      "anticipated_date": "NA",
+      "approved_cost_in_rs__cr_": 394,
+      "delay_in_months": 7
+    }
+  ]
+}

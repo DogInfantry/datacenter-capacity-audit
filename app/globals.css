@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
+/* Light is the base. Dark redefines the same tokens under two scopes so the OS
+   setting and the in-page toggle both win in their own direction. No dark:
+   variants anywhere, because every component paints with tokens. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbfaf8;
+  --card: #ffffff;
+  --foreground: #16150f;
+  --muted: #5c5a51;
+  --line: #e3e0d8;
+  --accent: #7a3b12;
+  --accent-soft: #f3e7dd;
+  --on-accent: #ffffff;
+  --psu: #2f6b57;
+  --private: #a8471c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #100f0d;
+    --card: #191813;
+    --foreground: #f0ede4;
+    --muted: #9a968a;
+    --line: #2c2a24;
+    --accent: #d99257;
+    --accent-soft: #2a1f16;
+    --on-accent: #16150f;
+    --psu: #6fb89c;
+    --private: #e0865a;
+  }
+}
+
+:root[data-theme="dark"] {
+  --background: #100f0d;
+  --card: #191813;
+  --foreground: #f0ede4;
+  --muted: #9a968a;
+  --line: #2c2a24;
+  --accent: #d99257;
+  --accent-soft: #2a1f16;
+  --on-accent: #16150f;
+  --psu: #6fb89c;
+  --private: #e0865a;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-psu: var(--psu);
+  --color-private: var(--private);
+  --font-serif: var(--font-serif-face), ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "kern", "liga", "tnum";
+}
+
+/* Small caps kicker, used above every section heading. */
+.sc {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Tabular figures wherever numbers are compared down a column. */
+.tnum {
+  font-variant-numeric: tabular-nums;
 }

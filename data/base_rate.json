@@ -1,0 +1,85 @@
+{
+  "n": 25,
+  "median_months": 7.0,
+  "mean_months": 9.4,
+  "min_months": 1.0,
+  "max_months": 33.0,
+  "p25_months": 4.0,
+  "p75_months": 9.0,
+  "p90_months": 32.0,
+  "cost_weighted_mean_months": 13.7,
+  "total_approved_cost_cr": 24944.77,
+  "share_over_12_months": 0.2,
+  "by_ownership": {
+    "CENTRAL_PSU": {
+      "n": 17,
+      "median_months": 6.0,
+      "mean_months": 5.9,
+      "cost_weighted_mean_months": 8.7,
+      "max_months": 16.0,
+      "approved_cost_cr": 13480.77
+    },
+    "PRIVATE_TSP": {
+      "n": 7,
+      "median_months": 9.0,
+      "mean_months": 18.0,
+      "cost_weighted_mean_months": 21.5,
+      "max_months": 33.0,
+      "approved_cost_cr": 9599
+    },
+    "UNATTRIBUTED": {
+      "n": 1,
+      "median_months": 9.0,
+      "mean_months": 9.0,
+      "cost_weighted_mean_months": 9.0,
+      "max_months": 9.0,
+      "approved_cost_cr": 1865
+    }
+  },
+  "by_agency": {
+    "Power Grid": {
+      "n": 17,
+      "median_months": 6.0
+    },
+    "Goa-Tamnar Transmission Project Limited (A Subsidiary of Sterlite Power TL)": {
+      "n": 1,
+      "median_months": 8.0
+    },
+    "NA": {
+      "n": 1,
+      "median_months": 9.0
+    },
+    "Warora Kurnool Transmission Ltd. (A Subsidiary of Adani TL)": {
+      "n": 1,
+      "median_months": 32.0
+    },
+    "NRSS XXXVI Transmission Ltd. (A Subsidiary of Essel Infrapower TL)": {
+      "n": 1,
+      "median_months": 33.0
+    },
+    "North Karanpura Transco Ltd (ASubsidiary of Adani TL)": {
+      "n": 1,
+      "median_months": 33.0
+    },
+    "WRSS XXI(A) Transco Limited (A Subsidiary of Adani TL)": {
+      "n": 1,
+      "median_months": 9.0
+    },
+    "Lakadia Banaskantha Transco Limited (A Subsidiary of Adani TL)": {
+      "n": 1,
+      "median_months": 4.0
+    },
+    "Jam Khambaliya Transco Limited (A Subsidiary of Adani TL)": {
+      "n": 1,
+      "median_months": 7.0
+    }
+  },
+  "source": {
+    "title": "Project-wise Ongoing Delayed Inter State Transmission Systems (ISTS) Transmission Projects",
+    "publisher": "Ministry of Power, tabled in the Rajya Sabha",
+    "question": "Unstarred question, 5 April 2022",
+    "resource_id": "2341d1d1-34bd-4471-88b5-815d45a919d0",
+    "url": "https://data.gov.in/resource/2341d1d1-34bd-4471-88b5-815d45a919d0",
+    "censoring": "right censored, all projects ongoing at tabling; delays are a floor"
+  }
+}
