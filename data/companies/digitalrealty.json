@@ -1,0 +1,295 @@
+{
+  "ticker": "DLR",
+  "name": "Digital Realty Trust, Inc.",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "fiscalYearEnd": "12-31",
+  "role": "Data centre REIT, pure play",
+  "segmentBasis": "PURE_PLAY",
+  "note": "A single reportable segment, so group equals segment. Fiscal years are calendar years. Segment opex is total operating expenses less depreciation and amortisation, which reaches an EBITDA level margin but not the adjusted EBITDA the company reports: no year carries nonGaapAddBacks, because share based compensation is tagged in shares rather than dollars, impairment stops at 2022, and transaction and integration expenses are not tagged at all. The margin below is therefore a derived floor and not a reconciliation. FY2023 onward is UNVERIFIED against any stated figure and must not enter a cross company margin comparison.",
+  "sourceIndex": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=DLR",
+  "financials": [
+    {
+      "fy": "FY2017",
+      "periodEnd": "2017-12-31",
+      "revenue": 2457928000,
+      "source": {
+        "filing": "FY2019 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2018",
+      "periodEnd": "2018-12-31",
+      "revenue": 3046478000,
+      "cfo": 1385324000,
+      "capex": 1325162000,
+      "source": {
+        "filing": "FY2020 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2019",
+      "periodEnd": "2019-12-31",
+      "revenue": 3209241000,
+      "cfo": 1513817000,
+      "capex": 1436902000,
+      "source": {
+        "filing": "FY2021 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2020",
+      "periodEnd": "2020-12-31",
+      "revenue": 3903609000,
+      "cfo": 1706541000,
+      "capex": 2064066000,
+      "source": {
+        "filing": "FY2022 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2021",
+      "periodEnd": "2021-12-31",
+      "revenue": 4427882000,
+      "cfo": 1702228000,
+      "capex": 2520772000,
+      "source": {
+        "filing": "FY2023 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2022",
+      "periodEnd": "2022-12-31",
+      "revenue": 4691834000,
+      "cfo": 1659388000,
+      "capex": 2643097000,
+      "source": {
+        "filing": "FY2024 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2023",
+      "periodEnd": "2023-12-31",
+      "revenue": 5477061000,
+      "cfo": 1634780000,
+      "capex": 3525598000,
+      "source": {
+        "filing": "FY2025 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2024",
+      "periodEnd": "2024-12-31",
+      "revenue": 5554968000,
+      "cfo": 2261477000,
+      "capex": 2831740000,
+      "source": {
+        "filing": "FY2025 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2025",
+      "periodEnd": "2025-12-31",
+      "revenue": 6112692000,
+      "cfo": 2412136000,
+      "capex": 3181179000,
+      "source": {
+        "filing": "FY2025 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    }
+  ],
+  "segments": [
+    {
+      "name": "Group",
+      "fy": "FY2017",
+      "revenue": 2457928000,
+      "opex": 1164169000,
+      "depreciation": 842464000,
+      "source": {
+        "filing": "FY2019 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "note": "Opex derived as total operating expenses less depreciation and amortisation. No add backs are available for this filer, so this is a derived EBITDA margin and not the company's adjusted EBITDA."
+    },
+    {
+      "name": "Group",
+      "fy": "FY2018",
+      "revenue": 3046478000,
+      "opex": 1309795000,
+      "depreciation": 1186896000,
+      "source": {
+        "filing": "FY2020 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "note": "The one year where the derived margin, 57.0 per cent, falls inside the 57 to 59 band the chief financial officer guided to. The accounts were simplest here: impairment and transaction costs were small and the joint venture structure had not yet moved fee income below the operating line."
+    },
+    {
+      "name": "Group",
+      "fy": "FY2019",
+      "revenue": 3209241000,
+      "opex": 1451252000,
+      "depreciation": 1163774000,
+      "source": {
+        "filing": "FY2021 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Group",
+      "fy": "FY2020",
+      "revenue": 3903609000,
+      "opex": 1979704000,
+      "depreciation": 1366379000,
+      "source": {
+        "filing": "FY2022 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Group",
+      "fy": "FY2021",
+      "revenue": 4427882000,
+      "opex": 2247241000,
+      "depreciation": 1486632000,
+      "source": {
+        "filing": "FY2023 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Group",
+      "fy": "FY2022",
+      "revenue": 4691834000,
+      "opex": 2523933000,
+      "depreciation": 1577933000,
+      "source": {
+        "filing": "FY2024 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Group",
+      "fy": "FY2023",
+      "revenue": 5477061000,
+      "opex": 3257741000,
+      "depreciation": 1694859000,
+      "source": {
+        "filing": "FY2025 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "UNVERIFIED",
+        "restated": false
+      },
+      "note": "The derived margin of 40.5 per cent sits about 880 basis points below the 49.3 per cent implied by the company's own full year adjusted EBITDA guidance. Impairment stopped being tagged after 2022 and the joint venture deconsolidation moved fee income below the operating line, so the gap cannot be decomposed from this source. Marked UNVERIFIED and excluded from cross company margin comparison."
+    },
+    {
+      "name": "Group",
+      "fy": "FY2024",
+      "revenue": 5554968000,
+      "opex": 3311307000,
+      "depreciation": 1771797000,
+      "source": {
+        "filing": "FY2025 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "UNVERIFIED",
+        "restated": false
+      },
+      "note": "No stated margin level exists on any covered call for this year, only a growth rate. Nothing to check against."
+    },
+    {
+      "name": "Group",
+      "fy": "FY2025",
+      "revenue": 6112692000,
+      "opex": 3559564000,
+      "depreciation": 1894636000,
+      "source": {
+        "filing": "FY2025 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "UNVERIFIED",
+        "restated": false
+      },
+      "note": "No stated margin level exists on any covered call for this year. Nothing to check against."
+    }
+  ],
+  "statedMargins": [
+    {
+      "period": "FY2019",
+      "periodEnd": "2019-12-31",
+      "value": 58,
+      "unit": "%",
+      "isActual": false,
+      "verbatim": "So I guess the midpoint of our guidance is to be at about 58% adjusted EBITDA margin.",
+      "speaker": "Andrew Power",
+      "speakerRole": "cfo",
+      "callDate": "2019-04-26",
+      "source": {
+        "label": "Digital Realty FY2019 Q1 earnings call, analyst question and answer",
+        "asOf": "2019-04-26",
+        "verification": "PRIMARY"
+      }
+    },
+    {
+      "period": "FY2023",
+      "periodEnd": "2023-12-31",
+      "value": 49.3,
+      "unit": "%",
+      "isActual": false,
+      "verbatim": "We are also affirming our full year adjusted EBITDA guidance of $2.7 billion [ph] at the midpoint as the downward adjustment in our overall revenue guidance is purely due to lower utility expenses driven by lower spot electricity rates that are passed on directly to our customers.",
+      "speaker": "Matt Mercier",
+      "speakerRole": "cfo",
+      "callDate": "2023-04-27",
+      "source": {
+        "label": "Digital Realty FY2023 Q1 earnings call. A dollar guide of 2.7 billion, converted to a margin over FY2023 revenue of 5,477 million as filed. SECONDARY because the transcript marks the figure [ph], meaning the transcriber flagged it as heard rather than confirmed, and because the percentage is our arithmetic rather than the company's words.",
+        "asOf": "2023-04-27",
+        "verification": "SECONDARY"
+      }
+    }
+  ]
+}

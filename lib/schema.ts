@@ -183,8 +183,37 @@ export const CompanySegment = z.object({
   revenue: z.number().positive(),
   opex: z.number(),
   depreciation: z.number().positive().optional(),
+  /** Items a filer adds back to reach its own adjusted EBITDA: stock
+   *  compensation, impairment, transaction costs. Present only where every
+   *  component is tagged. Undefined means the add backs could not be built,
+   *  which is not the same as their being zero, and `reconcileMargin` refuses
+   *  to reconcile rather than assuming the difference away. */
+  nonGaapAddBacks: z.number().optional(),
   source: FilingSource,
   note: z.string().optional(),
+});
+
+/**
+ * A margin the company stated itself, on the record.
+ *
+ * Adjusted EBITDA margin is non-GAAP and appears in no metric class of the
+ * filings store for either Equinix or Digital Realty. Management says it out
+ * loud on the call instead, so the call is its primary source. This is the
+ * external reference the harvest is checked against, which is why it carries
+ * the verbatim quote and the speaker and not merely a number.
+ */
+export const StatedMargin = z.object({
+  period: z.string().min(1),
+  periodEnd: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  value: z.number().positive(),
+  unit: z.string().min(1),
+  /** Guidance is a band and earns a wider tolerance than a reported actual. */
+  isActual: z.boolean(),
+  verbatim: z.string().min(1),
+  speaker: z.string().min(1),
+  speakerRole: z.string().min(1),
+  callDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  source: Source,
 });
 
 export const CompanyDoc = z
@@ -206,6 +235,9 @@ export const CompanyDoc = z
     sourceIndex: z.string().url(),
     financials: z.array(CompanyFinancials).min(2),
     segments: z.array(CompanySegment).default([]),
+    /** What management said the margin was, in its own words. Empty for a
+     *  filer we have not checked against an outside statement. */
+    statedMargins: z.array(StatedMargin).default([]),
   })
   .refine(
     (c) => {
@@ -220,6 +252,7 @@ export type Campus = z.infer<typeof Campus>;
 export type CompanyDoc = z.infer<typeof CompanyDoc>;
 export type CompanyFinancials = z.infer<typeof CompanyFinancials>;
 export type CompanySegment = z.infer<typeof CompanySegment>;
+export type StatedMargin = z.infer<typeof StatedMargin>;
 export type CapacityLadder = z.infer<typeof CapacityLadder>;
 export type Claim = z.infer<typeof Claim>;
 export type Refusal = z.infer<typeof Refusal>;

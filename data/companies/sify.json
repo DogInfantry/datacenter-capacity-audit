@@ -4,6 +4,8 @@
   "exchange": "NASDAQ",
   "currency": "INR",
   "fiscalYearEnd": "03-31",
+  "role": "Indian operator, data centre pivot",
+  "segmentBasis": "BY_SERVICE_LINE",
   "note": "As filed in Form 20-F. Values in rupees, not crore: the conversion is a display concern. Periods marked restated were re-reported by a later filing; the value served is the most recently published one.",
   "sourceIndex": "https://www.sec.gov/Archives/edgar/data/1094324",
   "financials": [

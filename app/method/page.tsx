@@ -33,6 +33,19 @@ const FORMULAS = [
     note: "Summed deliberately: a shortfall does not reset each April, it accumulates until someone funds it.",
   },
   {
+    name: "Adjusted EBITDA reconstruction",
+    formula: "operating income + depreciation + add backs, over revenue",
+    denominator:
+      "Equinix, one quarter and one financial year with a stated reference, from Form 10-Q and 10-K",
+    note: "The check on everything else here. Adjusted EBITDA is not GAAP and is tagged nowhere in the filings database, so the reference is what management said on the call, verbatim and dated. Add backs are stock compensation and any tagged one off charge. An add back that is not tagged is not treated as zero: the period is reported as not reconcilable instead, because a company that does not tag its stock compensation has not told us it pays none.",
+  },
+  {
+    name: "Reconciliation tolerance",
+    formula: "absolute(rebuilt margin - stated margin), in basis points",
+    denominator: "150 bp against a reported actual, 250 bp against guidance",
+    note: "Both were fixed in writing before the check was run, so that the result could not be rationalised afterwards. Guidance earns the wider band because a guide is a range and not a point. Equinix cleared the first at 35 basis points for the second quarter of 2025 and the second at 131 basis points for the 2025 financial year. Digital Realty cleared neither, because its add backs cannot be built from the source at all.",
+  },
+  {
     name: "Segment share of revenue",
     formula: "segment revenue / group revenue",
     denominator: "6 annual periods where both figures are reported",

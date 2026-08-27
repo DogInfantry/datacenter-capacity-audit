@@ -1,0 +1,105 @@
+{
+  "_source": "FactIQ MCP, search_company_filings, search_target=facts",
+  "_company": "DIGITAL REALTY TRUST, INC.",
+  "_harvested": "2026-08-28",
+  "_note": "Values as returned by the server, unedited. Annual periods are calendar years: Digital Realty closes 31 December.",
+  "_warning": "Do not query this filer with concept=\"revenues\". That string resolves to \"Equity method investment summarized financial information revenue\", an unrelated line roughly twenty times too small. The total revenue concept is \"Revenue\".",
+  "concepts": {
+    "Revenue": {
+      "query": "query=total revenues rental revenue data center revenue, metric_class=financial, report_type=annual",
+      "unit": "USD",
+      "annual": {
+        "2017-12-31": 2457928000,
+        "2018-12-31": 3046478000,
+        "2019-12-31": 3209241000,
+        "2020-12-31": 3903609000,
+        "2021-12-31": 4427882000,
+        "2022-12-31": 4691834000,
+        "2023-12-31": 5477061000,
+        "2024-12-31": 5554968000,
+        "2025-12-31": 6112692000
+      }
+    },
+    "Operating expenses (US GAAP)": {
+      "query": "concept=Operating expenses, report_type=annual",
+      "unit": "USD",
+      "annual": {
+        "2017-12-31": 2006633000,
+        "2018-12-31": 2496691000,
+        "2019-12-31": 2615026000,
+        "2020-12-31": 3346083000,
+        "2021-12-31": 3733873000,
+        "2022-12-31": 4101866000,
+        "2023-12-31": 4952600000,
+        "2024-12-31": 5083104000,
+        "2025-12-31": 5454200000
+      },
+      "_note": "Total operating expenses including depreciation and amortisation, general and administrative, impairment and transaction costs. Depreciation must be removed to reach an EBITDA level figure."
+    },
+    "Depreciation and amortization": {
+      "query": "concept=Depreciation and amortization, report_type=annual",
+      "unit": "USD",
+      "annual": {
+        "2016-12-31": 699324000,
+        "2017-12-31": 842464000,
+        "2018-12-31": 1186896000,
+        "2019-12-31": 1163774000,
+        "2020-12-31": 1366379000,
+        "2021-12-31": 1486632000,
+        "2022-12-31": 1577933000,
+        "2023-12-31": 1694859000,
+        "2024-12-31": 1771797000,
+        "2025-12-31": 1894636000
+      }
+    },
+    "Net income loss": {
+      "query": "concept=Net income loss, report_type=annual",
+      "unit": "USD",
+      "annual": {
+        "2020-12-31": 356398000,
+        "2021-12-31": 1709259000,
+        "2022-12-31": 377684000,
+        "2023-12-31": 948838000,
+        "2024-12-31": 602490000,
+        "2025-12-31": 1308589000
+      },
+      "_note": "Harvested but not used. A bottom up rebuild of adjusted EBITDA from net income would need the gain on sale of investments, which is not tagged, and FY2021 is heavily inflated by joint venture disposal gains."
+    },
+    "Net cash provided by used in operating activities": {
+      "query": "concept=Net cash provided by used in operating activities, report_type=annual",
+      "unit": "USD",
+      "annual": {
+        "2018-12-31": 1385324000,
+        "2019-12-31": 1513817000,
+        "2020-12-31": 1706541000,
+        "2021-12-31": 1702228000,
+        "2022-12-31": 1659388000,
+        "2023-12-31": 1634780000,
+        "2024-12-31": 2261477000,
+        "2025-12-31": 2412136000
+      }
+    },
+    "Payments to develop real estate assets": {
+      "query": "concept=Payments to develop real estate assets, report_type=annual",
+      "unit": "USD",
+      "annual": {
+        "2018-12-31": 1325162000,
+        "2019-12-31": 1436902000,
+        "2020-12-31": 2064066000,
+        "2021-12-31": 2520772000,
+        "2022-12-31": 2643097000,
+        "2023-12-31": 3525598000,
+        "2024-12-31": 2831740000,
+        "2025-12-31": 3181179000
+      },
+      "_note": "The development spend line is the right capital expenditure analogue for a real estate investment trust. Acquisitions of completed assets sit on a separate line and are not construction."
+    }
+  },
+  "not_available": {
+    "adjusted EBITDA": "Zero rows in every metric class, including the KPI class, which holds only occupancy rate, weighted average lease term, net bookings and portfolio property count.",
+    "share based compensation in dollars": "Tagged only as \"Share based compensation arrangement by share based payment award shares issued in period\", denominated in shares. There is no dollar expense series.",
+    "impairment": "\"Impairment of long lived assets to be disposed of\" runs annually 2013 to 2022 and then stops, which is the point at which the derived margin begins to diverge.",
+    "transaction and integration expenses": "No concept found.",
+    "segment": "Digital Realty has no Segment metric class at all. It reports as a single reportable segment, so group equals segment."
+  }
+}

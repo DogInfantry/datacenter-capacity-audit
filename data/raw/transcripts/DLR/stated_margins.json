@@ -1,0 +1,83 @@
+{
+  "_source": "FactIQ MCP, search_earnings_transcripts, search_target=claims",
+  "_company": "Digital Realty Trust, Inc.",
+  "_harvested": "2026-08-28",
+  "_coverage": "42 calls, FY2016Q1 to FY2026Q2, latest call 2026-07-23",
+  "_note": "Digital Realty states adjusted EBITDA margin far less often than Equinix does. Two searches, one for \"adjusted EBITDA margin\" and one for \"Adjusted EBITDA margin percentage revenue\", returned only two quantified margin levels, both from 2017 to 2019 and both guidance rather than reported actuals. Recent calls give growth rates, not levels. That scarcity is itself the finding.",
+  "claims": [
+    {
+      "claim_id": "DLR::FY2019Q1::claim::a3c411f8904f24590136",
+      "fiscal_period": "FY2019Q1",
+      "call_date": "2019-04-26",
+      "speaker": "Andrew Power",
+      "speaker_role": "cfo",
+      "section": "qa",
+      "value": 58,
+      "unit": "%",
+      "denominator": "% of revenue",
+      "is_actual": false,
+      "verbatim": "So I guess the midpoint of our guidance is to be at about 58% adjusted EBITDA margin."
+    },
+    {
+      "claim_id": "DLR::FY2017Q3::claim::ab485361bb7fad458a16",
+      "fiscal_period": "FY2017Q3",
+      "call_date": "2017-10-25",
+      "speaker": "Andrew Power",
+      "speaker_role": "cfo",
+      "section": "qa",
+      "value_low": 57,
+      "value_high": 59,
+      "unit": "%",
+      "denominator": "adjusted EBITDA margin",
+      "is_actual": false,
+      "verbatim": "My guess is, with the quarter, really a full quarter and half-a-month of the DFT transaction under our belt, we will be guiding slightly to the higher end of that range of our guidance, and obviously it should be more helpful as we move into 2018, given the operating efficiencies from that portfolio."
+    },
+    {
+      "claim_id": "DLR::FY2023Q1::claim::58f8266c49984f87b951",
+      "fiscal_period": "FY2023Q1",
+      "call_date": "2023-04-27",
+      "speaker": "Matt Mercier",
+      "speaker_role": "cfo",
+      "section": "prepared_remarks",
+      "value": 2700000000,
+      "unit": "USD",
+      "denominator": "full year adjusted EBITDA, midpoint",
+      "is_actual": false,
+      "period": "FY2023",
+      "verbatim": "We are also affirming our full year adjusted EBITDA guidance of $2.7 billion [ph] at the midpoint as the downward adjustment in our overall revenue guidance is purely due to lower utility expenses driven by lower spot electricity rates that are passed on directly to our customers.",
+      "_note": "A dollar level rather than a margin. Over FY2023 revenue of 5,477,061,000 this implies about 49.3 per cent. The transcript source marks the figure [ph], meaning the transcriber flagged it as heard phonetically, so it is treated as SECONDARY rather than PRIMARY."
+    },
+    {
+      "claim_id": "DLR::FY2024Q4::claim::b1be0127a492bb2b62c8",
+      "fiscal_period": "FY2024Q4",
+      "call_date": "2025-02-13",
+      "speaker": "Matt Mercier",
+      "speaker_role": "cfo",
+      "section": "prepared_remarks",
+      "value": 7.4,
+      "unit": "% growth",
+      "denominator": "year over year",
+      "is_actual": true,
+      "period": "FY2024",
+      "verbatim": "Adjusted EBITDA increased by 7.4% year-over-year, broadly consistent with our growth in data center revenue.",
+      "_note": "A growth rate with no level attached. Cannot anchor a margin without a base year level, which is not stated."
+    },
+    {
+      "claim_id": "DLR::FY2024Q3::claim::c03f69a2aee4574d78ed",
+      "fiscal_period": "FY2024Q3",
+      "call_date": "2024-10-24",
+      "speaker": "Matthew Mercier",
+      "speaker_role": "cfo",
+      "section": "prepared_remarks",
+      "value": 200,
+      "unit": "bps",
+      "denominator": "margin improvement, year over year",
+      "is_actual": true,
+      "verbatim": "Adjusted EBITDA increased by 11% year-over-year, principally due to a near 200 basis point improvement in margin from the flow-through of higher data center and interconnection revenues with improved pricing.",
+      "_note": "A change in margin, not a level."
+    }
+  ],
+  "not_found": {
+    "reported annual adjusted EBITDA margin level, FY2020 onward": "No call in the covered range states one. Digital Realty publishes the figure in its quarterly supplemental, which is not in the filings store and is not XBRL tagged. The number is public but not machine reachable, which is the same distinction the disclosure register already draws between refusing to answer and answering somewhere else."
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "ticker": "EQIX",
+  "name": "Equinix, Inc.",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "fiscalYearEnd": "12-31",
+  "role": "Global colocation pure play",
+  "segmentBasis": "PURE_PLAY",
+  "note": "A pure play, so group equals segment and the segment rows below are the group. Fiscal years are calendar years, unlike the Indian filers in this set, which close on 31 March. Segment opex is operating expenses excluding depreciation, derived as revenue less operating income less depreciation, so that the margin it produces is an EBITDA level margin comparable with Sify's segment note. Present from FY2020 only, because the annual operating income series starts there.",
+  "sourceIndex": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=EQIX",
+  "financials": [
+    {
+      "fy": "FY2018",
+      "periodEnd": "2018-12-31",
+      "revenue": 5071654000,
+      "cfo": 1815426000,
+      "capex": 2096174000,
+      "source": {
+        "filing": "FY2020 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2019",
+      "periodEnd": "2019-12-31",
+      "revenue": 5562140000,
+      "cfo": 1992728000,
+      "capex": 2079521000,
+      "source": {
+        "filing": "FY2021 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2020",
+      "periodEnd": "2020-12-31",
+      "revenue": 5998545000,
+      "cfo": 2309826000,
+      "capex": 2282504000,
+      "source": {
+        "filing": "FY2022 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2021",
+      "periodEnd": "2021-12-31",
+      "revenue": 6635537000,
+      "cfo": 2547206000,
+      "capex": 2751512000,
+      "source": {
+        "filing": "FY2023 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2022",
+      "periodEnd": "2022-12-31",
+      "revenue": 7263000000,
+      "cfo": 2963000000,
+      "capex": 2278000000,
+      "source": {
+        "filing": "FY2024 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": true
+    },
+    {
+      "fy": "FY2023",
+      "periodEnd": "2023-12-31",
+      "revenue": 8188000000,
+      "cfo": 3217000000,
+      "capex": 2781000000,
+      "source": {
+        "filing": "FY2025 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": true
+    },
+    {
+      "fy": "FY2024",
+      "periodEnd": "2024-12-31",
+      "revenue": 8748000000,
+      "cfo": 3249000000,
+      "capex": 3066000000,
+      "source": {
+        "filing": "FY2025 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2025",
+      "periodEnd": "2025-12-31",
+      "revenue": 9217000000,
+      "cfo": 3911000000,
+      "capex": 4311000000,
+      "source": {
+        "filing": "FY2025 10-K",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    }
+  ],
+  "segments": [
+    {
+      "name": "Group",
+      "fy": "FY2020",
+      "revenue": 5998545000,
+      "opex": 3522248000,
+      "depreciation": 1423369000,
+      "nonGaapAddBacks": 294952000,
+      "source": {
+        "filing": "FY2022 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "note": "Opex derived as revenue less operating income less depreciation. Add backs are share based compensation only."
+    },
+    {
+      "name": "Group",
+      "fy": "FY2021",
+      "revenue": 6635537000,
+      "opex": 3871085000,
+      "depreciation": 1656290000,
+      "nonGaapAddBacks": 363774000,
+      "source": {
+        "filing": "FY2023 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Group",
+      "fy": "FY2022",
+      "revenue": 7263000000,
+      "opex": 4326000000,
+      "depreciation": 1737000000,
+      "nonGaapAddBacks": 404000000,
+      "source": {
+        "filing": "FY2024 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Group",
+      "fy": "FY2023",
+      "revenue": 8188000000,
+      "opex": 4900000000,
+      "depreciation": 1845000000,
+      "nonGaapAddBacks": 407000000,
+      "source": {
+        "filing": "FY2025 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Group",
+      "fy": "FY2024",
+      "revenue": 8748000000,
+      "opex": 5411000000,
+      "depreciation": 2009000000,
+      "nonGaapAddBacks": 462000000,
+      "source": {
+        "filing": "FY2025 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "note": "A charge year. Fourth quarter operating income fell to 103 million against 425 million in the third, so the add backs harvested here, which are share based compensation only, leave this year understated against the figure the company reports."
+    },
+    {
+      "name": "Group",
+      "fy": "FY2025",
+      "revenue": 9217000000,
+      "opex": 5319000000,
+      "depreciation": 2050000000,
+      "nonGaapAddBacks": 498000000,
+      "source": {
+        "filing": "FY2025 10-K, derived",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    }
+  ],
+  "statedMargins": [
+    {
+      "period": "Q2 2025",
+      "periodEnd": "2025-06-30",
+      "value": 50,
+      "unit": "%",
+      "isActual": true,
+      "verbatim": "Adjusted EBITDA margins increased to 50% of revenues for the first time in our history.",
+      "speaker": "Adaire Rita Fox-Martin",
+      "speakerRole": "ceo",
+      "callDate": "2025-07-31",
+      "source": {
+        "label": "Equinix FY2025 Q2 earnings call, prepared remarks",
+        "asOf": "2025-07-31",
+        "verification": "PRIMARY"
+      }
+    },
+    {
+      "period": "Q2 2026",
+      "periodEnd": "2026-06-30",
+      "value": 52,
+      "unit": "%",
+      "isActual": true,
+      "verbatim": "Our adjusted EBITDA margin was 52%, up 300 basis points year-over-year. This is a result of continued cost discipline, scaling our operating leverage, and our xScale leasing fees.",
+      "speaker": "Olivier Leonetti",
+      "speakerRole": "cfo",
+      "callDate": "2026-07-29",
+      "source": {
+        "label": "Equinix FY2026 Q2 earnings call, prepared remarks",
+        "asOf": "2026-07-29",
+        "verification": "PRIMARY"
+      }
+    },
+    {
+      "period": "FY2025",
+      "periodEnd": "2025-12-31",
+      "value": 49,
+      "unit": "%",
+      "isActual": false,
+      "verbatim": "Adjusted EBITDA margins are expected to be approximately 49% with strong second half adjusted EBITDA margins at or near 50%.",
+      "speaker": "Keith D. Taylor",
+      "speakerRole": "cfo",
+      "callDate": "2025-07-31",
+      "source": {
+        "label": "Equinix FY2025 Q2 earnings call, full year guidance",
+        "asOf": "2025-07-31",
+        "verification": "PRIMARY"
+      }
+    },
+    {
+      "period": "FY2017",
+      "periodEnd": "2017-12-31",
+      "value": 48.2,
+      "unit": "%",
+      "isActual": true,
+      "verbatim": "In 2017, we improved our adjusted EBITDA margin, excluding integration costs, to 48.2%, a 70 basis point improvement over the prior year as we continued to make progress towards our long-term 50% adjusted EBITDA margin target.",
+      "speaker": "Keith Taylor",
+      "speakerRole": "cfo",
+      "callDate": "2018-02-14",
+      "source": {
+        "label": "Equinix FY2017 Q4 earnings call, prepared remarks",
+        "asOf": "2018-02-14",
+        "verification": "PRIMARY"
+      }
+    },
+    {
+      "period": "FY2016",
+      "periodEnd": "2016-12-31",
+      "value": 47.5,
+      "unit": "%",
+      "isActual": true,
+      "verbatim": "In 2016, we improved our normalized and adjusted EBITDA margin to 47.5%, an 80 basis point improvement over the prior year, making progress towards our long-term 50% adjusted EBITDA margin target.",
+      "speaker": "Keith D. Taylor",
+      "speakerRole": "cfo",
+      "callDate": "2017-02-16",
+      "source": {
+        "label": "Equinix FY2016 Q4 earnings call, prepared remarks",
+        "asOf": "2017-02-16",
+        "verification": "PRIMARY"
+      }
+    }
+  ]
+}

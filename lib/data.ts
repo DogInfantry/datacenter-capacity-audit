@@ -6,6 +6,8 @@ import sifyRaw from "@/data/sify_capacity.json";
 import sifyCoRaw from "@/data/companies/sify.json";
 import wiproRaw from "@/data/companies/wipro.json";
 import infosysRaw from "@/data/companies/infosys.json";
+import equinixRaw from "@/data/companies/equinix.json";
+import digitalRealtyRaw from "@/data/companies/digitalrealty.json";
 
 /** Fail the build loudly, with the path to the offending field. */
 function parse<T extends z.ZodTypeAny>(schema: T, raw: unknown, what: string): z.infer<T> {
@@ -25,9 +27,43 @@ export const sify = parse(CapacityLadder, sifyRaw, "data/sify_capacity.json");
 export const sifyCo = parse(CompanyDoc, sifyCoRaw, "data/companies/sify.json");
 export const wipro = parse(CompanyDoc, wiproRaw, "data/companies/wipro.json");
 export const infosys = parse(CompanyDoc, infosysRaw, "data/companies/infosys.json");
+export const equinix = parse(CompanyDoc, equinixRaw, "data/companies/equinix.json");
+export const digitalRealty = parse(
+  CompanyDoc,
+  digitalRealtyRaw,
+  "data/companies/digitalrealty.json",
+);
 
-/** Every company harvested so far, in the order they are compared. */
-export const companies = [sifyCo, wipro, infosys];
+/** Every company harvested so far, data centre operators first. */
+export const companies = [sifyCo, equinix, digitalRealty, wipro, infosys];
+
+/**
+ * The calendar year a reporting period ends in.
+ *
+ * Fiscal labels are not comparable across this set. Sify, Wipro and Infosys
+ * close on 31 March; Equinix and Digital Realty close on 31 December. FY2026
+ * therefore means a year ending March 2026 for one filer and a year ending
+ * December 2026 for another, and keying a comparison on the label would put
+ * them in the same column while quietly measuring different things. The period
+ * end is the fact. The label is the company's own convention.
+ *
+ * This is the same failure the capacity ladder already guards against by
+ * ordering on calendar date rather than fiscal quarter.
+ */
+export const periodEndYear = (r: { periodEnd: string }) =>
+  Number(r.periodEnd.slice(0, 4));
+
+/** Every period end year present across the set, ascending. */
+export function coverageYears(cs: CompanyDoc[] = companies) {
+  const years = new Set<number>();
+  for (const c of cs) for (const f of c.financials) years.add(periodEndYear(f));
+  return [...years].sort((a, b) => a - b);
+}
+
+/** A company's row for one period end year, or null if it did not report one. */
+export function financialsForYear(c: CompanyDoc, year: number) {
+  return c.financials.find((f) => periodEndYear(f) === year) ?? null;
+}
 
 /** Announced minus live, the number the whole project exists to keep visible. */
 export function gapMW(c: Campus) {

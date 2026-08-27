@@ -32,15 +32,40 @@ Recorded with the finding each one produced, because a tick is not a result.
 - **A result that cut the other way, kept for that reason.** The data centre share of Sify group
   revenue rose from 23 to 39 per cent, so the stated pivot is real in the accounts. A project that
   only ever finds companies wanting is editorialising rather than measuring.
+- **The harvest method, checked against something outside the project.** Every margin here was
+  computed by us and confirmed by nobody until Equinix and Digital Realty were harvested for that
+  purpose. Rebuilding Equinix's own definition of adjusted EBITDA from its own filings gives 49.65
+  per cent for the second quarter of 2025 against the 50 per cent its chief executive stated on
+  the call, and 47.69 per cent for FY2025 against 49 per cent guided. Tolerances of 150 basis
+  points against an actual and 250 against a guide were written down before the check was run, and
+  both are asserted in the test suite, so a future harvest that drifts fails the build rather than
+  leaving a confident number on a page. The finding is not that the number matched. It is that the
+  method now has a way of being wrong that would be noticed.
+- **A check that failed, kept because failing is what it was for.** The same method applied to
+  Digital Realty cannot be completed at all. Its share based compensation is tagged in shares
+  rather than dollars, its impairment concept stops at 2022 and its transaction costs are never
+  tagged, so the add backs that would reconcile it do not exist in the source. The derived margin
+  matches the guided band in FY2018 at 57.0 per cent and then walks away to 40.5 per cent by
+  FY2023 against 49.3 implied by the company's own guidance. What that establishes is narrower and
+  more useful than a clean pass: the method is sound where a filer tags its income statement
+  completely, and it degrades exactly where untagged non-GAAP adjustments grow. Those years are
+  marked UNVERIFIED and kept out of every cross company margin claim.
 - **A defect in shipped work, found by tooling rather than by eye.** The first chart palette had
   two hues 10.1 apart on the normal vision scale against a floor of 15. Full colour readers could
   not separate them. Replaced with a validated set and re-checked in both themes.
 
 ## Open, and what unblocks it
 
-- **Seven companies harvested.** Infosys, Wipro, Equinix, Digital Realty, Nebius, Applied Digital
-  and Core Scientific are confirmed present with a decade of filings. Unblocked by nothing except
-  the work: roughly seven MCP calls each into `data/companies/<ticker>.json`.
+- **Three companies left to harvest.** Infosys, Wipro, Equinix and Digital Realty are in. Nebius,
+  Applied Digital and Core Scientific are confirmed present with a decade of filings. Unblocked by
+  nothing except the work, and each should now be put through `reconcileMargin` before its margins
+  are trusted, which is a check that did not exist when the first three were harvested.
+- **The Equinix reconstruction on charge years.** FY2024 rebuilds to 43.4 per cent against a
+  company reporting close to 48, because the fourth quarter carried a charge and the only add back
+  harvested was stock compensation. `Asset impairment charges` is present as a quarterly series
+  2016 to 2026 and would close most of the gap. FY2016 and FY2017 already have their stated
+  margins in the doc and could be checked as well, but they also need annual operating income,
+  which the store does not carry before 2020.
 - **Per company pages and compare.** Blocked on the above. One company does not need a company
   page.
 - **The prospectus teardown.** Reachable at
@@ -75,4 +100,12 @@ Marked so rather than left looking like work.
   group equals segment. Infosys and Wipro segment by industry vertical, not by AI. The narrative
   test therefore measures something weaker for the services names than for Sify, and that is a
   property of what companies disclose rather than a gap to close.
+- **Digital Realty's margin stays unreconciled from FY2023.** Not for want of trying and not
+  pending more work. The three add backs needed are absent from the source: share based
+  compensation is tagged in shares rather than dollars, impairment stops at 2022, transaction
+  costs are never tagged. The company does publish its adjusted EBITDA, in a quarterly supplemental
+  that carries no machine readable tagging, so the figure is public and out of reach at the same
+  time. Reading that supplemental by hand would fix one company and teach nothing, which is why it
+  is marked terminal rather than queued. The years are labelled UNVERIFIED and excluded from
+  comparison, and the gap is shown on the page with its cause named.
 - **Screener data stays manual.** Terms of service permit export, not scraping.

@@ -1,0 +1,134 @@
+{
+  "_source": "FactIQ MCP, search_company_filings, search_target=facts",
+  "_company": "EQUINIX INC",
+  "_harvested": "2026-08-28",
+  "_note": "Values as returned by the server, unedited. One entry per concept, with the concept string that produced it. Annual periods are calendar years: Equinix closes 31 December.",
+  "concepts": {
+    "revenue": {
+      "query": "concept=revenue, metric_class=financial",
+      "unit": "USD",
+      "annual": {
+        "2016-12-31": 3611989000,
+        "2017-12-31": 4368428000,
+        "2018-12-31": 5071654000,
+        "2019-12-31": 5562140000,
+        "2020-12-31": 5998545000,
+        "2021-12-31": 6635537000,
+        "2022-12-31": 7263000000,
+        "2023-12-31": 8188000000,
+        "2024-12-31": 8748000000,
+        "2025-12-31": 9217000000
+      },
+      "quarterly": {
+        "2025-01-01/2025-03-31": 2225000000,
+        "2025-04-01/2025-06-30": 2256000000,
+        "2025-07-01/2025-09-30": 2316000000,
+        "2025-09-30/2025-12-31": 2420000000,
+        "2026-01-01/2026-03-31": 2444000000,
+        "2026-04-01/2026-06-30": 2625000000
+      },
+      "restated_periods": ["2022-12-31", "2023-12-31"]
+    },
+    "Operating income loss": {
+      "query": "concept=Operating income loss",
+      "unit": "USD",
+      "annual": {
+        "2020-12-31": 1052928000,
+        "2021-12-31": 1108162000,
+        "2022-12-31": 1200000000,
+        "2023-12-31": 1443000000,
+        "2024-12-31": 1328000000,
+        "2025-12-31": 1848000000
+      },
+      "quarterly": {
+        "2025-01-01/2025-03-31": 458000000,
+        "2025-04-01/2025-06-30": 494000000,
+        "2025-07-01/2025-09-30": 474000000,
+        "2026-01-01/2026-03-31": 577000000,
+        "2026-04-01/2026-06-30": 665000000
+      },
+      "_note": "No annual series before 2020. Quarterly runs back to 2015."
+    },
+    "Depreciation depletion and amortization": {
+      "query": "concept=Depreciation depletion and amortization, metric_class=financial",
+      "unit": "USD",
+      "annual": {
+        "2016-12-31": 837207000,
+        "2017-12-31": 1042480000,
+        "2018-12-31": 1227489000,
+        "2019-12-31": 1284837000,
+        "2020-12-31": 1423369000,
+        "2021-12-31": 1656290000,
+        "2022-12-31": 1737000000,
+        "2023-12-31": 1845000000,
+        "2024-12-31": 2009000000,
+        "2025-12-31": 2050000000
+      },
+      "quarterly": {
+        "2025-01-01/2025-03-31": 479000000,
+        "2025-04-01/2025-06-30": 499000000,
+        "2025-07-01/2025-09-30": 530000000,
+        "2025-09-30/2025-12-31": 542000000,
+        "2026-01-01/2026-03-31": 541000000,
+        "2026-04-01/2026-06-30": 551000000
+      }
+    },
+    "Share based compensation": {
+      "query": "concept=Share based compensation",
+      "unit": "USD",
+      "annual": {
+        "2016-12-31": 155567000,
+        "2017-12-31": 175500000,
+        "2018-12-31": 180716000,
+        "2019-12-31": 236539000,
+        "2020-12-31": 294952000,
+        "2021-12-31": 363774000,
+        "2022-12-31": 404000000,
+        "2023-12-31": 407000000,
+        "2024-12-31": 462000000,
+        "2025-12-31": 498000000
+      },
+      "quarterly": {
+        "2025-01-01/2025-03-31": 113000000,
+        "2025-03-31/2025-06-30": 127000000,
+        "2025-06-30/2025-09-30": 130000000,
+        "2025-09-30/2025-12-31": 128000000,
+        "2026-01-01/2026-03-31": 128000000
+      },
+      "_note": "Q2 2026 is absent from the store. The FY2026 Q2 10-Q reports a first half cumulative from which the server derived Q2 2025 but not Q2 2026."
+    },
+    "Net cash provided by used in operating activities": {
+      "query": "concept=Net cash provided by used in operating activities, report_type=annual",
+      "unit": "USD",
+      "annual": {
+        "2018-12-31": 1815426000,
+        "2019-12-31": 1992728000,
+        "2020-12-31": 2309826000,
+        "2021-12-31": 2547206000,
+        "2022-12-31": 2963000000,
+        "2023-12-31": 3217000000,
+        "2024-12-31": 3249000000,
+        "2025-12-31": 3911000000
+      }
+    },
+    "Payments to acquire other property plant and equipment": {
+      "query": "concept=Payments to acquire other property plant and equipment, report_type=annual",
+      "unit": "USD",
+      "annual": {
+        "2018-12-31": 2096174000,
+        "2019-12-31": 2079521000,
+        "2020-12-31": 2282504000,
+        "2021-12-31": 2751512000,
+        "2022-12-31": 2278000000,
+        "2023-12-31": 2781000000,
+        "2024-12-31": 3066000000,
+        "2025-12-31": 4311000000
+      },
+      "_note": "Equinix splits capital spend across this line and Payments to acquire real estate. Only this line carries an annual series; the real estate line is quarterly only. This is the larger of the two and is the data centre construction spend."
+    }
+  },
+  "not_available": {
+    "adjusted EBITDA": "Returns no usable series in any metric class. The measure is non-GAAP and is published in the earnings release, which is not XBRL tagged at this granularity.",
+    "Asset impairment charges": "Present as a quarterly series 2016 to 2026 but not harvested in this pass. It is the next refinement for charge years such as FY2024."
+  }
+}
