@@ -1,0 +1,84 @@
+{
+  "ticker": "INFY",
+  "name": "Infosys Limited",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "fiscalYearEnd": "03-31",
+  "role": "Indian IT services, asset light",
+  "segmentBasis": "NOT_HARVESTED",
+  "note": "Capex is tagged 'Expenditure on property, plant and equipment and intangibles' from FY2019 onward, which includes intangibles. Sify's capex concept does not. The two are close enough for an order of magnitude comparison of capital intensity and are not like for like at the margin.",
+  "sourceIndex": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=INFY",
+  "financials": [
+    {
+      "fy": "FY2022",
+      "periodEnd": "2022-03-31",
+      "revenue": 16311000000,
+      "cfo": 3345000000,
+      "capex": 290000000,
+      "source": {
+        "filing": "FY2024 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2023",
+      "periodEnd": "2023-03-31",
+      "revenue": 18212000000,
+      "cfo": 2853000000,
+      "capex": 319000000,
+      "source": {
+        "filing": "FY2025 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2024",
+      "periodEnd": "2024-03-31",
+      "revenue": 18562000000,
+      "cfo": 3148000000,
+      "capex": 266000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2025",
+      "periodEnd": "2025-03-31",
+      "revenue": 19277000000,
+      "cfo": 4351000000,
+      "capex": 263000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2026",
+      "periodEnd": "2026-03-31",
+      "revenue": 20158000000,
+      "cfo": 4039000000,
+      "capex": 306000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    }
+  ],
+  "segments": []
+}

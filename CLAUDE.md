@@ -96,8 +96,18 @@ hand.
 
 ## Coverage state
 
-See `ROADMAP.md` for what is unfinished and why. As of 2026-08-27: one company complete (SIFY),
-seven confirmed available and not yet harvested, four Indian-listed names requiring manual export.
+See `ROADMAP.md` for what is unfinished and why. As of 2026-08-27:
+
+- **SIFY**, complete. Financials, segments, capacity ladder, claims, refusals.
+- **WIT** and **INFY**, financials only. Revenue, cash flow and capex FY2022 to FY2026. Segments
+  not harvested, recorded as `segmentBasis: NOT_HARVESTED` rather than left looking absent.
+- **EQIX, DLR, NBIS, APLD, CORZ**, confirmed available and not yet harvested.
+- Four Indian-listed names (NETWEB, ANANTRAJ, E2E, TECHNOE) need Screener exports by hand.
+
+**The rule coverage forced.** Three filers, two currencies, so cross company comparison uses
+margins and ratios only, never absolute money, unless a rate is stated on the page. Wipro is the
+reason: between FY2023 and FY2026 its rupee revenue rose while its dollar revenue fell 10 per
+cent, and quoting only the rupee line would present a decline as growth. A test asserts this.
 
 ## Commands
 

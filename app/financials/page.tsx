@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CapexVsCfo } from "@/components/CapexVsCfo";
-import { sifyCo } from "@/lib/data";
+import { companies, sifyCo, wipro } from "@/lib/data";
 import { fundingGap, toCr } from "@/lib/diagnostics/capital";
 import { segmentMargins, revenuePerMW } from "@/lib/diagnostics/unitEconomics";
 import { segmentShare } from "@/lib/diagnostics/narrative";
@@ -170,6 +170,111 @@ export default function Financials() {
           years were restated by a later filing, and the restated column says
           which.
         </p>
+      </section>
+
+      <section className="border-t border-line py-14">
+        <p className="sc text-accent">Across the coverage</p>
+        <h2 className="mt-3 font-serif text-3xl tracking-tight">
+          The same business model question, in one ratio
+        </h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+          Capital expenditure divided by operating cash flow is currency free,
+          so it compares a rupee filer against a dollar filer without an
+          exchange rate and without an argument. Above 1 the year built more
+          than the business earned. It separates an asset heavy operator from an
+          asset light one by roughly twenty times.
+        </p>
+
+        <div className="mt-8 overflow-x-auto">
+          <table className="w-full min-w-[36rem] border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-line text-left text-xs text-muted">
+                <th className="py-2 pr-4 font-medium">Company</th>
+                <th className="py-2 pr-4 font-medium">Reports in</th>
+                {["FY2022", "FY2023", "FY2024", "FY2025", "FY2026"].map((fy) => (
+                  <th key={fy} className="py-2 pr-4 text-right font-medium">
+                    {fy.replace("FY", "")}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {companies.map((c) => (
+                <tr key={c.ticker} className="border-b border-line">
+                  <td className="py-2.5 pr-4">
+                    <span className="font-medium">{c.ticker}</span>
+                    <span className="block text-xs text-muted">{c.role}</span>
+                  </td>
+                  <td className="py-2.5 pr-4 text-xs text-muted">{c.currency}</td>
+                  {["FY2022", "FY2023", "FY2024", "FY2025", "FY2026"].map((fy) => {
+                    const r = c.financials.find((x) => x.fy === fy);
+                    const ratio =
+                      r && r.cfo && r.capex ? r.capex / r.cfo : null;
+                    return (
+                      <td
+                        key={fy}
+                        className={
+                          "py-2.5 pr-4 text-right tnum " +
+                          (ratio && ratio > 1 ? "text-private" : "")
+                        }
+                      >
+                        {ratio ? ratio.toFixed(2) : "n/a"}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted">
+          Infosys tags its capital spend as expenditure on property, plant and
+          equipment <em>and intangibles</em> from FY2019, while Sify&apos;s
+          concept excludes intangibles. Close enough to separate an order of
+          magnitude, not close enough to read the second decimal.
+        </p>
+      </section>
+
+      <section className="border-t border-line py-14">
+        <p className="sc text-accent">Why the currency rule exists</p>
+        <h2 className="mt-3 font-serif text-3xl tracking-tight">
+          Wipro grew in rupees and shrank in dollars
+        </h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+          Wipro reports both. Between FY2023 and FY2026 the rupee line rose from{" "}
+          <span className="tnum">Rs 9.05 lakh crore</span> to{" "}
+          <span className="tnum">Rs 9.26 lakh crore</span>, while the dollar line
+          fell from <span className="tnum">$11.01 billion</span> to{" "}
+          <span className="tnum">$9.87 billion</span>. The difference is
+          currency, not business. Quoting only the rupee figure would present a
+          three year decline as growth, which is why nothing here compares
+          absolute money across filers.
+        </p>
+        <div className="mt-6 overflow-x-auto">
+          <table className="w-full min-w-[30rem] border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-line text-left text-xs text-muted">
+                <th className="py-2 pr-4 font-medium">FY</th>
+                <th className="py-2 pr-4 text-right font-medium">Revenue, Rs bn</th>
+                <th className="py-2 text-right font-medium">Revenue, USD bn</th>
+              </tr>
+            </thead>
+            <tbody>
+              {wipro.financials.map((r) => (
+                <tr key={r.fy} className="border-b border-line">
+                  <td className="py-2.5 pr-4 tnum">{r.fy}</td>
+                  <td className="py-2.5 pr-4 text-right tnum">
+                    {(r.revenue / 1e9).toFixed(1)}
+                  </td>
+                  <td className="py-2.5 text-right tnum">
+                    {r.revenueUsd ? (r.revenueUsd / 1e9).toFixed(2) : "n/a"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <footer className="border-t border-line py-10 text-xs leading-relaxed text-muted">

@@ -166,6 +166,10 @@ export const CompanyFinancials = z.object({
   fy: z.string().regex(/^FY\d{4}$/),
   periodEnd: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   revenue: z.number().positive(),
+  /** Kept where a filer reports both. For Wipro the rupee and dollar lines
+   *  diverge across FY2023 to FY2026 and the difference is currency, not
+   *  business, so dropping one would flatter the other. */
+  revenueUsd: z.number().positive().optional(),
   cfo: z.number().optional(),
   capex: z.number().optional(),
   ppe: z.number().positive().optional(),
@@ -190,10 +194,18 @@ export const CompanyDoc = z
     exchange: z.string().min(1),
     currency: z.string().min(1),
     fiscalYearEnd: z.string(),
+    role: z.string().optional(),
+    /** What a segmentation actually means, so the narrative test is not
+     *  silently comparing unlike things. Equinix is a pure play, so group
+     *  equals segment. Infosys and Wipro segment by industry vertical, not by
+     *  AI. NOT_HARVESTED is honest about a gap rather than implying none. */
+    segmentBasis: z
+      .enum(["BY_SERVICE_LINE", "BY_VERTICAL", "PURE_PLAY", "NOT_HARVESTED"])
+      .optional(),
     note: z.string(),
     sourceIndex: z.string().url(),
     financials: z.array(CompanyFinancials).min(2),
-    segments: z.array(CompanySegment).min(2),
+    segments: z.array(CompanySegment).default([]),
   })
   .refine(
     (c) => {

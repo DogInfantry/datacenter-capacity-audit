@@ -1,0 +1,89 @@
+{
+  "ticker": "WIT",
+  "name": "Wipro Limited",
+  "exchange": "NYSE",
+  "currency": "INR",
+  "fiscalYearEnd": "03-31",
+  "role": "Indian IT services, asset light",
+  "segmentBasis": "NOT_HARVESTED",
+  "note": "Reports in both INR and USD. The rupee line and the dollar line tell different stories over FY2023 to FY2026 and the difference is currency, not business, which is why both are kept.",
+  "sourceIndex": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=WIT",
+  "financials": [
+    {
+      "fy": "FY2022",
+      "periodEnd": "2022-03-31",
+      "revenue": 790934000000,
+      "revenueUsd": 10425000000,
+      "cfo": 110797000000,
+      "capex": 20153000000,
+      "source": {
+        "filing": "FY2024 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2023",
+      "periodEnd": "2023-03-31",
+      "revenue": 904876000000,
+      "revenueUsd": 11011000000,
+      "cfo": 130601000000,
+      "capex": 14834000000,
+      "source": {
+        "filing": "FY2025 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2024",
+      "periodEnd": "2024-03-31",
+      "revenue": 897603000000,
+      "revenueUsd": 10770000000,
+      "cfo": 176216000000,
+      "capex": 10510000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2025",
+      "periodEnd": "2025-03-31",
+      "revenue": 890884000000,
+      "revenueUsd": 10428000000,
+      "cfo": 169426000000,
+      "capex": 14737000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2026",
+      "periodEnd": "2026-03-31",
+      "revenue": 926240000000,
+      "revenueUsd": 9871000000,
+      "cfo": 149316000000,
+      "capex": 15603000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    }
+  ],
+  "segments": []
+}
