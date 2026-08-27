@@ -2,36 +2,39 @@
 
 # The Gigawatt Gap
 
-India announced a gigawatt data centre buildout. This measures what the grid, the accounts and the
-silences will actually carry.
+## Project
 
-Portfolio piece ten for DogInfantry. Live at `india-gigawatt-gap`, deployed to Vercel, static.
+India announced a gigawatt data centre buildout. This measures what the grid, the accounts and the
+silences will actually carry. Portfolio piece ten for DogInfantry.
+
+Next.js 16 App Router, TypeScript, Tailwind 4, Zod, static, no database and no API routes. Python
+for the offline pipeline. Deploy target Vercel. Node 24, npm 11, Python 3.14.
+
+**Branch is `master`, there is no git remote, nothing has been pushed.**
 
 ## The thesis, and why it is not another sector dashboard
 
 Nine earlier portfolio pieces share one recipe: pick a theme, curate a universe, score it, ship a
-dashboard. `india-ai-public-equity-landscape` already did exactly that for this subject and is
-stale. Nothing carries over from it and it is not to be extended.
+dashboard. `india-ai-public-equity-landscape` already did that for this subject and is stale.
+Nothing carries over from it and it is not to be extended.
 
-What replaces the scorecard is one thesis measured in three registers, each a different record of
-the same gap between claim and delivery.
+What replaces the scorecard is one thesis in three registers, each a different record of the same
+gap between claim and delivery.
 
-**Grid, the physical register.** How late Indian inter-state transmission actually runs, taken
-from the Ministry of Power's own answer to Parliament. The cost weighted slip is 13.7 months
-against a median of 7, because large projects slip harder and a gigawatt campus needs a large
-project. Every project on that list was still running when tabled, so each delay is anticipated
-rather than realised: the observations are right censored and the figure is a floor. Route
-`/grid`, data `data/base_rate.json`, pipeline `pipeline/ists_base_rate.py`.
+**Grid, the physical register.** How late Indian inter-state transmission actually runs, from the
+Ministry of Power's own answer to Parliament. Cost weighted slip 13.7 months against a median of
+7, because large projects slip harder and a gigawatt campus needs a large project. Every project
+on that list was still running when tabled, so each delay is anticipated rather than realised: the
+observations are right censored and the figure is a floor.
 
 **Disclosure, what management will not put a number on.** Coded from earnings calls. The measure
-is two dimensional and that distinction is the whole point: refusing to quantify unit economics is
-the industry norm, so a refusal only counts as a finding when the answer is published nowhere at
-all. Digital Realty declines on cost per megawatt but points at its own development table. Indian
-operators decline and have no supplemental to point at. Route `/disclosure`, data
-`data/sify_capacity.json`.
+is two dimensional and that is the whole point: refusing to quantify unit economics is the
+industry norm, so a refusal only counts when the answer is published nowhere at all. Digital
+Realty declines on cost per megawatt but points at its own development table. Indian operators
+decline and have no supplemental to point at.
 
-**Accounts, what the statements eventually show.** Segment economics from filings. Route
-`/financials`, data `data/companies/*.json`.
+**Accounts, what the statements eventually show.** Segment economics, capital intensity and
+derived unit economics from filings.
 
 ## Architecture
 
@@ -39,16 +42,143 @@ Three layers. Diagnostics are pure functions over one normalised model, which is
 compose rather than compete.
 
 - **Layer 0, evidence.** `data/raw/`, one file per source, never hand edited.
-- **Layer 1, the normalised company model.** `data/companies/<ticker>.json`, validated by
-  `CompanyDoc` in `lib/schema.ts`. An SEC filer and a manual export are downstream identical.
-- **Layer 2, diagnostics.** `lib/diagnostics/`. Each is pure, unit tested, and emits a value plus
-  the evidence that produced it.
-- **Layer 3, synthesis.** Per company verdicts and cross company comparison, assembled from the
-  modules, never hand assigned.
+- **Layer 1, normalised company model.** `data/companies/<name>.json`, validated by `CompanyDoc`
+  in `lib/schema.ts`. An SEC filer and a manual Screener export are downstream identical.
+- **Layer 2, diagnostics.** `lib/diagnostics/`, pure and unit tested.
+- **Layer 3, synthesis.** Pages assemble from the modules; no verdict is hand assigned.
 
-Next.js 16 App Router, static, no database, no API routes. Zod validates every data file at import
-and fails the build with the offending field path. MapLibre for the map. DuckDB-WASM is installed
-but deliberately unused until the fact base justifies it.
+Key decisions and why:
+
+- **Zod validates at import and fails the build with the field path.** Bad data must never render.
+- **Provenance is a required field**, not a footnote. PRIMARY, SECONDARY or UNVERIFIED on every
+  figure, including our own seed data.
+- **Cross company comparison uses margins and ratios only, never absolute money**, unless a rate
+  is stated. Three filers, two currencies. Wipro is the reason: FY2023 to FY2026 its rupee revenue
+  rose while its dollar revenue fell 10 per cent.
+- **No charting library.** Small series rendered as inline SVG in server components. The palette is
+  validated with the dataviz skill validator, not chosen by eye.
+- **DuckDB-WASM is installed but deliberately unused.** Twenty five rows read fine as JSON. It
+  earns its place when the fact base justifies it.
+
+## File map
+
+```
+app/page.tsx              landing: three registers, computed stat tiles
+app/grid/page.tsx         ISTS base rate, ownership split, campus ledger
+app/disclosure/page.tsx   capacity ladder, graded claims, refusal mechanism
+app/financials/page.tsx   Sify segment economics, cross company ratios, currency exhibit
+app/prospectus/page.tsx   DRHP offer structure, funding gap link, the open 188 MW question
+app/method/page.tsx       every formula with its denominator, provenance rules, known limits
+app/layout.tsx            fonts, metadata, Nav
+app/globals.css           theme tokens in all three scopes, validated palette
+
+components/Nav.tsx               five tabs
+components/Cite.tsx              provenance tag with hover source
+components/CapacityStep.tsx      Sify commissioned MW step chart
+components/CapexVsCfo.tsx        grouped bars, one axis
+components/DefinitionLadder.tsx  four capacity definitions, dated per rung
+
+lib/schema.ts                        all Zod schemas and invariants
+lib/data.ts                          validated loaders, companies array, helpers
+lib/diagnostics/capital.ts           capexVsCfo, fundingGap, toCr
+lib/diagnostics/unitEconomics.ts     segmentMargins, revenuePerMW, assertSameSign
+lib/diagnostics/narrative.ts         segmentShare
+lib/diagnostics/diagnostics.test.mjs 10 tests, run with node --test
+
+data/base_rate.json          generated by the pipeline, do not hand edit
+data/campuses.json           3 seeded campuses, mostly UNVERIFIED
+data/sify_capacity.json      capacity ladder, 3 claims, 5 refusals
+data/companies/sify.json     full: financials and segments
+data/companies/wipro.json    financials only
+data/companies/infosys.json  financials only
+data/raw/ists_delays.json    raw API response
+
+pipeline/fetch.py          data.gov.in pull, curl transport, needs DATA_GOV_KEY
+pipeline/ists_base_rate.py self check then recompute the base rate
+scripts/check-prose.mjs    fails the build on an em or en dash
+ROADMAP.md                 what is deliberately unfinished, and why
+memory/                    dated session handoffs
+```
+
+## Current state
+
+Seven commits, clean tree, nothing pushed. Six routes build and prerender statically. Ten tests
+pass. Prose, lint and pipeline self checks pass. Dev server runs on port 3000.
+
+**Done.**
+
+- Grid register complete: base rate, ownership split, censoring caveat.
+- Disclosure register for Sify only: capacity ladder, two graded MISSED claims, five refusals
+  including the DRHP prohibition mechanism.
+- Financials for Sify: nine years of segment economics, margin 40 to 46 per cent, capex versus
+  cash flow gap of Rs 2,047 cr against a Rs 2,500 cr fresh issue, revenue per MW derived.
+- Cross company capital intensity across Sify, Wipro and Infosys, plus the Wipro currency exhibit.
+- Five tabs, method page, state files.
+
+**Half done.**
+
+- Coverage is 3 of 12. EQIX, DLR, NBIS, APLD, CORZ confirmed available and not harvested.
+- Wipro and Infosys have no segment data, marked `segmentBasis: NOT_HARVESTED`.
+- The prospectus page carries the offer structure from published summaries, not the filed
+  document.
+
+**Not started.** Per company routes, compare view, cashQuality, concentration, disclosure rates,
+valuation, the scoreboard, the published dataset, the map.
+
+## Active task
+
+Part 2 of the plan: widen coverage. Work stopped after committing Wipro and Infosys (`3fb21bb`).
+Nothing is in flight and the tree is clean.
+
+## Next steps, in order
+
+1. **Harvest Equinix and Digital Realty.** They matter more as a check than as a comparison: both
+   publish adjusted EBITDA margins, so if the harvested segment margins do not land near the
+   reported ones, the harvest is being read wrongly. This is the first external validation the
+   project has had.
+2. **Harvest NBIS, APLD, CORZ**, financials only. APLD and CORZ carry two calls and one call, so
+   they contribute to capital intensity and nothing to disclosure.
+3. **`/company/[ticker]` and `/compare`**, once there are enough companies to justify them.
+4. **The prospectus teardown.** SEBI hosts it at
+   `sebi.gov.in/filings/public-issues/oct-2025/sify-infinit-spaces-limited-drhp_97481.html`, dated
+   16 October 2025. Resolve the 188 MW definitional question, extract project capex,
+   concentration, related parties.
+5. **`concentration.ts` and `cashQuality.ts`**, which need PAT and total assets, both available.
+6. **The Indian four** by Screener export.
+
+## Gotchas, each of which cost real time once
+
+- **Segment opex sign flips between filings.** Sify FY2023 is filed negative, every other year
+  positive. Magnitudes agree, only the convention differs. Use `assertSameSign` and fail loudly.
+- **Concept names drift between filers.** Infosys tags recent capex as "Expenditure on property,
+  plant and equipment and intangibles"; Sify and Wipro use "Purchase of property plant and
+  equipment classified as investing activities". The Infosys one includes intangibles and is not
+  strictly comparable. Run a `search_target=metrics` query before assuming a concept name.
+- **Fiscal labels are unreliable.** The transcript source tags January 2024 as FY2023Q3 and
+  January 2025 as FY2025Q3. Order by calendar date, always.
+- **Python `write_text` defaults to cp1252 here** and corrupts UTF-8. Always pass
+  `encoding="utf-8"`. It silently broke two files once.
+- **Large heredocs are fragile in this shell.** Writing long TSX or Markdown through a bash
+  heredoc fails unpredictably on quoting. Use the Write tool for anything sizeable.
+- **`next start` survives `pkill`.** Kill by port with PowerShell `Get-NetTCPConnection`, or you
+  will serve a stale build and debug a phantom.
+- **The Run button executes PowerShell 5.1, which has no `&&`.** Give the user one command per
+  fenced block, never chained, or the play button fails with a parser error.
+- **The preview pane will not composite screenshots in this environment.** Verify chart layout by
+  measuring text bounding boxes for overlap and out of bounds instead. That method caught three
+  real defects.
+- **Turbopack dev reports a hydration mismatch from `next/font`** that does not exist in the
+  production build. Check production before chasing one.
+- **`overflow-x-auto` does not save you inside a flex column.** `body` is `flex flex-col`, so the
+  page root needed `min-w-0` or it refused to shrink below the table's `min-w-[42rem]`.
+- **The transcripts schema rejects `run_sql`** for non-admin users. Aggregate locally and get
+  completeness by partitioning on `quarter_filter`. A keyword search gives a biased denominator.
+- **Re-validate the palette** whenever a hue changes, in both themes, against this site's own
+  surfaces. The first palette shipped with two hues 10.1 apart on the normal vision scale against
+  a floor of 15, and full colour readers could not separate them.
+- **`data/raw/filings/SIFY` and `data/raw/transcripts/SIFY` are empty.** Layer 0 was skipped and
+  normalised docs were written straight to `data/companies/`. Either populate Layer 0 on the next
+  harvest or drop the directories, but do not leave the architecture claiming something untrue.
 
 ## Data sources
 
@@ -57,66 +187,40 @@ environment. FactIQ MCP for SEC filers and coded earnings calls, which covers Si
 Wipro because all three list in the United States.
 
 **Does not work, do not plan around it.** Electricity tariffs are not in data.gov.in, a `tariff`
-search returns customs and excise only; they must come from state ERC orders as PDFs. Substation
-level data returns zero results and must come from CEA and Grid-India. Indian-listed-only names
-(Netweb, Anant Raj, E2E, Techno Electric) have no structured source and need Screener exports by
-hand.
+search returns customs and excise only; they come from state ERC orders as PDFs. Substation level
+data returns zero results and must come from CEA and Grid-India. Indian-listed-only names have no
+structured source and need Screener exports by hand.
 
 ## House rules
 
-- **No em dashes or en dashes anywhere in prose.** Date ranges read "to". Enforced by
-  `npm run check:prose`, which is verified to fail on a planted dash.
+- **No em dashes or en dashes in prose.** Date ranges read "to". Enforced by `npm run check:prose`
+  and verified to fail on a planted dash.
 - No needless hyphens between words.
 - **Commit as DogInfantry.** Prose subject line, body explaining why, co-author trailer retained.
-- **Every figure carries a source and a verification tag**, one of PRIMARY, SECONDARY or
-  UNVERIFIED. The schema refuses a figure without one. This applies to our own seed data: a
-  project about overconfident reporting does not get to be overconfident about itself.
-- Announcements are labelled as announcements. Keeping that line bright is the product.
+- Every figure carries a source and a verification tag.
 - A rate without a visible denominator is decoration.
-
-## Traps, each of which cost real time once
-
-- **Segment opex sign flips between filings.** Sify FY2023 is filed negative while every other
-  year is positive. Magnitudes agree, only the convention differs. Normalise with
-  `assertSameSign` and fail loudly rather than silently inverting a margin.
-- **Fiscal labels are unreliable.** The transcript source tags January 2024 as FY2023Q3 and
-  January 2025 as FY2025Q3. **Order by calendar date, always.**
-- **`write_text` defaults to cp1252 on this machine** and corrupts UTF-8. Always pass
-  `encoding="utf-8"`. This silently broke two files once.
-- **Python heredocs break on a raw apostrophe inside a `'''` literal.** Use `"""` delimiters.
-- **`next start` survives `pkill`.** Kill by port with PowerShell `Get-NetTCPConnection` or you
-  will serve a stale build and debug a phantom.
-- **The palette must be re-validated** with the dataviz skill validator whenever a hue changes, in
-  both themes, against this site's own surfaces. The first palette shipped with two hues 10.1
-  apart on the normal vision scale against a floor of 15, and nobody could tell them apart.
-- **The transcripts schema rejects `run_sql`** for non-admin users. Aggregate locally, and get
-  completeness by partitioning on `quarter_filter`.
-- Hydration warnings under Turbopack dev come from `next/font` hash mismatch and do not appear in
-  the production build. Check production before chasing one.
-
-## Coverage state
-
-See `ROADMAP.md` for what is unfinished and why. As of 2026-08-27:
-
-- **SIFY**, complete. Financials, segments, capacity ladder, claims, refusals.
-- **WIT** and **INFY**, financials only. Revenue, cash flow and capex FY2022 to FY2026. Segments
-  not harvested, recorded as `segmentBasis: NOT_HARVESTED` rather than left looking absent.
-- **EQIX, DLR, NBIS, APLD, CORZ**, confirmed available and not yet harvested.
-- Four Indian-listed names (NETWEB, ANANTRAJ, E2E, TECHNOE) need Screener exports by hand.
-
-**The rule coverage forced.** Three filers, two currencies, so cross company comparison uses
-margins and ratios only, never absolute money, unless a rate is stated on the page. Wipro is the
-reason: between FY2023 and FY2026 its rupee revenue rose while its dollar revenue fell 10 per
-cent, and quoting only the rupee line would present a decline as growth. A test asserts this.
+- Announcements are labelled as announcements.
 
 ## Commands
 
+Run these one at a time. The Run button is PowerShell 5.1 and has no `&&`.
+
 ```
-npm run dev          local
-npm run build        production build
-npm test             diagnostics arithmetic
-npm run check:prose  dash rule
-npm run check        prose, tests, lint
-python pipeline/fetch.py            pull raw tables, needs DATA_GOV_KEY
-python pipeline/ists_base_rate.py   self check, then recompute the base rate
+npm run dev
+```
+
+```
+npm run build
+```
+
+```
+npm test
+```
+
+```
+npm run check
+```
+
+```
+python pipeline/ists_base_rate.py
 ```
