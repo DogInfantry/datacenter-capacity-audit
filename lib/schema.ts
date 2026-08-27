@@ -81,6 +81,82 @@ export const BaseRate = z.object({
   }),
 });
 
+/**
+ * Capacity as a company describes it on its own calls.
+ *
+ * Ordering is by `date`, never by `fiscal_label`. The upstream source labels
+ * January 2024 as FY2023Q3 and January 2025 as FY2025Q3, so the fiscal tags are
+ * not internally consistent and sorting by them silently scrambles the series.
+ */
+export const CapacityObservation = z.object({
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  fiscal_label: z.string(),
+  design_mw: z.number().positive().optional(),
+  built_mw: z.number().positive().optional(),
+  commissioned_mw: z.number().positive().optional(),
+  contracted_mw: z.number().positive().optional(),
+  facilities: z.number().int().positive().optional(),
+  cities: z.number().int().positive().optional(),
+  quote: z.string().min(1),
+});
+
+/** A forward claim, graded only once its horizon has passed. */
+export const Claim = z
+  .object({
+    made_on: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    claim: z.string().min(1),
+    value: z.number(),
+    unit: z.string(),
+    horizon_end: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    verbatim: z.string().min(1),
+    status: z.enum(["OPEN", "MET", "MISSED", "PARTIAL", "UNVERIFIABLE"]),
+    resolved_evidence: z.string().nullable(),
+  })
+  .refine((c) => c.status === "OPEN" || c.resolved_evidence !== null, {
+    message: "a graded claim must carry the evidence that graded it",
+    path: ["resolved_evidence"],
+  })
+  .refine((c) => c.horizon_end > c.made_on, {
+    message: "horizon_end must fall after made_on",
+    path: ["horizon_end"],
+  });
+
+/**
+ * A refusal. `published_elsewhere` is the field that turns a refusal into a
+ * finding: refused in the call but published in a filing is ordinary investor
+ * relations practice, refused and published nowhere is a disclosure gap.
+ */
+export const Refusal = z
+  .object({
+    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    asked_by: z.string().nullable(),
+    refused_number: z.string().min(1),
+    response_quality: z.enum(["CONFIRMED", "PARTIAL", "DEFLECTED", "DECLINED"]),
+    topic: z.string().min(1),
+    published_elsewhere: z.boolean(),
+    published_where: z.string().optional(),
+    mechanism_quote: z.string().optional(),
+  })
+  .refine((r) => !r.published_elsewhere || !!r.published_where, {
+    message: "published_elsewhere requires naming where it was published",
+    path: ["published_where"],
+  });
+
+export const CapacityLadder = z.object({
+  company: z.string(),
+  name: z.string(),
+  exchange: z.string(),
+  note: z.string(),
+  source: Source,
+  definitions: z.record(z.string(), z.string()),
+  observations: z.array(CapacityObservation).min(2),
+  claims: z.array(Claim),
+  refusals: z.array(Refusal),
+});
+
 export type Campus = z.infer<typeof Campus>;
+export type CapacityLadder = z.infer<typeof CapacityLadder>;
+export type Claim = z.infer<typeof Claim>;
+export type Refusal = z.infer<typeof Refusal>;
 export type BaseRate = z.infer<typeof BaseRate>;
 export type Source = z.infer<typeof Source>;

@@ -1,0 +1,130 @@
+{
+  "company": "SIFY",
+  "name": "Sify Technologies",
+  "exchange": "NASDAQ",
+  "note": "Capacity as Sify itself described it, quarter by quarter, on its own earnings calls. The spine is calendar_date, not fiscal_period: the source labels Jan 2024 as FY2023Q3 and Jan 2025 as FY2025Q3, so the fiscal tags are not internally consistent and must not be used for ordering.",
+  "source": {
+    "label": "Earnings call pressure points, verbatim management answers to analyst questions",
+    "publisher": "FactIQ earnings claim graph",
+    "verification": "PRIMARY",
+    "asOf": "2025-10"
+  },
+  "definitions": {
+    "DESIGN": "Design capacity ready for sale. Not built.",
+    "BUILT": "Physically constructed.",
+    "COMMISSIONED": "Installed and commissioned, described as live or operational.",
+    "CONTRACTED": "Committed to customers who have taken the space."
+  },
+  "observations": [
+    {
+      "date": "2021-07-30", "fiscal_label": "FY2021Q1",
+      "commissioned_mw": 72, "facilities": 10, "cities": 6,
+      "quote": "We presently have 10 data centers spread across 6 cities with capacity, which is in operation of 72 megawatts of IT power."
+    },
+    {
+      "date": "2021-10-29", "fiscal_label": "FY2021Q2",
+      "commissioned_mw": 74,
+      "quote": "you mentioned 74 megawatts of capacity at the end of the September quarter"
+    },
+    {
+      "date": "2022-10-21", "fiscal_label": "FY2022Q2",
+      "commissioned_mw": 100, "facilities": 11,
+      "quote": "it was, I think, 11 data centers with 100 megawatts of capacity, and you're looking to add another 200 megawatts over the next few years"
+    },
+    {
+      "date": "2023-04-24", "fiscal_label": "FY2022Q4",
+      "commissioned_mw": 100,
+      "quote": "we crossed more than 100 megawatts IT power already in production, and most of that's already in usage"
+    },
+    {
+      "date": "2024-01-18", "fiscal_label": "FY2023Q3",
+      "commissioned_mw": 100, "facilities": 11, "cities": 6,
+      "quote": "We have data center operational capacity across 6 cities and 11 facilities of about 100 megawatt."
+    },
+    {
+      "date": "2024-10-22", "fiscal_label": "FY2025Q2",
+      "commissioned_mw": 120, "contracted_mw": 105,
+      "quote": "We currently have data center capacity, which is live and operational for about 120 megawatts, of which 105-megawatt is already being consumed by the customers"
+    },
+    {
+      "date": "2025-01-17", "fiscal_label": "FY2025Q3",
+      "commissioned_mw": 120, "contracted_mw": 110, "facilities": 12, "cities": 6,
+      "quote": "we currently have capacity which is installed and commissioned for about 120-megawatt of which 110-megawatt is already contracted with the customers"
+    },
+    {
+      "date": "2025-10-27", "fiscal_label": "FY2026Q2",
+      "design_mw": 188, "built_mw": 130, "facilities": 14,
+      "quote": "We have about 188 megawatts of design capacity, which is ready for sale, out of which about 130-megawatt is built."
+    }
+  ],
+  "claims": [
+    {
+      "made_on": "2022-10-21",
+      "claim": "100 MW of the announced 200 MW expansion goes live within 18 months",
+      "value": 100, "unit": "MW", "horizon_end": "2024-04-21",
+      "verbatim": "out of the 200 meg, which is our overall pan over the next few years, 100 meg will go live in the next 18 months, depending on how the customers -- the pace at which the customers consume the capacity. But we stay committed to increasing our capacity by 200% from where we presently are.",
+      "status": "MISSED",
+      "resolved_evidence": "On 2024-01-18, three months before the horizon, operational capacity was still described as about 100 MW, unchanged from the level at the time the claim was made."
+    },
+    {
+      "made_on": "2023-04-24",
+      "claim": "More than 124 MW of campuses available within 12 months",
+      "value": 124, "unit": "MW", "horizon_end": "2024-04-24",
+      "verbatim": "we are building in the next 12 months more than 124 megawatts campuses available in the next 12 months.",
+      "status": "MISSED",
+      "resolved_evidence": "On 2024-01-18 operational capacity was about 100 MW. By 2024-10-22, six months past the horizon, it was about 120 MW, an increase of roughly 20 MW against more than 124 MW promised."
+    },
+    {
+      "made_on": "2023-04-24",
+      "claim": "400 to 500 MW capacity across the country over four to five years",
+      "value": 450, "unit": "MW", "horizon_end": "2028-04-24",
+      "verbatim": "if you're looking at next 4 to 5 years, we are in the road map building 400 to 500 megawatts capacity across the country.",
+      "status": "OPEN",
+      "resolved_evidence": null
+    }
+  ],
+  "refusals": [
+    {
+      "date": "2021-10-29",
+      "asked_by": "Sidoti & Company",
+      "refused_number": "A specific timeline for reaching 100 megawatts or another future capacity target",
+      "response_quality": "PARTIAL",
+      "topic": "capacity_milestone",
+      "published_elsewhere": false
+    },
+    {
+      "date": "2022-10-21",
+      "asked_by": "Sidoti & Company",
+      "refused_number": "Specific revenue per megawatt or pricing comparison",
+      "response_quality": "PARTIAL",
+      "topic": "pricing_mechanics",
+      "published_elsewhere": false
+    },
+    {
+      "date": "2025-01-17",
+      "asked_by": "Sidoti & Company",
+      "refused_number": "The megawatt capacity of the four additional Mumbai facilities",
+      "response_quality": "PARTIAL",
+      "topic": "capacity_milestone",
+      "published_elsewhere": false
+    },
+    {
+      "date": "2025-10-27",
+      "asked_by": "Sidoti & Company",
+      "refused_number": "A specific forward build-out or pipeline-capacity figure",
+      "response_quality": "PARTIAL",
+      "topic": "capacity_milestone",
+      "published_elsewhere": true,
+      "published_where": "Sify Infinite Spaces draft red herring prospectus, filed with SEBI in October 2025",
+      "mechanism_quote": "I have a little bit of a constraint. Generally, we don't make forward statements and more importantly, having filed the draft prospectus with the securities regulator I'm prohibited from making any forward statements."
+    },
+    {
+      "date": "2025-10-27",
+      "asked_by": "Sidoti & Company",
+      "refused_number": "Exact retained ownership percentage after the Infinite Spaces IPO",
+      "response_quality": "DECLINED",
+      "topic": "capital_allocation",
+      "published_elsewhere": false
+    }
+  ]
+}
