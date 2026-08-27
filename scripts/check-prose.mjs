@@ -13,7 +13,11 @@ const GLOBS = [
   "components/**/*.tsx",
   "docs/**/*.md",
   "pipeline/**/*.py",
+  "scripts/**/*.mjs",
   "README.md",
+  "CLAUDE.md",
+  "ROADMAP.md",
+  "memory/**/*.md",
 ];
 
 const BANNED = [
