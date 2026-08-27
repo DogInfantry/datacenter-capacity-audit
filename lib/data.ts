@@ -1,8 +1,9 @@
 import { z } from "zod";
-import { BaseRate, CapacityLadder, Campus } from "./schema";
+import { BaseRate, CapacityLadder, Campus, CompanyDoc } from "./schema";
 import baseRateRaw from "@/data/base_rate.json";
 import campusesRaw from "@/data/campuses.json";
 import sifyRaw from "@/data/sify_capacity.json";
+import sifyCoRaw from "@/data/companies/sify.json";
 
 /** Fail the build loudly, with the path to the offending field. */
 function parse<T extends z.ZodTypeAny>(schema: T, raw: unknown, what: string): z.infer<T> {
@@ -19,6 +20,7 @@ function parse<T extends z.ZodTypeAny>(schema: T, raw: unknown, what: string): z
 export const baseRate = parse(BaseRate, baseRateRaw, "data/base_rate.json");
 export const campuses = parse(z.array(Campus).min(1), campusesRaw, "data/campuses.json");
 export const sify = parse(CapacityLadder, sifyRaw, "data/sify_capacity.json");
+export const sifyCo = parse(CompanyDoc, sifyCoRaw, "data/companies/sify.json");
 
 /** Announced minus live, the number the whole project exists to keep visible. */
 export function gapMW(c: Campus) {

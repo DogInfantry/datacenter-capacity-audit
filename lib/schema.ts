@@ -154,7 +154,60 @@ export const CapacityLadder = z.object({
   refusals: z.array(Refusal),
 });
 
+const FilingSource = z.object({
+  filing: z.string().min(1),
+  publisher: z.string().min(1),
+  verification: Verification,
+  restated: z.boolean(),
+});
+
+/** Values are in filing currency, unconverted. Crore is a display concern. */
+export const CompanyFinancials = z.object({
+  fy: z.string().regex(/^FY\d{4}$/),
+  periodEnd: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  revenue: z.number().positive(),
+  cfo: z.number().optional(),
+  capex: z.number().optional(),
+  ppe: z.number().positive().optional(),
+  source: FilingSource,
+  restated: z.boolean(),
+});
+
+export const CompanySegment = z.object({
+  name: z.string().min(1),
+  fy: z.string().regex(/^FY\d{4}$/),
+  revenue: z.number().positive(),
+  opex: z.number(),
+  depreciation: z.number().positive().optional(),
+  source: FilingSource,
+  note: z.string().optional(),
+});
+
+export const CompanyDoc = z
+  .object({
+    ticker: z.string().min(1),
+    name: z.string().min(1),
+    exchange: z.string().min(1),
+    currency: z.string().min(1),
+    fiscalYearEnd: z.string(),
+    note: z.string(),
+    sourceIndex: z.string().url(),
+    financials: z.array(CompanyFinancials).min(2),
+    segments: z.array(CompanySegment).min(2),
+  })
+  .refine(
+    (c) => {
+      // a segment can never be larger than the group it sits inside
+      const g = new Map(c.financials.map((f) => [f.fy, f.revenue]));
+      return c.segments.every((s) => !g.has(s.fy) || s.revenue <= g.get(s.fy)!);
+    },
+    { message: "segment revenue exceeds group revenue in at least one year", path: ["segments"] },
+  );
+
 export type Campus = z.infer<typeof Campus>;
+export type CompanyDoc = z.infer<typeof CompanyDoc>;
+export type CompanyFinancials = z.infer<typeof CompanyFinancials>;
+export type CompanySegment = z.infer<typeof CompanySegment>;
 export type CapacityLadder = z.infer<typeof CapacityLadder>;
 export type Claim = z.infer<typeof Claim>;
 export type Refusal = z.infer<typeof Refusal>;

@@ -1,0 +1,212 @@
+{
+  "ticker": "SIFY",
+  "name": "Sify Technologies Limited",
+  "exchange": "NASDAQ",
+  "currency": "INR",
+  "fiscalYearEnd": "03-31",
+  "note": "As filed in Form 20-F. Values in rupees, not crore: the conversion is a display concern. Periods marked restated were re-reported by a later filing; the value served is the most recently published one.",
+  "sourceIndex": "https://www.sec.gov/Archives/edgar/data/1094324",
+  "financials": [
+    {
+      "fy": "FY2021",
+      "periodEnd": "2021-03-31",
+      "revenue": 24319542000,
+      "cfo": 6966708000,
+      "capex": 2655319000,
+      "source": {
+        "filing": "FY2023 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2022",
+      "periodEnd": "2022-03-31",
+      "revenue": 27025675000,
+      "cfo": 2244668000,
+      "capex": 6801252000,
+      "source": {
+        "filing": "FY2024 20-F/A",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    },
+    {
+      "fy": "FY2023",
+      "periodEnd": "2023-03-31",
+      "revenue": 33403726000,
+      "cfo": 8113287000,
+      "capex": 11616131000,
+      "source": {
+        "filing": "FY2025 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": true
+    },
+    {
+      "fy": "FY2024",
+      "periodEnd": "2024-03-31",
+      "revenue": 35634000000,
+      "cfo": 5935000000,
+      "capex": 11121000000,
+      "ppe": 32210394000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": true
+    },
+    {
+      "fy": "FY2025",
+      "periodEnd": "2025-03-31",
+      "revenue": 39886000000,
+      "cfo": 8647000000,
+      "capex": 11094000000,
+      "ppe": 38915000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": true
+    },
+    {
+      "fy": "FY2026",
+      "periodEnd": "2026-03-31",
+      "revenue": 44877000000,
+      "cfo": 7176000000,
+      "capex": 11956000000,
+      "ppe": 43481000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "restated": false
+    }
+  ],
+  "segments": [
+    {
+      "name": "Data Center Services",
+      "fy": "FY2018",
+      "revenue": 2434561000,
+      "opex": 1753440000,
+      "source": {
+        "filing": "FY2020 20-F/A",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Data Center Services",
+      "fy": "FY2019",
+      "revenue": 3144900000,
+      "opex": 2015123000,
+      "source": {
+        "filing": "FY2021 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Data Center Services",
+      "fy": "FY2020",
+      "revenue": 3823690000,
+      "opex": 2260094000,
+      "source": {
+        "filing": "FY2022 20-F/A",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Data Center Services",
+      "fy": "FY2021",
+      "revenue": 5540937000,
+      "opex": 3029653000,
+      "source": {
+        "filing": "FY2023 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Data Center Services",
+      "fy": "FY2022",
+      "revenue": 7494395000,
+      "opex": 4297871000,
+      "source": {
+        "filing": "FY2024 20-F/A",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Data Center Services",
+      "fy": "FY2023",
+      "revenue": 10125610000,
+      "opex": 6085634000,
+      "source": {
+        "filing": "FY2025 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      },
+      "note": "Opex filed with a negative sign in this period while every other year is positive. Normalised to absolute value on ingest; the sign convention, not the magnitude, differs."
+    },
+    {
+      "name": "Data Center Services",
+      "fy": "FY2024",
+      "revenue": 11054000000,
+      "opex": 6425000000,
+      "depreciation": 2541000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Data Center Services",
+      "fy": "FY2025",
+      "revenue": 14196000000,
+      "opex": 7768000000,
+      "depreciation": 3145000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    },
+    {
+      "name": "Data Center Services",
+      "fy": "FY2026",
+      "revenue": 17519000000,
+      "opex": 9544000000,
+      "depreciation": 4474000000,
+      "source": {
+        "filing": "FY2026 20-F",
+        "publisher": "SEC EDGAR",
+        "verification": "PRIMARY",
+        "restated": false
+      }
+    }
+  ]
+}

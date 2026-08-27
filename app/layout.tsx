@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Source_Serif_4, Inter } from "next/font/google";
 import "./globals.css";
+import { Nav } from "@/components/Nav";
 
 const serif = Source_Serif_4({
   variable: "--font-serif-face",
@@ -20,7 +21,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${serif.variable} ${sans.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <Nav />
+        {children}
+      </body>
     </html>
   );
 }
