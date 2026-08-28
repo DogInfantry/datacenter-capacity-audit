@@ -15,9 +15,8 @@ const GLOBS = [
   "pipeline/**/*.py",
   "scripts/**/*.mjs",
   "README.md",
-  "CLAUDE.md",
+  "ARCHITECTURE.md",
   "ROADMAP.md",
-  "memory/**/*.md",
 ];
 
 const BANNED = [

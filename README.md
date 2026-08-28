@@ -1,100 +1,115 @@
 # The Gigawatt Gap
 
-India announced a gigawatt data centre buildout. This measures what the grid,
-the water table and the tariff will actually carry.
+India announced a gigawatt scale data centre buildout. This measures what the grid, the accounts
+and the silences will actually carry.
 
-## The finding
+Three registers, each a different record of the same gap between claim and delivery: how late the
+transmission that powers a campus actually runs, what management will and will not put a number
+on, and what the statements eventually show. Every figure carries a source and a verification tag.
+Every rate shows its denominator. Thirty five tests enforce it and the build fails on bad data.
 
-Across the 25 inter-state transmission projects the Ministry of Power reported
-as delayed, the median slip is **7 months**. Weight those projects by approved
-cost and it nearly doubles, to **13.7 months**. One in five slips past a year,
-and the 90th percentile is 32 months.
+## What it found
 
-That weighting is the point. Large transmission projects slip harder than small
-ones, and a gigawatt scale campus does not interconnect through a small one.
+**Transmission slips a cost weighted 13.7 months against a median of 7.** Across the 25 inter
+state projects the Ministry of Power reported as delayed, weighting by approved cost nearly
+doubles the slip, because large projects slip harder than small ones and a gigawatt campus does
+not interconnect through a small one. Split by owner, Power Grid runs 8.7 months late and private
+transmission developers 21.5. Every project was still running when tabled, so each delay is
+anticipated rather than realised: the observations are right censored and 13.7 is a floor.
 
-Split by who is building, the gap widens again:
+**A prospectus reports 188.04 MW as built, and defines built as designed.** The Sify Infinit Spaces
+draft prospectus of 16 October 2025 headlines "a built IT power capacity of 188.04 megawatt". Its
+own footnote on printed page 49 defines built capacity as "the maximum IT load a data center is
+engineered to support", calculated from "present design specifications" and "total planned
+electrical load". Installed capacity, meaning equipped and commissioned, is 131.88 MW. Operational
+capacity, meaning sold to a customer, is 113.67 MW. The headline is 65 per cent larger than the
+estate earning revenue, and the key performance indicator table a reader uses to judge the offer
+price prints built and operational while omitting installed.
 
-| Developer | Cost weighted slip | n | Approved cost |
-|---|---|---|---|
-| Power Grid, the central utility | 8.7 months | 17 | Rs 13,481 cr |
-| Private transmission developers | 21.5 months | 7 | Rs 9,599 cr |
+Eleven days later, on an earnings call, management described the same estate as "188 megawatts of
+design capacity, of which about 130 megawatt is built". The call used the ordinary meanings. The
+filed document moved the words one rung up.
 
-Seven private projects, three of them under one group, is enough to raise the
-question of whether ownership predicts delivery and not enough to answer it.
-The site says so on the page, in the same size type as the finding.
+**The second largest object of the offer is 0.1 per cent spent.** Rabale towers 11 and 12 carry an
+estimated cost of 11,277 million rupees against 10.76 million deployed as of 31 August 2025, with
+the balance scheduled across Fiscals 2027 to 2029. The schedule is certified by the statutory
+auditor. Held against the transmission slippage above, it reaches November 2031 at the ninetieth
+percentile.
 
-## Read the number as a floor
+**Refusal rates, with the denominators visible.** Across the two topic families that are
+unambiguously unit economics, between January 2024 and July 2026, with the topic partition taken
+whole rather than searched by keyword: Sify declined or deflected on 2 of 15 questions, Equinix on
+9 of 20, Digital Realty on 9 of 34. The Indian operator refuses least and the largest global
+operator refuses most, which is the opposite of the easy story and is kept for that reason. Sify
+is also asked least, 0.43 unit economics questions a call against Digital Realty's 0.81, and a
+company that is rarely asked has fewer chances to refuse, which is why the denominator stays on
+the page.
 
-Every project on that list was **still running** when the answer was tabled. The
-delay recorded against each one is the slip anticipated at that moment, not the
-slip finally realised. Every observation is right censored, so the true figure
-is at least this large. That cuts in favour of the argument made here, which is
-why it is stated up front rather than buried in a methodology note.
+**The harvest method was checked against companies that publish the answer.** Rebuilding Equinix's
+own definition of adjusted EBITDA from its own filings gives 49.65 per cent for the second quarter
+of 2025 against the 50 per cent its chief executive stated on the call, a gap of 35 basis points.
+Tolerances of 150 basis points against an actual and 250 against guidance were written down before
+the check was run. Digital Realty could not be reconciled at all, because its share based
+compensation is tagged in shares rather than dollars and its impairment concept stops at 2022. The
+method is sound where a filer tags its income statement completely and degrades exactly where
+untagged non-GAAP adjustments grow.
 
-## Why this and not another scorecard
+## What it is not
 
-The crowded question is which listed company is executing. It is crowded because
-it is cheap to answer: read the announcements, score the intent, publish an
-opinion that ages badly.
+Not investment advice, not a research product, and not affiliated with any company or agency named.
 
-The uncrowded question is whether the physical infrastructure exists to carry
-what has been announced. A grid interconnection date is not an opinion. It has a
-deadline, a named executing agency, and a public record of how often that agency
-has missed one before.
+Not a forecast. The slippage band drawn against the prospectus schedule measures inter state
+transmission projects, not data centre construction. It is the delay distribution of the grid
+connections a campus depends on, and the same prospectus places an on site 230 kV substation at
+Chennai 02. That distinction is stored as a required field in the schema rather than as a
+sentence, because a sentence can be edited away.
 
-## Provenance is a field, not a footnote
+## How to check any figure
 
-Every number on the site carries a verification tag:
+Every figure carries a `Source` with a verification tag: PRIMARY read from a filing, a tariff order
+or a government dataset; SECONDARY carried in from a named publisher; UNVERIFIED where the project
+has not yet done the work. Zod validates at import and the build fails with the field path, so bad
+data cannot render.
 
-- **primary** read out of a filing, a tariff order or a government dataset
-- **secondary** reported by a named third party that was not the original publisher
-- **unverified** carried in from research notes, not yet traced to a primary source
+Prospectus figures additionally carry the printed page they were read from, and a test fails the
+build if any of them loses it. The document itself is not committed, because it is 12 MB, but
+`data/raw/prospectus/drhp_extracts.json` records the URL, a SHA256 and the printed to PDF page
+offset, so anyone can re download the file and audit a number against it.
 
-Most of the campus ledger is currently **unverified** and displays that way. A
-project about overconfident reporting does not get to be overconfident about
-itself. The Zod schema in `lib/schema.ts` makes the tag mandatory, so a number
-cannot reach the page without one, and the build fails with the offending field
-path if a row is malformed.
-
-## Data
-
-| Layer | Source | Status |
-|---|---|---|
-| Transmission slippage | data.gov.in resource `2341d1d1`, Ministry of Power, tabled in the Rajya Sabha, unstarred question 5 April 2022 | live |
-| Campus ledger | research notes, pending primary verification | seeded, 3 rows |
-| Grid nodes, load | CEA and Grid-India | not yet built |
-| Groundwater | India-WRIS and CGWB | not yet built |
-| Tariffs | state ERC orders, by hand | not yet built |
-
-Electricity tariffs are **not** available through data.gov.in. A `tariff` search
-there returns customs and excise schedules only. They have to be read out of the
-state commission orders as PDFs, which is the largest piece of hand work still
-outstanding.
+`app/method/page.tsx` states every formula with its denominator, its sample size and its known
+limits.
 
 ## Running it
 
 ```bash
-cp .env.example .env.local     # then put a data.gov.in key in it
-export DATA_GOV_KEY=...
-python pipeline/fetch.py            # pull raw tables
-python pipeline/ists_base_rate.py   # self-check, then recompute the base rate
 npm install
 npm run dev
 ```
 
-`pipeline/ists_base_rate.py` runs an assert based self-check before it writes
-anything. One of those asserts guards the headline claim directly: if a data
-refresh ever inverts the private versus PSU gap, the pipeline fails rather than
-letting the landing page keep a stale sentence.
+```bash
+npm test
+npm run check
+npm run build
+```
 
-## Status
+The offline pipeline needs a data.gov.in key in the environment:
 
-Phase 0. The base rate is real and computed from source. The campus ledger is
-three seeded rows carrying honest provenance tags. The map, the constraint joins
-and the delivery scoreboard are next.
+```bash
+export DATA_GOV_KEY=...
+python pipeline/ists_base_rate.py
+```
 
-## Disclaimer
+## More
 
-Educational and portfolio work. Not investment advice, not a research product,
-not affiliated with any company or agency named. See `docs/DISCLAIMER.md`.
+- [ARCHITECTURE.md](ARCHITECTURE.md), how it is built and why
+- [docs/GOTCHAS.md](docs/GOTCHAS.md), the failures that cost real time once
+- [ROADMAP.md](ROADMAP.md), what is deliberately unfinished, and what is terminal rather than
+  pending
+
+## Licence and data
+
+Code is MIT, see [LICENSE](LICENSE).
+
+The figures are facts drawn from public filings, government datasets and earnings calls. Quoted
+excerpts remain the property of their publishers and are used as short attributed quotations for
+analysis and comment.
