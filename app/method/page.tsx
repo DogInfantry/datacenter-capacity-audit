@@ -46,6 +46,19 @@ const FORMULAS = [
     note: "Both were fixed in writing before the check was run, so that the result could not be rationalised afterwards. Guidance earns the wider band because a guide is a range and not a point. Equinix cleared the first at 35 basis points for the second quarter of 2025 and the second at 131 basis points for the 2025 financial year. Digital Realty cleared neither, because its add backs cannot be built from the source at all.",
   },
   {
+    name: "Refusal rate",
+    formula: "(declined + deflected) / every question asked in the same topic families",
+    denominator:
+      "Sify 15, Equinix 20, Digital Realty 34 questions, 2024-01-01 to 2026-07-31, families pricing mechanics and cost margin bridge",
+    note: "A partial answer is an answer, just an incomplete one, and counting it as a refusal would let the measure say whatever was wanted of it. The denominator is a complete topic partition rather than a keyword search: asking the source for the phrase revenue per megawatt finds only questions worded that way, and the denominator then describes the search instead of the calls. Rates are never shown without the counts they came from, because a company that is rarely asked has fewer chances to refuse.",
+  },
+  {
+    name: "Published elsewhere",
+    formula: "refusals where the answer names a document or public source",
+    denominator: "20 refusals in the window, of which 2 named a source",
+    note: "The dimension that separates ordinary investor relations from a disclosure gap, and the weakest thing on this page. It is coded from what management said out loud, so it detects a company naming where a figure lives. It cannot show that a figure is unpublished: a company can publish something in a supplemental and simply not mention it while answering. Equinix and Digital Realty both publish extensive quarterly supplements.",
+  },
+  {
     name: "Segment share of revenue",
     formula: "segment revenue / group revenue",
     denominator: "6 annual periods where both figures are reported",

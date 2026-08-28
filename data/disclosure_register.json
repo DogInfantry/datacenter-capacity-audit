@@ -1,0 +1,292 @@
+{
+  "window": {
+    "start": "2024-01-01",
+    "end": "2026-07-31",
+    "note": "Calendar dates, not fiscal labels. The fiscal labels in this source are not internally consistent across filers, so the window is defined on the date the call happened."
+  },
+  "families": [
+    "pricing_mechanics",
+    "cost_margin_bridge"
+  ],
+  "familyNote": "The two topic families that bear directly on unit economics. The same two are used for every company, so the denominators are comparable.",
+  "companies": [
+    {
+      "ticker": "SIFY",
+      "name": "Sify Technologies Limited",
+      "callsCovered": 35,
+      "pressurePointsAllFamilies": 239,
+      "families": [
+        {
+          "family": "pricing_mechanics",
+          "pressed": 2,
+          "confirmed": 0,
+          "partial": 1,
+          "deflected": 0,
+          "declined": 1,
+          "fullHistoryComplete": true,
+          "windowComplete": true
+        },
+        {
+          "family": "cost_margin_bridge",
+          "pressed": 13,
+          "confirmed": 6,
+          "partial": 6,
+          "deflected": 0,
+          "declined": 1,
+          "fullHistoryComplete": true,
+          "windowComplete": true
+        }
+      ],
+      "pressed": 15,
+      "refused": 2,
+      "refusals": [
+        {
+          "date": "2024-10-22",
+          "askedBy": "HiFi Advisory Services",
+          "topic": "Realization per megawatt",
+          "responseQuality": "DECLINED",
+          "refusedNumber": "Average realization per megawatt",
+          "publishedElsewhere": true,
+          "publishedWhere": "the company’s own published financials, gross revenue over stated capacity",
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2024-10-22",
+          "askedBy": null,
+          "topic": "Whether depreciation and interest expense had reached peak levels",
+          "responseQuality": "DECLINED",
+          "refusedNumber": "Whether depreciation and interest expense had reached peak levels",
+          "publishedElsewhere": false,
+          "family": "cost_margin_bridge"
+        }
+      ]
+    },
+    {
+      "ticker": "EQIX",
+      "name": "Equinix, Inc.",
+      "callsCovered": 42,
+      "pressurePointsAllFamilies": 537,
+      "families": [
+        {
+          "family": "pricing_mechanics",
+          "pressed": 11,
+          "confirmed": 3,
+          "partial": 3,
+          "deflected": 5,
+          "declined": 0,
+          "fullHistoryComplete": true,
+          "windowComplete": true
+        },
+        {
+          "family": "cost_margin_bridge",
+          "pressed": 9,
+          "confirmed": 3,
+          "partial": 2,
+          "deflected": 3,
+          "declined": 1,
+          "fullHistoryComplete": false,
+          "windowComplete": true
+        }
+      ],
+      "pressed": 20,
+      "refused": 9,
+      "refusals": [
+        {
+          "date": "2026-07-29",
+          "askedBy": null,
+          "topic": "interconnect pricing actions",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "opportunity for incremental pricing actions on interconnects over the longer term",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2026-02-11",
+          "askedBy": null,
+          "topic": "Clarification on the 6% stabilized revenue growth",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "6%",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2026-02-11",
+          "askedBy": null,
+          "topic": "pricing strategy and contract terms",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "magnitude of how much higher pricing can go and ability to change contract terms on renewal with increased escalators",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2026-02-11",
+          "askedBy": null,
+          "topic": "Trend of cost reduction and potential need to increase staffing",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "Whether the trend of reducing costs will continue or if staffing levels will need to increase given the pace of bookings",
+          "publishedElsewhere": false,
+          "family": "cost_margin_bridge"
+        },
+        {
+          "date": "2025-07-31",
+          "askedBy": null,
+          "topic": "Prebuying equipment's impact on CapEx smoothing and AFFO growth next year",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "Prebuying smooths CapEx and drives AFFO growth next year",
+          "publishedElsewhere": false,
+          "family": "cost_margin_bridge"
+        },
+        {
+          "date": "2025-07-31",
+          "askedBy": null,
+          "topic": "capitalization of interest impact",
+          "responseQuality": "DECLINED",
+          "refusedNumber": "It's too early to tell",
+          "publishedElsewhere": false,
+          "family": "cost_margin_bridge"
+        },
+        {
+          "date": "2025-02-12",
+          "askedBy": null,
+          "topic": "non-recurring expenses in 2025",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "which 2025 SG&A, COGS, or OpEx items might not recur in 2026",
+          "publishedElsewhere": false,
+          "family": "cost_margin_bridge"
+        },
+        {
+          "date": "2024-10-30",
+          "askedBy": null,
+          "topic": "pricing progression",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "Has pricing gotten better every quarter as supply dries up?",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2024-02-14",
+          "askedBy": null,
+          "topic": "pricing actions for the year",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "what is implied in guidance for pricing and whether to expect price increases for interconnection",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        }
+      ]
+    },
+    {
+      "ticker": "DLR",
+      "name": "Digital Realty Trust, Inc.",
+      "callsCovered": 42,
+      "pressurePointsAllFamilies": 528,
+      "families": [
+        {
+          "family": "pricing_mechanics",
+          "pressed": 24,
+          "confirmed": 8,
+          "partial": 10,
+          "deflected": 5,
+          "declined": 1,
+          "fullHistoryComplete": false,
+          "windowComplete": true
+        },
+        {
+          "family": "cost_margin_bridge",
+          "pressed": 10,
+          "confirmed": 4,
+          "partial": 3,
+          "deflected": 2,
+          "declined": 1,
+          "fullHistoryComplete": true,
+          "windowComplete": true
+        }
+      ],
+      "pressed": 34,
+      "refused": 9,
+      "refusals": [
+        {
+          "date": "2026-07-02",
+          "askedBy": null,
+          "topic": "Cost per megawatt increase in Americas development pipeline",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "Whether the cost per megawatt increased from $12.5M to about $14M per megawatt",
+          "publishedElsewhere": false,
+          "family": "cost_margin_bridge"
+        },
+        {
+          "date": "2026-02-05",
+          "askedBy": null,
+          "topic": "public vs private data center valuations disconnect",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "Whether there is a meaningful disconnect between public and private data center valuations, and if steps can be taken to narrow or capitalize on it.",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2025-10-23",
+          "askedBy": null,
+          "topic": "spreads on 1 megawatt plus deals",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "whether the 20% re-leasing spreads are temporary or the new normal",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2025-07-24",
+          "askedBy": null,
+          "topic": "utility upfront commitments impact on construction costs",
+          "responseQuality": "DECLINED",
+          "refusedNumber": "impact on construction cost per megawatt",
+          "publishedElsewhere": false,
+          "family": "cost_margin_bridge"
+        },
+        {
+          "date": "2025-02-13",
+          "askedBy": null,
+          "topic": "future development yields and hyperscale spot pricing",
+          "responseQuality": "DECLINED",
+          "refusedNumber": "Specifically, where do you see development yields going and what is the spot market pricing for hyperscale deals?",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2024-10-24",
+          "askedBy": null,
+          "topic": "Large package deal volume and escalation rate",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "The number of additional large package deals and whether the 4% escalation applies to all deals",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2024-10-24",
+          "askedBy": null,
+          "topic": "development yields",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "Can development yields move higher from 12% and is there a cap?",
+          "publishedElsewhere": false,
+          "family": "cost_margin_bridge"
+        },
+        {
+          "date": "2024-07-25",
+          "askedBy": null,
+          "topic": "Market rent growth and development yield trajectory",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "The market rent growth percentage in key metros relative to last year and whether development yields can move higher",
+          "publishedElsewhere": false,
+          "family": "pricing_mechanics"
+        },
+        {
+          "date": "2024-02-15",
+          "askedBy": null,
+          "topic": "pricing ceiling and demand pipeline",
+          "responseQuality": "DEFLECTED",
+          "refusedNumber": "whether there is a governor on pricing for new leasing",
+          "publishedElsewhere": true,
+          "publishedWhere": "its development capacity life cycle table, named on the call",
+          "family": "pricing_mechanics"
+        }
+      ]
+    }
+  ]
+}

@@ -248,6 +248,110 @@ export const CompanyDoc = z
     { message: "segment revenue exceeds group revenue in at least one year", path: ["segments"] },
   );
 
+/**
+ * The disclosure register, measured rather than illustrated.
+ *
+ * Every count here comes from a complete topic partition, never a keyword
+ * search: asking the source for "revenue per megawatt" finds only questions
+ * phrased that way and quietly biases the denominator. Asking for a whole
+ * topic family and taking every row returns the real one.
+ */
+const FamilyCount = z
+  .object({
+    family: z.string().min(1),
+    pressed: z.number().int().nonnegative(),
+    confirmed: z.number().int().nonnegative(),
+    partial: z.number().int().nonnegative(),
+    deflected: z.number().int().nonnegative(),
+    declined: z.number().int().nonnegative(),
+    /** Whether the family was complete over its whole history. Several were
+     *  not, because the source caps a response at 50 rows and offers no
+     *  pagination. The window below is complete regardless, because responses
+     *  arrive newest first and reach back past its start. */
+    fullHistoryComplete: z.boolean(),
+    windowComplete: z.literal(true),
+  })
+  .refine(
+    (f) => f.confirmed + f.partial + f.deflected + f.declined === f.pressed,
+    { message: "the four response qualities must account for every question pressed", path: ["pressed"] },
+  );
+
+/**
+ * `publishedElsewhere` is the dimension that turns a refusal into a finding,
+ * but it can only be coded from what management said out loud. A false here
+ * means no source was named on the call. It is not evidence that the figure is
+ * unpublished, and nothing on the site may claim otherwise.
+ */
+const RegisterRefusal = z
+  .object({
+    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    askedBy: z.string().nullable(),
+    topic: z.string().min(1),
+    responseQuality: z.enum(["DEFLECTED", "DECLINED"]),
+    refusedNumber: z.string().min(1),
+    publishedElsewhere: z.boolean(),
+    publishedWhere: z.string().optional(),
+    family: z.string().min(1),
+  })
+  .refine((r) => !r.publishedElsewhere || !!r.publishedWhere, {
+    message: "a refusal that points somewhere must say where",
+    path: ["publishedWhere"],
+  });
+
+const RegisterCompany = z
+  .object({
+    ticker: z.string().min(1),
+    name: z.string().min(1),
+    callsCovered: z.number().int().positive(),
+    pressurePointsAllFamilies: z.number().int().positive(),
+    families: z.array(FamilyCount).min(1),
+    pressed: z.number().int().nonnegative(),
+    refused: z.number().int().nonnegative(),
+    refusals: z.array(RegisterRefusal),
+  })
+  .refine((c) => c.families.reduce((s, f) => s + f.pressed, 0) === c.pressed, {
+    message: "the family counts must add up to the stated denominator",
+    path: ["pressed"],
+  })
+  .refine(
+    (c) => c.families.reduce((s, f) => s + f.deflected + f.declined, 0) === c.refused,
+    { message: "the refusal count must match the family breakdown", path: ["refused"] },
+  )
+  .refine((c) => c.refusals.length === c.refused, {
+    message: "every counted refusal must be listed, so the numerator can be read",
+    path: ["refusals"],
+  });
+
+export const DisclosureRegister = z
+  .object({
+    window: z.object({
+      start: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      end: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      note: z.string().min(1),
+    }),
+    families: z.array(z.string().min(1)).min(1),
+    familyNote: z.string().min(1),
+    companies: z.array(RegisterCompany).min(2),
+  })
+  .refine(
+    (r) =>
+      r.companies.every(
+        (c) =>
+          c.families.length === r.families.length &&
+          c.families.every((f) => r.families.includes(f.family)),
+      ),
+    {
+      // the whole comparison rests on this: a rate computed over a different
+      // set of topics is not the same measurement, however similar it looks
+      message: "every company must be measured over the identical family set",
+      path: ["companies"],
+    },
+  );
+
+export type DisclosureRegister = z.infer<typeof DisclosureRegister>;
+export type RegisterCompany = z.infer<typeof RegisterCompany>;
+export type RegisterRefusal = z.infer<typeof RegisterRefusal>;
+
 export type Campus = z.infer<typeof Campus>;
 export type CompanyDoc = z.infer<typeof CompanyDoc>;
 export type CompanyFinancials = z.infer<typeof CompanyFinancials>;

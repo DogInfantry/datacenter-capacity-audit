@@ -1,0 +1,59 @@
+{
+  "_source": "FactIQ MCP, search_earnings_transcripts, search_target=pressure_points, claim_family filter, no query",
+  "_company": "Sify Technologies Limited",
+  "_harvested": "2026-08-28",
+  "_coverage": "35 calls, FY2016Q3 to FY2026Q2, latest call 2025-10-27, 239 pressure points in total across all families",
+  "_note": "Only the two families that bear directly on unit economics are recorded here. Both returned complete: the response row count was below the server's 50 row cap, which is the only reliable completeness test. Rows are transcribed from responses that returned inline rather than being written to a file by the harness, so the full verbatim text is kept only for the rows quoted on the site. The response_quality values are as returned, in lower case; the schema uses upper case and the mapping happens on ingest.",
+  "_completeness_test": "rows returned < limit means complete. The truncated flag cannot be used: it reported false on a response that was capped at exactly 50 rows.",
+  "families": {
+    "pricing_mechanics": {
+      "total_returned": 5,
+      "limit": 50,
+      "complete": true,
+      "rows": [
+        { "pp_id": "SIFY::FY2026Q1::pp::c1e64f4c4897a0383639", "fiscal_period": "FY2026Q1", "calendar_date": "2025-07-18", "response_quality": "partial", "asked_by": "Sidoti and Company", "topic": "Pay-per-use AI colocation model economics and structure" },
+        { "pp_id": "SIFY::FY2025Q2::pp::e2f928a8d13f9eb1685c", "fiscal_period": "FY2025Q2", "calendar_date": "2024-10-22", "response_quality": "declined", "asked_by": "HiFi Advisory Services", "topic": "Realization per megawatt", "refused_number": "Average realization per megawatt", "verbatim_quote": "Vijay Kumar, can I just know what is your realization per megawatt? See, these are customer specific numbers, Gopal. No, average realization. I don't think we -- I don't think it will be appropriate. But it's available in our published financials, the gross revenue. And I told you about the capacity. You could do a reverse working on that." },
+        { "pp_id": "SIFY::FY2022Q2::pp::2baf19723a760554f141", "fiscal_period": "FY2022Q2", "calendar_date": "2022-10-21", "response_quality": "deflected", "asked_by": "RBC Capital Markets", "topic": "Hyperscale deal pricing amid rising supply" },
+        { "pp_id": "SIFY::FY2022Q2::pp::6b1c9ef4e82cf0009a0c", "fiscal_period": "FY2022Q2", "calendar_date": "2022-10-21", "response_quality": "partial", "asked_by": "Sidoti & Company", "topic": "Customer mix and pricing for new data-center capacity" },
+        { "pp_id": "SIFY::FY2019Q2::pp::36be7b729476a3d84295", "fiscal_period": "FY2019Q2", "calendar_date": "2019-10-18", "response_quality": "partial", "asked_by": "Sidoti & Company", "topic": "Vertical focus and pay-as-you-go billing models" }
+      ]
+    },
+    "cost_margin_bridge": {
+      "total_returned": 30,
+      "limit": 50,
+      "complete": true,
+      "rows": [
+        { "pp_id": "SIFY::FY2026Q2::pp::c04eed0a3a2594278095", "fiscal_period": "FY2026Q2", "calendar_date": "2025-10-27", "response_quality": "partial", "asked_by": "RBC Capital", "topic": "Financial returns and cost of capital for data-center deals" },
+        { "pp_id": "SIFY::FY2026Q2::pp::735dd73ea5d6e351043d", "fiscal_period": "FY2026Q2", "calendar_date": "2025-10-27", "response_quality": "confirmed", "asked_by": null, "topic": "Network-services margin recovery and normalized margin level" },
+        { "pp_id": "SIFY::FY2026Q2::pp::32ec9368af2d4145ba41", "fiscal_period": "FY2026Q2", "calendar_date": "2025-10-27", "response_quality": "confirmed", "asked_by": null, "topic": "Drivers of digital-services revenue and margin deterioration" },
+        { "pp_id": "SIFY::FY2026Q1::pp::ca3d2664c1a468cf34ff", "fiscal_period": "FY2026Q1", "calendar_date": "2025-07-18", "response_quality": "confirmed", "asked_by": "Sidoti and Company", "topic": "Timing of operating leverage from ongoing investments" },
+        { "pp_id": "SIFY::FY2026Q1::pp::ac0b04ce2f8049128d8d", "fiscal_period": "FY2026Q1", "calendar_date": "2025-07-18", "response_quality": "partial", "asked_by": null, "topic": "Consolidated EBITDA margin expansion" },
+        { "pp_id": "SIFY::FY2026Q1::pp::8d837ca82ee5d63c2f45", "fiscal_period": "FY2026Q1", "calendar_date": "2025-07-18", "response_quality": "partial", "asked_by": null, "topic": "Impact of reaching a 25% margin on accretion and segment EBITDA outlook" },
+        { "pp_id": "SIFY::FY2025Q4::pp::6f5ccb575a1482310eb7", "fiscal_period": "FY2025Q4", "calendar_date": "2025-04-21", "response_quality": "partial", "asked_by": "Sidoti & Company", "topic": "Operating leverage from infrastructure investments" },
+        { "pp_id": "SIFY::FY2025Q3::pp::00ca7a04820751c1815a", "fiscal_period": "FY2025Q3", "calendar_date": "2025-01-17", "response_quality": "confirmed", "asked_by": "Sidoti & Company", "topic": "SG&A run-rate" },
+        { "pp_id": "SIFY::FY2025Q2::pp::e3690e684dd5985e3d73", "fiscal_period": "FY2025Q2", "calendar_date": "2024-10-22", "response_quality": "confirmed", "asked_by": "Sidoti & Company", "topic": "SG&A as a percentage of revenue" },
+        { "pp_id": "SIFY::FY2025Q2::pp::923cea3525784066dc39", "fiscal_period": "FY2025Q2", "calendar_date": "2024-10-22", "response_quality": "partial", "asked_by": null, "topic": "Whether consolidated gross margins could eventually exceed 50%" },
+        { "pp_id": "SIFY::FY2025Q2::pp::530ebad7f7433a961887", "fiscal_period": "FY2025Q2", "calendar_date": "2024-10-22", "response_quality": "declined", "asked_by": null, "topic": "Whether depreciation and interest expense had reached peak levels" },
+        { "pp_id": "SIFY::FY2025Q2::pp::2c537c8a66aeefaa556c", "fiscal_period": "FY2025Q2", "calendar_date": "2024-10-22", "response_quality": "partial", "asked_by": "HiFi Advisory Services", "topic": "Improving margins in networking and other low-margin businesses" },
+        { "pp_id": "SIFY::FY2023Q3::pp::bcd4786dc3cea28aca08", "fiscal_period": "FY2023Q3", "calendar_date": "2024-01-18", "response_quality": "confirmed", "asked_by": "Sidoti & Company", "topic": "Implications of becoming more selective in technology-integration projects" },
+        { "pp_id": "SIFY::FY2023Q2::pp::5cf6103a4ed994710255", "fiscal_period": "FY2023Q2", "calendar_date": "2023-10-20", "response_quality": "partial", "asked_by": "Sidoti & Company", "topic": "SG&A outlook and EBITDA margin recovery" },
+        { "pp_id": "SIFY::FY2022Q3::pp::65f0c076f37a42c89d39", "fiscal_period": "FY2022Q3", "calendar_date": "2023-01-25", "response_quality": "confirmed", "asked_by": "Sidoti & Company", "topic": "EBITDA margin shortfall drivers" },
+        { "pp_id": "SIFY::FY2022Q2::pp::fd1da1ced53830441af8", "fiscal_period": "FY2022Q2", "calendar_date": "2022-10-21", "response_quality": "confirmed", "asked_by": "Sidoti & Company", "topic": "Other causes of the EBITDA margin decline" },
+        { "pp_id": "SIFY::FY2021Q2::pp::ed5b954a4f0d4e90ff71", "fiscal_period": "FY2021Q2", "calendar_date": "2021-10-29", "response_quality": "partial", "asked_by": "Sidoti & Company", "topic": "Future spending levels and operating leverage" },
+        { "pp_id": "SIFY::FY2021Q2::pp::292bb0f55bc90b1327e2", "fiscal_period": "FY2021Q2", "calendar_date": "2021-10-29", "response_quality": "declined", "asked_by": "Sidoti & Company", "topic": "Forward EBITDA margin target", "refused_number": "A target for EBITDA margin or the expected post-investment margin level." },
+        { "pp_id": "SIFY::FY2021Q1::pp::f74b8272b3e514ae9e4e", "fiscal_period": "FY2021Q1", "calendar_date": "2021-07-30", "response_quality": "confirmed", "asked_by": "Sidoti", "topic": "Sequential cash decline" },
+        { "pp_id": "SIFY::FY2020Q4::pp::b3c82e5f683d4059a591", "fiscal_period": "FY2020Q4", "calendar_date": "2021-05-07", "response_quality": "partial", "asked_by": "Sidoti Company", "topic": "Next-year EBITDA margin" },
+        { "pp_id": "SIFY::FY2020Q1::pp::782954becf1ecd79cc5a", "fiscal_period": "FY2020Q1", "calendar_date": "2020-07-28", "response_quality": "deflected", "asked_by": "Sidoti & Company", "topic": "Voice versus data margin profile" },
+        { "pp_id": "SIFY::FY2019Q2::pp::ade491ecfe9a87962f8c", "fiscal_period": "FY2019Q2", "calendar_date": "2019-10-18", "response_quality": "confirmed", "asked_by": "Sidoti & Company", "topic": "Current and prospective effective tax rate" },
+        { "pp_id": "SIFY::FY2019Q2::pp::b6dbb393119e955cd53a", "fiscal_period": "FY2019Q2", "calendar_date": "2019-10-18", "response_quality": "confirmed", "asked_by": "National Securities", "topic": "SG&A expense run rate" },
+        { "pp_id": "SIFY::FY2019Q1::pp::69e31b87831ef77bd64c", "fiscal_period": "FY2019Q1", "calendar_date": "2019-07-24", "response_quality": "confirmed", "asked_by": "Sidoti & Company", "topic": "Tax rate modeling" },
+        { "pp_id": "SIFY::FY2019Q1::pp::b991d0a18f779205faba", "fiscal_period": "FY2019Q1", "calendar_date": "2019-07-24", "response_quality": "partial", "asked_by": "Maxim Group", "topic": "Net finance expense outlook" },
+        { "pp_id": "SIFY::FY2018Q4::pp::213f870f128548fe326e", "fiscal_period": "FY2018Q4", "calendar_date": "2019-04-22", "response_quality": "partial", "asked_by": "Maxim Group", "topic": "Margin outlook and drivers" },
+        { "pp_id": "SIFY::FY2018Q4::pp::92f97e3c5c5cb2cf7db0", "fiscal_period": "FY2018Q4", "calendar_date": "2019-04-22", "response_quality": "partial", "asked_by": "Maxim Group", "topic": "Margin outlook" },
+        { "pp_id": "SIFY::FY2018Q3::pp::dc7abe091dc50e138bdc", "fiscal_period": "FY2018Q3", "calendar_date": "2018-01-24", "response_quality": "confirmed", "asked_by": "Sidoti & Company", "topic": "Gross-margin decline and potential pricing pressure" },
+        { "pp_id": "SIFY::FY2018Q3::pp::3130bc9e16c70cb7bae8", "fiscal_period": "FY2018Q3", "calendar_date": "2018-01-24", "response_quality": "partial", "asked_by": "Noble Financial", "topic": "Depreciation and amortization run rate after WAN customer amortization winds down" },
+        { "pp_id": "SIFY::FY2017Q4::pp::f6a9c5d9ec252de15660", "fiscal_period": "FY2017Q4", "calendar_date": "2017-04-25", "response_quality": "confirmed", "asked_by": "Rodman", "topic": "Gross-margin decline drivers" }
+      ]
+    }
+  }
+}

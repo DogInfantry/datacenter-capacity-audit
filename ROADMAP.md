@@ -50,6 +50,22 @@ Recorded with the finding each one produced, because a tick is not a result.
   more useful than a clean pass: the method is sound where a filer tags its income statement
   completely, and it degrades exactly where untagged non-GAAP adjustments grow. Those years are
   marked UNVERIFIED and kept out of every cross company margin claim.
+- **The disclosure register became a rate, and the rate went the wrong way.** Refusals were five
+  hand coded examples from one company. They are now measured across three, over the same two
+  topic families and the same window, with complete denominators: Sify refused 2 of 15 questions
+  on unit economics, Equinix 9 of 20, Digital Realty 9 of 34. The Indian operator refuses least
+  and the largest global operator refuses most, which is the second time this project has gone
+  looking for an Indian disclosure gap and found the opposite. The rate alone would still mislead,
+  because Sify is asked 0.43 unit economics questions a call against Digital Realty's 0.81, so the
+  denominator stays on the page. The single sharpest instance also runs against the thesis: asked
+  for realization per megawatt, Sify declined and then described the reverse working, which is the
+  calculation the financials page performs. The company confirmed the method in its own words.
+- **A measurement whose limit had to be written down with it.** The published elsewhere dimension
+  is coded from what management says on the call, so it can detect a company naming where a figure
+  lives and cannot show that a figure is unpublished. Equinix and Digital Realty both publish
+  quarterly supplements that a call answer may simply not mention. That limit is stated on the
+  page beside the number rather than in a footnote, because without it the second dimension reads
+  as an accusation it cannot support.
 - **A defect in shipped work, found by tooling rather than by eye.** The first chart palette had
   two hues 10.1 apart on the normal vision scale against a floor of 15. Full colour readers could
   not separate them. Replaced with a validated set and re-checked in both themes.
@@ -75,9 +91,11 @@ Recorded with the finding each one produced, because a tick is not a result.
 - **`cashQuality.ts` and `concentration.ts`.** Both need PAT and total assets, which are available
   and simply not yet pulled. Concentration is the more interesting of the two: Sify discloses a
   single customer revenue line running 2017 to 2026.
-- **Disclosure rates with an honest denominator.** Needs the quarter partitioned harvest across
-  the peers. Until then the site shows exemplars and says so, rather than quoting a rate computed
-  from a keyword search, which would be biased by the keywords.
+- **Disclosure rates beyond the two unit economics families.** The register now measures pricing
+  mechanics and cost margin bridge. Capacity milestone and capital allocation were harvested and
+  are complete inside the same window, but were left out so that every published rate rests on the
+  two families that are unambiguously unit economics. Adding them is a decision about what the
+  measure is for, not more work.
 - **The Indian four.** Netweb, Anant Raj, E2E and Techno Electric. No structured source exists;
   they need Screener exports by hand, which is why they trail the structured set.
 
