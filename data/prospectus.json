@@ -1,0 +1,105 @@
+{
+  "document": {
+    "title": "Draft Red Herring Prospectus",
+    "issuer": "Sify Infinit Spaces Limited",
+    "documentDate": "2025-10-16",
+    "pdfPages": 563,
+    "sourceUrl": "https://www.morganstanley.com/content/dam/msdotcom/en/indiaofferdocuments/pdfs/Project_Green_DRHP.pdf",
+    "sha256": "30f945978b141ffc9b622c547bd32b9abe3d70a9e2e983ab6e474752af44525f",
+    "note": "Read from the filed document. Every figure below cites the printed page it was read from. The binary is not committed; data/raw/prospectus/drhp_extracts.json carries the checksum so any figure can be audited against a re download."
+  },
+  "offer": {
+    "totalMn": 37000.0,
+    "freshIssueMn": 25000.0,
+    "offerForSaleMn": 12000.0,
+    "currency": "INR million",
+    "page": 79,
+    "source": {
+      "label": "Sify Infinit Spaces DRHP, The Offer, printed page 79",
+      "asOf": "2025-10-16",
+      "verification": "PRIMARY"
+    }
+  },
+  "capacity": {
+    "asOf": "2025-06-30",
+    "page": 49,
+    "unit": "MW",
+    "source": {
+      "label": "Sify Infinit Spaces DRHP, data center capacity table and its notes, printed page 49",
+      "asOf": "2025-10-16",
+      "verification": "PRIMARY"
+    },
+    "rungs": [
+      {
+        "name": "Built",
+        "mw": 188.04,
+        "definition": "the maximum IT load a data center is engineered to support, based on business requirements, space planning, and infrastructure feasibility, calculated from present design specifications using total planned electrical load and design power density",
+        "gloss": "Engineered to support. Not constructed."
+      },
+      {
+        "name": "Installed",
+        "mw": 131.88,
+        "definition": "the portion of built capacity that is equipped, powered and commissioned for operation, calculated from the present equipment installed",
+        "gloss": "Equipped and commissioned."
+      },
+      {
+        "name": "Operational",
+        "mw": 113.67,
+        "definition": "the total IT power capacity that has been sold to customers during the year or period for which revenue from operations is generated, calculated from contracted load or committed IT power sold",
+        "gloss": "Sold to a paying customer."
+      }
+    ],
+    "headlineClaim": {
+      "quote": "As of June 30, 2025, we had a built IT power capacity of 188.04 megawatt (“MW”) across these facilities.",
+      "page": 17
+    },
+    "callComparison": {
+      "date": "2025-10-27",
+      "quote": "We have about 188 megawatts of design capacity, which is ready for sale, out of which about 130-megawatt is built.",
+      "note": "Eleven days after the prospectus was dated, management described the same estate on an earnings call using design for the 188 figure and built for the 131 figure. The prospectus calls the 188 figure built."
+    }
+  },
+  "objects": {
+    "page": 109,
+    "unit": "INR million",
+    "deployedAsOf": "2025-08-31",
+    "certifiedBy": "Manohar Chowdhry & Associates, Statutory Auditor, certificate dated 16 October 2025",
+    "source": {
+      "label": "Sify Infinit Spaces DRHP, proposed schedule of implementation and deployment of Net Proceeds, printed page 109",
+      "asOf": "2025-10-16",
+      "verification": "PRIMARY"
+    },
+    "rows": [
+      {
+        "object": "Chennai 02, tower B, completion",
+        "totalEstimatedCost": 12020.07,
+        "deployed": 4407.41,
+        "fromNetProceeds": 4650.0,
+        "fromBorrowings": 2962.66,
+        "fiscal2027": 1150.0,
+        "fiscal2028": 2500.0,
+        "fiscal2029": 1000.0
+      },
+      {
+        "object": "Rabale, towers 11 and 12, setting up",
+        "totalEstimatedCost": 11276.93,
+        "deployed": 10.76,
+        "fromNetProceeds": 8600.0,
+        "fromBorrowings": 2666.17,
+        "fiscal2027": 2600.0,
+        "fiscal2028": 3500.0,
+        "fiscal2029": 2500.0
+      },
+      {
+        "object": "Repayment or prepayment of borrowings",
+        "totalEstimatedCost": 6000.0,
+        "deployed": 0,
+        "fromNetProceeds": 6000.0,
+        "fromBorrowings": 0,
+        "fiscal2027": 6000.0,
+        "fiscal2028": 0,
+        "fiscal2029": 0
+      }
+    ]
+  }
+}

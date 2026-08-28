@@ -352,6 +352,98 @@ export type DisclosureRegister = z.infer<typeof DisclosureRegister>;
 export type RegisterCompany = z.infer<typeof RegisterCompany>;
 export type RegisterRefusal = z.infer<typeof RegisterRefusal>;
 
+/**
+ * The filed prospectus.
+ *
+ * A page number is mandatory on every block. A figure attributed to a 563 page
+ * document without saying where in it is not checkable, and this project does
+ * not render claims a reader cannot follow back to the source.
+ */
+const cited = z.number().int().positive();
+
+export const Prospectus = z.object({
+  document: z.object({
+    title: z.string().min(1),
+    issuer: z.string().min(1),
+    documentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    pdfPages: cited,
+    sourceUrl: z.string().url(),
+    /** So an extract can be audited against a re download of the same file. */
+    sha256: z.string().regex(/^[0-9a-f]{64}$/),
+    note: z.string().min(1),
+  }),
+  offer: z
+    .object({
+      totalMn: z.number().positive(),
+      freshIssueMn: z.number().positive(),
+      offerForSaleMn: z.number().positive(),
+      currency: z.string().min(1),
+      page: cited,
+      source: Source,
+    })
+    .refine((o) => Math.abs(o.freshIssueMn + o.offerForSaleMn - o.totalMn) < 0.01, {
+      message: "the fresh issue and the offer for sale must add up to the total offer",
+      path: ["totalMn"],
+    }),
+  capacity: z
+    .object({
+      asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      page: cited,
+      unit: z.string().min(1),
+      source: Source,
+      /** Ordered widest to narrowest. The whole finding is that the widest one
+       *  is defined as an engineering maximum while being called built. */
+      rungs: z
+        .array(
+          z.object({
+            name: z.string().min(1),
+            mw: z.number().positive(),
+            definition: z.string().min(1),
+            gloss: z.string().min(1),
+          }),
+        )
+        .min(2),
+      headlineClaim: z.object({ quote: z.string().min(1), page: cited }),
+      callComparison: z.object({
+        date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+        quote: z.string().min(1),
+        note: z.string().min(1),
+      }),
+    })
+    .refine((c) => c.rungs.every((r, i) => i === 0 || r.mw <= c.rungs[i - 1].mw), {
+      message: "capacity rungs must descend, widest first",
+      path: ["rungs"],
+    }),
+  objects: z.object({
+    page: cited,
+    unit: z.string().min(1),
+    deployedAsOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    certifiedBy: z.string().min(1),
+    source: Source,
+    rows: z
+      .array(
+        z
+          .object({
+            object: z.string().min(1),
+            totalEstimatedCost: z.number().positive(),
+            deployed: z.number().nonnegative(),
+            fromNetProceeds: z.number().nonnegative(),
+            fromBorrowings: z.number().nonnegative(),
+            fiscal2027: z.number().nonnegative(),
+            fiscal2028: z.number().nonnegative(),
+            fiscal2029: z.number().nonnegative(),
+          })
+          .refine((r) => r.deployed <= r.totalEstimatedCost, {
+            message: "money already spent cannot exceed the estimated cost of the object",
+            path: ["deployed"],
+          }),
+      )
+      .min(1),
+  }),
+});
+
+export type Prospectus = z.infer<typeof Prospectus>;
+
 export type Campus = z.infer<typeof Campus>;
 export type CompanyDoc = z.infer<typeof CompanyDoc>;
 export type CompanyFinancials = z.infer<typeof CompanyFinancials>;

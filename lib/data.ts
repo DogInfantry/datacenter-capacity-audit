@@ -1,6 +1,14 @@
 import { z } from "zod";
-import { BaseRate, CapacityLadder, Campus, CompanyDoc, DisclosureRegister } from "./schema";
+import {
+  BaseRate,
+  CapacityLadder,
+  Campus,
+  CompanyDoc,
+  DisclosureRegister,
+  Prospectus,
+} from "./schema";
 import registerRaw from "@/data/disclosure_register.json";
+import prospectusRaw from "@/data/prospectus.json";
 import baseRateRaw from "@/data/base_rate.json";
 import campusesRaw from "@/data/campuses.json";
 import sifyRaw from "@/data/sify_capacity.json";
@@ -40,6 +48,8 @@ export const disclosureRegister = parse(
   registerRaw,
   "data/disclosure_register.json",
 );
+
+export const prospectus = parse(Prospectus, prospectusRaw, "data/prospectus.json");
 
 /** Every company harvested so far, data centre operators first. */
 export const companies = [sifyCo, equinix, digitalRealty, wipro, infosys];

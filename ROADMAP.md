@@ -84,10 +84,13 @@ Recorded with the finding each one produced, because a tick is not a result.
   which the store does not carry before 2020.
 - **Per company pages and compare.** Blocked on the above. One company does not need a company
   page.
-- **The prospectus teardown.** Reachable at
-  `sebi.gov.in/filings/public-issues/oct-2025/sify-infinit-spaces-limited-drhp_97481.html`, dated
-  16 October 2025. Several hundred pages through a markdown converter, so it will arrive in
-  sections rather than whole.
+- **The rest of the prospectus teardown.** The document is read and partly extracted: the offer,
+  the objects and deployment schedule, and the capacity definitions, each cited by printed page.
+  Still to extract, with the page map already recorded in
+  `data/raw/prospectus/drhp_extracts.json`: the restated financial information for the standalone
+  entity at printed 349, related party transactions inside its notes, customer concentration, and
+  outstanding litigation at printed 463. The standalone accounts are the valuable one, because
+  they turn the Sify Technologies segment note into something checkable rather than assumed.
 - **`cashQuality.ts` and `concentration.ts`.** Both need PAT and total assets, which are available
   and simply not yet pulled. Concentration is the more interesting of the two: Sify discloses a
   single customer revenue line running 2017 to 2026.
@@ -112,11 +115,16 @@ Marked so rather than left looking like work.
   the only route, and that document is not machine readable.
 - **`valuation.ts` stays unwritten** until a market data source is in the repo. A half sourced
   multiple is worse than no multiple.
-- **The 188 megawatt discrepancy stays unverified.** Published summaries of the prospectus report
-  188.04 MW as built capacity; the October 2025 call describes 188 MW as design capacity of which
-  130 MW is built. Paraphrase is the likely explanation. It is recorded on `/prospectus` as an
-  open question and stays off the product until the filed document is read. If it does not
-  survive, it gets dropped without complaint.
+- **The 188 megawatt question is closed, and paraphrase was not the explanation.** It was carried
+  as an open question on the assumption that a summary had garbled a term. The filed document says
+  otherwise. The prospectus defines built capacity as "the maximum IT load a data center is
+  engineered to support", calculated from "present design specifications" and "total planned
+  electrical load", and reports 188.04 MW under that word. Installed capacity, meaning equipped
+  and commissioned, is 131.88 MW. Operational capacity, meaning sold to customers, is 113.67 MW.
+  Eleven days after the prospectus was dated, the same estate was described on an earnings call as
+  188 MW of design capacity of which 130 is built. The call used the ordinary meanings. The filed
+  document moved the words one rung up, and the headline figure is 65 per cent larger than the
+  estate earning revenue. Every figure cites its printed page.
 - **Peer segmentation will never be like for like.** Equinix and Digital Realty are pure plays, so
   group equals segment. Infosys and Wipro segment by industry vertical, not by AI. The narrative
   test therefore measures something weaker for the services names than for Sify, and that is a

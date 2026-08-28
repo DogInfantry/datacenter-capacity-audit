@@ -1,0 +1,187 @@
+{
+  "_source": "Sify Infinit Spaces Limited, Draft Red Herring Prospectus, dated October 16, 2025",
+  "_harvested": "2026-08-28",
+  "_note": "Layer 0 for the prospectus is page cited extracts rather than the binary. The document is 12.0 MB and the repo has no remote; committing it would bloat the history for no analytical gain. The manifest below carries a checksum so every extract can be audited against a re download. This is a deliberate departure from one file per source, never hand edited, and it is recorded rather than hidden.",
+  "manifest": {
+    "url": "https://www.morganstanley.com/content/dam/msdotcom/en/indiaofferdocuments/pdfs/Project_Green_DRHP.pdf",
+    "hostedBy": "Morgan Stanley, book running lead manager, filed under the codename Project Green",
+    "sebiLanding": "https://www.sebi.gov.in/filings/public-issues/oct-2025/sify-infinit-spaces-limited-drhp_97481.html",
+    "documentDate": "2025-10-16",
+    "sebiPublishedDate": "2025-10-17",
+    "sha256": "30f945978b141ffc9b622c547bd32b9abe3d70a9e2e983ab6e474752af44525f",
+    "bytes": 12536752,
+    "pdfPages": 563,
+    "pageOffset": 4,
+    "pageOffsetNote": "PDF zero based index = printed page number + 4. Verified against four section headings: printed 1, 17, 35 and 79. Cite printed page numbers, not PDF indices."
+  },
+  "sectionMap": {
+    "_note": "Printed page numbers from the table of contents on printed page 5.",
+    "DEFINITIONS AND ABBREVIATIONS": 1,
+    "SUMMARY OF THE OFFER DOCUMENT": 17,
+    "RISK FACTORS": 35,
+    "THE OFFER": 79,
+    "SUMMARY OF FINANCIAL INFORMATION": 81,
+    "CAPITAL STRUCTURE": 93,
+    "OBJECTS OF THE OFFER": 108,
+    "BASIS FOR OFFER PRICE": 138,
+    "INDUSTRY OVERVIEW": 157,
+    "OUR BUSINESS": 276,
+    "HISTORY AND CERTAIN CORPORATE MATTERS": 314,
+    "OUR MANAGEMENT": 325,
+    "OUR PROMOTERS AND PROMOTER GROUP": 341,
+    "RESTATED CONSOLIDATED FINANCIAL INFORMATION": 349,
+    "OTHER FINANCIAL INFORMATION": 434,
+    "FINANCIAL INDEBTEDNESS": 437,
+    "CAPITALISATION STATEMENT": 462,
+    "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS": 463,
+    "OFFER STRUCTURE": 502
+  },
+  "extracts": [
+    {
+      "id": "offer-structure",
+      "printedPage": 79,
+      "section": "THE OFFER",
+      "quote": "The Offer(1) Up to [●] Equity Shares, aggregating up to ₹ 37,000.00 million. The Offer consists of: Fresh Issue(1)(2)(7) Up to [●] Equity Shares, aggregating up to ₹ 25,000.00 million. Offer for Sale(3) Up to [●] Equity Shares aggregating up to ₹12,000.00 million",
+      "values": {
+        "totalOfferMn": 37000.0,
+        "freshIssueMn": 25000.0,
+        "offerForSaleMn": 12000.0,
+        "currency": "INR million"
+      },
+      "note": "Confirms as PRIMARY the figures the site previously carried from published summaries. Nothing needed correcting."
+    },
+    {
+      "id": "objects-list",
+      "printedPage": 108,
+      "section": "OBJECTS OF THE OFFER",
+      "quote": "Our Company proposes to utilise the Net Proceeds from the Fresh Issue towards the following objects: 1. Part funding of capital expenditure requirements towards completion of tower B of data center in Siruseri, Chennai (“Chennai 02 Data Center”); 2. Part funding of capital expenditure requirements for setting up of towers 11 and 12 of data center in Rabale, Navi Mumbai (“Rabale Data Center”); 3. Repayment / prepayment, in full or in part, of certain borrowings availed of by our Company; and 4. General corporate purposes."
+    },
+    {
+      "id": "deployment-schedule",
+      "printedPage": 109,
+      "section": "OBJECTS OF THE OFFER, proposed schedule of implementation and deployment of Net Proceeds",
+      "unit": "INR million",
+      "quote": "Particulars / Total estimated cost / Amount deployed as of August 31, 2025 / Estimated amount to be funded from the Net Proceeds / Estimated amount to be funded by way of borrowing arrangements / Estimated deployment of the Net Proceeds in Fiscals 2027 2028 2029",
+      "certifiedBy": "Manohar Chowdhry & Associates, Statutory Auditor, certificate dated October 16, 2025",
+      "rows": [
+        {
+          "object": "Completion of tower B of Chennai 02 Data Center",
+          "totalEstimatedCost": 12020.07,
+          "deployedToAug2025": 4407.41,
+          "fromNetProceeds": 4650.0,
+          "fromBorrowings": 2962.66,
+          "fiscal2027": 1150.0,
+          "fiscal2028": 2500.0,
+          "fiscal2029": 1000.0
+        },
+        {
+          "object": "Setting up of towers 11 and 12 of Rabale Data Center",
+          "totalEstimatedCost": 11276.93,
+          "deployedToAug2025": 10.76,
+          "fromNetProceeds": 8600.0,
+          "fromBorrowings": 2666.17,
+          "fiscal2027": 2600.0,
+          "fiscal2028": 3500.0,
+          "fiscal2029": 2500.0
+        },
+        {
+          "object": "Repayment or prepayment of certain borrowings",
+          "totalEstimatedCost": 6000.0,
+          "deployedToAug2025": null,
+          "fromNetProceeds": 6000.0,
+          "fromBorrowings": null,
+          "fiscal2027": 6000.0,
+          "fiscal2028": null,
+          "fiscal2029": null
+        }
+      ],
+      "totals": {
+        "totalEstimatedCost": 29297.0,
+        "deployedToAug2025": 4418.17,
+        "fromBorrowings": 5628.83,
+        "note": "General corporate purposes and several totals are left as placeholders in the draft, to be finalised on determination of the offer price."
+      },
+      "finding": "Rabale towers 11 and 12 carry an estimated cost of 11,276.93 million rupees against 10.76 million deployed as of 31 August 2025, which is 0.1 per cent. The second largest object is at the starting line and its money is scheduled across Fiscals 2027 to 2029."
+    },
+    {
+      "id": "means-of-finance",
+      "printedPage": 110,
+      "section": "OBJECTS OF THE OFFER, means of finance",
+      "unit": "INR million",
+      "quote": "As of August 31, 2025, an amount of ₹4,418.17 million has already been incurred towards the setting up of tower B of Chennai 02 Data Center and towers 11 and 12 of the Rabale Data Center, the balance amount of ₹ 18,878.83 million to be spent shall be financed in the manner set forth below",
+      "values": { "incurredToAug2025": 4418.17, "balanceToSpend": 18878.83 }
+    },
+    {
+      "id": "capacity-definitions",
+      "printedPage": 49,
+      "section": "RISK FACTORS, data center capacity table, notes",
+      "quote": "(1) Built Capacity is the maximum IT load a data center is engineered to support, based on business requirements, space planning, and infrastructure feasibility. This has been calculated based on the present design specifications in the respective data centers, using total planned electrical load and design power density. (2) Installed Capacity is the portion of built capacity that is equipped, powered and commissioned for operation. This has been calculated based on the present equipment installed in the respective data centers. (3) Operational Capacity is the total IT power capacity that has been sold to customers during the year / periods for which revenue from operations is generated. This has been calculated based on contracted load or committed IT power sold to customers. (4) Capacity utilization is the operational capacity as a percentage of installed capacity.",
+      "finding": "The prospectus headline reports a built IT power capacity of 188.04 MW. Its own footnote defines built capacity as what a facility is engineered to support, from design specifications and planned electrical load. The word built therefore carries a design meaning in this document."
+    },
+    {
+      "id": "capacity-totals",
+      "printedPage": 49,
+      "section": "RISK FACTORS, data center capacity table, totals row",
+      "unit": "MW",
+      "asOf": "2025-06-30",
+      "values": {
+        "builtCapacity": 188.04,
+        "installedCapacity": 131.88,
+        "operationalCapacity": 113.67
+      },
+      "priorPeriods": [
+        { "period": "Fiscal 2025", "built": 188.04, "installed": 127.56, "operational": 111.37 },
+        { "period": "Fiscal 2024", "built": 136.2, "installed": 99.48, "operational": 85.49 },
+        { "period": "Fiscal 2023", "built": 92.63, "installed": 91.0, "operational": 77.09 }
+      ]
+    },
+    {
+      "id": "chennai02-towerb-capacity",
+      "printedPage": 49,
+      "section": "RISK FACTORS, data center capacity table, row 12",
+      "unit": "MW",
+      "asOf": "2025-06-30",
+      "values": {
+        "builtCapacity": 25.92,
+        "installedCapacity": 4.32,
+        "operationalCapacity": 2.3,
+        "capacityUtilization": 0.5324
+      },
+      "finding": "This is the tower the offer raises 4,650 million rupees to complete. Its built figure is 25.92 MW, of which 4.32 MW is installed and 2.30 MW is sold."
+    },
+    {
+      "id": "headline-capacity-claim",
+      "printedPage": 17,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "quote": "As of June 30, 2025, we had a built IT power capacity of 188.04 megawatt (“MW”) across these facilities."
+    },
+    {
+      "id": "kpi-capacity",
+      "printedPage": 142,
+      "section": "BASIS FOR OFFER PRICE, key performance indicators",
+      "unit": "MW",
+      "quote": "Total Built Capacity15 MW 188.04 188.04 136.20 92.63 / Total Operational Capacity16 MW 113.67 111.37 85.49 77.09",
+      "note": "The key performance indicator table presents built and operational capacity but not installed capacity, so the middle rung is absent from the section a reader uses to judge the offer price."
+    },
+    {
+      "id": "chennai02-substation",
+      "printedPage": 111,
+      "section": "OBJECTS OF THE OFFER, Chennai 02 Data Center",
+      "quote": "Other technical facilities at the Chennai 02 Data Center include 4 diverse fiber paths and an on-side 230 kV GIS substation, which helps ensure uninterrupted, high-capacity power supply.",
+      "note": "A 230 kV substation is a transmission level connection, which is the point at which the grid register and the accounts register touch."
+    },
+    {
+      "id": "market-forecast",
+      "printedPage": 109,
+      "section": "OBJECTS OF THE OFFER",
+      "quote": "According to the 1Lattice and C&W Report, factors like rising digitalization and AI adoption are expected to push data center demand in India from current levels of 1.3 GW in Fiscal 2025 to between 4.7 GW to 5.7 GW in Fiscal 2030",
+      "note": "A commissioned third party forecast, not an audited figure. Treat as SECONDARY."
+    }
+  ],
+  "notYetExtracted": [
+    "RESTATED CONSOLIDATED FINANCIAL INFORMATION, printed 349 to 433, the standalone entity accounts",
+    "Related party transactions, inside the restated financial information notes",
+    "Customer concentration, expected in RISK FACTORS and OUR BUSINESS",
+    "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS, printed 463"
+  ]
+}

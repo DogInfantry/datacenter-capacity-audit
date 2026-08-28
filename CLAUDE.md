@@ -161,8 +161,10 @@ tests pass. Prose, lint and pipeline self checks pass. Dev server runs on port 3
   **they were never written to Layer 0** and are therefore gone. Adding them means re-harvesting:
   four calls for EQIX and DLR, plus two for Sify.
 - Wipro and Infosys have no segment data, marked `segmentBasis: NOT_HARVESTED`.
-- The prospectus page carries the offer structure from published summaries, not the filed
-  document.
+- The prospectus is read and partly extracted. The offer, the objects and deployment schedule and
+  the capacity definitions are PRIMARY and cited by printed page. The standalone entity accounts
+  at printed 349, related parties, concentration and litigation are not yet extracted, and the
+  page map for them is in `data/raw/prospectus/drhp_extracts.json`.
 
 **Not started.** Per company routes, compare view, cashQuality, concentration, valuation, the
 scoreboard, the published dataset, the map.
