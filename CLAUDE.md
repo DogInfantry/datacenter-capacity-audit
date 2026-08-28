@@ -139,8 +139,8 @@ tests pass. Prose, lint and pipeline self checks pass. Dev server runs on port 3
   post 2022 years are marked UNVERIFIED and excluded from cross company margin comparison.
 
 - Grid register complete: base rate, ownership split, censoring caveat.
-- Disclosure register for Sify only: capacity ladder, two graded MISSED claims, five refusals
-  including the DRHP prohibition mechanism.
+- Sify capacity ladder, two graded MISSED claims, and the DRHP prohibition mechanism, which is
+  the clean case of a company going quiet with a documented cause.
 - Financials for Sify: nine years of segment economics, margin 40 to 46 per cent, capex versus
   cash flow gap of Rs 2,047 cr against a Rs 2,500 cr fresh issue, revenue per MW derived.
 - Cross company capital intensity across Sify, Wipro and Infosys, plus the Wipro currency exhibit.
@@ -157,14 +157,15 @@ tests pass. Prose, lint and pipeline self checks pass. Dev server runs on port 3
 
 - Coverage is 5 of 12. NBIS, APLD and CORZ confirmed available and not harvested.
 - The disclosure register covers two topic families of the eleven that exist. Capacity milestone
-  and capital allocation are harvested into Layer 0 and complete within the window, but are not
-  published.
+  and capital allocation were pulled during the session and their windowed counts are known, but
+  **they were never written to Layer 0** and are therefore gone. Adding them means re-harvesting:
+  four calls for EQIX and DLR, plus two for Sify.
 - Wipro and Infosys have no segment data, marked `segmentBasis: NOT_HARVESTED`.
 - The prospectus page carries the offer structure from published summaries, not the filed
   document.
 
-**Not started.** Per company routes, compare view, cashQuality, concentration, disclosure rates,
-valuation, the scoreboard, the published dataset, the map.
+**Not started.** Per company routes, compare view, cashQuality, concentration, valuation, the
+scoreboard, the published dataset, the map.
 
 ## Active task
 

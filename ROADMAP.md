@@ -91,11 +91,14 @@ Recorded with the finding each one produced, because a tick is not a result.
 - **`cashQuality.ts` and `concentration.ts`.** Both need PAT and total assets, which are available
   and simply not yet pulled. Concentration is the more interesting of the two: Sify discloses a
   single customer revenue line running 2017 to 2026.
-- **Disclosure rates beyond the two unit economics families.** The register now measures pricing
-  mechanics and cost margin bridge. Capacity milestone and capital allocation were harvested and
-  are complete inside the same window, but were left out so that every published rate rests on the
-  two families that are unambiguously unit economics. Adding them is a decision about what the
-  measure is for, not more work.
+- **Disclosure rates beyond the two unit economics families.** The register measures pricing
+  mechanics and cost margin bridge, chosen so that every published rate rests on topics that are
+  unambiguously unit economics. Capacity milestone and capital allocation were pulled during the
+  same session and their windowed counts are known to be complete, but they were not written to
+  Layer 0 and so are not in the repo. Adding them costs six calls and is first a decision about
+  what the measure is for: capacity and funding questions are adjacent to unit economics rather
+  than the same thing, and mixing them in would widen the denominator without sharpening the
+  claim.
 - **The Indian four.** Netweb, Anant Raj, E2E and Techno Electric. No structured source exists;
   they need Screener exports by hand, which is why they trail the structured set.
 
