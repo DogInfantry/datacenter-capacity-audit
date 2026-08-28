@@ -1,0 +1,5189 @@
+{
+  "document": {
+    "title": "Sify Infinit Spaces Limited, Draft Red Herring Prospectus",
+    "documentDate": "2025-10-16",
+    "sha256": "30f945978b141ffc9b622c547bd32b9abe3d70a9e2e983ab6e474752af44525f",
+    "pdfPages": 563,
+    "pageOffset": 4,
+    "scoredPages": 553
+  },
+  "method": {
+    "numberDensity": "numeric tokens as a percentage of words on the page",
+    "hedgeDensity": "hedging terms as a percentage of words on the page",
+    "substanceScore": "number density divided by one plus hedge density",
+    "minWords": 80,
+    "minWordsNote": "pages below this are covers, dividers and section titles",
+    "hedgeLexicon": [
+      "may",
+      "might",
+      "could",
+      "would",
+      "believe",
+      "believes",
+      "expect",
+      "expects",
+      "intend",
+      "intends",
+      "anticipate",
+      "anticipates",
+      "estimate",
+      "estimates",
+      "potential",
+      "potentially",
+      "possible",
+      "seek",
+      "seeks",
+      "strive",
+      "aim",
+      "assurance",
+      "assure",
+      "uncertain",
+      "uncertainty",
+      "subject to",
+      "no guarantee",
+      "cannot predict"
+    ],
+    "lexiconNote": "Published so the score can be argued with. A ranking whose word list is hidden is not falsifiable."
+  },
+  "sections": [
+    {
+      "section": "OTHER FINANCIAL INFORMATION",
+      "pages": 3,
+      "shareOfScored": 0.5,
+      "numberDensity": 22.65,
+      "hedgeDensity": 0.16,
+      "footnoteDefinitions": 1
+    },
+    {
+      "section": "OBJECTS OF THE OFFER",
+      "pages": 29,
+      "shareOfScored": 5.2,
+      "numberDensity": 17.92,
+      "hedgeDensity": 0.488,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "pages": 83,
+      "shareOfScored": 15.0,
+      "numberDensity": 16.37,
+      "hedgeDensity": 0.169,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "pages": 12,
+      "shareOfScored": 2.2,
+      "numberDensity": 16.28,
+      "hedgeDensity": 0.139,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "CAPITALISATION STATEMENT",
+      "pages": 1,
+      "shareOfScored": 0.2,
+      "numberDensity": 12.44,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "CAPITAL STRUCTURE",
+      "pages": 15,
+      "shareOfScored": 2.7,
+      "numberDensity": 9.12,
+      "hedgeDensity": 0.333,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "OUR PROMOTERS AND PROMOTER GROUP",
+      "pages": 7,
+      "shareOfScored": 1.3,
+      "numberDensity": 8.47,
+      "hedgeDensity": 0.217,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "BASIS FOR OFFER PRICE",
+      "pages": 19,
+      "shareOfScored": 3.4,
+      "numberDensity": 8.07,
+      "hedgeDensity": 0.632,
+      "footnoteDefinitions": 2
+    },
+    {
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "pages": 18,
+      "shareOfScored": 3.3,
+      "numberDensity": 8.04,
+      "hedgeDensity": 0.746,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "FRONT MATTER",
+      "pages": 4,
+      "shareOfScored": 0.7,
+      "numberDensity": 7.79,
+      "hedgeDensity": 0.463,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "pages": 39,
+      "shareOfScored": 7.1,
+      "numberDensity": 7.76,
+      "hedgeDensity": 0.361,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "FINANCIAL INDEBTEDNESS",
+      "pages": 25,
+      "shareOfScored": 4.5,
+      "numberDensity": 7.23,
+      "hedgeDensity": 0.465,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "OUR BUSINESS",
+      "pages": 37,
+      "shareOfScored": 6.7,
+      "numberDensity": 7.11,
+      "hedgeDensity": 0.228,
+      "footnoteDefinitions": 5
+    },
+    {
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "pages": 11,
+      "shareOfScored": 2.0,
+      "numberDensity": 6.87,
+      "hedgeDensity": 0.136,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "INDUSTRY OVERVIEW",
+      "pages": 116,
+      "shareOfScored": 21.0,
+      "numberDensity": 6.84,
+      "hedgeDensity": 0.244,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "RISK FACTORS",
+      "pages": 44,
+      "shareOfScored": 8.0,
+      "numberDensity": 4.78,
+      "hedgeDensity": 2.364,
+      "footnoteDefinitions": 8
+    },
+    {
+      "section": "THE OFFER",
+      "pages": 2,
+      "shareOfScored": 0.4,
+      "numberDensity": 4.67,
+      "hedgeDensity": 1.06,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "OUR MANAGEMENT",
+      "pages": 16,
+      "shareOfScored": 2.9,
+      "numberDensity": 4.53,
+      "hedgeDensity": 0.347,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "OFFER STRUCTURE",
+      "pages": 56,
+      "shareOfScored": 10.1,
+      "numberDensity": 3.3,
+      "hedgeDensity": 1.033,
+      "footnoteDefinitions": 0
+    },
+    {
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "pages": 16,
+      "shareOfScored": 2.9,
+      "numberDensity": 3.15,
+      "hedgeDensity": 0.33,
+      "footnoteDefinitions": 0
+    }
+  ],
+  "pages": [
+    {
+      "printedPage": -4,
+      "section": "FRONT MATTER",
+      "words": 773,
+      "numberDensity": 5.43,
+      "hedgeDensity": 0.129,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.81
+    },
+    {
+      "printedPage": -3,
+      "section": "FRONT MATTER",
+      "words": 886,
+      "numberDensity": 5.19,
+      "hedgeDensity": 0.903,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.73
+    },
+    {
+      "printedPage": -2,
+      "section": "FRONT MATTER",
+      "words": 2565,
+      "numberDensity": 4.52,
+      "hedgeDensity": 0.819,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.49
+    },
+    {
+      "printedPage": 0,
+      "section": "FRONT MATTER",
+      "words": 262,
+      "numberDensity": 16.03,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.03
+    },
+    {
+      "printedPage": 1,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 766,
+      "numberDensity": 5.09,
+      "hedgeDensity": 0.131,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.5
+    },
+    {
+      "printedPage": 2,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 772,
+      "numberDensity": 6.99,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.99
+    },
+    {
+      "printedPage": 3,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 809,
+      "numberDensity": 6.43,
+      "hedgeDensity": 0.124,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.72
+    },
+    {
+      "printedPage": 4,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 962,
+      "numberDensity": 0.94,
+      "hedgeDensity": 0.52,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.62
+    },
+    {
+      "printedPage": 5,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 942,
+      "numberDensity": 0.64,
+      "hedgeDensity": 0.531,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.42
+    },
+    {
+      "printedPage": 6,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 889,
+      "numberDensity": 1.12,
+      "hedgeDensity": 0.45,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.78
+    },
+    {
+      "printedPage": 7,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 910,
+      "numberDensity": 2.86,
+      "hedgeDensity": 1.099,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.36
+    },
+    {
+      "printedPage": 8,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 867,
+      "numberDensity": 3.46,
+      "hedgeDensity": 0.923,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.8
+    },
+    {
+      "printedPage": 9,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 992,
+      "numberDensity": 2.62,
+      "hedgeDensity": 0.806,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.45
+    },
+    {
+      "printedPage": 10,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 843,
+      "numberDensity": 1.42,
+      "hedgeDensity": 0.237,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.15
+    },
+    {
+      "printedPage": 11,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 705,
+      "numberDensity": 2.98,
+      "hedgeDensity": 0.284,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.32
+    },
+    {
+      "printedPage": 12,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 320,
+      "numberDensity": 2.5,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.5
+    },
+    {
+      "printedPage": 13,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 378,
+      "numberDensity": 1.32,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.32
+    },
+    {
+      "printedPage": 14,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 536,
+      "numberDensity": 6.16,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.16
+    },
+    {
+      "printedPage": 15,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 576,
+      "numberDensity": 5.56,
+      "hedgeDensity": 0.174,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.73
+    },
+    {
+      "printedPage": 16,
+      "section": "DEFINITIONS AND ABBREVIATIONS",
+      "words": 267,
+      "numberDensity": 0.37,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.37
+    },
+    {
+      "printedPage": 17,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 875,
+      "numberDensity": 8.46,
+      "hedgeDensity": 0.229,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.88
+    },
+    {
+      "printedPage": 18,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 797,
+      "numberDensity": 4.14,
+      "hedgeDensity": 1.757,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.5
+    },
+    {
+      "printedPage": 19,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 584,
+      "numberDensity": 7.71,
+      "hedgeDensity": 0.514,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.09
+    },
+    {
+      "printedPage": 20,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 365,
+      "numberDensity": 15.07,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 15.07
+    },
+    {
+      "printedPage": 21,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 696,
+      "numberDensity": 5.46,
+      "hedgeDensity": 2.011,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.81
+    },
+    {
+      "printedPage": 22,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 535,
+      "numberDensity": 19.07,
+      "hedgeDensity": 0.748,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.91
+    },
+    {
+      "printedPage": 23,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 413,
+      "numberDensity": 24.46,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 24.46
+    },
+    {
+      "printedPage": 24,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 428,
+      "numberDensity": 14.95,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 14.95
+    },
+    {
+      "printedPage": 25,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 410,
+      "numberDensity": 5.12,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.12
+    },
+    {
+      "printedPage": 26,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 504,
+      "numberDensity": 8.13,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.13
+    },
+    {
+      "printedPage": 27,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 411,
+      "numberDensity": 7.3,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.3
+    },
+    {
+      "printedPage": 28,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 510,
+      "numberDensity": 8.63,
+      "hedgeDensity": 1.176,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.96
+    },
+    {
+      "printedPage": 29,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 493,
+      "numberDensity": 2.23,
+      "hedgeDensity": 0.406,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.59
+    },
+    {
+      "printedPage": 30,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 789,
+      "numberDensity": 3.3,
+      "hedgeDensity": 0.38,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.39
+    },
+    {
+      "printedPage": 31,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 718,
+      "numberDensity": 3.2,
+      "hedgeDensity": 1.253,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.42
+    },
+    {
+      "printedPage": 32,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 878,
+      "numberDensity": 3.87,
+      "hedgeDensity": 1.367,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.64
+    },
+    {
+      "printedPage": 33,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 830,
+      "numberDensity": 3.13,
+      "hedgeDensity": 3.012,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.78
+    },
+    {
+      "printedPage": 34,
+      "section": "SUMMARY OF THE OFFER DOCUMENT",
+      "words": 175,
+      "numberDensity": 0.57,
+      "hedgeDensity": 0.571,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.36
+    },
+    {
+      "printedPage": 35,
+      "section": "RISK FACTORS",
+      "words": 895,
+      "numberDensity": 4.36,
+      "hedgeDensity": 1.229,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.95
+    },
+    {
+      "printedPage": 36,
+      "section": "RISK FACTORS",
+      "words": 731,
+      "numberDensity": 25.85,
+      "hedgeDensity": 0.547,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.71
+    },
+    {
+      "printedPage": 37,
+      "section": "RISK FACTORS",
+      "words": 801,
+      "numberDensity": 3.75,
+      "hedgeDensity": 2.247,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.15
+    },
+    {
+      "printedPage": 38,
+      "section": "RISK FACTORS",
+      "words": 845,
+      "numberDensity": 2.13,
+      "hedgeDensity": 2.84,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.55
+    },
+    {
+      "printedPage": 39,
+      "section": "RISK FACTORS",
+      "words": 905,
+      "numberDensity": 1.66,
+      "hedgeDensity": 2.099,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.53
+    },
+    {
+      "printedPage": 40,
+      "section": "RISK FACTORS",
+      "words": 776,
+      "numberDensity": 5.54,
+      "hedgeDensity": 2.191,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.74
+    },
+    {
+      "printedPage": 41,
+      "section": "RISK FACTORS",
+      "words": 854,
+      "numberDensity": 7.96,
+      "hedgeDensity": 1.874,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.77
+    },
+    {
+      "printedPage": 42,
+      "section": "RISK FACTORS",
+      "words": 898,
+      "numberDensity": 1.56,
+      "hedgeDensity": 3.898,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.32
+    },
+    {
+      "printedPage": 43,
+      "section": "RISK FACTORS",
+      "words": 868,
+      "numberDensity": 4.26,
+      "hedgeDensity": 2.074,
+      "footnoteDefinitions": 1,
+      "substanceScore": 1.39
+    },
+    {
+      "printedPage": 44,
+      "section": "RISK FACTORS",
+      "words": 734,
+      "numberDensity": 4.63,
+      "hedgeDensity": 2.589,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.29
+    },
+    {
+      "printedPage": 45,
+      "section": "RISK FACTORS",
+      "words": 852,
+      "numberDensity": 6.92,
+      "hedgeDensity": 3.521,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.53
+    },
+    {
+      "printedPage": 46,
+      "section": "RISK FACTORS",
+      "words": 797,
+      "numberDensity": 3.01,
+      "hedgeDensity": 2.008,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.0
+    },
+    {
+      "printedPage": 47,
+      "section": "RISK FACTORS",
+      "words": 841,
+      "numberDensity": 1.9,
+      "hedgeDensity": 1.902,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.66
+    },
+    {
+      "printedPage": 48,
+      "section": "RISK FACTORS",
+      "words": 367,
+      "numberDensity": 9.54,
+      "hedgeDensity": 1.907,
+      "footnoteDefinitions": 1,
+      "substanceScore": 3.28
+    },
+    {
+      "printedPage": 49,
+      "section": "RISK FACTORS",
+      "words": 514,
+      "numberDensity": 50.0,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 5,
+      "substanceScore": 50.0
+    },
+    {
+      "printedPage": 50,
+      "section": "RISK FACTORS",
+      "words": 846,
+      "numberDensity": 1.89,
+      "hedgeDensity": 2.246,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.58
+    },
+    {
+      "printedPage": 51,
+      "section": "RISK FACTORS",
+      "words": 799,
+      "numberDensity": 1.75,
+      "hedgeDensity": 3.755,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.37
+    },
+    {
+      "printedPage": 52,
+      "section": "RISK FACTORS",
+      "words": 679,
+      "numberDensity": 3.39,
+      "hedgeDensity": 1.325,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.46
+    },
+    {
+      "printedPage": 53,
+      "section": "RISK FACTORS",
+      "words": 868,
+      "numberDensity": 3.92,
+      "hedgeDensity": 2.189,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.23
+    },
+    {
+      "printedPage": 54,
+      "section": "RISK FACTORS",
+      "words": 967,
+      "numberDensity": 1.65,
+      "hedgeDensity": 3.206,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.39
+    },
+    {
+      "printedPage": 55,
+      "section": "RISK FACTORS",
+      "words": 767,
+      "numberDensity": 4.3,
+      "hedgeDensity": 2.086,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.39
+    },
+    {
+      "printedPage": 56,
+      "section": "RISK FACTORS",
+      "words": 797,
+      "numberDensity": 0.63,
+      "hedgeDensity": 3.011,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.16
+    },
+    {
+      "printedPage": 57,
+      "section": "RISK FACTORS",
+      "words": 892,
+      "numberDensity": 4.82,
+      "hedgeDensity": 3.139,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.16
+    },
+    {
+      "printedPage": 58,
+      "section": "RISK FACTORS",
+      "words": 1010,
+      "numberDensity": 3.27,
+      "hedgeDensity": 1.683,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.22
+    },
+    {
+      "printedPage": 59,
+      "section": "RISK FACTORS",
+      "words": 809,
+      "numberDensity": 2.84,
+      "hedgeDensity": 2.967,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.72
+    },
+    {
+      "printedPage": 60,
+      "section": "RISK FACTORS",
+      "words": 824,
+      "numberDensity": 3.4,
+      "hedgeDensity": 2.184,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.07
+    },
+    {
+      "printedPage": 61,
+      "section": "RISK FACTORS",
+      "words": 976,
+      "numberDensity": 2.25,
+      "hedgeDensity": 3.893,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.46
+    },
+    {
+      "printedPage": 62,
+      "section": "RISK FACTORS",
+      "words": 797,
+      "numberDensity": 4.27,
+      "hedgeDensity": 2.384,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.26
+    },
+    {
+      "printedPage": 63,
+      "section": "RISK FACTORS",
+      "words": 678,
+      "numberDensity": 9.88,
+      "hedgeDensity": 2.36,
+      "footnoteDefinitions": 1,
+      "substanceScore": 2.94
+    },
+    {
+      "printedPage": 64,
+      "section": "RISK FACTORS",
+      "words": 820,
+      "numberDensity": 2.44,
+      "hedgeDensity": 2.195,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.76
+    },
+    {
+      "printedPage": 65,
+      "section": "RISK FACTORS",
+      "words": 855,
+      "numberDensity": 5.15,
+      "hedgeDensity": 2.69,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.39
+    },
+    {
+      "printedPage": 66,
+      "section": "RISK FACTORS",
+      "words": 834,
+      "numberDensity": 3.84,
+      "hedgeDensity": 2.998,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.96
+    },
+    {
+      "printedPage": 67,
+      "section": "RISK FACTORS",
+      "words": 864,
+      "numberDensity": 4.28,
+      "hedgeDensity": 1.62,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.63
+    },
+    {
+      "printedPage": 68,
+      "section": "RISK FACTORS",
+      "words": 869,
+      "numberDensity": 1.61,
+      "hedgeDensity": 2.301,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.49
+    },
+    {
+      "printedPage": 69,
+      "section": "RISK FACTORS",
+      "words": 678,
+      "numberDensity": 0.29,
+      "hedgeDensity": 2.36,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.09
+    },
+    {
+      "printedPage": 70,
+      "section": "RISK FACTORS",
+      "words": 930,
+      "numberDensity": 1.4,
+      "hedgeDensity": 2.688,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.38
+    },
+    {
+      "printedPage": 71,
+      "section": "RISK FACTORS",
+      "words": 911,
+      "numberDensity": 0.55,
+      "hedgeDensity": 2.854,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.14
+    },
+    {
+      "printedPage": 72,
+      "section": "RISK FACTORS",
+      "words": 916,
+      "numberDensity": 1.97,
+      "hedgeDensity": 3.493,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.44
+    },
+    {
+      "printedPage": 73,
+      "section": "RISK FACTORS",
+      "words": 890,
+      "numberDensity": 0.9,
+      "hedgeDensity": 2.36,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.27
+    },
+    {
+      "printedPage": 74,
+      "section": "RISK FACTORS",
+      "words": 892,
+      "numberDensity": 0.78,
+      "hedgeDensity": 2.691,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.21
+    },
+    {
+      "printedPage": 75,
+      "section": "RISK FACTORS",
+      "words": 1100,
+      "numberDensity": 4.0,
+      "hedgeDensity": 2.091,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.29
+    },
+    {
+      "printedPage": 76,
+      "section": "RISK FACTORS",
+      "words": 897,
+      "numberDensity": 0.56,
+      "hedgeDensity": 3.233,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.13
+    },
+    {
+      "printedPage": 77,
+      "section": "RISK FACTORS",
+      "words": 997,
+      "numberDensity": 0.5,
+      "hedgeDensity": 2.508,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.14
+    },
+    {
+      "printedPage": 78,
+      "section": "RISK FACTORS",
+      "words": 167,
+      "numberDensity": 0.6,
+      "hedgeDensity": 0.599,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.37
+    },
+    {
+      "printedPage": 79,
+      "section": "THE OFFER",
+      "words": 927,
+      "numberDensity": 6.04,
+      "hedgeDensity": 0.647,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.67
+    },
+    {
+      "printedPage": 80,
+      "section": "THE OFFER",
+      "words": 882,
+      "numberDensity": 3.29,
+      "hedgeDensity": 1.474,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.33
+    },
+    {
+      "printedPage": 81,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 97,
+      "numberDensity": 11.34,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.34
+    },
+    {
+      "printedPage": 82,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 389,
+      "numberDensity": 36.76,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 36.76
+    },
+    {
+      "printedPage": 83,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 283,
+      "numberDensity": 32.86,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 32.86
+    },
+    {
+      "printedPage": 84,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 501,
+      "numberDensity": 32.14,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 32.14
+    },
+    {
+      "printedPage": 85,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 103,
+      "numberDensity": 27.18,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 27.18
+    },
+    {
+      "printedPage": 86,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 444,
+      "numberDensity": 12.39,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.39
+    },
+    {
+      "printedPage": 87,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 363,
+      "numberDensity": 19.28,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 19.28
+    },
+    {
+      "printedPage": 88,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 337,
+      "numberDensity": 13.35,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 13.35
+    },
+    {
+      "printedPage": 89,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 654,
+      "numberDensity": 4.13,
+      "hedgeDensity": 0.612,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.56
+    },
+    {
+      "printedPage": 90,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 719,
+      "numberDensity": 3.2,
+      "hedgeDensity": 0.139,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.81
+    },
+    {
+      "printedPage": 91,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 757,
+      "numberDensity": 0.79,
+      "hedgeDensity": 0.264,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.63
+    },
+    {
+      "printedPage": 92,
+      "section": "SUMMARY OF FINANCIAL INFORMATION",
+      "words": 612,
+      "numberDensity": 1.96,
+      "hedgeDensity": 0.654,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.19
+    },
+    {
+      "printedPage": 93,
+      "section": "CAPITAL STRUCTURE",
+      "words": 789,
+      "numberDensity": 13.69,
+      "hedgeDensity": 0.127,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.15
+    },
+    {
+      "printedPage": 94,
+      "section": "CAPITAL STRUCTURE",
+      "words": 510,
+      "numberDensity": 2.94,
+      "hedgeDensity": 2.353,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.88
+    },
+    {
+      "printedPage": 95,
+      "section": "CAPITAL STRUCTURE",
+      "words": 602,
+      "numberDensity": 11.3,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.3
+    },
+    {
+      "printedPage": 96,
+      "section": "CAPITAL STRUCTURE",
+      "words": 436,
+      "numberDensity": 13.99,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 13.99
+    },
+    {
+      "printedPage": 97,
+      "section": "CAPITAL STRUCTURE",
+      "words": 254,
+      "numberDensity": 20.08,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 20.08
+    },
+    {
+      "printedPage": 98,
+      "section": "CAPITAL STRUCTURE",
+      "words": 617,
+      "numberDensity": 7.94,
+      "hedgeDensity": 0.162,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.83
+    },
+    {
+      "printedPage": 99,
+      "section": "CAPITAL STRUCTURE",
+      "words": 722,
+      "numberDensity": 9.97,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.97
+    },
+    {
+      "printedPage": 100,
+      "section": "CAPITAL STRUCTURE",
+      "words": 601,
+      "numberDensity": 8.49,
+      "hedgeDensity": 0.166,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.28
+    },
+    {
+      "printedPage": 101,
+      "section": "CAPITAL STRUCTURE",
+      "words": 585,
+      "numberDensity": 7.35,
+      "hedgeDensity": 0.513,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.86
+    },
+    {
+      "printedPage": 102,
+      "section": "CAPITAL STRUCTURE",
+      "words": 801,
+      "numberDensity": 2.0,
+      "hedgeDensity": 0.624,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.23
+    },
+    {
+      "printedPage": 103,
+      "section": "CAPITAL STRUCTURE",
+      "words": 734,
+      "numberDensity": 5.99,
+      "hedgeDensity": 0.545,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.88
+    },
+    {
+      "printedPage": 104,
+      "section": "CAPITAL STRUCTURE",
+      "words": 571,
+      "numberDensity": 9.46,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.46
+    },
+    {
+      "printedPage": 105,
+      "section": "CAPITAL STRUCTURE",
+      "words": 764,
+      "numberDensity": 12.17,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.17
+    },
+    {
+      "printedPage": 106,
+      "section": "CAPITAL STRUCTURE",
+      "words": 783,
+      "numberDensity": 5.11,
+      "hedgeDensity": 0.511,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.38
+    },
+    {
+      "printedPage": 107,
+      "section": "CAPITAL STRUCTURE",
+      "words": 628,
+      "numberDensity": 6.37,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.37
+    },
+    {
+      "printedPage": 108,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 722,
+      "numberDensity": 4.99,
+      "hedgeDensity": 1.247,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.22
+    },
+    {
+      "printedPage": 109,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 870,
+      "numberDensity": 9.08,
+      "hedgeDensity": 1.149,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.22
+    },
+    {
+      "printedPage": 110,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 700,
+      "numberDensity": 7.86,
+      "hedgeDensity": 0.714,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.58
+    },
+    {
+      "printedPage": 111,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 785,
+      "numberDensity": 9.81,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.81
+    },
+    {
+      "printedPage": 112,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 324,
+      "numberDensity": 5.56,
+      "hedgeDensity": 0.309,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.25
+    },
+    {
+      "printedPage": 113,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 402,
+      "numberDensity": 31.59,
+      "hedgeDensity": 0.498,
+      "footnoteDefinitions": 0,
+      "substanceScore": 21.1
+    },
+    {
+      "printedPage": 114,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 314,
+      "numberDensity": 29.3,
+      "hedgeDensity": 0.637,
+      "footnoteDefinitions": 0,
+      "substanceScore": 17.9
+    },
+    {
+      "printedPage": 115,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 324,
+      "numberDensity": 30.25,
+      "hedgeDensity": 0.309,
+      "footnoteDefinitions": 0,
+      "substanceScore": 23.11
+    },
+    {
+      "printedPage": 116,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 347,
+      "numberDensity": 25.65,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 25.65
+    },
+    {
+      "printedPage": 117,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 384,
+      "numberDensity": 27.86,
+      "hedgeDensity": 0.26,
+      "footnoteDefinitions": 0,
+      "substanceScore": 22.11
+    },
+    {
+      "printedPage": 118,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 343,
+      "numberDensity": 26.82,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 26.82
+    },
+    {
+      "printedPage": 119,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 270,
+      "numberDensity": 29.26,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 29.26
+    },
+    {
+      "printedPage": 120,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 329,
+      "numberDensity": 28.57,
+      "hedgeDensity": 0.304,
+      "footnoteDefinitions": 0,
+      "substanceScore": 21.91
+    },
+    {
+      "printedPage": 121,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 352,
+      "numberDensity": 23.3,
+      "hedgeDensity": 0.284,
+      "footnoteDefinitions": 0,
+      "substanceScore": 18.14
+    },
+    {
+      "printedPage": 122,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 359,
+      "numberDensity": 25.35,
+      "hedgeDensity": 0.279,
+      "footnoteDefinitions": 0,
+      "substanceScore": 19.83
+    },
+    {
+      "printedPage": 123,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 264,
+      "numberDensity": 29.55,
+      "hedgeDensity": 0.379,
+      "footnoteDefinitions": 0,
+      "substanceScore": 21.43
+    },
+    {
+      "printedPage": 125,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 524,
+      "numberDensity": 10.69,
+      "hedgeDensity": 1.527,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.23
+    },
+    {
+      "printedPage": 126,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 867,
+      "numberDensity": 10.61,
+      "hedgeDensity": 0.231,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.62
+    },
+    {
+      "printedPage": 127,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 255,
+      "numberDensity": 5.1,
+      "hedgeDensity": 0.392,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.66
+    },
+    {
+      "printedPage": 128,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 419,
+      "numberDensity": 37.71,
+      "hedgeDensity": 0.239,
+      "footnoteDefinitions": 0,
+      "substanceScore": 30.44
+    },
+    {
+      "printedPage": 129,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 177,
+      "numberDensity": 27.68,
+      "hedgeDensity": 0.565,
+      "footnoteDefinitions": 0,
+      "substanceScore": 17.69
+    },
+    {
+      "printedPage": 130,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 573,
+      "numberDensity": 4.36,
+      "hedgeDensity": 1.047,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.13
+    },
+    {
+      "printedPage": 131,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 545,
+      "numberDensity": 2.2,
+      "hedgeDensity": 1.651,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.83
+    },
+    {
+      "printedPage": 132,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 250,
+      "numberDensity": 28.0,
+      "hedgeDensity": 0.4,
+      "footnoteDefinitions": 0,
+      "substanceScore": 20.0
+    },
+    {
+      "printedPage": 133,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 240,
+      "numberDensity": 27.5,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 27.5
+    },
+    {
+      "printedPage": 134,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 473,
+      "numberDensity": 14.16,
+      "hedgeDensity": 0.211,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.69
+    },
+    {
+      "printedPage": 135,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 841,
+      "numberDensity": 1.19,
+      "hedgeDensity": 0.476,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.81
+    },
+    {
+      "printedPage": 136,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 874,
+      "numberDensity": 3.89,
+      "hedgeDensity": 1.03,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.92
+    },
+    {
+      "printedPage": 137,
+      "section": "OBJECTS OF THE OFFER",
+      "words": 580,
+      "numberDensity": 1.9,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.9
+    },
+    {
+      "printedPage": 138,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 775,
+      "numberDensity": 6.71,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.71
+    },
+    {
+      "printedPage": 139,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 712,
+      "numberDensity": 6.46,
+      "hedgeDensity": 0.281,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.04
+    },
+    {
+      "printedPage": 140,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 631,
+      "numberDensity": 12.68,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 2,
+      "substanceScore": 12.68
+    },
+    {
+      "printedPage": 141,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 905,
+      "numberDensity": 7.51,
+      "hedgeDensity": 0.11,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.77
+    },
+    {
+      "printedPage": 142,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 778,
+      "numberDensity": 9.64,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.64
+    },
+    {
+      "printedPage": 143,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 511,
+      "numberDensity": 1.96,
+      "hedgeDensity": 0.783,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.1
+    },
+    {
+      "printedPage": 144,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 540,
+      "numberDensity": 32.59,
+      "hedgeDensity": 0.185,
+      "footnoteDefinitions": 0,
+      "substanceScore": 27.5
+    },
+    {
+      "printedPage": 145,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 242,
+      "numberDensity": 15.29,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 15.29
+    },
+    {
+      "printedPage": 146,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 753,
+      "numberDensity": 9.83,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.83
+    },
+    {
+      "printedPage": 147,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 716,
+      "numberDensity": 3.63,
+      "hedgeDensity": 0.559,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.33
+    },
+    {
+      "printedPage": 148,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 644,
+      "numberDensity": 5.59,
+      "hedgeDensity": 0.311,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.27
+    },
+    {
+      "printedPage": 149,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 694,
+      "numberDensity": 4.76,
+      "hedgeDensity": 1.153,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.21
+    },
+    {
+      "printedPage": 150,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 436,
+      "numberDensity": 3.9,
+      "hedgeDensity": 0.917,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.03
+    },
+    {
+      "printedPage": 151,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 781,
+      "numberDensity": 6.66,
+      "hedgeDensity": 0.64,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.06
+    },
+    {
+      "printedPage": 152,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 661,
+      "numberDensity": 4.69,
+      "hedgeDensity": 1.815,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.67
+    },
+    {
+      "printedPage": 153,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 778,
+      "numberDensity": 5.4,
+      "hedgeDensity": 1.157,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.5
+    },
+    {
+      "printedPage": 154,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 111,
+      "numberDensity": 6.31,
+      "hedgeDensity": 1.802,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.25
+    },
+    {
+      "printedPage": 155,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 629,
+      "numberDensity": 3.34,
+      "hedgeDensity": 0.477,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.26
+    },
+    {
+      "printedPage": 156,
+      "section": "BASIS FOR OFFER PRICE",
+      "words": 110,
+      "numberDensity": 6.36,
+      "hedgeDensity": 1.818,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.26
+    },
+    {
+      "printedPage": 157,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 857,
+      "numberDensity": 5.37,
+      "hedgeDensity": 2.217,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.67
+    },
+    {
+      "printedPage": 158,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 589,
+      "numberDensity": 7.3,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.3
+    },
+    {
+      "printedPage": 159,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 379,
+      "numberDensity": 6.33,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.33
+    },
+    {
+      "printedPage": 160,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 261,
+      "numberDensity": 10.73,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.73
+    },
+    {
+      "printedPage": 161,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 587,
+      "numberDensity": 4.43,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.43
+    },
+    {
+      "printedPage": 162,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 547,
+      "numberDensity": 2.74,
+      "hedgeDensity": 0.183,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.32
+    },
+    {
+      "printedPage": 163,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 644,
+      "numberDensity": 1.4,
+      "hedgeDensity": 0.155,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.21
+    },
+    {
+      "printedPage": 164,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 433,
+      "numberDensity": 2.08,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.08
+    },
+    {
+      "printedPage": 165,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 162,
+      "numberDensity": 1.85,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.85
+    },
+    {
+      "printedPage": 166,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 485,
+      "numberDensity": 3.09,
+      "hedgeDensity": 0.206,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.56
+    },
+    {
+      "printedPage": 167,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 489,
+      "numberDensity": 3.07,
+      "hedgeDensity": 0.204,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.55
+    },
+    {
+      "printedPage": 168,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 269,
+      "numberDensity": 1.12,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.12
+    },
+    {
+      "printedPage": 169,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 519,
+      "numberDensity": 2.12,
+      "hedgeDensity": 0.385,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.53
+    },
+    {
+      "printedPage": 170,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 710,
+      "numberDensity": 3.8,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.8
+    },
+    {
+      "printedPage": 171,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 617,
+      "numberDensity": 5.19,
+      "hedgeDensity": 0.162,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.46
+    },
+    {
+      "printedPage": 172,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 594,
+      "numberDensity": 7.91,
+      "hedgeDensity": 0.168,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.77
+    },
+    {
+      "printedPage": 173,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 766,
+      "numberDensity": 6.01,
+      "hedgeDensity": 0.131,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.31
+    },
+    {
+      "printedPage": 174,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 602,
+      "numberDensity": 1.99,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.99
+    },
+    {
+      "printedPage": 175,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 465,
+      "numberDensity": 6.24,
+      "hedgeDensity": 0.215,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.13
+    },
+    {
+      "printedPage": 176,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 441,
+      "numberDensity": 5.67,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.67
+    },
+    {
+      "printedPage": 177,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 590,
+      "numberDensity": 4.41,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.41
+    },
+    {
+      "printedPage": 178,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 508,
+      "numberDensity": 4.53,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.53
+    },
+    {
+      "printedPage": 179,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 659,
+      "numberDensity": 1.67,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.67
+    },
+    {
+      "printedPage": 180,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 594,
+      "numberDensity": 2.02,
+      "hedgeDensity": 0.168,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.73
+    },
+    {
+      "printedPage": 181,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 566,
+      "numberDensity": 5.12,
+      "hedgeDensity": 0.53,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.35
+    },
+    {
+      "printedPage": 182,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 314,
+      "numberDensity": 21.97,
+      "hedgeDensity": 0.318,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.67
+    },
+    {
+      "printedPage": 183,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 269,
+      "numberDensity": 38.29,
+      "hedgeDensity": 0.743,
+      "footnoteDefinitions": 0,
+      "substanceScore": 21.96
+    },
+    {
+      "printedPage": 184,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 517,
+      "numberDensity": 3.09,
+      "hedgeDensity": 0.193,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.59
+    },
+    {
+      "printedPage": 185,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 502,
+      "numberDensity": 10.76,
+      "hedgeDensity": 0.398,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.69
+    },
+    {
+      "printedPage": 186,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 583,
+      "numberDensity": 5.83,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.83
+    },
+    {
+      "printedPage": 187,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 585,
+      "numberDensity": 4.62,
+      "hedgeDensity": 0.171,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.94
+    },
+    {
+      "printedPage": 188,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 485,
+      "numberDensity": 5.36,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.36
+    },
+    {
+      "printedPage": 189,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 238,
+      "numberDensity": 7.56,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.56
+    },
+    {
+      "printedPage": 190,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 504,
+      "numberDensity": 3.57,
+      "hedgeDensity": 0.397,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.56
+    },
+    {
+      "printedPage": 191,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 491,
+      "numberDensity": 13.44,
+      "hedgeDensity": 0.407,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.55
+    },
+    {
+      "printedPage": 192,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 496,
+      "numberDensity": 7.46,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.46
+    },
+    {
+      "printedPage": 193,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 400,
+      "numberDensity": 5.25,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.25
+    },
+    {
+      "printedPage": 194,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 543,
+      "numberDensity": 1.84,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.84
+    },
+    {
+      "printedPage": 195,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 465,
+      "numberDensity": 1.72,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.72
+    },
+    {
+      "printedPage": 196,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 204,
+      "numberDensity": 3.92,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.92
+    },
+    {
+      "printedPage": 199,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 490,
+      "numberDensity": 4.69,
+      "hedgeDensity": 0.408,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.33
+    },
+    {
+      "printedPage": 200,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 455,
+      "numberDensity": 7.47,
+      "hedgeDensity": 0.659,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.5
+    },
+    {
+      "printedPage": 201,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 528,
+      "numberDensity": 2.65,
+      "hedgeDensity": 0.189,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.23
+    },
+    {
+      "printedPage": 202,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 298,
+      "numberDensity": 1.68,
+      "hedgeDensity": 0.671,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.0
+    },
+    {
+      "printedPage": 203,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 255,
+      "numberDensity": 2.75,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.75
+    },
+    {
+      "printedPage": 204,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 579,
+      "numberDensity": 1.73,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.73
+    },
+    {
+      "printedPage": 205,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 420,
+      "numberDensity": 1.19,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.19
+    },
+    {
+      "printedPage": 206,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 248,
+      "numberDensity": 1.21,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.21
+    },
+    {
+      "printedPage": 207,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 255,
+      "numberDensity": 1.96,
+      "hedgeDensity": 1.569,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.76
+    },
+    {
+      "printedPage": 208,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 364,
+      "numberDensity": 4.12,
+      "hedgeDensity": 0.275,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.23
+    },
+    {
+      "printedPage": 209,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 168,
+      "numberDensity": 3.57,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.57
+    },
+    {
+      "printedPage": 210,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 310,
+      "numberDensity": 6.45,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.45
+    },
+    {
+      "printedPage": 211,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 218,
+      "numberDensity": 2.75,
+      "hedgeDensity": 0.459,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.89
+    },
+    {
+      "printedPage": 212,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 416,
+      "numberDensity": 6.25,
+      "hedgeDensity": 0.721,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.63
+    },
+    {
+      "printedPage": 213,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 612,
+      "numberDensity": 4.74,
+      "hedgeDensity": 0.163,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.07
+    },
+    {
+      "printedPage": 214,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 452,
+      "numberDensity": 6.86,
+      "hedgeDensity": 0.442,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.75
+    },
+    {
+      "printedPage": 215,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 348,
+      "numberDensity": 4.31,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.31
+    },
+    {
+      "printedPage": 216,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 587,
+      "numberDensity": 11.24,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.24
+    },
+    {
+      "printedPage": 217,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 194,
+      "numberDensity": 12.37,
+      "hedgeDensity": 0.515,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.16
+    },
+    {
+      "printedPage": 218,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 413,
+      "numberDensity": 7.99,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.99
+    },
+    {
+      "printedPage": 219,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 248,
+      "numberDensity": 28.63,
+      "hedgeDensity": 0.403,
+      "footnoteDefinitions": 0,
+      "substanceScore": 20.4
+    },
+    {
+      "printedPage": 220,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 508,
+      "numberDensity": 9.06,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.06
+    },
+    {
+      "printedPage": 221,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 336,
+      "numberDensity": 24.11,
+      "hedgeDensity": 0.298,
+      "footnoteDefinitions": 0,
+      "substanceScore": 18.58
+    },
+    {
+      "printedPage": 222,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 445,
+      "numberDensity": 7.64,
+      "hedgeDensity": 0.449,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.27
+    },
+    {
+      "printedPage": 223,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 360,
+      "numberDensity": 21.67,
+      "hedgeDensity": 0.278,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.96
+    },
+    {
+      "printedPage": 224,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 465,
+      "numberDensity": 9.03,
+      "hedgeDensity": 0.215,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.43
+    },
+    {
+      "printedPage": 225,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 315,
+      "numberDensity": 23.49,
+      "hedgeDensity": 0.317,
+      "footnoteDefinitions": 0,
+      "substanceScore": 17.83
+    },
+    {
+      "printedPage": 226,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 431,
+      "numberDensity": 9.28,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.28
+    },
+    {
+      "printedPage": 227,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 306,
+      "numberDensity": 16.34,
+      "hedgeDensity": 0.327,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.32
+    },
+    {
+      "printedPage": 228,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 301,
+      "numberDensity": 16.94,
+      "hedgeDensity": 0.664,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.18
+    },
+    {
+      "printedPage": 229,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 339,
+      "numberDensity": 7.37,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.37
+    },
+    {
+      "printedPage": 230,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 964,
+      "numberDensity": 10.06,
+      "hedgeDensity": 0.311,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.67
+    },
+    {
+      "printedPage": 231,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 483,
+      "numberDensity": 1.86,
+      "hedgeDensity": 0.414,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.32
+    },
+    {
+      "printedPage": 232,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 566,
+      "numberDensity": 7.07,
+      "hedgeDensity": 0.53,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.62
+    },
+    {
+      "printedPage": 233,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 177,
+      "numberDensity": 3.95,
+      "hedgeDensity": 0.565,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.53
+    },
+    {
+      "printedPage": 234,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 130,
+      "numberDensity": 2.31,
+      "hedgeDensity": 0.769,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.3
+    },
+    {
+      "printedPage": 235,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 519,
+      "numberDensity": 0.96,
+      "hedgeDensity": 0.193,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.81
+    },
+    {
+      "printedPage": 236,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 289,
+      "numberDensity": 1.38,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.38
+    },
+    {
+      "printedPage": 237,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 208,
+      "numberDensity": 1.44,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.44
+    },
+    {
+      "printedPage": 239,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 501,
+      "numberDensity": 4.39,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.39
+    },
+    {
+      "printedPage": 240,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 626,
+      "numberDensity": 5.11,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.11
+    },
+    {
+      "printedPage": 241,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 547,
+      "numberDensity": 5.48,
+      "hedgeDensity": 0.366,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.02
+    },
+    {
+      "printedPage": 242,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 292,
+      "numberDensity": 5.48,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.48
+    },
+    {
+      "printedPage": 243,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 379,
+      "numberDensity": 2.64,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.64
+    },
+    {
+      "printedPage": 244,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 320,
+      "numberDensity": 0.94,
+      "hedgeDensity": 0.312,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.71
+    },
+    {
+      "printedPage": 245,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 441,
+      "numberDensity": 4.54,
+      "hedgeDensity": 0.68,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.7
+    },
+    {
+      "printedPage": 246,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 632,
+      "numberDensity": 6.17,
+      "hedgeDensity": 0.316,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.69
+    },
+    {
+      "printedPage": 247,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 259,
+      "numberDensity": 4.63,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.63
+    },
+    {
+      "printedPage": 248,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 515,
+      "numberDensity": 0.58,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.58
+    },
+    {
+      "printedPage": 249,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 221,
+      "numberDensity": 4.07,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.07
+    },
+    {
+      "printedPage": 250,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 304,
+      "numberDensity": 1.32,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.32
+    },
+    {
+      "printedPage": 251,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 194,
+      "numberDensity": 1.03,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.03
+    },
+    {
+      "printedPage": 252,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 341,
+      "numberDensity": 0.29,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.29
+    },
+    {
+      "printedPage": 253,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 492,
+      "numberDensity": 3.05,
+      "hedgeDensity": 0.407,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.17
+    },
+    {
+      "printedPage": 254,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 309,
+      "numberDensity": 5.18,
+      "hedgeDensity": 0.647,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.14
+    },
+    {
+      "printedPage": 255,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 482,
+      "numberDensity": 1.45,
+      "hedgeDensity": 0.207,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.2
+    },
+    {
+      "printedPage": 256,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 390,
+      "numberDensity": 6.92,
+      "hedgeDensity": 0.513,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.58
+    },
+    {
+      "printedPage": 257,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 805,
+      "numberDensity": 1.86,
+      "hedgeDensity": 0.497,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.24
+    },
+    {
+      "printedPage": 258,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 367,
+      "numberDensity": 0.54,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.54
+    },
+    {
+      "printedPage": 259,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 526,
+      "numberDensity": 22.43,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 22.43
+    },
+    {
+      "printedPage": 260,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 347,
+      "numberDensity": 44.67,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 44.67
+    },
+    {
+      "printedPage": 261,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 764,
+      "numberDensity": 12.43,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.43
+    },
+    {
+      "printedPage": 262,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 483,
+      "numberDensity": 13.04,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 13.04
+    },
+    {
+      "printedPage": 263,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 237,
+      "numberDensity": 34.6,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 34.6
+    },
+    {
+      "printedPage": 264,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 532,
+      "numberDensity": 4.7,
+      "hedgeDensity": 0.564,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.0
+    },
+    {
+      "printedPage": 265,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 456,
+      "numberDensity": 10.09,
+      "hedgeDensity": 0.219,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.27
+    },
+    {
+      "printedPage": 266,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 425,
+      "numberDensity": 4.94,
+      "hedgeDensity": 0.235,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.0
+    },
+    {
+      "printedPage": 267,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 351,
+      "numberDensity": 7.98,
+      "hedgeDensity": 0.285,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.21
+    },
+    {
+      "printedPage": 268,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 660,
+      "numberDensity": 4.85,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.85
+    },
+    {
+      "printedPage": 269,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 655,
+      "numberDensity": 5.5,
+      "hedgeDensity": 0.305,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.21
+    },
+    {
+      "printedPage": 270,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 620,
+      "numberDensity": 6.61,
+      "hedgeDensity": 0.161,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.69
+    },
+    {
+      "printedPage": 271,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 667,
+      "numberDensity": 4.2,
+      "hedgeDensity": 0.9,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.21
+    },
+    {
+      "printedPage": 272,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 738,
+      "numberDensity": 2.85,
+      "hedgeDensity": 0.136,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.51
+    },
+    {
+      "printedPage": 273,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 586,
+      "numberDensity": 4.27,
+      "hedgeDensity": 1.536,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.68
+    },
+    {
+      "printedPage": 274,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 727,
+      "numberDensity": 1.38,
+      "hedgeDensity": 0.688,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.81
+    },
+    {
+      "printedPage": 275,
+      "section": "INDUSTRY OVERVIEW",
+      "words": 485,
+      "numberDensity": 3.71,
+      "hedgeDensity": 0.206,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.08
+    },
+    {
+      "printedPage": 276,
+      "section": "OUR BUSINESS",
+      "words": 956,
+      "numberDensity": 6.17,
+      "hedgeDensity": 0.628,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.79
+    },
+    {
+      "printedPage": 277,
+      "section": "OUR BUSINESS",
+      "words": 769,
+      "numberDensity": 5.46,
+      "hedgeDensity": 0.13,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.83
+    },
+    {
+      "printedPage": 278,
+      "section": "OUR BUSINESS",
+      "words": 378,
+      "numberDensity": 3.7,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.7
+    },
+    {
+      "printedPage": 279,
+      "section": "OUR BUSINESS",
+      "words": 904,
+      "numberDensity": 4.31,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.31
+    },
+    {
+      "printedPage": 280,
+      "section": "OUR BUSINESS",
+      "words": 939,
+      "numberDensity": 2.56,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.56
+    },
+    {
+      "printedPage": 281,
+      "section": "OUR BUSINESS",
+      "words": 858,
+      "numberDensity": 1.75,
+      "hedgeDensity": 0.117,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.57
+    },
+    {
+      "printedPage": 282,
+      "section": "OUR BUSINESS",
+      "words": 597,
+      "numberDensity": 16.75,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.75
+    },
+    {
+      "printedPage": 283,
+      "section": "OUR BUSINESS",
+      "words": 868,
+      "numberDensity": 3.69,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.69
+    },
+    {
+      "printedPage": 284,
+      "section": "OUR BUSINESS",
+      "words": 800,
+      "numberDensity": 5.38,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.38
+    },
+    {
+      "printedPage": 285,
+      "section": "OUR BUSINESS",
+      "words": 855,
+      "numberDensity": 9.12,
+      "hedgeDensity": 0.351,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.75
+    },
+    {
+      "printedPage": 286,
+      "section": "OUR BUSINESS",
+      "words": 885,
+      "numberDensity": 3.95,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.95
+    },
+    {
+      "printedPage": 287,
+      "section": "OUR BUSINESS",
+      "words": 786,
+      "numberDensity": 10.43,
+      "hedgeDensity": 0.127,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.26
+    },
+    {
+      "printedPage": 288,
+      "section": "OUR BUSINESS",
+      "words": 801,
+      "numberDensity": 4.24,
+      "hedgeDensity": 0.25,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.4
+    },
+    {
+      "printedPage": 289,
+      "section": "OUR BUSINESS",
+      "words": 783,
+      "numberDensity": 4.09,
+      "hedgeDensity": 0.383,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.95
+    },
+    {
+      "printedPage": 290,
+      "section": "OUR BUSINESS",
+      "words": 536,
+      "numberDensity": 6.34,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.34
+    },
+    {
+      "printedPage": 292,
+      "section": "OUR BUSINESS",
+      "words": 167,
+      "numberDensity": 4.79,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.79
+    },
+    {
+      "printedPage": 293,
+      "section": "OUR BUSINESS",
+      "words": 410,
+      "numberDensity": 5.85,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.85
+    },
+    {
+      "printedPage": 294,
+      "section": "OUR BUSINESS",
+      "words": 193,
+      "numberDensity": 7.77,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.77
+    },
+    {
+      "printedPage": 295,
+      "section": "OUR BUSINESS",
+      "words": 177,
+      "numberDensity": 8.47,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.47
+    },
+    {
+      "printedPage": 296,
+      "section": "OUR BUSINESS",
+      "words": 255,
+      "numberDensity": 7.84,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.84
+    },
+    {
+      "printedPage": 297,
+      "section": "OUR BUSINESS",
+      "words": 134,
+      "numberDensity": 5.22,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.22
+    },
+    {
+      "printedPage": 298,
+      "section": "OUR BUSINESS",
+      "words": 236,
+      "numberDensity": 3.81,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.81
+    },
+    {
+      "printedPage": 299,
+      "section": "OUR BUSINESS",
+      "words": 196,
+      "numberDensity": 3.57,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.57
+    },
+    {
+      "printedPage": 300,
+      "section": "OUR BUSINESS",
+      "words": 233,
+      "numberDensity": 3.43,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.43
+    },
+    {
+      "printedPage": 301,
+      "section": "OUR BUSINESS",
+      "words": 516,
+      "numberDensity": 50.0,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 5,
+      "substanceScore": 50.0
+    },
+    {
+      "printedPage": 302,
+      "section": "OUR BUSINESS",
+      "words": 695,
+      "numberDensity": 1.01,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.01
+    },
+    {
+      "printedPage": 303,
+      "section": "OUR BUSINESS",
+      "words": 738,
+      "numberDensity": 3.39,
+      "hedgeDensity": 0.813,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.87
+    },
+    {
+      "printedPage": 304,
+      "section": "OUR BUSINESS",
+      "words": 784,
+      "numberDensity": 4.59,
+      "hedgeDensity": 0.893,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.43
+    },
+    {
+      "printedPage": 305,
+      "section": "OUR BUSINESS",
+      "words": 674,
+      "numberDensity": 10.53,
+      "hedgeDensity": 0.445,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.29
+    },
+    {
+      "printedPage": 306,
+      "section": "OUR BUSINESS",
+      "words": 652,
+      "numberDensity": 24.23,
+      "hedgeDensity": 0.307,
+      "footnoteDefinitions": 0,
+      "substanceScore": 18.54
+    },
+    {
+      "printedPage": 307,
+      "section": "OUR BUSINESS",
+      "words": 865,
+      "numberDensity": 9.13,
+      "hedgeDensity": 0.116,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.19
+    },
+    {
+      "printedPage": 308,
+      "section": "OUR BUSINESS",
+      "words": 822,
+      "numberDensity": 1.46,
+      "hedgeDensity": 0.608,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.91
+    },
+    {
+      "printedPage": 309,
+      "section": "OUR BUSINESS",
+      "words": 902,
+      "numberDensity": 3.22,
+      "hedgeDensity": 0.222,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.63
+    },
+    {
+      "printedPage": 310,
+      "section": "OUR BUSINESS",
+      "words": 816,
+      "numberDensity": 3.92,
+      "hedgeDensity": 0.245,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.15
+    },
+    {
+      "printedPage": 311,
+      "section": "OUR BUSINESS",
+      "words": 689,
+      "numberDensity": 2.76,
+      "hedgeDensity": 1.161,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.28
+    },
+    {
+      "printedPage": 312,
+      "section": "OUR BUSINESS",
+      "words": 611,
+      "numberDensity": 7.04,
+      "hedgeDensity": 0.491,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.72
+    },
+    {
+      "printedPage": 313,
+      "section": "OUR BUSINESS",
+      "words": 795,
+      "numberDensity": 3.27,
+      "hedgeDensity": 1.132,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.53
+    },
+    {
+      "printedPage": 314,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 711,
+      "numberDensity": 2.53,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.53
+    },
+    {
+      "printedPage": 315,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 896,
+      "numberDensity": 11.38,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.38
+    },
+    {
+      "printedPage": 316,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 594,
+      "numberDensity": 6.73,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.73
+    },
+    {
+      "printedPage": 317,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 568,
+      "numberDensity": 10.56,
+      "hedgeDensity": 0.176,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.98
+    },
+    {
+      "printedPage": 318,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 527,
+      "numberDensity": 11.01,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.01
+    },
+    {
+      "printedPage": 319,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 538,
+      "numberDensity": 12.83,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.83
+    },
+    {
+      "printedPage": 320,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 597,
+      "numberDensity": 6.87,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.87
+    },
+    {
+      "printedPage": 321,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 820,
+      "numberDensity": 5.37,
+      "hedgeDensity": 0.122,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.78
+    },
+    {
+      "printedPage": 322,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 951,
+      "numberDensity": 3.47,
+      "hedgeDensity": 0.21,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.87
+    },
+    {
+      "printedPage": 323,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 883,
+      "numberDensity": 4.3,
+      "hedgeDensity": 0.453,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.96
+    },
+    {
+      "printedPage": 324,
+      "section": "HISTORY AND CERTAIN CORPORATE MATTERS",
+      "words": 188,
+      "numberDensity": 0.53,
+      "hedgeDensity": 0.532,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.35
+    },
+    {
+      "printedPage": 325,
+      "section": "OUR MANAGEMENT",
+      "words": 396,
+      "numberDensity": 12.88,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.88
+    },
+    {
+      "printedPage": 326,
+      "section": "OUR MANAGEMENT",
+      "words": 404,
+      "numberDensity": 18.07,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 18.07
+    },
+    {
+      "printedPage": 327,
+      "section": "OUR MANAGEMENT",
+      "words": 503,
+      "numberDensity": 5.77,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.77
+    },
+    {
+      "printedPage": 328,
+      "section": "OUR MANAGEMENT",
+      "words": 895,
+      "numberDensity": 0.89,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.89
+    },
+    {
+      "printedPage": 329,
+      "section": "OUR MANAGEMENT",
+      "words": 530,
+      "numberDensity": 7.17,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.17
+    },
+    {
+      "printedPage": 330,
+      "section": "OUR MANAGEMENT",
+      "words": 705,
+      "numberDensity": 2.7,
+      "hedgeDensity": 0.284,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.1
+    },
+    {
+      "printedPage": 331,
+      "section": "OUR MANAGEMENT",
+      "words": 613,
+      "numberDensity": 2.94,
+      "hedgeDensity": 0.326,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.21
+    },
+    {
+      "printedPage": 332,
+      "section": "OUR MANAGEMENT",
+      "words": 552,
+      "numberDensity": 1.09,
+      "hedgeDensity": 0.181,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.92
+    },
+    {
+      "printedPage": 333,
+      "section": "OUR MANAGEMENT",
+      "words": 579,
+      "numberDensity": 3.11,
+      "hedgeDensity": 0.864,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.67
+    },
+    {
+      "printedPage": 334,
+      "section": "OUR MANAGEMENT",
+      "words": 588,
+      "numberDensity": 1.02,
+      "hedgeDensity": 0.68,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.61
+    },
+    {
+      "printedPage": 335,
+      "section": "OUR MANAGEMENT",
+      "words": 556,
+      "numberDensity": 3.06,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.06
+    },
+    {
+      "printedPage": 336,
+      "section": "OUR MANAGEMENT",
+      "words": 483,
+      "numberDensity": 2.48,
+      "hedgeDensity": 0.828,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.36
+    },
+    {
+      "printedPage": 337,
+      "section": "OUR MANAGEMENT",
+      "words": 143,
+      "numberDensity": 3.5,
+      "hedgeDensity": 2.098,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.13
+    },
+    {
+      "printedPage": 338,
+      "section": "OUR MANAGEMENT",
+      "words": 81,
+      "numberDensity": 1.23,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.23
+    },
+    {
+      "printedPage": 339,
+      "section": "OUR MANAGEMENT",
+      "words": 877,
+      "numberDensity": 3.99,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.99
+    },
+    {
+      "printedPage": 340,
+      "section": "OUR MANAGEMENT",
+      "words": 698,
+      "numberDensity": 2.58,
+      "hedgeDensity": 0.287,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.0
+    },
+    {
+      "printedPage": 341,
+      "section": "OUR PROMOTERS AND PROMOTER GROUP",
+      "words": 522,
+      "numberDensity": 7.28,
+      "hedgeDensity": 0.192,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.11
+    },
+    {
+      "printedPage": 342,
+      "section": "OUR PROMOTERS AND PROMOTER GROUP",
+      "words": 362,
+      "numberDensity": 14.64,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 14.64
+    },
+    {
+      "printedPage": 343,
+      "section": "OUR PROMOTERS AND PROMOTER GROUP",
+      "words": 353,
+      "numberDensity": 13.03,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 13.03
+    },
+    {
+      "printedPage": 344,
+      "section": "OUR PROMOTERS AND PROMOTER GROUP",
+      "words": 537,
+      "numberDensity": 3.91,
+      "hedgeDensity": 0.186,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.3
+    },
+    {
+      "printedPage": 345,
+      "section": "OUR PROMOTERS AND PROMOTER GROUP",
+      "words": 776,
+      "numberDensity": 3.99,
+      "hedgeDensity": 0.387,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.88
+    },
+    {
+      "printedPage": 346,
+      "section": "OUR PROMOTERS AND PROMOTER GROUP",
+      "words": 524,
+      "numberDensity": 7.25,
+      "hedgeDensity": 0.191,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.09
+    },
+    {
+      "printedPage": 348,
+      "section": "OUR PROMOTERS AND PROMOTER GROUP",
+      "words": 532,
+      "numberDensity": 9.21,
+      "hedgeDensity": 0.564,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.89
+    },
+    {
+      "printedPage": 350,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 607,
+      "numberDensity": 4.45,
+      "hedgeDensity": 0.165,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.82
+    },
+    {
+      "printedPage": 351,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 747,
+      "numberDensity": 8.3,
+      "hedgeDensity": 0.134,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.32
+    },
+    {
+      "printedPage": 353,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 452,
+      "numberDensity": 39.6,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 39.6
+    },
+    {
+      "printedPage": 354,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 350,
+      "numberDensity": 31.71,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 31.71
+    },
+    {
+      "printedPage": 355,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 411,
+      "numberDensity": 32.36,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 32.36
+    },
+    {
+      "printedPage": 356,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 373,
+      "numberDensity": 19.03,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 19.03
+    },
+    {
+      "printedPage": 357,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 378,
+      "numberDensity": 28.04,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 28.04
+    },
+    {
+      "printedPage": 358,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 376,
+      "numberDensity": 23.67,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 23.67
+    },
+    {
+      "printedPage": 359,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 765,
+      "numberDensity": 6.67,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.67
+    },
+    {
+      "printedPage": 360,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 681,
+      "numberDensity": 5.29,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.29
+    },
+    {
+      "printedPage": 361,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 679,
+      "numberDensity": 4.12,
+      "hedgeDensity": 1.62,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.57
+    },
+    {
+      "printedPage": 362,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 647,
+      "numberDensity": 8.04,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.04
+    },
+    {
+      "printedPage": 363,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 686,
+      "numberDensity": 5.25,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.25
+    },
+    {
+      "printedPage": 364,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 623,
+      "numberDensity": 0.32,
+      "hedgeDensity": 0.161,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.28
+    },
+    {
+      "printedPage": 365,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 654,
+      "numberDensity": 0.46,
+      "hedgeDensity": 0.153,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.4
+    },
+    {
+      "printedPage": 366,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 692,
+      "numberDensity": 4.34,
+      "hedgeDensity": 0.434,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.02
+    },
+    {
+      "printedPage": 367,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 756,
+      "numberDensity": 2.25,
+      "hedgeDensity": 0.265,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.78
+    },
+    {
+      "printedPage": 368,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 758,
+      "numberDensity": 0.66,
+      "hedgeDensity": 0.264,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.52
+    },
+    {
+      "printedPage": 369,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 776,
+      "numberDensity": 0.52,
+      "hedgeDensity": 0.258,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.41
+    },
+    {
+      "printedPage": 370,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 733,
+      "numberDensity": 0.55,
+      "hedgeDensity": 1.091,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.26
+    },
+    {
+      "printedPage": 371,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 760,
+      "numberDensity": 0.53,
+      "hedgeDensity": 0.658,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.32
+    },
+    {
+      "printedPage": 372,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 742,
+      "numberDensity": 0.67,
+      "hedgeDensity": 0.27,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.53
+    },
+    {
+      "printedPage": 373,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 546,
+      "numberDensity": 1.1,
+      "hedgeDensity": 0.549,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.71
+    },
+    {
+      "printedPage": 374,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 393,
+      "numberDensity": 0.51,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.51
+    },
+    {
+      "printedPage": 375,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 467,
+      "numberDensity": 34.26,
+      "hedgeDensity": 0.214,
+      "footnoteDefinitions": 0,
+      "substanceScore": 28.22
+    },
+    {
+      "printedPage": 376,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 359,
+      "numberDensity": 40.39,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 40.39
+    },
+    {
+      "printedPage": 377,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 260,
+      "numberDensity": 28.46,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 28.46
+    },
+    {
+      "printedPage": 378,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 349,
+      "numberDensity": 31.52,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 31.52
+    },
+    {
+      "printedPage": 379,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 502,
+      "numberDensity": 31.27,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 31.27
+    },
+    {
+      "printedPage": 380,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 316,
+      "numberDensity": 29.75,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 29.75
+    },
+    {
+      "printedPage": 381,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 490,
+      "numberDensity": 28.57,
+      "hedgeDensity": 0.204,
+      "footnoteDefinitions": 0,
+      "substanceScore": 23.73
+    },
+    {
+      "printedPage": 382,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 309,
+      "numberDensity": 19.74,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 19.74
+    },
+    {
+      "printedPage": 383,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 309,
+      "numberDensity": 19.74,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 19.74
+    },
+    {
+      "printedPage": 384,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 387,
+      "numberDensity": 27.13,
+      "hedgeDensity": 0.258,
+      "footnoteDefinitions": 0,
+      "substanceScore": 21.56
+    },
+    {
+      "printedPage": 385,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 339,
+      "numberDensity": 35.99,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 35.99
+    },
+    {
+      "printedPage": 386,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 586,
+      "numberDensity": 14.85,
+      "hedgeDensity": 0.341,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.07
+    },
+    {
+      "printedPage": 387,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 413,
+      "numberDensity": 15.01,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 15.01
+    },
+    {
+      "printedPage": 388,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 318,
+      "numberDensity": 18.55,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 18.55
+    },
+    {
+      "printedPage": 389,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 458,
+      "numberDensity": 16.38,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.38
+    },
+    {
+      "printedPage": 390,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 627,
+      "numberDensity": 12.12,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.12
+    },
+    {
+      "printedPage": 391,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 511,
+      "numberDensity": 21.92,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 21.92
+    },
+    {
+      "printedPage": 392,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 330,
+      "numberDensity": 28.48,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 28.48
+    },
+    {
+      "printedPage": 393,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 480,
+      "numberDensity": 19.38,
+      "hedgeDensity": 0.417,
+      "footnoteDefinitions": 0,
+      "substanceScore": 13.68
+    },
+    {
+      "printedPage": 394,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 327,
+      "numberDensity": 16.21,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.21
+    },
+    {
+      "printedPage": 395,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 329,
+      "numberDensity": 15.5,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 15.5
+    },
+    {
+      "printedPage": 396,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 443,
+      "numberDensity": 17.83,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 17.83
+    },
+    {
+      "printedPage": 397,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 382,
+      "numberDensity": 26.44,
+      "hedgeDensity": 0.524,
+      "footnoteDefinitions": 0,
+      "substanceScore": 17.35
+    },
+    {
+      "printedPage": 398,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 372,
+      "numberDensity": 38.71,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 38.71
+    },
+    {
+      "printedPage": 399,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 447,
+      "numberDensity": 23.49,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 23.49
+    },
+    {
+      "printedPage": 400,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 486,
+      "numberDensity": 22.84,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 22.84
+    },
+    {
+      "printedPage": 401,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 473,
+      "numberDensity": 23.89,
+      "hedgeDensity": 0.423,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.79
+    },
+    {
+      "printedPage": 402,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 335,
+      "numberDensity": 26.57,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 26.57
+    },
+    {
+      "printedPage": 403,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 357,
+      "numberDensity": 13.45,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 13.45
+    },
+    {
+      "printedPage": 404,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 282,
+      "numberDensity": 19.15,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 19.15
+    },
+    {
+      "printedPage": 405,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 406,
+      "numberDensity": 23.65,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 23.65
+    },
+    {
+      "printedPage": 406,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 445,
+      "numberDensity": 34.16,
+      "hedgeDensity": 0.449,
+      "footnoteDefinitions": 0,
+      "substanceScore": 23.57
+    },
+    {
+      "printedPage": 407,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 446,
+      "numberDensity": 9.64,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.64
+    },
+    {
+      "printedPage": 408,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 473,
+      "numberDensity": 10.15,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.15
+    },
+    {
+      "printedPage": 409,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 586,
+      "numberDensity": 10.24,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.24
+    },
+    {
+      "printedPage": 410,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 678,
+      "numberDensity": 8.26,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.26
+    },
+    {
+      "printedPage": 411,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 688,
+      "numberDensity": 10.03,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.03
+    },
+    {
+      "printedPage": 412,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 616,
+      "numberDensity": 10.55,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.55
+    },
+    {
+      "printedPage": 413,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 465,
+      "numberDensity": 8.82,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.82
+    },
+    {
+      "printedPage": 414,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 320,
+      "numberDensity": 18.44,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 18.44
+    },
+    {
+      "printedPage": 415,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 394,
+      "numberDensity": 18.53,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 18.53
+    },
+    {
+      "printedPage": 416,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 316,
+      "numberDensity": 23.73,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 23.73
+    },
+    {
+      "printedPage": 417,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 347,
+      "numberDensity": 26.8,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 26.8
+    },
+    {
+      "printedPage": 418,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 416,
+      "numberDensity": 14.42,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 14.42
+    },
+    {
+      "printedPage": 419,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 551,
+      "numberDensity": 6.9,
+      "hedgeDensity": 0.181,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.84
+    },
+    {
+      "printedPage": 420,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 353,
+      "numberDensity": 26.91,
+      "hedgeDensity": 0.567,
+      "footnoteDefinitions": 0,
+      "substanceScore": 17.18
+    },
+    {
+      "printedPage": 421,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 454,
+      "numberDensity": 21.37,
+      "hedgeDensity": 0.881,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.36
+    },
+    {
+      "printedPage": 422,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 324,
+      "numberDensity": 16.36,
+      "hedgeDensity": 0.617,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.11
+    },
+    {
+      "printedPage": 423,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 340,
+      "numberDensity": 10.59,
+      "hedgeDensity": 1.176,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.86
+    },
+    {
+      "printedPage": 424,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 493,
+      "numberDensity": 19.68,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 19.68
+    },
+    {
+      "printedPage": 425,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 644,
+      "numberDensity": 12.89,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.89
+    },
+    {
+      "printedPage": 426,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 726,
+      "numberDensity": 8.13,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.13
+    },
+    {
+      "printedPage": 427,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 662,
+      "numberDensity": 1.21,
+      "hedgeDensity": 0.604,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.75
+    },
+    {
+      "printedPage": 428,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 415,
+      "numberDensity": 16.63,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.63
+    },
+    {
+      "printedPage": 429,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 584,
+      "numberDensity": 7.53,
+      "hedgeDensity": 0.342,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.61
+    },
+    {
+      "printedPage": 430,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 487,
+      "numberDensity": 11.5,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.5
+    },
+    {
+      "printedPage": 431,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 570,
+      "numberDensity": 10.35,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.35
+    },
+    {
+      "printedPage": 432,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 555,
+      "numberDensity": 10.09,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.09
+    },
+    {
+      "printedPage": 433,
+      "section": "RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+      "words": 354,
+      "numberDensity": 5.08,
+      "hedgeDensity": 0.847,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.75
+    },
+    {
+      "printedPage": 434,
+      "section": "OTHER FINANCIAL INFORMATION",
+      "words": 835,
+      "numberDensity": 6.23,
+      "hedgeDensity": 0.479,
+      "footnoteDefinitions": 1,
+      "substanceScore": 4.21
+    },
+    {
+      "printedPage": 435,
+      "section": "OTHER FINANCIAL INFORMATION",
+      "words": 281,
+      "numberDensity": 34.16,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 34.16
+    },
+    {
+      "printedPage": 436,
+      "section": "OTHER FINANCIAL INFORMATION",
+      "words": 265,
+      "numberDensity": 27.55,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 27.55
+    },
+    {
+      "printedPage": 437,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 579,
+      "numberDensity": 7.6,
+      "hedgeDensity": 0.173,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.48
+    },
+    {
+      "printedPage": 438,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 528,
+      "numberDensity": 1.89,
+      "hedgeDensity": 0.947,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.97
+    },
+    {
+      "printedPage": 439,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 447,
+      "numberDensity": 4.03,
+      "hedgeDensity": 0.671,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.41
+    },
+    {
+      "printedPage": 440,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 974,
+      "numberDensity": 5.24,
+      "hedgeDensity": 0.924,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.72
+    },
+    {
+      "printedPage": 441,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 865,
+      "numberDensity": 4.16,
+      "hedgeDensity": 0.347,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.09
+    },
+    {
+      "printedPage": 442,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 761,
+      "numberDensity": 4.2,
+      "hedgeDensity": 1.051,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.05
+    },
+    {
+      "printedPage": 443,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 554,
+      "numberDensity": 23.65,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 23.65
+    },
+    {
+      "printedPage": 444,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 602,
+      "numberDensity": 16.61,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.61
+    },
+    {
+      "printedPage": 445,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 653,
+      "numberDensity": 16.23,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 16.23
+    },
+    {
+      "printedPage": 446,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 750,
+      "numberDensity": 15.87,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 15.87
+    },
+    {
+      "printedPage": 447,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 657,
+      "numberDensity": 14.46,
+      "hedgeDensity": 0.304,
+      "footnoteDefinitions": 0,
+      "substanceScore": 11.09
+    },
+    {
+      "printedPage": 448,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 876,
+      "numberDensity": 10.16,
+      "hedgeDensity": 0.228,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.27
+    },
+    {
+      "printedPage": 449,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 358,
+      "numberDensity": 25.98,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 25.98
+    },
+    {
+      "printedPage": 450,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 733,
+      "numberDensity": 1.23,
+      "hedgeDensity": 1.091,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.59
+    },
+    {
+      "printedPage": 451,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 653,
+      "numberDensity": 19.91,
+      "hedgeDensity": 0.613,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.35
+    },
+    {
+      "printedPage": 452,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 737,
+      "numberDensity": 2.71,
+      "hedgeDensity": 1.9,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.94
+    },
+    {
+      "printedPage": 453,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 641,
+      "numberDensity": 0.31,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.31
+    },
+    {
+      "printedPage": 454,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 562,
+      "numberDensity": 0.36,
+      "hedgeDensity": 0.356,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.26
+    },
+    {
+      "printedPage": 455,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 702,
+      "numberDensity": 3.42,
+      "hedgeDensity": 0.285,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.66
+    },
+    {
+      "printedPage": 456,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 724,
+      "numberDensity": 1.1,
+      "hedgeDensity": 0.138,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.97
+    },
+    {
+      "printedPage": 457,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 775,
+      "numberDensity": 0.26,
+      "hedgeDensity": 0.387,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.19
+    },
+    {
+      "printedPage": 458,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 765,
+      "numberDensity": 0.13,
+      "hedgeDensity": 0.261,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.1
+    },
+    {
+      "printedPage": 459,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 731,
+      "numberDensity": 0.27,
+      "hedgeDensity": 1.094,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.13
+    },
+    {
+      "printedPage": 460,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 868,
+      "numberDensity": 0.23,
+      "hedgeDensity": 0.691,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.14
+    },
+    {
+      "printedPage": 461,
+      "section": "FINANCIAL INDEBTEDNESS",
+      "words": 641,
+      "numberDensity": 0.62,
+      "hedgeDensity": 0.156,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.54
+    },
+    {
+      "printedPage": 462,
+      "section": "CAPITALISATION STATEMENT",
+      "words": 193,
+      "numberDensity": 12.44,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.44
+    },
+    {
+      "printedPage": 463,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 867,
+      "numberDensity": 1.85,
+      "hedgeDensity": 0.346,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.37
+    },
+    {
+      "printedPage": 464,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 735,
+      "numberDensity": 6.67,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.67
+    },
+    {
+      "printedPage": 465,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 554,
+      "numberDensity": 5.42,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 5.42
+    },
+    {
+      "printedPage": 466,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 677,
+      "numberDensity": 7.53,
+      "hedgeDensity": 0.148,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.56
+    },
+    {
+      "printedPage": 467,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 815,
+      "numberDensity": 9.45,
+      "hedgeDensity": 0.245,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.59
+    },
+    {
+      "printedPage": 468,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 863,
+      "numberDensity": 12.86,
+      "hedgeDensity": 0.232,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.44
+    },
+    {
+      "printedPage": 469,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 552,
+      "numberDensity": 2.72,
+      "hedgeDensity": 0.181,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.3
+    },
+    {
+      "printedPage": 470,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 603,
+      "numberDensity": 6.63,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.63
+    },
+    {
+      "printedPage": 471,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 354,
+      "numberDensity": 9.89,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.89
+    },
+    {
+      "printedPage": 472,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 542,
+      "numberDensity": 5.35,
+      "hedgeDensity": 0.369,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.91
+    },
+    {
+      "printedPage": 473,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 593,
+      "numberDensity": 9.27,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 9.27
+    },
+    {
+      "printedPage": 474,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 200,
+      "numberDensity": 27.0,
+      "hedgeDensity": 0.5,
+      "footnoteDefinitions": 0,
+      "substanceScore": 18.0
+    },
+    {
+      "printedPage": 475,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 656,
+      "numberDensity": 3.66,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.66
+    },
+    {
+      "printedPage": 476,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 531,
+      "numberDensity": 2.07,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.07
+    },
+    {
+      "printedPage": 477,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 168,
+      "numberDensity": 1.79,
+      "hedgeDensity": 0.595,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.12
+    },
+    {
+      "printedPage": 478,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 691,
+      "numberDensity": 4.49,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.49
+    },
+    {
+      "printedPage": 479,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 784,
+      "numberDensity": 8.8,
+      "hedgeDensity": 0.128,
+      "footnoteDefinitions": 0,
+      "substanceScore": 7.81
+    },
+    {
+      "printedPage": 480,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 810,
+      "numberDensity": 3.09,
+      "hedgeDensity": 0.37,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.25
+    },
+    {
+      "printedPage": 481,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 1004,
+      "numberDensity": 0.9,
+      "hedgeDensity": 1.096,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.43
+    },
+    {
+      "printedPage": 482,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 808,
+      "numberDensity": 1.49,
+      "hedgeDensity": 0.99,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.75
+    },
+    {
+      "printedPage": 483,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 835,
+      "numberDensity": 2.99,
+      "hedgeDensity": 0.719,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.74
+    },
+    {
+      "printedPage": 484,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 821,
+      "numberDensity": 1.83,
+      "hedgeDensity": 0.365,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.34
+    },
+    {
+      "printedPage": 485,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 893,
+      "numberDensity": 2.46,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.46
+    },
+    {
+      "printedPage": 486,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 502,
+      "numberDensity": 1.39,
+      "hedgeDensity": 0.199,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.16
+    },
+    {
+      "printedPage": 487,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 750,
+      "numberDensity": 22.27,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 22.27
+    },
+    {
+      "printedPage": 488,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 502,
+      "numberDensity": 17.73,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 17.73
+    },
+    {
+      "printedPage": 489,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 716,
+      "numberDensity": 24.16,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 24.16
+    },
+    {
+      "printedPage": 490,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 567,
+      "numberDensity": 25.4,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 25.4
+    },
+    {
+      "printedPage": 491,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 490,
+      "numberDensity": 38.57,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 38.57
+    },
+    {
+      "printedPage": 492,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 505,
+      "numberDensity": 14.46,
+      "hedgeDensity": 0.198,
+      "footnoteDefinitions": 0,
+      "substanceScore": 12.07
+    },
+    {
+      "printedPage": 493,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 871,
+      "numberDensity": 2.18,
+      "hedgeDensity": 0.918,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.14
+    },
+    {
+      "printedPage": 494,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 855,
+      "numberDensity": 2.57,
+      "hedgeDensity": 0.468,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.75
+    },
+    {
+      "printedPage": 495,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 657,
+      "numberDensity": 1.98,
+      "hedgeDensity": 0.304,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.52
+    },
+    {
+      "printedPage": 496,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 835,
+      "numberDensity": 0.72,
+      "hedgeDensity": 0.958,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.37
+    },
+    {
+      "printedPage": 497,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 743,
+      "numberDensity": 2.02,
+      "hedgeDensity": 1.615,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.77
+    },
+    {
+      "printedPage": 498,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 900,
+      "numberDensity": 1.78,
+      "hedgeDensity": 1.222,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.8
+    },
+    {
+      "printedPage": 499,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 865,
+      "numberDensity": 5.9,
+      "hedgeDensity": 0.809,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.26
+    },
+    {
+      "printedPage": 500,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 1023,
+      "numberDensity": 2.15,
+      "hedgeDensity": 0.684,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.28
+    },
+    {
+      "printedPage": 501,
+      "section": "OUTSTANDING LITIGATION AND MATERIAL DEVELOPMENTS",
+      "words": 483,
+      "numberDensity": 1.24,
+      "hedgeDensity": 0.414,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.88
+    },
+    {
+      "printedPage": 502,
+      "section": "OFFER STRUCTURE",
+      "words": 793,
+      "numberDensity": 4.16,
+      "hedgeDensity": 1.135,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.95
+    },
+    {
+      "printedPage": 503,
+      "section": "OFFER STRUCTURE",
+      "words": 560,
+      "numberDensity": 3.93,
+      "hedgeDensity": 1.25,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.75
+    },
+    {
+      "printedPage": 504,
+      "section": "OFFER STRUCTURE",
+      "words": 525,
+      "numberDensity": 5.52,
+      "hedgeDensity": 0.381,
+      "footnoteDefinitions": 0,
+      "substanceScore": 4.0
+    },
+    {
+      "printedPage": 505,
+      "section": "OFFER STRUCTURE",
+      "words": 1194,
+      "numberDensity": 2.18,
+      "hedgeDensity": 1.675,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.81
+    },
+    {
+      "printedPage": 506,
+      "section": "OFFER STRUCTURE",
+      "words": 1022,
+      "numberDensity": 8.51,
+      "hedgeDensity": 0.294,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.58
+    },
+    {
+      "printedPage": 507,
+      "section": "OFFER STRUCTURE",
+      "words": 1047,
+      "numberDensity": 4.58,
+      "hedgeDensity": 1.242,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.05
+    },
+    {
+      "printedPage": 508,
+      "section": "OFFER STRUCTURE",
+      "words": 902,
+      "numberDensity": 3.55,
+      "hedgeDensity": 0.554,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.28
+    },
+    {
+      "printedPage": 509,
+      "section": "OFFER STRUCTURE",
+      "words": 845,
+      "numberDensity": 2.01,
+      "hedgeDensity": 0.947,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.03
+    },
+    {
+      "printedPage": 510,
+      "section": "OFFER STRUCTURE",
+      "words": 873,
+      "numberDensity": 3.09,
+      "hedgeDensity": 0.802,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.72
+    },
+    {
+      "printedPage": 511,
+      "section": "OFFER STRUCTURE",
+      "words": 974,
+      "numberDensity": 0.92,
+      "hedgeDensity": 0.616,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.57
+    },
+    {
+      "printedPage": 512,
+      "section": "OFFER STRUCTURE",
+      "words": 782,
+      "numberDensity": 1.92,
+      "hedgeDensity": 1.662,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.72
+    },
+    {
+      "printedPage": 513,
+      "section": "OFFER STRUCTURE",
+      "words": 971,
+      "numberDensity": 1.34,
+      "hedgeDensity": 0.927,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.69
+    },
+    {
+      "printedPage": 514,
+      "section": "OFFER STRUCTURE",
+      "words": 949,
+      "numberDensity": 1.58,
+      "hedgeDensity": 0.738,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.91
+    },
+    {
+      "printedPage": 515,
+      "section": "OFFER STRUCTURE",
+      "words": 837,
+      "numberDensity": 3.11,
+      "hedgeDensity": 0.478,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.1
+    },
+    {
+      "printedPage": 516,
+      "section": "OFFER STRUCTURE",
+      "words": 800,
+      "numberDensity": 4.38,
+      "hedgeDensity": 0.75,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.5
+    },
+    {
+      "printedPage": 517,
+      "section": "OFFER STRUCTURE",
+      "words": 854,
+      "numberDensity": 2.93,
+      "hedgeDensity": 0.234,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.37
+    },
+    {
+      "printedPage": 518,
+      "section": "OFFER STRUCTURE",
+      "words": 852,
+      "numberDensity": 3.64,
+      "hedgeDensity": 0.235,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.95
+    },
+    {
+      "printedPage": 519,
+      "section": "OFFER STRUCTURE",
+      "words": 849,
+      "numberDensity": 2.94,
+      "hedgeDensity": 0.589,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.85
+    },
+    {
+      "printedPage": 520,
+      "section": "OFFER STRUCTURE",
+      "words": 679,
+      "numberDensity": 4.42,
+      "hedgeDensity": 0.295,
+      "footnoteDefinitions": 0,
+      "substanceScore": 3.41
+    },
+    {
+      "printedPage": 521,
+      "section": "OFFER STRUCTURE",
+      "words": 655,
+      "numberDensity": 2.6,
+      "hedgeDensity": 0.458,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.78
+    },
+    {
+      "printedPage": 522,
+      "section": "OFFER STRUCTURE",
+      "words": 872,
+      "numberDensity": 1.72,
+      "hedgeDensity": 1.032,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.85
+    },
+    {
+      "printedPage": 523,
+      "section": "OFFER STRUCTURE",
+      "words": 688,
+      "numberDensity": 1.31,
+      "hedgeDensity": 0.581,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.83
+    },
+    {
+      "printedPage": 524,
+      "section": "OFFER STRUCTURE",
+      "words": 696,
+      "numberDensity": 1.01,
+      "hedgeDensity": 0.144,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.88
+    },
+    {
+      "printedPage": 525,
+      "section": "OFFER STRUCTURE",
+      "words": 216,
+      "numberDensity": 4.63,
+      "hedgeDensity": 0.926,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.4
+    },
+    {
+      "printedPage": 526,
+      "section": "OFFER STRUCTURE",
+      "words": 1038,
+      "numberDensity": 2.31,
+      "hedgeDensity": 0.867,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.24
+    },
+    {
+      "printedPage": 528,
+      "section": "OFFER STRUCTURE",
+      "words": 698,
+      "numberDensity": 2.72,
+      "hedgeDensity": 0.43,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.9
+    },
+    {
+      "printedPage": 529,
+      "section": "OFFER STRUCTURE",
+      "words": 673,
+      "numberDensity": 2.38,
+      "hedgeDensity": 0.743,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.36
+    },
+    {
+      "printedPage": 530,
+      "section": "OFFER STRUCTURE",
+      "words": 750,
+      "numberDensity": 2.4,
+      "hedgeDensity": 1.067,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.16
+    },
+    {
+      "printedPage": 531,
+      "section": "OFFER STRUCTURE",
+      "words": 697,
+      "numberDensity": 0.86,
+      "hedgeDensity": 1.722,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.32
+    },
+    {
+      "printedPage": 532,
+      "section": "OFFER STRUCTURE",
+      "words": 812,
+      "numberDensity": 1.35,
+      "hedgeDensity": 0.985,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.68
+    },
+    {
+      "printedPage": 533,
+      "section": "OFFER STRUCTURE",
+      "words": 733,
+      "numberDensity": 1.91,
+      "hedgeDensity": 2.046,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.63
+    },
+    {
+      "printedPage": 534,
+      "section": "OFFER STRUCTURE",
+      "words": 786,
+      "numberDensity": 1.27,
+      "hedgeDensity": 1.781,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.46
+    },
+    {
+      "printedPage": 535,
+      "section": "OFFER STRUCTURE",
+      "words": 782,
+      "numberDensity": 1.41,
+      "hedgeDensity": 1.79,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.5
+    },
+    {
+      "printedPage": 536,
+      "section": "OFFER STRUCTURE",
+      "words": 541,
+      "numberDensity": 1.29,
+      "hedgeDensity": 1.294,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.56
+    },
+    {
+      "printedPage": 537,
+      "section": "OFFER STRUCTURE",
+      "words": 632,
+      "numberDensity": 2.69,
+      "hedgeDensity": 1.741,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.98
+    },
+    {
+      "printedPage": 538,
+      "section": "OFFER STRUCTURE",
+      "words": 738,
+      "numberDensity": 2.57,
+      "hedgeDensity": 1.22,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.16
+    },
+    {
+      "printedPage": 539,
+      "section": "OFFER STRUCTURE",
+      "words": 750,
+      "numberDensity": 0.8,
+      "hedgeDensity": 0.8,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.44
+    },
+    {
+      "printedPage": 540,
+      "section": "OFFER STRUCTURE",
+      "words": 905,
+      "numberDensity": 1.44,
+      "hedgeDensity": 3.094,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.35
+    },
+    {
+      "printedPage": 541,
+      "section": "OFFER STRUCTURE",
+      "words": 708,
+      "numberDensity": 1.55,
+      "hedgeDensity": 2.401,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.46
+    },
+    {
+      "printedPage": 542,
+      "section": "OFFER STRUCTURE",
+      "words": 786,
+      "numberDensity": 1.4,
+      "hedgeDensity": 2.29,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.43
+    },
+    {
+      "printedPage": 543,
+      "section": "OFFER STRUCTURE",
+      "words": 751,
+      "numberDensity": 2.4,
+      "hedgeDensity": 1.598,
+      "footnoteDefinitions": 0,
+      "substanceScore": 0.92
+    },
+    {
+      "printedPage": 544,
+      "section": "OFFER STRUCTURE",
+      "words": 777,
+      "numberDensity": 1.42,
+      "hedgeDensity": 0.386,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.02
+    },
+    {
+      "printedPage": 545,
+      "section": "OFFER STRUCTURE",
+      "words": 522,
+      "numberDensity": 9.2,
+      "hedgeDensity": 0.383,
+      "footnoteDefinitions": 0,
+      "substanceScore": 6.65
+    },
+    {
+      "printedPage": 546,
+      "section": "OFFER STRUCTURE",
+      "words": 689,
+      "numberDensity": 10.74,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 10.74
+    },
+    {
+      "printedPage": 547,
+      "section": "OFFER STRUCTURE",
+      "words": 397,
+      "numberDensity": 14.11,
+      "hedgeDensity": 0.756,
+      "footnoteDefinitions": 0,
+      "substanceScore": 8.03
+    },
+    {
+      "printedPage": 548,
+      "section": "OFFER STRUCTURE",
+      "words": 146,
+      "numberDensity": 4.11,
+      "hedgeDensity": 1.37,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.73
+    },
+    {
+      "printedPage": 549,
+      "section": "OFFER STRUCTURE",
+      "words": 144,
+      "numberDensity": 4.17,
+      "hedgeDensity": 1.389,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.74
+    },
+    {
+      "printedPage": 550,
+      "section": "OFFER STRUCTURE",
+      "words": 145,
+      "numberDensity": 4.14,
+      "hedgeDensity": 1.379,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.74
+    },
+    {
+      "printedPage": 551,
+      "section": "OFFER STRUCTURE",
+      "words": 142,
+      "numberDensity": 4.23,
+      "hedgeDensity": 1.408,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.75
+    },
+    {
+      "printedPage": 552,
+      "section": "OFFER STRUCTURE",
+      "words": 144,
+      "numberDensity": 4.17,
+      "hedgeDensity": 1.389,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.74
+    },
+    {
+      "printedPage": 553,
+      "section": "OFFER STRUCTURE",
+      "words": 144,
+      "numberDensity": 4.17,
+      "hedgeDensity": 1.389,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.74
+    },
+    {
+      "printedPage": 554,
+      "section": "OFFER STRUCTURE",
+      "words": 145,
+      "numberDensity": 4.14,
+      "hedgeDensity": 1.379,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.74
+    },
+    {
+      "printedPage": 555,
+      "section": "OFFER STRUCTURE",
+      "words": 145,
+      "numberDensity": 4.14,
+      "hedgeDensity": 1.379,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.74
+    },
+    {
+      "printedPage": 556,
+      "section": "OFFER STRUCTURE",
+      "words": 142,
+      "numberDensity": 4.23,
+      "hedgeDensity": 1.408,
+      "footnoteDefinitions": 0,
+      "substanceScore": 1.75
+    },
+    {
+      "printedPage": 557,
+      "section": "OFFER STRUCTURE",
+      "words": 116,
+      "numberDensity": 2.59,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.59
+    },
+    {
+      "printedPage": 558,
+      "section": "OFFER STRUCTURE",
+      "words": 116,
+      "numberDensity": 2.59,
+      "hedgeDensity": 0.0,
+      "footnoteDefinitions": 0,
+      "substanceScore": 2.59
+    }
+  ]
+}

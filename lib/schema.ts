@@ -451,6 +451,62 @@ export const Prospectus = z.object({
 
 export type Prospectus = z.infer<typeof Prospectus>;
 
+/**
+ * The reading rule for a 563 page document, published rather than asserted.
+ *
+ * Nobody reads a prospectus end to end, and selective reading without a stated
+ * rule is cherry picking. Every page is scored the same way and the word list
+ * behind the score ships with it, so a reader can disagree with the ranking on
+ * its own terms rather than taking it on trust.
+ */
+export const DrhpTriage = z.object({
+  document: z.object({
+    title: z.string().min(1),
+    documentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    sha256: z.string().regex(/^[0-9a-f]{64}$/),
+    pdfPages: z.number().int().positive(),
+    pageOffset: z.number().int(),
+    scoredPages: z.number().int().positive(),
+  }),
+  method: z.object({
+    numberDensity: z.string().min(1),
+    hedgeDensity: z.string().min(1),
+    substanceScore: z.string().min(1),
+    minWords: z.number().int().positive(),
+    minWordsNote: z.string().min(1),
+    /** Without this the score is unfalsifiable, so it is required. */
+    hedgeLexicon: z.array(z.string().min(1)).min(5),
+    lexiconNote: z.string().min(1),
+  }),
+  sections: z
+    .array(
+      z.object({
+        section: z.string().min(1),
+        pages: z.number().int().positive(),
+        shareOfScored: z.number(),
+        numberDensity: z.number(),
+        hedgeDensity: z.number(),
+        footnoteDefinitions: z.number().int().nonnegative(),
+      }),
+    )
+    .min(2),
+  pages: z
+    .array(
+      z.object({
+        printedPage: z.number().int(),
+        section: z.string().min(1),
+        words: z.number().int().positive(),
+        numberDensity: z.number(),
+        hedgeDensity: z.number(),
+        footnoteDefinitions: z.number().int().nonnegative(),
+        substanceScore: z.number(),
+      }),
+    )
+    .min(50),
+});
+
+export type DrhpTriage = z.infer<typeof DrhpTriage>;
+
 export type Campus = z.infer<typeof Campus>;
 export type CompanyDoc = z.infer<typeof CompanyDoc>;
 export type CompanyFinancials = z.infer<typeof CompanyFinancials>;

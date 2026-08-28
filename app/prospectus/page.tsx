@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { sifyCo, prospectus, baseRate } from "@/lib/data";
+import { sifyCo, prospectus, baseRate, drhpTriage } from "@/lib/data";
 import { fundingGap, toCr } from "@/lib/diagnostics/capital";
 import { Cite } from "@/components/Cite";
 import { ScheduleVsSlip } from "@/components/ScheduleVsSlip";
+import { FluffScatter } from "@/components/FluffScatter";
 
 export const metadata: Metadata = {
   title: "Prospectus",
@@ -73,6 +74,97 @@ export default function Prospectus() {
           </Link>{" "}
           it is closer to a funding requirement that had been accumulating in
           plain sight.
+        </p>
+      </section>
+
+      <section className="border-t border-line py-14">
+        <p className="sc text-accent">How this document was read</p>
+        <h2 className="mt-3 max-w-3xl font-serif text-3xl tracking-tight">
+          Nobody reads {drhpTriage.document.pdfPages} pages. The question is
+          which <span className="tnum text-accent">40</span> to read, and why
+          those.
+        </h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+          Selective reading without a stated rule is cherry picking, and this
+          project does not get to do that while documenting other people&apos;s
+          missing denominators. So every page is scored the same way, on two
+          things that are cheap to measure and hard to fake: how many numbers it
+          carries, and how heavily it hedges. A page thick with figures and thin
+          on &ldquo;may&rdquo; and &ldquo;no assurance&rdquo; is where the issuer
+          committed to something.
+        </p>
+
+        <FluffScatter
+          pages={drhpTriage.pages}
+          lexiconSize={drhpTriage.method.hedgeLexicon.length}
+        />
+
+        <div className="mt-8 overflow-x-auto">
+          <table className="w-full min-w-[36rem] border-collapse text-sm">
+            <caption className="sr-only">
+              Prospectus sections by number and hedging density
+            </caption>
+            <thead>
+              <tr className="border-b border-line text-left text-xs text-muted">
+                <th className="py-2 pr-4 font-medium">Section</th>
+                <th className="py-2 pr-4 text-right font-medium">Pages</th>
+                <th className="py-2 pr-4 text-right font-medium">Share</th>
+                <th className="py-2 pr-4 text-right font-medium">Numbers</th>
+                <th className="py-2 text-right font-medium">Hedging</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[...drhpTriage.sections]
+                .sort((a, b) => b.pages - a.pages)
+                .slice(0, 8)
+                .map((s) => (
+                  <tr key={s.section} className="border-b border-line">
+                    <td className="py-2.5 pr-4 text-xs">
+                      {s.section.charAt(0) + s.section.slice(1).toLowerCase()}
+                    </td>
+                    <td className="py-2.5 pr-4 text-right tnum">{s.pages}</td>
+                    <td className="py-2.5 pr-4 text-right tnum">
+                      {s.shareOfScored}%
+                    </td>
+                    <td className="py-2.5 pr-4 text-right tnum">
+                      {s.numberDensity}%
+                    </td>
+                    <td
+                      className={
+                        "py-2.5 text-right tnum " +
+                        (s.section === "RISK FACTORS" ? "text-private" : "")
+                      }
+                    >
+                      {s.hedgeDensity}%
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-5 max-w-2xl leading-relaxed text-muted">
+          Risk factors carry more than twice the hedging of any other section and
+          among the fewest figures. That is fluff, measured rather than asserted.
+          Add the{" "}
+          <span className="tnum">
+            {drhpTriage.sections.find((s) => s.section === "INDUSTRY OVERVIEW")
+              ?.pages ?? 0}
+          </span>{" "}
+          pages of market study the issuer commissioned from its own consultants,
+          and roughly two fifths of this document is not evidence about the
+          company at all.
+        </p>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+          The rule also validates itself. The densest page in the entire
+          document, half numbers and no hedging at all, is printed page 49. That
+          is the capacity table below, and the score found it without being told
+          what it contained. In only{" "}
+          <span className="tnum">
+            {drhpTriage.sections.reduce((s, x) => s + x.footnoteDefinitions, 0)}
+          </span>{" "}
+          places across {drhpTriage.document.pdfPages} pages does this document
+          define its own measures, and five of them are on that one page.
         </p>
       </section>
 

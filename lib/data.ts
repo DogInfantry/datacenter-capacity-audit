@@ -6,9 +6,11 @@ import {
   CompanyDoc,
   DisclosureRegister,
   Prospectus,
+  DrhpTriage,
 } from "./schema";
 import registerRaw from "@/data/disclosure_register.json";
 import prospectusRaw from "@/data/prospectus.json";
+import triageRaw from "@/data/drhp_triage.json";
 import baseRateRaw from "@/data/base_rate.json";
 import campusesRaw from "@/data/campuses.json";
 import sifyRaw from "@/data/sify_capacity.json";
@@ -50,6 +52,8 @@ export const disclosureRegister = parse(
 );
 
 export const prospectus = parse(Prospectus, prospectusRaw, "data/prospectus.json");
+
+export const drhpTriage = parse(DrhpTriage, triageRaw, "data/drhp_triage.json");
 
 /** Every company harvested so far, data centre operators first. */
 export const companies = [sifyCo, equinix, digitalRealty, wipro, infosys];
