@@ -418,6 +418,13 @@ export const Prospectus = z.object({
     page: cited,
     unit: z.string().min(1),
     deployedAsOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    /** What the slippage band drawn against this schedule actually measures.
+     *  A literal rather than a free string, because the one way to render this
+     *  chart dishonestly is to present a transmission delay distribution as a
+     *  forecast of data centre construction. Prose carrying that caveat can be
+     *  edited away; a required field cannot. */
+    scheduleBasis: z.literal("ISTS_TRANSMISSION_ANALOGY"),
+    scheduleBasisNote: z.string().min(1),
     certifiedBy: z.string().min(1),
     source: Source,
     rows: z

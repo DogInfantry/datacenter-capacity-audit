@@ -63,6 +63,8 @@
     "page": 109,
     "unit": "INR million",
     "deployedAsOf": "2025-08-31",
+    "scheduleBasis": "ISTS_TRANSMISSION_ANALOGY",
+    "scheduleBasisNote": "The slippage band drawn against this schedule comes from inter state transmission projects, not from data centre construction. It is not a forecast of how late these towers will be. It is the delay distribution of the grid connections a campus depends on, and this same document describes an on site 230 kV substation at Chennai 02 on printed page 111. The field is required by the schema so the caveat cannot be dropped from the page without failing the build.",
     "certifiedBy": "Manohar Chowdhry & Associates, Statutory Auditor, certificate dated 16 October 2025",
     "source": {
       "label": "Sify Infinit Spaces DRHP, proposed schedule of implementation and deployment of Net Proceeds, printed page 109",

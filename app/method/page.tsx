@@ -59,6 +59,12 @@ const FORMULAS = [
     note: "The dimension that separates ordinary investor relations from a disclosure gap, and the weakest thing on this page. It is coded from what management said out loud, so it detects a company naming where a figure lives. It cannot show that a figure is unpublished: a company can publish something in a supplemental and simply not mention it while answering. Equinix and Digital Realty both publish extensive quarterly supplements.",
   },
   {
+    name: "Schedule slip band",
+    formula: "stated fiscal year end + observed slippage, at the median, the cost weighted mean and the ninetieth percentile",
+    denominator: "25 delayed inter state transmission projects, the same base rate as the grid page",
+    note: "The one exhibit that puts all three registers on one axis, and the one most easily rendered dishonestly. The base rate measures transmission, not data centre construction, so this is not a forecast of how late these towers will be. It is the delay distribution of the grid connections a campus depends on, and the prospectus itself places an on site 230 kV substation at Chennai 02 on printed page 111. That distinction is stored as a required field on the data rather than as a sentence, because a sentence can be edited away and a required field cannot. The band is drawn fainter as it extends, because a solid block at 32 months would read as a prediction. Indian fiscal years end on 31 March, so Fiscal 2029 ends in March 2029 and not in December.",
+  },
+  {
     name: "Segment share of revenue",
     formula: "segment revenue / group revenue",
     denominator: "6 annual periods where both figures are reported",

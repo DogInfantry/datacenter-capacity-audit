@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { sifyCo, prospectus } from "@/lib/data";
+import { sifyCo, prospectus, baseRate } from "@/lib/data";
 import { fundingGap, toCr } from "@/lib/diagnostics/capital";
 import { Cite } from "@/components/Cite";
+import { ScheduleVsSlip } from "@/components/ScheduleVsSlip";
 
 export const metadata: Metadata = {
   title: "Prospectus",
@@ -247,13 +248,40 @@ export default function Prospectus() {
           runs 13.7 months and the ninetieth percentile runs 32, a schedule that
           reaches Fiscal 2029 is the part of this offer worth watching.
         </p>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
-          <strong className="text-foreground">One caution on that pairing.</strong>{" "}
-          The slippage base rate measures inter state transmission projects, not
-          data centre construction. It is not a forecast of how late these towers
-          will be. It is the delay distribution of the grid connections a campus
-          depends on, and Chennai 02 is described in the same document as having
-          an on site 230 kV substation, which is a transmission level connection.
+      </section>
+
+      <section className="border-t border-line py-14">
+        <p className="sc text-accent">Where the three registers meet</p>
+        <h2 className="mt-3 max-w-3xl font-serif text-3xl tracking-tight">
+          The schedule, against the record of how late large infrastructure runs
+        </h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+          Two primary sources, one axis, neither of them ours. The solid bar is
+          the company&apos;s own deployment window from printed page{" "}
+          {prospectus.objects.page}. The band extending from it is the slippage
+          distribution computed from the Ministry of Power&apos;s tabling of its
+          own late transmission projects: {baseRate.n} projects, a median of{" "}
+          <span className="tnum">{baseRate.median_months}</span> months, a cost
+          weighted mean of{" "}
+          <span className="tnum">{baseRate.cost_weighted_mean_months}</span>, and
+          a ninetieth percentile of{" "}
+          <span className="tnum">{baseRate.p90_months}</span>.
+        </p>
+
+        <ScheduleVsSlip
+          rows={prospectus.objects.rows}
+          base={baseRate}
+          basisNote={prospectus.objects.scheduleBasisNote}
+        />
+
+        <p className="mt-6 max-w-2xl leading-relaxed text-muted">
+          The debt repayment is the only object that finishes early, because
+          repaying a loan does not require anyone to energise anything. The two
+          construction objects both run to Fiscal 2029 as stated, and at the
+          ninetieth percentile of observed transmission slippage they reach the
+          back half of 2031. That is the gap this project is named for, drawn
+          from the company&apos;s own schedule and the government&apos;s own
+          record, with no estimate of ours in between.
         </p>
       </section>
 
