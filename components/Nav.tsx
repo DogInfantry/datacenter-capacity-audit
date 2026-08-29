@@ -1,10 +1,7 @@
 import Link from "next/link";
 
-/**
- * Routes from the rejected build are not listed here. Their files are pending
- * deletion; until then they stay unlinked rather than on show.
- */
-const TABS: { href: string; label: string }[] = [];
+/** Routes from the rejected build were deleted; only live routes are listed. */
+const TABS: { href: string; label: string }[] = [{ href: "/universe", label: "Universe" }];
 
 export function Nav() {
   return (
