@@ -151,6 +151,83 @@
     "verification": "PRIMARY"
   },
 
+  "clients": [
+    {
+      "label": "Q1 FY2026",
+      "top10Amount": 3278.66,
+      "top10Share": 82.26,
+      "rows": [
+        { "rank": 1, "amount": 1780.76, "share": 44.68, "type": "Hyperscaler" },
+        { "rank": 2, "amount": 478.57, "share": 12.01, "type": "Hyperscaler" },
+        { "rank": 3, "amount": 412.73, "share": 10.35, "type": "Hyperscaler" },
+        { "rank": 4, "amount": 226.54, "share": 5.68, "type": "Enterprise" },
+        { "rank": 5, "amount": 112.67, "share": 2.83, "type": "Enterprise" },
+        { "rank": 6, "amount": 68.66, "share": 1.72, "type": "Enterprise" },
+        { "rank": 7, "amount": 68.3, "share": 1.71, "type": "Enterprise" },
+        { "rank": 8, "amount": 53.63, "share": 1.35, "type": "Enterprise" },
+        { "rank": 9, "amount": 42.64, "share": 1.07, "type": "Enterprise" },
+        { "rank": 10, "amount": 34.16, "share": 0.86, "type": "Enterprise" }
+      ]
+    },
+    {
+      "label": "FY2025",
+      "top10Amount": 11774.71,
+      "top10Share": 82.43,
+      "rows": [
+        { "rank": 1, "amount": 6615.32, "share": 46.31, "type": "Hyperscaler" },
+        { "rank": 2, "amount": 1602.43, "share": 11.22, "type": "Hyperscaler" },
+        { "rank": 3, "amount": 1543.88, "share": 10.81, "type": "Hyperscaler" },
+        { "rank": 4, "amount": 812.16, "share": 5.69, "type": "Enterprise" },
+        { "rank": 5, "amount": 409.1, "share": 2.86, "type": "Enterprise" },
+        { "rank": 6, "amount": 288.01, "share": 2.02, "type": "Enterprise" },
+        { "rank": 7, "amount": 148.56, "share": 1.04, "type": "Enterprise" },
+        { "rank": 8, "amount": 140.15, "share": 0.98, "type": "Hyperscaler" },
+        { "rank": 9, "amount": 117.7, "share": 0.82, "type": "Enterprise" },
+        { "rank": 10, "amount": 97.4, "share": 0.68, "type": "Enterprise" }
+      ]
+    },
+    {
+      "label": "FY2024",
+      "top10Amount": 8851.48,
+      "top10Share": 79.44,
+      "rows": [
+        { "rank": 1, "amount": 4223.44, "share": 37.91, "type": "Hyperscaler" },
+        { "rank": 2, "amount": 1552.02, "share": 13.93, "type": "Hyperscaler" },
+        { "rank": 3, "amount": 1361.92, "share": 12.22, "type": "Hyperscaler" },
+        { "rank": 4, "amount": 640.5, "share": 5.75, "type": "Enterprise" },
+        { "rank": 5, "amount": 287.63, "share": 2.58, "type": "Enterprise" },
+        { "rank": 6, "amount": 269.14, "share": 2.42, "type": "Enterprise" },
+        { "rank": 7, "amount": 137.28, "share": 1.23, "type": "Hyperscaler" },
+        { "rank": 8, "amount": 134.17, "share": 1.2, "type": "Enterprise" },
+        { "rank": 9, "amount": 126.98, "share": 1.14, "type": "Enterprise" },
+        { "rank": 10, "amount": 118.4, "share": 1.06, "type": "Enterprise" }
+      ]
+    },
+    {
+      "label": "FY2023",
+      "top10Amount": 8315.33,
+      "top10Share": 81.43,
+      "rows": [
+        { "rank": 1, "amount": 3899.22, "share": 38.18, "type": "Hyperscaler" },
+        { "rank": 2, "amount": 1597.13, "share": 15.64, "type": "Hyperscaler" },
+        { "rank": 3, "amount": 1350.3, "share": 13.22, "type": "Hyperscaler" },
+        { "rank": 4, "amount": 521.64, "share": 5.11, "type": "Enterprise" },
+        { "rank": 5, "amount": 201.79, "share": 1.98, "type": "Enterprise" },
+        { "rank": 6, "amount": 192.23, "share": 1.88, "type": "Enterprise" },
+        { "rank": 7, "amount": 153.85, "share": 1.51, "type": "Hyperscaler" },
+        { "rank": 8, "amount": 148.69, "share": 1.46, "type": "Enterprise" },
+        { "rank": 9, "amount": 140.71, "share": 1.38, "type": "Enterprise" },
+        { "rank": 10, "amount": 109.77, "share": 1.07, "type": "Enterprise" }
+      ]
+    }
+  ],
+  "clientsSource": {
+    "label": "Sify Infinit Spaces DRHP, revenue from operations attributable to the top 10 clients, printed page 36. Client names are withheld in the filing itself for confidentiality and lack of consent, and the issuer notes the top 10 may not be the same clients in each period. Clients 1, 2 and 3 are Hyperscalers in every period.",
+    "page": 36,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
+
   "capacityDefinitions": {
     "engineeredToSupport": {
       "quote": "Built Capacity is the maximum IT load a data center is engineered to support, based on business requirements, space planning, and infrastructure feasibility.",

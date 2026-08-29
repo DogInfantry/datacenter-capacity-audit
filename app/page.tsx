@@ -3,6 +3,7 @@ import Link from "next/link";
 import { sisl } from "@/lib/data";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
+import { ClientConcentration } from "@/components/ClientConcentration";
 
 export const metadata: Metadata = {
   title: "Built, Installed, Sold",
@@ -39,7 +40,24 @@ export default function Home() {
     { k: "Sold capacity", v: `${fy25.operationalMW}`, u: "MW, earning revenue" },
   ];
 
+  const clientsLatest = sisl.clients[0];
+  const clientsFirst = sisl.clients[sisl.clients.length - 1];
+  const top3 = clientsLatest.rows
+    .filter((r) => r.rank <= 3)
+    .reduce((t, r) => t + r.share, 0);
+  const longContractShare = Object.fromEntries(
+    sisl.contracts.map((c) => [c.label, c.longContractRevenueShare]),
+  );
+
   const argument: [string, string][] = [
+    [
+      "Three customers are two thirds of the revenue.",
+      `Clients 1, 2 and 3 are Hyperscalers in every period and together are ${top3.toFixed(2)}% of revenue. Client 1 alone went from ${clientsFirst.rows[0].share}% to ${clientsLatest.rows[0].share}%. The AI buildout, here, is one customer getting larger.`,
+    ],
+    [
+      "The contract security and the concentration are the same three names.",
+      `Printed page ${sisl.contractsSource.page} reports ${longContractShare[clientsLatest.label].toFixed(2)}% of revenue on contracts of at least seven years and calls it durability. That is the same number, to the decimal, in all four periods. The document never joins the two tables.`,
+    ],
     [
       "Returns fell while the estate doubled.",
       `Built capacity went from ${first.builtMW} MW to ${fy25.builtMW}. Return on capital went from ${first.roce}% to ${fy25.roce}%.`,
@@ -65,7 +83,9 @@ export default function Home() {
           Sify Infinit Spaces · Initiating · Draft red herring prospectus, 16 October 2025
         </p>
         <h1 className="mt-4 max-w-4xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
-          Capacity was capitalised and financed faster than it was sold
+          India is planning in gigawatts.
+          <br />
+          Three customers are buying them.
         </h1>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_20rem]">
@@ -104,6 +124,21 @@ export default function Home() {
       <section className="space-y-6 border-t border-line py-12">
         <Exhibit
           n={1}
+          title="The contract book the prospectus calls durable is three Hyperscalers"
+          units="Share of revenue from operations, per cent. Four periods, most recent first."
+          source={sisl.clientsSource.label}
+          page={sisl.clientsSource.page}
+        >
+          <ClientConcentration
+            periods={sisl.clients}
+            longContractShare={longContractShare}
+            page={sisl.clientsSource.page}
+            contractPage={sisl.contractsSource.page}
+          />
+        </Exhibit>
+
+        <Exhibit
+          n={2}
           title="Built capacity doubled. Return on capital fell."
           units={`Indexed, ${first.label} = 100. Full fiscal years only.`}
           source="Sify Infinit Spaces DRHP, key performance indicators and return on capital employed."
@@ -117,7 +152,7 @@ export default function Home() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Exhibit
-            n={2}
+            n={3}
             title="Two towers hold a quarter of the estate and sell almost none of it"
             units={`Megawatts by data centre, as at ${sisl.sitesAsOf}. Bars nest: sold inside commissioned inside engineered.`}
             source={sisl.sitesSource.label}
@@ -127,7 +162,7 @@ export default function Home() {
           </Exhibit>
 
           <Exhibit
-            n={3}
+            n={4}
             title="The same megawatts earn far more elsewhere, and lose money doing it"
             units="Revenue per MW, Rs millions, across the issuer's own chosen peer set."
             source={sisl.peersSource.label}

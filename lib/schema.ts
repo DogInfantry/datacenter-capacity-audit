@@ -588,6 +588,26 @@ export const Sisl = z
       )
       .min(3),
     peersSource: PagedSource,
+    clients: z
+      .array(
+        z.object({
+          label: z.string().min(1),
+          top10Amount: z.number().positive(),
+          top10Share: z.number().positive(),
+          rows: z
+            .array(
+              z.object({
+                rank: z.number().int().positive(),
+                amount: z.number().positive(),
+                share: z.number().positive(),
+                type: z.enum(["Hyperscaler", "Enterprise"]),
+              }),
+            )
+            .length(10),
+        }),
+      )
+      .min(3),
+    clientsSource: PagedSource,
     capacityDefinitions: z.object({
       engineeredToSupport: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
       availableToSell: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
@@ -619,6 +639,38 @@ export const Sisl = z
         path: ["peers"],
         message: "exactly one peer row must be marked self",
       });
+    }
+    // The finding, asserted rather than described.
+    //
+    // Printed page 46 gives the share of revenue on contracts of at least seven
+    // years with five years of average life remaining. Printed page 36 gives
+    // revenue by client. In every period the first equals the sum of the top
+    // three clients, all three of them Hyperscalers, to the second decimal. The
+    // issuer never joins those two tables, and joined they say the long contract
+    // base and the client concentration are the same three counterparties.
+    //
+    // If a future edit breaks the identity, the claim on the page has stopped
+    // being true and the build should fail rather than the sentence going stale.
+    for (const c of d.clients) {
+      const contract = d.contracts.find((x) => x.label === c.label);
+      if (!contract) continue;
+      const top3 = c.rows
+        .filter((r) => r.rank <= 3)
+        .reduce((t, r) => t + r.share, 0);
+      if (Math.abs(top3 - contract.longContractRevenueShare) > 0.01) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["clients"],
+          message: `${c.label}: top three clients sum to ${top3.toFixed(2)} against a long contract share of ${contract.longContractRevenueShare}. The reconciliation that carries the finding no longer holds.`,
+        });
+      }
+      if (c.rows.filter((r) => r.rank <= 3).some((r) => r.type !== "Hyperscaler")) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["clients"],
+          message: `${c.label}: the filing states clients 1, 2 and 3 are Hyperscalers in every period`,
+        });
+      }
     }
     // The capacity rungs must descend. Built is what a site is engineered to
     // support, installed is what is commissioned, operational is what is sold,
