@@ -59,7 +59,8 @@ Recorded with the finding each one produced, because a tick is not a result.
   because Sify is asked 0.43 unit economics questions a call against Digital Realty's 0.81, so the
   denominator stays on the page. The single sharpest instance also runs against the thesis: asked
   for realization per megawatt, Sify declined and then described the reverse working, which is the
-  calculation the financials page performs. The company confirmed the method in its own words.
+  calculation this project performs in `revenuePerMW`. The company confirmed the method in its own
+  words. That page has since been deleted, but the diagnostic and its denominator survive it.
 - **A measurement whose limit had to be written down with it.** The published elsewhere dimension
   is coded from what management says on the call, so it can detect a company naming where a figure
   lives and cannot show that a figure is unpublished. Equinix and Digital Realty both publish
@@ -69,6 +70,26 @@ Recorded with the finding each one produced, because a tick is not a result.
 - **A defect in shipped work, found by tooling rather than by eye.** The first chart palette had
   two hues 10.1 apart on the normal vision scale against a floor of 15. Full colour readers could
   not separate them. Replaced with a validated set and re-checked in both themes.
+
+- **The drift, caught and reversed.** This project began as the brief's eighteen name coverage
+  product, narrowed over several sessions into a single company teardown, and was pulled back on
+  2026-08-30. It was not caught by a review. It was caught by a symptom: a data file holding Anant
+  Raj at 21 MW live against 307 announced was rendering on no page at all, because its only page
+  had been deleted. The coverage universe and matrix were restored the same day and the four routes
+  from the abandoned direction were removed. The full log is published on `/methodology`, because
+  the failure mode is the instructive part: every step toward the narrow version was a reasonable
+  answer to the last instruction.
+- **Three deep dives, three different units.** Sify from a filed prospectus cited by printed page,
+  Anant Raj on delivery where announced and operational and handed over are three separate numbers,
+  and Netweb on an order book because it manufactures servers and owns no estate. The third is
+  deliberately absent from the two by two rather than forced onto it, since an order book and a
+  megawatt do not belong on the same axes. That completes the brief's own Recommendation 1.
+- **The invariant register, checked against the code.** Thirty build guards are published on
+  `/methodology` with what each protects and the message it emits. Three tests assert that every
+  documented fragment still exists in the schema source, that each identifies exactly one guard,
+  and that the count in the source equals the count documented. The mechanism caught its own author
+  during the session that built it: a new guard on the limits list failed the count test
+  immediately, which is why the thirtieth row exists.
 
 ## Open, and what unblocks it
 
@@ -82,8 +103,16 @@ Recorded with the finding each one produced, because a tick is not a result.
   2016 to 2026 and would close most of the gap. FY2016 and FY2017 already have their stated
   margins in the doc and could be checked as well, but they also need annual operating income,
   which the store does not carry before 2020.
-- **Per company pages and compare.** Blocked on the above. One company does not need a company
-  page.
+- **The comparison tool.** Three company pages now exist, so the objection that one company does
+  not need a company page has expired. A `/compare` route picking two to four names is the brief's
+  remaining product surface, and it is blocked on something real: the three covered names are
+  measured on three different units, so a side by side table would either compare megawatts against
+  an order book or leave most cells empty. It waits on a fourth and fifth name that share a unit
+  with an existing one.
+- **The six pillar forensic scorecard.** In the brief, never built, and deliberately not faked. No
+  scoring engine exists in this repository; the two by two plots two stated figures against each
+  other so a reader can argue with a source rather than with a hidden weighting. Building it needs
+  cash flow and balance sheet data for more than one name, which is the same blocker as below.
 - **The rest of the prospectus teardown.** The document is read and partly extracted: the offer,
   the objects and deployment schedule, and the capacity definitions, each cited by printed page.
   Still to extract, with the page map already recorded in
@@ -102,8 +131,11 @@ Recorded with the finding each one produced, because a tick is not a result.
   what the measure is for: capacity and funding questions are adjacent to unit economics rather
   than the same thing, and mixing them in would widen the denominator without sharpening the
   claim.
-- **The Indian four.** Netweb, Anant Raj, E2E and Techno Electric. No structured source exists;
-  they need Screener exports by hand, which is why they trail the structured set.
+- **The Indian four.** Netweb and Anant Raj now have pages, but built from research note figures
+  rather than statements: capacity and delivery for one, order book and revenue mix for the other,
+  with no margin, no cash flow and no client table on either. Both pages list what was not read
+  rather than hiding it. E2E and Techno Electric have nothing yet. All four still need Screener
+  exports by hand, because no structured source exists, which is why they trail the structured set.
 
 ## Terminal, not pending
 

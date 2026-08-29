@@ -9,29 +9,48 @@ failures worth knowing about before touching the data, see [docs/GOTCHAS.md](doc
 Next.js 16 App Router, TypeScript, Tailwind 4, Zod. Static output, no database and no API routes.
 Python for the offline pipeline. Node 24, npm 11, Python 3.14. Deploy target Vercel.
 
-## The thesis, and why it is not a sector dashboard
+## The thesis, and the shape that carries it
 
-The obvious version of this project picks a theme, curates a universe, scores it and ships a
-dashboard. That produces a ranking nobody can check.
+Announced capacity is reported with more confidence than the evidence behind it carries. The
+product separates the announcement from the delivery on the one unit operators are comparable on,
+then reads the companies where a document exists to work out what a delivered megawatt is worth.
 
-What replaces the scorecard is one thesis in three registers, each a different record of the same
-gap between claim and delivery.
+The shape is coverage plus worked examples, not a score.
 
-**Grid, the physical register.** How late Indian inter state transmission actually runs, from the
-Ministry of Power's own answer to Parliament. Cost weighted slip of 13.7 months against a median
-of 7, because large projects slip harder than small ones and a gigawatt scale campus does not
-interconnect through a small one. Every project on that list was still running when tabled, so
-each delay is anticipated rather than realised: the observations are right censored and the figure
-is a floor.
+**Coverage.** Fourteen listed names, announced megawatts and live megawatts in separate columns,
+every row carrying how far its figure has actually been checked. Names that own no megawatts sit in
+a watchlist and are deliberately absent from the two by two, because an order book and a megawatt
+do not belong on the same axes.
 
-**Disclosure, what management will not put a number on.** Coded from earnings calls. The measure is
-two dimensional and that is the point: declining to quantify unit economics is the industry norm,
-so a refusal is only interesting when the answer is published nowhere at all. Measured as a rate
-with a visible denominator over complete topic partitions, never a keyword search.
+**Three deep dives, each on a different unit.** Sify read from a filed prospectus and cited by
+printed page. Anant Raj on delivery, where announced, operational and handed over are three
+different numbers. Netweb on an order book, because it manufactures the servers and owns no estate
+at all.
 
-**Accounts, what the statements eventually show.** Segment economics, capital intensity and derived
-unit economics from filings, with the harvest method validated against companies that publish the
-answer.
+**No composite score.** There is no scoring engine in this repository and none is implied. The two
+by two plots announced against live megawatts directly, both of them stated figures, so a reader
+can disagree with a placement by disagreeing with a source rather than with a weighting nobody
+published. The brief's six pillar forensic scorecard remains unbuilt, and `/methodology` says so
+rather than gesturing at one.
+
+### The register framing, and why it is no longer the architecture
+
+An earlier direction organised the project as one thesis in three registers, grid, disclosure and
+accounts, explicitly in place of a sector dashboard. That framing is what narrowed an eighteen name
+coverage product into a single company teardown over several sessions, and it was reversed on
+2026-08-30. The work itself was not wasted, but it is now evidence feeding the product rather than
+the product's structure:
+
+- **Grid.** The transmission base rate still runs, and now sits under the deployment timeline on
+  `/offer` as a slippage band against the issuer's own certified schedule.
+- **Disclosure.** Harvested and validated, currently rendering on no page. Recorded as such in the
+  README rather than advertised as a feature.
+- **Accounts.** Feeds the Sify deep dive and the peer comparison. The reconciliation check against
+  Equinix's stated adjusted EBITDA remains the method's external validation.
+
+`/methodology` carries the full pivot log, because the failure is the instructive part: every step
+toward the narrow version was a reasonable answer to the last instruction, which is exactly why it
+went unnoticed.
 
 ## Layers
 
@@ -75,22 +94,34 @@ compose rather than compete.
 ## File map
 
 ```
-app/page.tsx              landing: three registers, computed stat tiles
-app/grid/page.tsx         transmission base rate, ownership split, campus ledger
-app/disclosure/page.tsx   capacity ladder, graded claims, measured refusal rates
-app/financials/page.tsx   segment economics, cross company ratios, the external check
-app/prospectus/page.tsx   offer, capacity definitions, objects, schedule against slippage
-app/method/page.tsx       every formula with its denominator, provenance rules, known limits
-app/layout.tsx            fonts, metadata, Nav
-app/globals.css           theme tokens in all three scopes, validated palette
+app/page.tsx                 sector view: stat tiles, the two by two, operator cards
+app/universe/page.tsx        coverage matrix, filterable, covered names link through
+app/offer/page.tsx           offer anatomy, funding gap, net debt bridge, schedule against slippage
+app/company/[ticker]/page.tsx  the three deep dives, one branch each
+app/methodology/page.tsx     sourcing counted, the invariant register, formulas, limits, pivot log
+app/layout.tsx               fonts, metadata, Nav
+app/globals.css              theme tokens in all three scopes, validated palette
 
-components/Nav.tsx               five tabs
-components/Cite.tsx              provenance tag with hover source
-components/CapacityStep.tsx      commissioned MW step chart
-components/CapexVsCfo.tsx        grouped bars, one axis
-components/DefinitionLadder.tsx  four capacity definitions, dated per rung
+components/Nav.tsx               Universe, The offer, Method
+components/Visual.tsx            the vocabulary: Icon, Monogram, Pictogram, StatTile
+components/Exhibits.tsx          Exhibit chrome, Estate, RevenuePerMW
+components/ExecutionAmbition.tsx the two by two, announced against live
+components/UniverseMatrix.tsx    the coverage table, bucket and verdict filters
+components/OfferAnatomy.tsx      Sankey, funding gap, net debt bridge
 components/ScheduleVsSlip.tsx    stated deployment against the slippage distribution
-components/FluffScatter.tsx      every prospectus page by numbers against hedging
+components/ClientConcentration.tsx  the reconciliation the prospectus never performs
+components/CapacityVsReturns.tsx indexed built capacity against return on capital
+components/SiteMap.tsx           the estate, bubble area is built MW
+components/AnantRajBody.tsx      the delivery case
+components/NetwebBody.tsx        the order book case
+components/NetwebOrderBook.tsx   one order against the book, beside Sify's revenue share
+components/Sourcing.tsx          the three tiers, and the document as a page grid
+components/InvariantLedger.tsx   every build guard, grouped by what it protects
+
+components/CapacityStep.tsx      orphaned, wanted for the capacity ladder work
+components/CapexVsCfo.tsx        orphaned, wanted once the cash flow statement is extracted
+components/Cite.tsx              orphaned, belongs on the methodology page
+components/DefinitionLadder.tsx  orphaned, four capacity definitions dated per rung
 
 lib/schema.ts                        all Zod schemas and invariants
 lib/data.ts                          validated loaders, companies array, helpers
@@ -100,14 +131,23 @@ lib/diagnostics/narrative.ts         segmentShare
 lib/diagnostics/reconcile.ts         reconcileMargin, PASS FAIL NOT_RECONCILABLE
 lib/diagnostics/disclosure.ts        refusalRate, publishedElsewhereSplit, pressurePerCall
 lib/diagnostics/schedule.ts          fiscal year math, slipBand
-lib/diagnostics/diagnostics.test.mjs 42 tests, run with node --test
+lib/diagnostics/offer.ts             useOfProceeds, fundingGapByObject, netDebtBridge
+lib/diagnostics/netweb.ts            orderBookConcentration
+lib/diagnostics/sourcing.ts          verificationTally, citedPages
+lib/diagnostics/diagnostics.test.mjs 49 tests, run with node --test
 
+data/universe.json                 8 operators plus a 6 name watchlist, feeds the 2x2 and matrix
+data/sisl.json                     Sify Infinit Spaces, every block page cited
+data/anantraj.json                 capacity ladder, the source conflict, what was not read
+data/netweb.json                   order book, the anchor order, revenue mix, what was not read
+data/prospectus.json               offer, capacity definitions, objects, all page cited
+data/invariants.json               every build guard, checked against lib/schema.ts by the tests
+data/method.json                   formulas with denominators, known limits, the pivot log
 data/base_rate.json                generated by the pipeline, do not hand edit
-data/campuses.json                 3 seeded campuses, secondary at best
+data/campuses.json                 3 seeded campuses, conflicts with universe.json by design
 data/sify_capacity.json            capacity ladder, 3 claims, 5 refusals
 data/companies/*.json              5 companies, normalised
-data/disclosure_register.json      refusal rates, complete topic partitions
-data/prospectus.json               offer, capacity definitions, objects, all page cited
+data/disclosure_register.json      refusal rates, complete topic partitions, renders nowhere yet
 data/drhp_triage.json              every page scored on numbers and hedging, with the lexicon
 data/raw/                          Layer 0 evidence, unedited
 
