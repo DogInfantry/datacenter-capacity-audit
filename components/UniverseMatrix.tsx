@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Monogram, Icon } from "./Visual";
 
@@ -67,10 +68,14 @@ const label = (s: string) =>
 export function UniverseMatrix({
   operators,
   watchlist,
+  covered,
 }: {
   operators: Op[];
   watchlist: Watch[];
+  /** Tickers with a deep-dive. The route owns that list, not this table. */
+  covered: string[];
 }) {
+  const hasPage = new Set(covered);
   const [bucket, setBucket] = useState("ALL");
   const [verdict, setVerdict] = useState("ALL");
 
@@ -174,7 +179,16 @@ export function UniverseMatrix({
                   <span className="flex items-center gap-2">
                     <Monogram name={r.parent} size={22} />
                     <span>
-                      <span className="block">{r.name}</span>
+                      {hasPage.has(r.ticker) ? (
+                        <Link
+                          href={`/company/${r.ticker}`}
+                          className="block underline decoration-line underline-offset-4 hover:text-accent"
+                        >
+                          {r.name}
+                        </Link>
+                      ) : (
+                        <span className="block">{r.name}</span>
+                      )}
                       {r.parent !== r.name && (
                         <span className="block text-xs text-muted">via {r.parent}</span>
                       )}

@@ -1,23 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sisl, universe, anantRaj } from "@/lib/data";
+import { sisl, universe, anantRaj, netweb, COVERED_TICKERS } from "@/lib/data";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
 import { ClientConcentration } from "@/components/ClientConcentration";
 import { SiteMap } from "@/components/SiteMap";
 import { Pictogram, StatTile, Monogram, type IconName } from "@/components/Visual";
 import { AnantRajBody } from "@/components/AnantRajBody";
+import { NetwebBody } from "@/components/NetwebBody";
 
 /**
  * Company deep-dives.
  *
- * Sify is read from a filed document. Anant Raj is read from a research note and
- * says so on every figure. Netweb gets a page when its data is seeded; until
- * then the route refuses rather than rendering a shell, so a reader never meets
- * a page that looks finished and is not.
+ * Sify is read from a filed document. Anant Raj and Netweb are read from a
+ * research note and say so on every figure. A ticker outside this list refuses
+ * rather than rendering a shell, so a reader never meets a page that looks
+ * finished and is not.
+ *
+ * Sify and Anant Raj are operators and carry megawatts. Netweb does not: it
+ * builds the servers that go inside somebody else's estate, so it lives in the
+ * universe watchlist rather than the operator table and is read on its order
+ * book. Anything here that looks a company up has to handle both.
+ *
+ * The list itself lives in lib/data.ts, because the front page and the coverage
+ * matrix need the same one and three copies of it would drift apart.
  */
-const COVERED = ["SIFY", "ANANTRAJ"] as const;
+const COVERED = COVERED_TICKERS;
 
 export function generateStaticParams() {
   return COVERED.map((ticker) => ({ ticker }));
@@ -27,8 +36,16 @@ export async function generateMetadata({
   params,
 }: PageProps<"/company/[ticker]">): Promise<Metadata> {
   const { ticker } = await params;
-  const row = universe.operators.find((o) => o.ticker === ticker);
-  return { title: row ? row.listedParent : "Company", description: row?.note };
+  // Operators first, then the watchlist, because Netweb carries no megawatts and
+  // sits only in the second. Looking in one place returned an untitled page.
+  const row =
+    universe.operators.find((o) => o.ticker === ticker) ??
+    universe.watchlist.find((w) => w.ticker === ticker);
+  if (!row) return { title: "Company" };
+  return {
+    title: "listedParent" in row ? row.listedParent : row.name,
+    description: row.note,
+  };
 }
 
 export default async function CompanyPage({ params }: PageProps<"/company/[ticker]">) {
@@ -45,6 +62,22 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
           { rung: "Installed", mw: stub.installedMW },
           { rung: "Sold", mw: stub.operationalMW },
         ]}
+      />
+    );
+  }
+
+  if (ticker === "NETWEB") {
+    // The comparison is Sify's client concentration, computed here from the
+    // filed table rather than typed, the same way Anant Raj is handed Sify's
+    // capacity rungs above.
+    const latest = sisl.clients[0];
+    return (
+      <NetwebBody
+        data={netweb}
+        sify={{
+          sharePct: latest.rows.filter((r) => r.rank <= 3).reduce((t, r) => t + r.share, 0),
+          page: sisl.clientsSource.page,
+        }}
       />
     );
   }

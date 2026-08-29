@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { universe } from "@/lib/data";
+import { universe, COVERED_TICKERS } from "@/lib/data";
 import { UniverseMatrix } from "@/components/UniverseMatrix";
 import { StatTile, type IconName } from "@/components/Visual";
 
@@ -88,7 +88,11 @@ export default function UniversePage() {
       </section>
 
       <section className="border-t border-line py-12">
-        <UniverseMatrix operators={universe.operators} watchlist={universe.watchlist} />
+        <UniverseMatrix
+          operators={universe.operators}
+          watchlist={universe.watchlist}
+          covered={[...COVERED_TICKERS]}
+        />
       </section>
 
       <section className="border-t border-line py-12">

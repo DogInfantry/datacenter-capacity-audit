@@ -10,10 +10,12 @@ import {
   Sisl,
   Universe,
   AnantRaj,
+  Netweb,
 } from "./schema";
 import sislRaw from "@/data/sisl.json";
 import universeRaw from "@/data/universe.json";
 import anantRajRaw from "@/data/anantraj.json";
+import netwebRaw from "@/data/netweb.json";
 import registerRaw from "@/data/disclosure_register.json";
 import prospectusRaw from "@/data/prospectus.json";
 import triageRaw from "@/data/drhp_triage.json";
@@ -69,6 +71,19 @@ export const universe = parse(Universe, universeRaw, "data/universe.json");
 
 /** Capacity and delivery only. No filing has been read for this name. */
 export const anantRaj = parse(AnantRaj, anantRajRaw, "data/anantraj.json");
+
+/** Order book rather than megawatts, because this one builds the servers. */
+export const netweb = parse(Netweb, netwebRaw, "data/netweb.json");
+
+/**
+ * Tickers with a deep-dive route, in one place.
+ *
+ * Three files need to know this: the route that generates the pages, the front
+ * page that decides which cards carry a link, and the coverage matrix. Kept as
+ * three lists they drift, and the failure is silent, which is how this project
+ * previously ended up with a data file rendering on no page at all.
+ */
+export const COVERED_TICKERS = ["SIFY", "ANANTRAJ", "NETWEB"] as const;
 
 /**
  * Full fiscal years only, indexed to the first of them.

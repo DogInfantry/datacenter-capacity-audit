@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { universe, sisl } from "@/lib/data";
+import { universe, sisl, COVERED_TICKERS } from "@/lib/data";
 import { Exhibit } from "@/components/Exhibits";
 import { ExecutionAmbition } from "@/components/ExecutionAmbition";
 import { StatTile, Monogram, type IconName } from "@/components/Visual";
@@ -9,8 +9,15 @@ export const metadata: Metadata = {
   title: "Built, Installed, Sold",
 };
 
-/** Tickers with a deep-dive. Everything else renders as a card without a link. */
-const COVERED = new Set(["SIFY", "ANANTRAJ"]);
+/**
+ * Tickers with a deep-dive. Everything else renders as a card without a link.
+ *
+ * Netweb is on this list and will never match a card, because the cards are
+ * built from the operator table and Netweb owns no megawatts. That is the
+ * honest outcome rather than an oversight: it does not belong on these axes, so
+ * it is reached from the row of links under the grid instead.
+ */
+const COVERED = new Set<string>(COVERED_TICKERS);
 
 export default function Home() {
   const ops = universe.operators;
@@ -165,6 +172,12 @@ export default function Home() {
             className="underline decoration-line underline-offset-4 hover:text-accent"
           >
             Anatomy of the Sify offer
+          </Link>
+          <Link
+            href="/company/NETWEB"
+            className="underline decoration-line underline-offset-4 hover:text-accent"
+          >
+            Netweb, covered on its order book rather than megawatts
           </Link>
         </div>
       </section>

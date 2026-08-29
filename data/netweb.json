@@ -1,0 +1,63 @@
+{
+  "_note": "Netweb is the third worked example in the brief and the only one with no megawatts. It builds the servers that go inside other people's data centres, so a capacity ladder has nothing to stand on and this file carries an order book instead. Nothing here is read from a filing. Every figure is a research note figure, tagged SECONDARY, and the page says so rather than borrowing the confidence of the Sify pages.",
+  "entity": "Netweb Technologies",
+  "listedParent": "Netweb Technologies",
+  "ticker": "NETWEB",
+  "exchange": "NSE",
+  "role": "AI server and high performance computing manufacturer, NVIDIA manufacturing partner",
+
+  "orderBook": {
+    "valueCr": 2507,
+    "asOf": "2026-06-30",
+    "note": "Total order book as reported. The research note gives one figure and no split by customer, so the only counterparty that can be separated out is the one named below."
+  },
+
+  "anchorOrder": {
+    "name": "IndiaAI Mission",
+    "counterparty": "Government of India, IndiaAI Mission",
+    "kind": "GOVT",
+    "valueCr": 1734,
+    "awarded": "2025-09",
+    "awardedNote": "Early September 2025. The research note gives the month and not the day, so this figure carries month precision and is written that way.",
+    "deliveryDue": "H1 FY27",
+    "scope": "Supply of NVIDIA Blackwell powered servers."
+  },
+
+  "concentrationCaveat": "The order book is stated at 30 June 2026 and this order was awarded in September 2025 with delivery due in H1 FY27. Anything already delivered has left the book. The share is therefore a ceiling on the concentration at that date rather than a measurement of it, and it is drawn as one.",
+
+  "revenueMix": [
+    {
+      "period": "Q3 FY26",
+      "span": "QUARTER",
+      "basis": "One quarter",
+      "aiSharePct": 64,
+      "note": "AI systems as a share of revenue in the third quarter."
+    },
+    {
+      "period": "9M FY26",
+      "span": "NINE_MONTHS",
+      "basis": "Nine months",
+      "aiSharePct": 48,
+      "note": "The same share across the nine months that contain that quarter."
+    }
+  ],
+
+  "valuation": {
+    "trailingPE": 99,
+    "note": "Roughly 99 times trailing earnings. The brief's own verdict is genuinely executing, and priced for perfection."
+  },
+
+  "notRead": [
+    "Annual report and audited financial statements",
+    "Revenue, margins and cash flow in rupees",
+    "The order book split by customer, beyond the single order named here",
+    "Receivables and working capital, which is where a lumpy project business hides",
+    "Any figure traced to a document filed with a regulator"
+  ],
+
+  "source": {
+    "label": "Blueprint research note, BharatAI Infra Scope, compiled from company filings, brokerage notes and press reporting. No Netweb document has been opened inside this repository, so nothing on this page is traced to a primary source.",
+    "asOf": "2026-08",
+    "verification": "SECONDARY"
+  }
+}

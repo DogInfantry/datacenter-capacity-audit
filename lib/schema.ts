@@ -840,6 +840,108 @@ export const AnantRaj = z
 
 export type AnantRaj = z.infer<typeof AnantRaj>;
 
+/**
+ * Netweb, the name with no megawatts.
+ *
+ * The other two deep dives are capacity stories and this one cannot be. Netweb
+ * builds the servers that go inside somebody else's data centre, so the unit it
+ * is measured on is an order book. The refinements below protect the single
+ * arithmetic claim the page makes: that one named order sits inside the book it
+ * is being measured against, and was awarded before that book was struck.
+ */
+export const Netweb = z
+  .object({
+    entity: z.string().min(1),
+    listedParent: z.string().min(1),
+    ticker: z.string().min(1),
+    exchange: z.string().min(1),
+    role: z.string().min(1),
+    orderBook: z.object({
+      valueCr: z.number().positive(),
+      asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      note: z.string().min(1),
+    }),
+    anchorOrder: z.object({
+      name: z.string().min(1),
+      counterparty: z.string().min(1),
+      kind: z.enum(["GOVT", "HYPERSCALER", "ANCHOR_TENANT", "OTHER"]),
+      valueCr: z.number().positive(),
+      /** Month precision is allowed. The note gives September 2025, not a day. */
+      awarded: z.string().regex(/^\d{4}-\d{2}(-\d{2})?$/),
+      awardedNote: z.string().min(1),
+      deliveryDue: z.string().min(1),
+      scope: z.string().min(1),
+    }),
+    /** Why the share is a ceiling rather than a measurement. Required, because
+     *  prose carrying that caveat can be edited away and a field cannot. */
+    concentrationCaveat: z.string().min(1),
+    revenueMix: z
+      .array(
+        z.object({
+          period: z.string().min(1),
+          /** A literal rather than a free string, because the exhibit claims one
+           *  period sits inside the other and that claim has to be checkable. */
+          span: z.enum(["QUARTER", "NINE_MONTHS"]),
+          basis: z.string().min(1),
+          aiSharePct: z.number().min(0).max(100),
+          note: z.string().min(1),
+        }),
+      )
+      .min(2),
+    valuation: z.object({
+      trailingPE: z.number().positive(),
+      note: z.string().min(1),
+    }),
+    /** What has deliberately not been read. Rendered on the page, not hidden. */
+    notRead: z.array(z.string().min(1)).min(1),
+    source: Source,
+  })
+  .superRefine((d, ctx) => {
+    // An order cannot be larger than the book that holds it. If that inverts, a
+    // figure was mistyped and the concentration exhibit is arithmetic nonsense.
+    if (d.anchorOrder.valueCr > d.orderBook.valueCr) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["anchorOrder", "valueCr"],
+        message: `the ${d.anchorOrder.name} order of ${d.anchorOrder.valueCr} cr exceeds the ${d.orderBook.valueCr} cr order book it is measured against`,
+      });
+    }
+    // The book must be struck after the award, or the order is not inside it and
+    // the share the page draws is measuring nothing. Both dates are zero padded,
+    // so a string comparison is a date comparison, and the award is allowed to
+    // carry month precision while the book carries a day.
+    if (!(d.orderBook.asOf > d.anchorOrder.awarded)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["orderBook", "asOf"],
+        message: `the order book at ${d.orderBook.asOf} does not postdate the award at ${d.anchorOrder.awarded}, so the order cannot be inside it`,
+      });
+    }
+    // The mix exhibit draws a quarter against the nine months that contain it
+    // and says so out loud. Exactly one of each, or that sentence is describing
+    // rows which are not on the page.
+    for (const s of ["QUARTER", "NINE_MONTHS"] as const) {
+      const n = d.revenueMix.filter((r) => r.span === s).length;
+      if (n !== 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["revenueMix"],
+          message: `revenueMix must carry exactly one ${s} row, found ${n}`,
+        });
+      }
+    }
+    // Nothing here is traced to a filing, so nothing here may claim PRIMARY.
+    if (d.source.verification === "PRIMARY") {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["source"],
+        message: "no Netweb figure is traced to a filing, so it cannot claim PRIMARY",
+      });
+    }
+  });
+
+export type Netweb = z.infer<typeof Netweb>;
+
 export type Universe = z.infer<typeof Universe>;
 export type Verdict = z.infer<typeof Verdict>;
 

@@ -135,11 +135,16 @@ export function Pictogram({
   filledLabel,
   emptyLabel,
   columns = 20,
+  unit = "megawatts",
 }: {
   filledPct: number;
   filledLabel: string;
   emptyLabel: string;
   columns?: number;
+  /** What the hundred squares are a hundred of. A screen reader is told the
+   *  unit out loud, so it cannot be left as whatever the first caller happened
+   *  to be counting. */
+  unit?: string;
 }) {
   const filled = Math.round(filledPct);
   return (
@@ -148,7 +153,7 @@ export function Pictogram({
         className="grid gap-[3px]"
         style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
         role="img"
-        aria-label={`${filled} of every 100 megawatts: ${filledLabel}. The remaining ${100 - filled}: ${emptyLabel}.`}
+        aria-label={`${filled} of every 100 ${unit}: ${filledLabel}. The remaining ${100 - filled}: ${emptyLabel}.`}
       >
         {Array.from({ length: 100 }, (_, i) => (
           <span
