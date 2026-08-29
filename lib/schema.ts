@@ -558,12 +558,68 @@ export const Sisl = z
     contractsSource: PagedSource,
     escalatorMinPct: z.number().positive(),
     escalatorMaxPct: z.number().positive(),
+    sites: z
+      .array(
+        z.object({
+          name: z.string().min(1),
+          city: z.string().min(1),
+          state: z.string().min(1),
+          builtMW: z.number().positive(),
+          installedMW: z.number().positive(),
+          operationalMW: z.number().positive(),
+        }),
+      )
+      .min(10),
+    sitesAsOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    sitesSource: PagedSource,
+    /** Nulls are the issuer's own "not applicable" cells. Never impute them. */
+    peers: z
+      .array(
+        z.object({
+          name: z.string().min(1),
+          fiscalEnd: z.string().min(1),
+          revenue: z.number().positive(),
+          ebitda: z.number().nullable(),
+          pat: z.number(),
+          builtMW: z.number().positive().nullable(),
+          operationalMW: z.number().positive().nullable(),
+          self: z.boolean(),
+        }),
+      )
+      .min(3),
+    peersSource: PagedSource,
     capacityDefinitions: z.object({
       engineeredToSupport: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
       availableToSell: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
     }),
   })
   .superRefine((d, ctx) => {
+    // The site rows must reconcile to the stated totals. The filing rounds each
+    // row to two places, so thirteen rows land a hundredth or two above the
+    // printed total. Anything wider than that means a row was mistyped.
+    const stub = d.periods.find((p) => p.stub);
+    if (stub) {
+      for (const k of ["builtMW", "installedMW", "operationalMW"] as const) {
+        const sum = d.sites.reduce((t, s) => t + s[k], 0);
+        const diff = Math.abs(sum - stub[k]);
+        if (diff > 0.05) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["sites"],
+            message: `${k}: sites sum to ${sum.toFixed(2)} against a stated total of ${stub[k]}, a gap of ${diff.toFixed(2)}`,
+          });
+        }
+      }
+    }
+    // Exactly one peer row is the issuer itself. Without it the peer exhibits
+    // cannot tell which bar to highlight.
+    if (d.peers.filter((p) => p.self).length !== 1) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["peers"],
+        message: "exactly one peer row must be marked self",
+      });
+    }
     // The capacity rungs must descend. Built is what a site is engineered to
     // support, installed is what is commissioned, operational is what is sold,
     // so a period where they do not descend means a row was misread.

@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { sisl } from "@/lib/data";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
+import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
 
 export const metadata: Metadata = {
   title: "Built, Installed, Sold",
 };
-
-const pct = (n: number) => n.toFixed(1);
 
 export default function Home() {
   const full = sisl.periods.filter((p) => !p.stub);
@@ -17,120 +16,152 @@ export default function Home() {
   const cost25 = sisl.costStack.find((c) => c.label === fy25.label)!;
 
   const powerShare = (cost25.power / fy25.revenue) * 100;
-  const headroom = (fy25.builtMW / fy25.operationalMW - 1) * 100;
+  const labourShare = (cost25.employee / fy25.revenue) * 100;
   const defsApart = Math.abs(
     sisl.capacityDefinitions.availableToSell.page -
       sisl.capacityDefinitions.engineeredToSupport.page,
   );
 
+  const rail = [
+    { k: "Revenue", v: fy25.revenue.toLocaleString("en-IN"), u: `Rs mn, ${fy25.label}` },
+    {
+      k: "EBITDA margin",
+      v: `${fy25.ebitdaMargin}%`,
+      u: `from ${first.ebitdaMargin}% in ${first.label}`,
+    },
+    { k: "ROCE", v: `${fy25.roce}%`, u: `from ${first.roce}% in ${first.label}` },
+    {
+      k: "Net debt / EBITDA",
+      v: `${fy25.netDebtToEbitda}x`,
+      u: `Rs ${fy25.netDebt.toLocaleString("en-IN")} mn`,
+    },
+    { k: "Built capacity", v: `${fy25.builtMW}`, u: "MW, engineered" },
+    { k: "Sold capacity", v: `${fy25.operationalMW}`, u: "MW, earning revenue" },
+  ];
+
+  const argument: [string, string][] = [
+    [
+      "Returns fell while the estate doubled.",
+      `Built capacity went from ${first.builtMW} MW to ${fy25.builtMW}. Return on capital went from ${first.roce}% to ${fy25.roce}%.`,
+    ],
+    [
+      "The damage is below the operating line.",
+      `EBITDA margin rose from ${first.ebitdaMargin}% to ${fy25.ebitdaMargin}% over the same years, then net margin fell to ${stub.patMargin}% in the stub quarter. Everything between the two is depreciation and interest.`,
+    ],
+    [
+      `Interest is being capitalised at ${sisl.capitalisationRate}%.`,
+      `Rs ${cost25.interestCapitalised.toLocaleString("en-IN")} mn of ${fy25.label} interest went to the balance sheet rather than the income statement. When a tower commissions that stops, and depreciation starts.`,
+    ],
+    [
+      "The headline capacity figure is defined twice.",
+      `The prospectus calls ${fy25.builtMW} MW "engineered to support" on one page and "available power capacity that can be sold to customers" on another, ${defsApart} printed pages apart.`,
+    ],
+  ];
+
   return (
-    <div className="mx-auto w-full min-w-0 max-w-5xl px-5">
-      <section className="py-16 sm:py-20">
+    <div className="mx-auto w-full min-w-0 max-w-6xl px-5">
+      <section className="py-12 sm:py-16">
         <p className="sc text-accent">
-          Sify Infinit Spaces · Draft red herring prospectus, October 2025
+          Sify Infinit Spaces · Initiating · Draft red herring prospectus, 16 October 2025
         </p>
-        <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
-          Built capacity doubled.
-          <br />
-          Return on capital fell.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-          India&apos;s first data centre listing is a company that got better at operating and
-          worse at earning. Between {first.label} and {fy25.label} it more than doubled the
-          capacity it calls built, while return on capital dropped from{" "}
-          <span className="tnum text-foreground">{first.roce}%</span> to{" "}
-          <span className="tnum text-foreground">{fy25.roce}%</span>. The reason is not
-          operational. It sits between the operating line and the bottom line.
-        </p>
-
-        <CapacityVsReturns
-          rows={full.map((p) => ({ label: p.label, builtMW: p.builtMW, roce: p.roce }))}
-          page={sisl.periodsSource.page}
-        />
-      </section>
-
-      <section className="border-t border-line py-14">
-        <p className="sc text-accent">The mechanism</p>
-        <h2 className="mt-3 max-w-3xl font-display text-3xl leading-tight tracking-tight">
+        <h1 className="mt-4 max-w-4xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
           Capacity was capitalised and financed faster than it was sold
-        </h2>
+        </h1>
 
-        <ol className="mt-8 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-3">
-          {[
-            {
-              n: "01",
-              h: "Build ahead of demand",
-              b: `${fy25.builtMW} MW is called built. ${fy25.operationalMW} MW earns revenue. The headline runs ${Math.round(headroom)} per cent ahead of the estate that pays.`,
-            },
-            {
-              n: "02",
-              h: "Capitalise the interest",
-              b: `While a tower is under construction its borrowing cost is capitalised at ${sisl.capitalisationRate}% a year. In ${fy25.label} that was Rs ${cost25.interestCapitalised.toLocaleString("en-IN")} million that never reached the income statement.`,
-            },
-            {
-              n: "03",
-              h: "Commission it",
-              b: `Capitalisation stops, depreciation starts, and both land in the profit and loss account at once. Net margin fell from ${fy25.patMargin}% to ${stub.patMargin}% in the quarter that followed.`,
-            },
-          ].map((s) => (
-            <li key={s.n} className="bg-card p-5">
-              <p className="exhibit-label">{s.n}</p>
-              <p className="mt-2 font-display text-xl tracking-tight">{s.h}</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{s.b}</p>
-            </li>
-          ))}
-        </ol>
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_20rem]">
+          <div className="rounded-md border border-line bg-card p-6">
+            <p className="exhibit-label">The argument</p>
+            <ol className="mt-4 space-y-4">
+              {argument.map(([h, b], i) => (
+                <li key={h} className="flex gap-4">
+                  <span className="exhibit-label mt-1 shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span>
+                    <span className="font-medium">{h}</span> <span className="text-muted">{b}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+              The prospectus carries no price band, so there is no target price here and no rating.
+              What follows is the arithmetic and where it breaks.
+            </p>
+          </div>
 
-        <p className="mt-6 max-w-2xl leading-relaxed text-muted">
-          None of this sits above the operating line. Margin on that measure rose from{" "}
-          <span className="tnum text-foreground">{first.ebitdaMargin}%</span> to{" "}
-          <span className="tnum text-foreground">{fy25.ebitdaMargin}%</span> across the same
-          three years. The metric the issuer leads with in its own key performance indicators is
-          the one measure this cannot show.
-        </p>
+          <dl className="grid grid-cols-2 gap-px self-start overflow-hidden rounded-md border border-line bg-line lg:grid-cols-1">
+            {rail.map((r) => (
+              <div key={r.k} className="bg-card px-4 py-3">
+                <dt className="text-[11px] text-muted">{r.k}</dt>
+                <dd className="mt-0.5 font-display text-2xl tracking-tight tnum">{r.v}</dd>
+                <p className="text-[11px] text-muted">{r.u}</p>
+              </div>
+            ))}
+          </dl>
+        </div>
       </section>
 
-      <section className="border-t border-line py-14">
-        <p className="sc text-accent">Three numbers that set up the rest</p>
-        <dl className="mt-6 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-3">
+      <section className="space-y-6 border-t border-line py-12">
+        <Exhibit
+          n={1}
+          title="Built capacity doubled. Return on capital fell."
+          units={`Indexed, ${first.label} = 100. Full fiscal years only.`}
+          source="Sify Infinit Spaces DRHP, key performance indicators and return on capital employed."
+          page={sisl.periodsSource.page}
+        >
+          <CapacityVsReturns
+            rows={full.map((p) => ({ label: p.label, builtMW: p.builtMW, roce: p.roce }))}
+            page={sisl.periodsSource.page}
+          />
+        </Exhibit>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Exhibit
+            n={2}
+            title="Two towers hold a quarter of the estate and sell almost none of it"
+            units={`Megawatts by data centre, as at ${sisl.sitesAsOf}. Bars nest: sold inside commissioned inside engineered.`}
+            source={sisl.sitesSource.label}
+            page={sisl.sitesSource.page}
+          >
+            <Estate sites={sisl.sites} />
+          </Exhibit>
+
+          <Exhibit
+            n={3}
+            title="The same megawatts earn far more elsewhere, and lose money doing it"
+            units="Revenue per MW, Rs millions, across the issuer's own chosen peer set."
+            source={sisl.peersSource.label}
+            page={sisl.peersSource.page}
+          >
+            <RevenuePerMW peers={sisl.peers} />
+          </Exhibit>
+        </div>
+      </section>
+
+      <section className="border-t border-line py-12">
+        <p className="sc text-accent">What this rests on, and what is still open</p>
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
-              k: "Built against sold",
-              v: `${fy25.builtMW} / ${fy25.operationalMW}`,
-              u: "MW",
-              n: `The prospectus defines built two different ways, ${defsApart} printed pages apart.`,
+              h: "Read and cited",
+              b: "Nine printed pages of the prospectus: the KPI block, the peer comparison, the capacity table printed twice, the expense notes, the contract risk factor, the leased land risk factor, and management's own discussion of the year.",
             },
             {
-              k: "Power, share of revenue",
-              v: pct(powerShare),
-              u: "%",
-              n: `Against contract escalators capped at ${sisl.escalatorMinPct} to ${sisl.escalatorMaxPct} per cent a year.`,
+              h: "Power is the cost base",
+              b: `Power runs ${powerShare.toFixed(1)} per cent of revenue against labour at ${labourShare.toFixed(1)}. Contracts escalate ${sisl.escalatorMinPct} to ${sisl.escalatorMaxPct} per cent a year, with limited rights to reprice mid-term.`,
             },
             {
-              k: "Interest capitalised",
-              v: cost25.interestCapitalised.toLocaleString("en-IN"),
-              u: `Rs mn, ${fy25.label}`,
-              n: `Charged to the balance sheet at ${sisl.capitalisationRate}% rather than to the year.`,
+              h: "Still to build",
+              b: "Balance sheet and cash flow, the revenue build and three year forecast, bull base and bear cases, two way sensitivity, implied valuation against peers, and the risk matrix.",
             },
-          ].map((s) => (
-            <div key={s.k} className="bg-card p-5">
-              <dt className="text-xs text-muted">{s.k}</dt>
-              <dd className="mt-2 font-display text-3xl tracking-tight tnum">
-                {s.v}
-                <span className="ml-1.5 text-sm font-normal text-muted">{s.u}</span>
-              </dd>
-              <p className="mt-2 text-xs leading-relaxed text-muted">{s.n}</p>
+          ].map((c) => (
+            <div key={c.h} className="rounded-md border border-line bg-card p-5">
+              <p className="font-display text-lg tracking-tight">{c.h}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{c.b}</p>
             </div>
           ))}
-        </dl>
-      </section>
+        </div>
 
-      <section className="border-t border-line py-14">
-        <p className="sc text-accent">Working pages</p>
-        <p className="max-w-2xl leading-relaxed text-muted">
-          The rest of the argument is being rebuilt. These are the earlier pages, still standing
-          while the exhibits are ported across.
-        </p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
           {[
             ["/prospectus", "Prospectus"],
@@ -151,10 +182,10 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-line py-10 text-xs leading-relaxed text-muted">
-        Every figure on this page is read from the Sify Infinit Spaces draft red herring
-        prospectus dated 16 October 2025 and cited by its printed page. Restated consolidated
-        basis, amounts in Indian Rupees millions. Educational and portfolio work, not investment
-        advice.
+        Every figure is read from the Sify Infinit Spaces draft red herring prospectus dated 16
+        October 2025 and cited by its printed page. Restated consolidated basis, amounts in Indian
+        Rupees millions. The document carries no price band, so nothing here is a valuation or a
+        recommendation. Educational and portfolio work, not investment advice.
       </footer>
     </div>
   );

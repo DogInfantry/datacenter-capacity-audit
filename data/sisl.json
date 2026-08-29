@@ -115,6 +115,42 @@
   "escalatorMinPct": 2.0,
   "escalatorMaxPct": 4.0,
 
+  "sites": [
+    { "name": "Rabale Towers 1 & 2", "city": "Navi Mumbai", "state": "Maharashtra", "builtMW": 21.64, "installedMW": 21.64, "operationalMW": 21.41 },
+    { "name": "Rabale Tower 3", "city": "Navi Mumbai", "state": "Maharashtra", "builtMW": 24.0, "installedMW": 24.0, "operationalMW": 24.0 },
+    { "name": "Rabale Tower 4", "city": "Navi Mumbai", "state": "Maharashtra", "builtMW": 8.1, "installedMW": 8.1, "operationalMW": 7.95 },
+    { "name": "Rabale Tower 5", "city": "Navi Mumbai", "state": "Maharashtra", "builtMW": 43.2, "installedMW": 30.24, "operationalMW": 28.39 },
+    { "name": "Noida 01", "city": "Noida", "state": "Uttar Pradesh", "builtMW": 10.96, "installedMW": 10.96, "operationalMW": 10.85 },
+    { "name": "Noida 02 (Tower B)", "city": "Noida", "state": "Uttar Pradesh", "builtMW": 25.92, "installedMW": 4.32, "operationalMW": 2.26 },
+    { "name": "Hyderabad", "city": "Hyderabad", "state": "Telangana", "builtMW": 14.4, "installedMW": 14.4, "operationalMW": 8.55 },
+    { "name": "Airoli", "city": "Navi Mumbai", "state": "Maharashtra", "builtMW": 4.05, "installedMW": 4.05, "operationalMW": 3.1 },
+    { "name": "Bangalore", "city": "Bengaluru", "state": "Karnataka", "builtMW": 4.82, "installedMW": 4.82, "operationalMW": 2.6 },
+    { "name": "Vashi", "city": "Navi Mumbai", "state": "Maharashtra", "builtMW": 0.38, "installedMW": 0.38, "operationalMW": 0.38 },
+    { "name": "Chennai 01", "city": "Chennai", "state": "Tamil Nadu", "builtMW": 3.58, "installedMW": 3.58, "operationalMW": 1.87 },
+    { "name": "Chennai 02 (Tower B)", "city": "Chennai", "state": "Tamil Nadu", "builtMW": 25.92, "installedMW": 4.32, "operationalMW": 2.3 },
+    { "name": "Kolkata", "city": "Kolkata", "state": "West Bengal", "builtMW": 1.08, "installedMW": 1.08, "operationalMW": 0.03 }
+  ],
+  "sitesAsOf": "2025-06-30",
+  "sitesSource": {
+    "label": "Sify Infinit Spaces DRHP, capacity and capacity utilization by data center as at and for the three months ended June 30, 2025, certified by the Independent Chartered Engineer. The same table is printed twice, at printed page 49 under Risk Factor 21 and again at printed page 301 in Our Business, with identical figures.",
+    "page": 301,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
+
+  "peers": [
+    { "name": "Sify Infinit Spaces", "fiscalEnd": "March 2025", "revenue": 14283.65, "ebitda": 6342.46, "pat": 1263.6, "builtMW": 188.04, "operationalMW": 111.37, "self": true },
+    { "name": "NEXTDC", "fiscalEnd": "June 2025", "revenue": 23504.86, "ebitda": 11004.91, "pat": -3331.05, "builtMW": 207.9, "operationalMW": 110.9, "self": false },
+    { "name": "Digital Realty", "fiscalEnd": "December 2024", "revenue": 464789.57, "ebitda": 238213.77, "pat": 50410.92, "builtMW": 2700.0, "operationalMW": null, "self": false },
+    { "name": "Equinix", "fiscalEnd": "December 2024", "revenue": 731953.66, "ebitda": null, "pat": 68108.17, "builtMW": null, "operationalMW": null, "self": false }
+  ],
+  "peersSource": {
+    "label": "Sify Infinit Spaces DRHP, comparison of the key performance indicators of our Company with listed industry peers, printed page 144. Figures are as the issuer presents them, in Indian Rupees millions. Cells the issuer marked not applicable are carried as nulls rather than filled, because the gap is itself the finding.",
+    "page": 144,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
+
   "capacityDefinitions": {
     "engineeredToSupport": {
       "quote": "Built Capacity is the maximum IT load a data center is engineered to support, based on business requirements, space planning, and infrastructure feasibility.",
