@@ -1,12 +1,10 @@
 import Link from "next/link";
 
-const TABS = [
-  { href: "/grid", label: "Grid" },
-  { href: "/disclosure", label: "Disclosure" },
-  { href: "/financials", label: "Financials" },
-  { href: "/prospectus", label: "Prospectus" },
-  { href: "/method", label: "Method" },
-];
+/**
+ * Routes from the rejected build are not listed here. Their files are pending
+ * deletion; until then they stay unlinked rather than on show.
+ */
+const TABS: { href: string; label: string }[] = [];
 
 export function Nav() {
   return (

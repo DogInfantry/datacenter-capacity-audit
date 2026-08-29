@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { Monogram } from "./Visual";
 
 /**
  * Exhibit chrome. A number so it can be referred to, an action title that states
@@ -212,9 +213,12 @@ export function RevenuePerMW({ peers }: { peers: Peer[] }) {
         {rows.map((r) => (
           <li key={r.name} className="text-xs">
             <div className="flex items-baseline justify-between gap-3">
-              <span className={r.self ? "font-medium text-accent" : "text-muted"}>
-                {r.name}
-                <span className="ml-1.5 text-[10px] text-muted">{r.fiscalEnd}</span>
+              <span className="flex items-center gap-2">
+                <Monogram name={r.name} size={22} />
+                <span className={r.self ? "font-medium text-accent" : "text-muted"}>
+                  {r.name}
+                  <span className="ml-1.5 text-[10px] text-muted">{r.fiscalEnd}</span>
+                </span>
               </span>
               <span className="tnum text-muted">
                 {r.perOper ? `${r.perOper.toFixed(0)} per MW sold` : "capacity not disclosed"}

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { sisl } from "@/lib/data";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
 import { ClientConcentration } from "@/components/ClientConcentration";
+import { SiteMap } from "@/components/SiteMap";
+import { Pictogram, StatTile, type IconName } from "@/components/Visual";
 
 export const metadata: Metadata = {
   title: "Built, Installed, Sold",
@@ -23,22 +24,43 @@ export default function Home() {
       sisl.capacityDefinitions.engineeredToSupport.page,
   );
 
-  const rail = [
-    { k: "Revenue", v: fy25.revenue.toLocaleString("en-IN"), u: `Rs mn, ${fy25.label}` },
+  const rail: {
+    icon: IconName;
+    k: string;
+    v: string;
+    u: string;
+    tone?: "accent" | "signal" | "muted";
+  }[] = [
     {
+      icon: "capital",
+      k: "Revenue",
+      v: fy25.revenue.toLocaleString("en-IN"),
+      u: `Rs mn, ${fy25.label}`,
+    },
+    {
+      icon: "power",
       k: "EBITDA margin",
       v: `${fy25.ebitdaMargin}%`,
       u: `from ${first.ebitdaMargin}% in ${first.label}`,
     },
-    { k: "ROCE", v: `${fy25.roce}%`, u: `from ${first.roce}% in ${first.label}` },
     {
+      icon: "warning",
+      k: "ROCE",
+      v: `${fy25.roce}%`,
+      u: `from ${first.roce}% in ${first.label}`,
+      tone: "signal",
+    },
+    {
+      icon: "grid",
       k: "Net debt / EBITDA",
       v: `${fy25.netDebtToEbitda}x`,
       u: `Rs ${fy25.netDebt.toLocaleString("en-IN")} mn`,
     },
-    { k: "Built capacity", v: `${fy25.builtMW}`, u: "MW, engineered" },
-    { k: "Sold capacity", v: `${fy25.operationalMW}`, u: "MW, earning revenue" },
+    { icon: "datacentre", k: "Built capacity", v: `${fy25.builtMW}`, u: "MW, engineered" },
+    { icon: "contract", k: "Sold capacity", v: `${fy25.operationalMW}`, u: "MW, earning" },
   ];
+
+  const soldShare = (fy25.operationalMW / fy25.builtMW) * 100;
 
   const clientsLatest = sisl.clients[0];
   const clientsFirst = sisl.clients[sisl.clients.length - 1];
@@ -109,15 +131,18 @@ export default function Home() {
             </p>
           </div>
 
-          <dl className="grid grid-cols-2 gap-px self-start overflow-hidden rounded-md border border-line bg-line lg:grid-cols-1">
+          <div className="grid grid-cols-2 gap-px self-start overflow-hidden rounded-md border border-line bg-line lg:grid-cols-1">
             {rail.map((r) => (
-              <div key={r.k} className="bg-card px-4 py-3">
-                <dt className="text-[11px] text-muted">{r.k}</dt>
-                <dd className="mt-0.5 font-display text-2xl tracking-tight tnum">{r.v}</dd>
-                <p className="text-[11px] text-muted">{r.u}</p>
-              </div>
+              <StatTile
+                key={r.k}
+                icon={r.icon}
+                label={r.k}
+                value={r.v}
+                note={r.u}
+                tone={r.tone}
+              />
             ))}
-          </dl>
+          </div>
         </div>
       </section>
 
@@ -150,9 +175,42 @@ export default function Home() {
           />
         </Exhibit>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr]">
           <Exhibit
             n={3}
+            title="Six cities, and most of what earns sits in two states"
+            units="Bubble area is built MW. The inner disc is the share sold. Equirectangular projection, no border drawn."
+            source={sisl.sitesSource.label}
+            page={sisl.sitesSource.page}
+          >
+            <SiteMap sites={sisl.sites} />
+          </Exhibit>
+
+          <Exhibit
+            n={4}
+            title="Sixty megawatts in every hundred earn anything"
+            units={`Built capacity converted to sold, ${fy25.label}. Each square is one per cent of ${fy25.builtMW} MW.`}
+            source="Sify Infinit Spaces DRHP, capacity by data centre."
+            page={sisl.sitesSource.page}
+          >
+            <Pictogram
+              filledPct={soldShare}
+              filledLabel="sold to customers"
+              emptyLabel="engineered, not earning"
+              columns={10}
+            />
+            <p className="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-muted">
+              The industry counts national supply in the same word. India&apos;s forecast of 4.7 to
+              5.7 GW by Fiscal 2030 is stated as built capacity, and on the one estate where the
+              conversion can be measured from a filing it runs at{" "}
+              <span className="tnum text-foreground">{soldShare.toFixed(0)}</span> per cent.
+            </p>
+          </Exhibit>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Exhibit
+            n={5}
             title="Two towers hold a quarter of the estate and sell almost none of it"
             units={`Megawatts by data centre, as at ${sisl.sitesAsOf}. Bars nest: sold inside commissioned inside engineered.`}
             source={sisl.sitesSource.label}
@@ -162,7 +220,7 @@ export default function Home() {
           </Exhibit>
 
           <Exhibit
-            n={4}
+            n={6}
             title="The same megawatts earn far more elsewhere, and lose money doing it"
             units="Revenue per MW, Rs millions, across the issuer's own chosen peer set."
             source={sisl.peersSource.label}
@@ -197,23 +255,6 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          {[
-            ["/prospectus", "Prospectus"],
-            ["/financials", "Financials"],
-            ["/disclosure", "Disclosure"],
-            ["/grid", "Grid"],
-            ["/method", "Method"],
-          ].map(([href, label]) => (
-            <Link
-              key={href}
-              href={href}
-              className="underline decoration-line underline-offset-4 hover:text-accent"
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
       </section>
 
       <footer className="border-t border-line py-10 text-xs leading-relaxed text-muted">
