@@ -27,29 +27,37 @@ export function UseOfProceeds({ sources, uses }: { sources: Flow[]; uses: Flow[]
   const usable = H - pad * 2 - gap * Math.max(sources.length, uses.length);
   const h = (v: number) => (v / total) * usable;
 
-  let sy = pad;
-  const srcBoxes = sources.map((s) => {
-    const box = { ...s, y: sy, h: h(s.value) };
-    sy += box.h + gap;
-    return box;
-  });
+  // Laid out with reduce rather than a running variable, because the React
+  // compiler forbids reassigning across a map during render.
+  const stack = <T extends Flow>(items: T[]) =>
+    items.reduce<{ y: number; out: (T & { y: number; h: number })[] }>(
+      (acc, item) => {
+        const hh = h(item.value);
+        return { y: acc.y + hh + gap, out: [...acc.out, { ...item, y: acc.y, h: hh }] };
+      },
+      { y: pad, out: [] },
+    ).out;
 
-  let uy = pad;
-  const useBoxes = uses.map((u) => {
-    const box = { ...u, y: uy, h: h(u.value) };
-    uy += box.h + gap;
-    return box;
-  });
+  const srcBoxes = stack(sources);
+  const useBoxes = stack(uses);
 
-  const cursor: Record<string, number> = {};
   const x0 = colW;
   const x1 = W - colW;
-  const ribbons = useBoxes.map((u) => {
-    const src = srcBoxes.find((s) => s.key === u.key)!;
-    const from = (cursor[src.key] ??= src.y);
-    cursor[src.key] = from + u.h;
-    return { id: u.label, fill: u.fill, y0: from, y1: u.y, hh: u.h };
-  });
+
+  const ribbons = useBoxes.reduce<{
+    cursor: Record<string, number>;
+    out: { id: string; fill: string; y0: number; y1: number; hh: number }[];
+  }>(
+    (acc, u) => {
+      const src = srcBoxes.find((s) => s.key === u.key)!;
+      const from = acc.cursor[src.key] ?? src.y;
+      return {
+        cursor: { ...acc.cursor, [src.key]: from + u.h },
+        out: [...acc.out, { id: u.label, fill: u.fill, y0: from, y1: u.y, hh: u.h }],
+      };
+    },
+    { cursor: {}, out: [] },
+  ).out;
 
   return (
     <div>
@@ -221,17 +229,34 @@ export function NetDebtBridge({
   const W = steps.length * barW + (steps.length - 1) * gapW + 40;
   const h = (v: number) => (Math.abs(v) / max) * (H - 60);
 
-  let running = 0;
-  const bars = steps.map((s, i) => {
-    const x = 20 + i * (barW + gapW);
-    if (s.kind === "total") {
-      running = s.value;
-      return { ...s, x, y: H - 30 - h(s.value), hh: h(s.value) };
-    }
-    const start = running;
-    running += s.value;
-    return { ...s, x, y: H - 30 - h(Math.max(start, running)), hh: h(Math.abs(s.value)) };
-  });
+  const bars = steps.reduce<{
+    running: number;
+    out: { label: string; value: number; kind: "total" | "delta"; x: number; y: number; hh: number }[];
+  }>(
+    (acc, s, i) => {
+      const x = 20 + i * (barW + gapW);
+      if (s.kind === "total") {
+        return {
+          running: s.value,
+          out: [...acc.out, { ...s, x, y: H - 30 - h(s.value), hh: h(s.value) }],
+        };
+      }
+      const next = acc.running + s.value;
+      return {
+        running: next,
+        out: [
+          ...acc.out,
+          {
+            ...s,
+            x,
+            y: H - 30 - h(Math.max(acc.running, next)),
+            hh: h(Math.abs(s.value)),
+          },
+        ],
+      };
+    },
+    { running: 0, out: [] },
+  ).out;
 
   return (
     <div>

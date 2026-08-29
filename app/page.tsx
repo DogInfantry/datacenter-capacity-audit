@@ -1,264 +1,189 @@
 import type { Metadata } from "next";
-import { sisl, universe } from "@/lib/data";
-import { CapacityVsReturns } from "@/components/CapacityVsReturns";
-import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
-import { ClientConcentration } from "@/components/ClientConcentration";
-import { SiteMap } from "@/components/SiteMap";
+import Link from "next/link";
+import { universe, sisl } from "@/lib/data";
+import { Exhibit } from "@/components/Exhibits";
 import { ExecutionAmbition } from "@/components/ExecutionAmbition";
-import { Pictogram, StatTile, type IconName } from "@/components/Visual";
+import { StatTile, Monogram, type IconName } from "@/components/Visual";
 
 export const metadata: Metadata = {
   title: "Built, Installed, Sold",
 };
 
+/** Tickers with a deep-dive. Everything else renders as a card without a link. */
+const COVERED = new Set(["SIFY"]);
+
 export default function Home() {
-  const full = sisl.periods.filter((p) => !p.stub);
-  const first = full[0];
-  const fy25 = full[full.length - 1];
+  const ops = universe.operators;
+  const announcedMW = ops.reduce((t, o) => t + o.announcedMW, 0);
+  const liveMW = ops.reduce((t, o) => t + o.liveMW, 0);
   const stub = sisl.periods.find((p) => p.stub)!;
-  const cost25 = sisl.costStack.find((c) => c.label === fy25.label)!;
+  const clientsLatest = sisl.clients[0];
+  const top3 = clientsLatest.rows.filter((r) => r.rank <= 3).reduce((t, r) => t + r.share, 0);
+  const soldShare = (stub.operationalMW / stub.builtMW) * 100;
+  const primary = ops.filter((o) => o.source.verification === "PRIMARY").length;
 
-  const powerShare = (cost25.power / fy25.revenue) * 100;
-  const labourShare = (cost25.employee / fy25.revenue) * 100;
-  const defsApart = Math.abs(
-    sisl.capacityDefinitions.availableToSell.page -
-      sisl.capacityDefinitions.engineeredToSupport.page,
-  );
-
-  const rail: {
-    icon: IconName;
-    k: string;
-    v: string;
-    u: string;
-    tone?: "accent" | "signal" | "muted";
-  }[] = [
+  const tiles: { icon: IconName; k: string; v: string; u: string; n: string; tone?: "signal" }[] = [
     {
-      icon: "capital",
-      k: "Revenue",
-      v: fy25.revenue.toLocaleString("en-IN"),
-      u: `Rs mn, ${fy25.label}`,
+      icon: "datacentre",
+      k: "Announced",
+      v: (announcedMW / 1000).toFixed(1),
+      u: "GW",
+      n: `Across ${ops.length} operators. Every figure is a statement about the future.`,
     },
     {
       icon: "power",
-      k: "EBITDA margin",
-      v: `${fy25.ebitdaMargin}%`,
-      u: `from ${first.ebitdaMargin}% in ${first.label}`,
-    },
-    {
-      icon: "warning",
-      k: "ROCE",
-      v: `${fy25.roce}%`,
-      u: `from ${first.roce}% in ${first.label}`,
+      k: "Live",
+      v: liveMW.toFixed(0),
+      u: "MW",
+      n: `${((liveMW / announcedMW) * 100).toFixed(1)} per cent of what has been announced.`,
       tone: "signal",
     },
     {
-      icon: "grid",
-      k: "Net debt / EBITDA",
-      v: `${fy25.netDebtToEbitda}x`,
-      u: `Rs ${fy25.netDebt.toLocaleString("en-IN")} mn`,
+      icon: "client",
+      k: "Bought by",
+      v: `${top3.toFixed(0)}%`,
+      u: "three clients",
+      n: "On the one operator whose client table is filed, three Hyperscalers are two thirds of revenue.",
+      tone: "signal",
     },
-    { icon: "datacentre", k: "Built capacity", v: `${fy25.builtMW}`, u: "MW, engineered" },
-    { icon: "contract", k: "Sold capacity", v: `${fy25.operationalMW}`, u: "MW, earning" },
+    {
+      icon: "contract",
+      k: "Traced to a filing",
+      v: `${primary}`,
+      u: `of ${ops.length}`,
+      n: "The rest are research note figures, tagged on every row rather than smoothed over.",
+    },
   ];
 
-  const soldShare = (fy25.operationalMW / fy25.builtMW) * 100;
-
-  const announcedGW = universe.operators.reduce((t, o) => t + o.announcedMW, 0) / 1000;
-  const liveMW = universe.operators.reduce((t, o) => t + o.liveMW, 0);
-
-  const clientsLatest = sisl.clients[0];
-  const clientsFirst = sisl.clients[sisl.clients.length - 1];
-  const top3 = clientsLatest.rows
-    .filter((r) => r.rank <= 3)
-    .reduce((t, r) => t + r.share, 0);
-  const longContractShare = Object.fromEntries(
-    sisl.contracts.map((c) => [c.label, c.longContractRevenueShare]),
-  );
-
-  const argument: [string, string][] = [
-    [
-      "Three customers are two thirds of the revenue.",
-      `Clients 1, 2 and 3 are Hyperscalers in every period and together are ${top3.toFixed(2)}% of revenue. Client 1 alone went from ${clientsFirst.rows[0].share}% to ${clientsLatest.rows[0].share}%. The AI buildout, here, is one customer getting larger.`,
-    ],
-    [
-      "The contract security and the concentration are the same three names.",
-      `Printed page ${sisl.contractsSource.page} reports ${longContractShare[clientsLatest.label].toFixed(2)}% of revenue on contracts of at least seven years and calls it durability. That is the same number, to the decimal, in all four periods. The document never joins the two tables.`,
-    ],
-    [
-      "Returns fell while the estate doubled.",
-      `Built capacity went from ${first.builtMW} MW to ${fy25.builtMW}. Return on capital went from ${first.roce}% to ${fy25.roce}%.`,
-    ],
-    [
-      "The damage is below the operating line.",
-      `EBITDA margin rose from ${first.ebitdaMargin}% to ${fy25.ebitdaMargin}% over the same years, then net margin fell to ${stub.patMargin}% in the stub quarter. Everything between the two is depreciation and interest.`,
-    ],
-    [
-      `Interest is being capitalised at ${sisl.capitalisationRate}%.`,
-      `Rs ${cost25.interestCapitalised.toLocaleString("en-IN")} mn of ${fy25.label} interest went to the balance sheet rather than the income statement. When a tower commissions that stops, and depreciation starts.`,
-    ],
-    [
-      "The headline capacity figure is defined twice.",
-      `The prospectus calls ${fy25.builtMW} MW "engineered to support" on one page and "available power capacity that can be sold to customers" on another, ${defsApart} printed pages apart.`,
-    ],
-  ];
+  const cards = [...ops]
+    .sort((a, b) => b.announcedMW - a.announcedMW)
+    .map((o) => ({
+      ...o,
+      delivered: (o.liveMW / o.announcedMW) * 100,
+      href: COVERED.has(o.ticker) ? `/company/${o.ticker}` : null,
+    }));
 
   return (
     <div className="mx-auto w-full min-w-0 max-w-6xl px-5">
-      <section className="py-12 sm:py-16">
-        <p className="sc text-accent">
-          Sify Infinit Spaces · Initiating · Draft red herring prospectus, 16 October 2025
-        </p>
+      <section className="py-14 sm:py-20">
+        <p className="sc text-accent">India · Data centres and AI infrastructure</p>
         <h1 className="mt-4 max-w-4xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
           India is planning in gigawatts.
           <br />
           Three customers are buying them.
         </h1>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+          The sector is being priced on announcements. This separates what has been announced from
+          what is live, on the one unit operators are actually comparable on, then reads the single
+          company whose filings are public to see what delivered megawatts are worth.
+        </p>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_20rem]">
-          <div className="rounded-md border border-line bg-card p-6">
-            <p className="exhibit-label">The argument</p>
-            <ol className="mt-4 space-y-4">
-              {argument.map(([h, b], i) => (
-                <li key={h} className="flex gap-4">
-                  <span className="exhibit-label mt-1 shrink-0">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span>
-                    <span className="font-medium">{h}</span> <span className="text-muted">{b}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
-            <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
-              The prospectus carries no price band, so there is no target price here and no rating.
-              What follows is the arithmetic and where it breaks.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-px self-start overflow-hidden rounded-md border border-line bg-line lg:grid-cols-1">
-            {rail.map((r) => (
-              <StatTile
-                key={r.k}
-                icon={r.icon}
-                label={r.k}
-                value={r.v}
-                note={r.u}
-                tone={r.tone}
-              />
-            ))}
-          </div>
-        </div>
+        <dl className="mt-9 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {tiles.map((t) => (
+            <StatTile
+              key={t.k}
+              icon={t.icon}
+              label={t.k}
+              value={t.v}
+              unit={t.u}
+              note={t.n}
+              tone={t.tone}
+            />
+          ))}
+        </dl>
       </section>
 
-      <section className="space-y-6 border-t border-line py-12">
+      <section className="border-t border-line py-12">
         <Exhibit
           n={1}
-          title={`India has announced ${announcedGW.toFixed(1)} GW. ${liveMW.toFixed(0)} MW of it is live.`}
+          title={`India has announced ${(announcedMW / 1000).toFixed(1)} GW. ${liveMW.toFixed(0)} MW of it is live.`}
           units="Announced against live capacity by operator, megawatts, both axes logarithmic. Operators only."
           source={universe.watchlistSource.label}
         >
           <ExecutionAmbition operators={universe.operators} />
         </Exhibit>
+      </section>
 
-        <Exhibit
-          n={2}
-          title="The contract book the prospectus calls durable is three Hyperscalers"
-          units="Share of revenue from operations, per cent. Four periods, most recent first."
-          source={sisl.clientsSource.label}
-          page={sisl.clientsSource.page}
-        >
-          <ClientConcentration
-            periods={sisl.clients}
-            longContractShare={longContractShare}
-            page={sisl.clientsSource.page}
-            contractPage={sisl.contractsSource.page}
-          />
-        </Exhibit>
+      <section className="border-t border-line py-12">
+        <p className="sc text-accent">Coverage</p>
+        <h2 className="mt-3 max-w-3xl font-display text-3xl leading-tight tracking-tight">
+          Eight operators carry megawatts. One has filings you can check.
+        </h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+          Sify Infinit Spaces filed a draft red herring prospectus, so its capacity, clients, cost
+          base and offer are all readable. The rest are research note figures until their filings
+          are read, and they say so on every row.
+        </p>
 
-        <Exhibit
-          n={3}
-          title="Built capacity doubled. Return on capital fell."
-          units={`Indexed, ${first.label} = 100. Full fiscal years only.`}
-          source="Sify Infinit Spaces DRHP, key performance indicators and return on capital employed."
-          page={sisl.periodsSource.page}
-        >
-          <CapacityVsReturns
-            rows={full.map((p) => ({ label: p.label, builtMW: p.builtMW, roce: p.roce }))}
-            page={sisl.periodsSource.page}
-          />
-        </Exhibit>
+        <ul className="mt-8 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {cards.map((c) => {
+            const body = (
+              <>
+                <span className="flex items-center gap-2">
+                  <Monogram name={c.listedParent} size={24} />
+                  <span className="text-sm">{c.listedParent}</span>
+                </span>
+                <span className="mt-3 block font-display text-2xl tracking-tight tnum">
+                  {c.liveMW}
+                  <span className="ml-1 text-sm font-normal text-muted">of {c.announcedMW} MW</span>
+                </span>
+                <span
+                  className={
+                    "mt-1 block text-xs tnum " + (c.delivered < 20 ? "text-signal" : "text-muted")
+                  }
+                >
+                  {c.delivered.toFixed(0)} per cent delivered
+                </span>
+                <span className="mt-2 block text-[11px] text-muted">
+                  {c.href ? "Read the deep dive" : "Not yet covered in depth"}
+                </span>
+              </>
+            );
+            return (
+              <li key={c.id} className="bg-card">
+                {c.href ? (
+                  <Link href={c.href} className="block p-5 transition-colors hover:bg-accent-soft">
+                    {body}
+                  </Link>
+                ) : (
+                  <span className="block p-5">{body}</span>
+                )}
+              </li>
+            );
+          })}
+        </ul>
 
-        <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr]">
-          <Exhibit
-            n={4}
-            title="Six cities, and most of what earns sits in two states"
-            units="Bubble area is built MW. The inner disc is the share sold. Equirectangular projection, no border drawn."
-            source={sisl.sitesSource.label}
-            page={sisl.sitesSource.page}
+        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <Link
+            href="/universe"
+            className="underline decoration-line underline-offset-4 hover:text-accent"
           >
-            <SiteMap sites={sisl.sites} />
-          </Exhibit>
-
-          <Exhibit
-            n={5}
-            title="Sixty megawatts in every hundred earn anything"
-            units={`Built capacity converted to sold, ${fy25.label}. Each square is one per cent of ${fy25.builtMW} MW.`}
-            source="Sify Infinit Spaces DRHP, capacity by data centre."
-            page={sisl.sitesSource.page}
+            The full coverage matrix, fourteen names
+          </Link>
+          <Link
+            href="/offer"
+            className="underline decoration-line underline-offset-4 hover:text-accent"
           >
-            <Pictogram
-              filledPct={soldShare}
-              filledLabel="sold to customers"
-              emptyLabel="engineered, not earning"
-              columns={10}
-            />
-            <p className="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-muted">
-              The industry counts national supply in the same word. India&apos;s forecast of 4.7 to
-              5.7 GW by Fiscal 2030 is stated as built capacity, and on the one estate where the
-              conversion can be measured from a filing it runs at{" "}
-              <span className="tnum text-foreground">{soldShare.toFixed(0)}</span> per cent.
-            </p>
-          </Exhibit>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-2">
-          <Exhibit
-            n={6}
-            title="Two towers hold a quarter of the estate and sell almost none of it"
-            units={`Megawatts by data centre, as at ${sisl.sitesAsOf}. Bars nest: sold inside commissioned inside engineered.`}
-            source={sisl.sitesSource.label}
-            page={sisl.sitesSource.page}
-          >
-            <Estate sites={sisl.sites} />
-          </Exhibit>
-
-          <Exhibit
-            n={7}
-            title="The same megawatts earn far more elsewhere, and lose money doing it"
-            units="Revenue per MW, Rs millions, across the issuer's own chosen peer set."
-            source={sisl.peersSource.label}
-            page={sisl.peersSource.page}
-          >
-            <RevenuePerMW peers={sisl.peers} />
-          </Exhibit>
+            Anatomy of the Sify offer
+          </Link>
         </div>
       </section>
 
       <section className="border-t border-line py-12">
-        <p className="sc text-accent">What this rests on, and what is still open</p>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <p className="sc text-accent">Why this is the interesting question</p>
+        <div className="mt-6 grid gap-6 sm:grid-cols-3">
           {[
             {
-              h: "Read and cited",
-              b: "Nine printed pages of the prospectus: the KPI block, the peer comparison, the capacity table printed twice, the expense notes, the contract risk factor, the leased land risk factor, and management's own discussion of the year.",
+              h: "The unit does not earn",
+              b: `Supply is counted in built capacity. On the one estate measurable from a filing, ${soldShare.toFixed(0)} per cent of built capacity is sold. A 4.7 to 5.7 GW national forecast stated in the same unit is not 4.7 to 5.7 GW of revenue.`,
             },
             {
-              h: "Power is the cost base",
-              b: `Power runs ${powerShare.toFixed(1)} per cent of revenue against labour at ${labourShare.toFixed(1)}. Contracts escalate ${sisl.escalatorMinPct} to ${sisl.escalatorMaxPct} per cent a year, with limited rights to reprice mid-term.`,
+              h: "Demand is three counterparties",
+              b: `Two thirds of that operator's revenue is three Hyperscalers, and one of them alone is ${clientsLatest.rows[0].share} per cent. The AI buildout, at company level, is a very small number of customers getting larger.`,
             },
             {
-              h: "Still to build",
-              b: "Balance sheet and cash flow, the revenue build and three year forecast, bull base and bear cases, two way sensitivity, implied valuation against peers, and the risk matrix.",
+              h: "The returns went the wrong way",
+              b: "Operating margin improved while return on capital fell, because capacity was capitalised and financed faster than it was sold. Energy is the consequence, not the subject.",
             },
           ].map((c) => (
             <div key={c.h} className="rounded-md border border-line bg-card p-5">
@@ -267,14 +192,13 @@ export default function Home() {
             </div>
           ))}
         </div>
-
       </section>
 
       <footer className="border-t border-line py-10 text-xs leading-relaxed text-muted">
-        Every figure is read from the Sify Infinit Spaces draft red herring prospectus dated 16
-        October 2025 and cited by its printed page. Restated consolidated basis, amounts in Indian
-        Rupees millions. The document carries no price band, so nothing here is a valuation or a
-        recommendation. Educational and portfolio work, not investment advice.
+        Announced capacity is an ambition, not a result, and is labelled as such throughout. Company
+        level figures are read from filed documents and cited by printed page; sector figures are
+        research note estimates and carry a verification tag. Coverage as at {universe.asOf}.
+        Educational and portfolio work, not investment advice.
       </footer>
     </div>
   );
