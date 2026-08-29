@@ -443,7 +443,21 @@ export const Prospectus = z.object({
           .refine((r) => r.deployed <= r.totalEstimatedCost, {
             message: "money already spent cannot exceed the estimated cost of the object",
             path: ["deployed"],
-          }),
+          })
+          // Every object reconciles: what is already spent, plus what the offer
+          // pays for, plus what is borrowed, equals the cost. That identity is
+          // what lets the funding gap exhibit say the borrowings are the
+          // issuer's own figure rather than our subtraction.
+          .refine(
+            (r) =>
+              Math.abs(r.deployed + r.fromNetProceeds + r.fromBorrowings - r.totalEstimatedCost) <
+              0.01,
+            {
+              message:
+                "deployed plus net proceeds plus borrowings must equal the total estimated cost",
+              path: ["fromBorrowings"],
+            },
+          ),
       )
       .min(1),
   }),

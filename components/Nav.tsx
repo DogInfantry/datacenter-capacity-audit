@@ -1,7 +1,10 @@
 import Link from "next/link";
 
 /** Routes from the rejected build were deleted; only live routes are listed. */
-const TABS: { href: string; label: string }[] = [{ href: "/universe", label: "Universe" }];
+const TABS: { href: string; label: string }[] = [
+  { href: "/universe", label: "Universe" },
+  { href: "/offer", label: "The offer" },
+];
 
 export function Nav() {
   return (
