@@ -19,7 +19,7 @@ export function Cite({ source }: { source: Source }) {
       </span>
       <span
         role="note"
-        className="pointer-events-none absolute bottom-full left-0 z-10 mb-2 w-[min(18rem,calc(100vw-2.5rem))] rounded-sm border border-line bg-card p-3 text-xs leading-relaxed text-muted opacity-0 shadow-lg transition-opacity group-hover:opacity-100 group-focus-within:opacity-100"
+        className="pointer-events-none absolute bottom-full right-0 z-10 mb-2 w-[min(18rem,calc(100vw-2.5rem))] rounded-sm border border-line bg-card p-3 text-xs leading-relaxed text-muted opacity-0 shadow-lg transition-opacity group-hover:opacity-100 group-focus-within:opacity-100"
       >
         {source.label}
         <span className="mt-1 block text-[11px] opacity-70">As of {source.asOf}</span>
