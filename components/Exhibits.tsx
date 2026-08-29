@@ -21,7 +21,7 @@ export function Exhibit({
   title: string;
   units: string;
   source: string;
-  page: number;
+  page?: number;
   children: ReactNode;
 }) {
   return (
@@ -33,7 +33,7 @@ export function Exhibit({
       </figcaption>
       <div className="px-5 py-5">{children}</div>
       <p className="border-t border-line px-5 py-3 text-[11px] leading-relaxed text-muted">
-        Source: {source} Printed page {page}.
+        Source: {source}{page ? ` Printed page ${page}.` : ""}
       </p>
     </figure>
   );

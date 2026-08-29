@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { sisl } from "@/lib/data";
+import { sisl, universe } from "@/lib/data";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
 import { ClientConcentration } from "@/components/ClientConcentration";
 import { SiteMap } from "@/components/SiteMap";
+import { ExecutionAmbition } from "@/components/ExecutionAmbition";
 import { Pictogram, StatTile, type IconName } from "@/components/Visual";
 
 export const metadata: Metadata = {
@@ -61,6 +62,9 @@ export default function Home() {
   ];
 
   const soldShare = (fy25.operationalMW / fy25.builtMW) * 100;
+
+  const announcedGW = universe.operators.reduce((t, o) => t + o.announcedMW, 0) / 1000;
+  const liveMW = universe.operators.reduce((t, o) => t + o.liveMW, 0);
 
   const clientsLatest = sisl.clients[0];
   const clientsFirst = sisl.clients[sisl.clients.length - 1];
@@ -149,6 +153,15 @@ export default function Home() {
       <section className="space-y-6 border-t border-line py-12">
         <Exhibit
           n={1}
+          title={`India has announced ${announcedGW.toFixed(1)} GW. ${liveMW.toFixed(0)} MW of it is live.`}
+          units="Announced against live capacity by operator, megawatts, both axes logarithmic. Operators only."
+          source={universe.watchlistSource.label}
+        >
+          <ExecutionAmbition operators={universe.operators} />
+        </Exhibit>
+
+        <Exhibit
+          n={2}
           title="The contract book the prospectus calls durable is three Hyperscalers"
           units="Share of revenue from operations, per cent. Four periods, most recent first."
           source={sisl.clientsSource.label}
@@ -163,7 +176,7 @@ export default function Home() {
         </Exhibit>
 
         <Exhibit
-          n={2}
+          n={3}
           title="Built capacity doubled. Return on capital fell."
           units={`Indexed, ${first.label} = 100. Full fiscal years only.`}
           source="Sify Infinit Spaces DRHP, key performance indicators and return on capital employed."
@@ -177,7 +190,7 @@ export default function Home() {
 
         <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr]">
           <Exhibit
-            n={3}
+            n={4}
             title="Six cities, and most of what earns sits in two states"
             units="Bubble area is built MW. The inner disc is the share sold. Equirectangular projection, no border drawn."
             source={sisl.sitesSource.label}
@@ -187,7 +200,7 @@ export default function Home() {
           </Exhibit>
 
           <Exhibit
-            n={4}
+            n={5}
             title="Sixty megawatts in every hundred earn anything"
             units={`Built capacity converted to sold, ${fy25.label}. Each square is one per cent of ${fy25.builtMW} MW.`}
             source="Sify Infinit Spaces DRHP, capacity by data centre."
@@ -210,7 +223,7 @@ export default function Home() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Exhibit
-            n={5}
+            n={6}
             title="Two towers hold a quarter of the estate and sell almost none of it"
             units={`Megawatts by data centre, as at ${sisl.sitesAsOf}. Bars nest: sold inside commissioned inside engineered.`}
             source={sisl.sitesSource.label}
@@ -220,7 +233,7 @@ export default function Home() {
           </Exhibit>
 
           <Exhibit
-            n={6}
+            n={7}
             title="The same megawatts earn far more elsewhere, and lose money doing it"
             units="Revenue per MW, Rs millions, across the issuer's own chosen peer set."
             source={sisl.peersSource.label}

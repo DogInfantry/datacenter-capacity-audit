@@ -1,0 +1,206 @@
+{
+  "_note": "The Execution versus Ambition universe. Megawatts only, because megawatts are the one unit on which data centre operators are actually comparable. Server makers, systems integrators and picks and shovels names sit in the watchlist on their own metrics and are deliberately absent from the plot: putting an order book and a megawatt on the same axes would invent a comparability that does not exist.",
+  "_ambitionWarning": "Announced capacity is an ambition, not a result. Every announced figure here is a company statement about the future. Keeping that line bright is the point of the exhibit.",
+  "asOf": "2026-08-30",
+
+  "operators": [
+    {
+      "id": "reliance-jamnagar",
+      "operator": "Reliance Jamnagar",
+      "listedParent": "Reliance Industries",
+      "ticker": "RELIANCE",
+      "exchange": "NSE",
+      "announcedMW": 3000,
+      "liveMW": 0,
+      "handedOverMW": null,
+      "verdict": "PLANNING",
+      "note": "Gigawatt scale AI campus using NVIDIA Blackwell, reportedly scalable to 3 GW. More than 120 MW expected online in the second half of 2026. Nothing live at the time of writing.",
+      "source": {
+        "label": "Blueprint research note, BharatAI Infra Scope, from company announcements and the India AI Impact Summit",
+        "asOf": "2026-08",
+        "verification": "SECONDARY"
+      }
+    },
+    {
+      "id": "adaniconnex",
+      "operator": "AdaniConneX",
+      "listedParent": "Adani Enterprises",
+      "ticker": "ADANIENT",
+      "exchange": "NSE",
+      "announcedMW": 5000,
+      "liveMW": 0,
+      "handedOverMW": null,
+      "verdict": "PLANNING",
+      "note": "Fifty fifty joint venture with EdgeConneX targeting 5 GW, anchored by Google at Visakhapatnam and Microsoft at Hyderabad and Pune. The research note describes an existing platform and pipeline of roughly 2 GW without separating live capacity from pipeline, so live is carried at zero rather than guessed. The weakest row in this table.",
+      "source": {
+        "label": "Blueprint research note, against data/campuses.json which records AdaniConneX at 1,000 MW announced and 0 MW live. The two disagree on the announced figure and neither separates live from pipeline.",
+        "asOf": "2026-08",
+        "verification": "UNVERIFIED"
+      }
+    },
+    {
+      "id": "nxtra",
+      "operator": "Nxtra by Airtel",
+      "listedParent": "Bharti Airtel",
+      "ticker": "BHARTIARTL",
+      "exchange": "NSE",
+      "announcedMW": 1000,
+      "liveMW": 125,
+      "handedOverMW": null,
+      "verdict": "EXECUTING",
+      "note": "Roughly 120 to 130 MW live against a 1 GW target, aiming to lift market share from about 12 per cent to 25 per cent. Carlyle holds about 25 per cent of Nxtra. Live is carried at the midpoint of the disclosed range.",
+      "source": {
+        "label": "Blueprint research note, BharatAI Infra Scope",
+        "asOf": "2026-08",
+        "verification": "SECONDARY"
+      }
+    },
+    {
+      "id": "stt-gdc-india",
+      "operator": "STT GDC India",
+      "listedParent": "Tata Communications, 26 per cent holding",
+      "ticker": "TATACOMM",
+      "exchange": "NSE",
+      "announcedMW": 868,
+      "liveMW": 318,
+      "handedOverMW": null,
+      "verdict": "EXECUTING",
+      "note": "About 318 MW operational with a 3.2 billion dollar, 550 MW expansion plan, so announced is live plus the stated expansion. Tata Communications holds 26 per cent, which makes the listed exposure indirect.",
+      "source": {
+        "label": "Blueprint research note, BharatAI Infra Scope",
+        "asOf": "2026-08",
+        "verification": "SECONDARY"
+      }
+    },
+    {
+      "id": "anant-raj-cloud",
+      "operator": "Anant Raj Cloud",
+      "listedParent": "Anant Raj",
+      "ticker": "ANANTRAJ",
+      "exchange": "NSE",
+      "announcedMW": 307,
+      "liveMW": 28,
+      "handedOverMW": 8,
+      "verdict": "AMBITION_OVER_EXECUTION",
+      "note": "Real estate to data centre pivot. 28 MW of IT load across Manesar and Panchkula against a 307 MW target by Fiscal 2032 at roughly 2.1 billion dollars of capex. Only 8 MW had been completely handed over, the rest still in the handover process. Operational capacity is not the same as handed over capacity, and this is the clearest instance of that gap in the universe.",
+      "source": {
+        "label": "Blueprint research note quoting Value Research, against data/campuses.json which records 307 MW announced and 21 MW live",
+        "asOf": "2026-08",
+        "verification": "SECONDARY"
+      }
+    },
+    {
+      "id": "techno-electric",
+      "operator": "Techno Electric data centres",
+      "listedParent": "Techno Electric & Engineering",
+      "ticker": "TECHNOE",
+      "exchange": "NSE",
+      "announcedMW": 250,
+      "liveMW": 36,
+      "handedOverMW": null,
+      "verdict": "PLANNING",
+      "note": "Power engineering and construction contractor moving into data centres. A one billion dollar, 250 MW plan with 36 MW at Chennai, plus an edge joint venture with RailTel.",
+      "source": {
+        "label": "Blueprint research note, BharatAI Infra Scope",
+        "asOf": "2026-08",
+        "verification": "SECONDARY"
+      }
+    },
+    {
+      "id": "sify-infinit-spaces",
+      "operator": "Sify Infinit Spaces",
+      "listedParent": "Sify Technologies",
+      "ticker": "SIFY",
+      "exchange": "NASDAQ",
+      "announcedMW": 188.04,
+      "liveMW": 113.67,
+      "handedOverMW": 113.67,
+      "verdict": "EXECUTING",
+      "note": "The only row here read from a filed document rather than a research note. 188.04 MW of built capacity against 113.67 MW sold to customers, both certified by an independent chartered engineer. Announced is the issuer's own built capacity figure, which its own footnotes define two different ways.",
+      "source": {
+        "label": "Sify Infinit Spaces draft red herring prospectus dated 16 October 2025, capacity by data centre, printed pages 49 and 301",
+        "asOf": "2025-10-16",
+        "verification": "PRIMARY"
+      }
+    },
+    {
+      "id": "e2e-networks",
+      "operator": "E2E Networks",
+      "listedParent": "E2E Networks",
+      "ticker": "E2E",
+      "exchange": "NSE",
+      "announcedMW": 25,
+      "liveMW": 10,
+      "handedOverMW": null,
+      "verdict": "EXECUTING",
+      "note": "GPU cloud rather than colocation, so the megawatts are its own compute rather than capacity sold to tenants. Roughly 10 MW live carrying 8,000 to 10,000 GPUs. Fiscal 2025 revenue of 164 crore, up 73 per cent, but two consecutive quarter on quarter revenue dips. The announced figure is an estimate, not a company statement.",
+      "source": {
+        "label": "Blueprint research note, BharatAI Infra Scope. The announced figure is an estimate and is the least reliable number on this plot.",
+        "asOf": "2026-08",
+        "verification": "UNVERIFIED"
+      }
+    }
+  ],
+
+  "watchlist": [
+    {
+      "name": "Netweb Technologies",
+      "ticker": "NETWEB",
+      "bucket": "DC_AI_INFRA",
+      "role": "AI server and high performance computing manufacturer",
+      "verdict": "EXECUTING",
+      "metric": "AI systems 64 per cent of Q3 FY26 revenue; order book 2,507 crore; 1,734 crore IndiaAI Mission order",
+      "note": "No megawatts to plot. Measured on order book and revenue mix, not capacity."
+    },
+    {
+      "name": "Tata Consultancy Services",
+      "ticker": "TCS",
+      "bucket": "IT_SERVICES",
+      "role": "Services incumbent entering capex heavy data centres",
+      "verdict": "PLANNING",
+      "metric": "HyperVault joint venture with TPG, up to 18,000 crore combined equity, 1 GW target",
+      "note": "A strategy break for a historically capex light firm. Sub 10 per cent return on capital estimated against roughly 51 per cent group return on equity."
+    },
+    {
+      "name": "Black Box",
+      "ticker": "BBOX",
+      "bucket": "DC_AI_INFRA",
+      "role": "Data centre systems integrator",
+      "verdict": "ADVANCING",
+      "metric": "Targets roughly 2 billion dollars of revenue by FY29; won a tier one United States hyperscaler order",
+      "note": "Builds for others and owns nothing."
+    },
+    {
+      "name": "RailTel Corporation",
+      "ticker": "RAILTEL",
+      "bucket": "DC_AI_INFRA",
+      "role": "Edge data centres and fibre",
+      "verdict": "PLANNING",
+      "metric": "Roughly 102 edge sites planned with Techno Electric; 60,000 route km of fibre",
+      "note": "Plan only."
+    },
+    {
+      "name": "Cummins India",
+      "ticker": "CUMMINSIND",
+      "bucket": "PICKS_AND_SHOVELS",
+      "role": "Backup power generation",
+      "verdict": "ADVANCING",
+      "metric": "Data centres 30 to 35 per cent of domestic power generation revenue in FY26",
+      "note": "Sells into the buildout regardless of which operator wins it."
+    },
+    {
+      "name": "Hitachi Energy India",
+      "ticker": "POWERINDIA",
+      "bucket": "PICKS_AND_SHOVELS",
+      "role": "Grid to rack transformers and switchgear",
+      "verdict": "ADVANCING",
+      "metric": "Order backlog 29,555 crore as at March 2026, up 54 per cent",
+      "note": "Roughly half of India high voltage direct current."
+    }
+  ],
+  "watchlistSource": {
+    "label": "Blueprint research note, BharatAI Infra Scope, compiled from company filings, brokerage notes and press reporting. None of these figures has been traced to a primary filing inside this repository.",
+    "asOf": "2026-08",
+    "verification": "SECONDARY"
+  }
+}

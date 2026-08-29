@@ -8,8 +8,10 @@ import {
   Prospectus,
   DrhpTriage,
   Sisl,
+  Universe,
 } from "./schema";
 import sislRaw from "@/data/sisl.json";
+import universeRaw from "@/data/universe.json";
 import registerRaw from "@/data/disclosure_register.json";
 import prospectusRaw from "@/data/prospectus.json";
 import triageRaw from "@/data/drhp_triage.json";
@@ -59,6 +61,9 @@ export const drhpTriage = parse(DrhpTriage, triageRaw, "data/drhp_triage.json");
 
 /** The issuing entity's own restated numbers, read from the filed prospectus. */
 export const sisl = parse(Sisl, sislRaw, "data/sisl.json");
+
+/** The coverage universe: announced against delivered megawatts. */
+export const universe = parse(Universe, universeRaw, "data/universe.json");
 
 /**
  * Full fiscal years only, indexed to the first of them.

@@ -698,6 +698,84 @@ export const Sisl = z
     }
   });
 
+const Verdict = z.enum([
+  "EXECUTING",
+  "PLANNING",
+  "ADVANCING",
+  "LAGGING",
+  "AMBITION_OVER_EXECUTION",
+]);
+
+export const Universe = z
+  .object({
+    asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    operators: z
+      .array(
+        z.object({
+          id: z.string().min(1),
+          operator: z.string().min(1),
+          listedParent: z.string().min(1),
+          ticker: z.string().min(1),
+          exchange: z.enum(["NSE", "BSE", "NASDAQ"]),
+          announcedMW: z.number().nonnegative(),
+          liveMW: z.number().nonnegative(),
+          /** Live is not the same as handed over. Null where an operator does not split them. */
+          handedOverMW: z.number().nonnegative().nullable(),
+          verdict: Verdict,
+          note: z.string().min(1),
+          source: Source,
+        }),
+      )
+      .min(5),
+    watchlist: z
+      .array(
+        z.object({
+          name: z.string().min(1),
+          ticker: z.string().min(1),
+          bucket: z.enum(["IT_SERVICES", "DC_AI_INFRA", "PICKS_AND_SHOVELS"]),
+          role: z.string().min(1),
+          verdict: Verdict,
+          metric: z.string().min(1),
+          note: z.string().min(1),
+        }),
+      )
+      .min(3),
+    watchlistSource: Source,
+  })
+  .superRefine((d, ctx) => {
+    for (const o of d.operators) {
+      // Nobody can have more live than announced. If that inverts, a row has been
+      // read wrong or an announcement has quietly been restated downwards.
+      if (o.liveMW > o.announcedMW) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["operators"],
+          message: `${o.operator}: ${o.liveMW} MW live against ${o.announcedMW} MW announced`,
+        });
+      }
+      // Handed over sits inside live. Anant Raj is the whole reason this field exists.
+      if (o.handedOverMW !== null && o.handedOverMW > o.liveMW) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["operators"],
+          message: `${o.operator}: ${o.handedOverMW} MW handed over exceeds ${o.liveMW} MW live`,
+        });
+      }
+      // Only a figure traced to a filed document inside this repository may claim
+      // PRIMARY. Research notes and press reporting are SECONDARY at best.
+      if (o.source.verification === "PRIMARY" && !/prospectus|20-F|filing/i.test(o.source.label)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["operators"],
+          message: `${o.operator}: claims PRIMARY without naming a filed document`,
+        });
+      }
+    }
+  });
+
+export type Universe = z.infer<typeof Universe>;
+export type Verdict = z.infer<typeof Verdict>;
+
 export type Sisl = z.infer<typeof Sisl>;
 export type PagedSource = z.infer<typeof PagedSource>;
 
