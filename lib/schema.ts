@@ -942,6 +942,134 @@ export const Netweb = z
 
 export type Netweb = z.infer<typeof Netweb>;
 
+/**
+ * The method: formulas with their denominators, the known limits, and the log
+ * of how this project's direction changed.
+ *
+ * A limits list that only ever grows is a pose. This one records what was
+ * closed and by what, which is why `closedBy` is required the moment a limit
+ * says it is closed.
+ */
+export const Method = z
+  .object({
+    formulas: z
+      .array(
+        z.object({
+          name: z.string().min(1),
+          formula: z.string().min(1),
+          /** A rate without a denominator is decoration, so this is required. */
+          sample: z.string().min(1),
+          note: z.string().min(1),
+        }),
+      )
+      .min(1),
+    limits: z
+      .array(
+        z.object({
+          id: z.string().regex(/^[a-z0-9-]+$/),
+          status: z.enum(["OPEN", "CLOSED"]),
+          limit: z.string().min(1),
+          closedBy: z.string().min(1).nullable(),
+        }),
+      )
+      .min(1),
+    pivots: z
+      .array(
+        z.object({
+          when: z.string().min(1),
+          what: z.string().min(1),
+          why: z.string().min(1),
+        }),
+      )
+      .min(1),
+  })
+  .superRefine((d, ctx) => {
+    for (const l of d.limits) {
+      // Closing a limit is a claim like any other and has to carry its evidence.
+      // Marking one closed without naming what closed it is how a limits list
+      // turns into a list of things that stopped being mentioned.
+      if ((l.status === "CLOSED") !== (l.closedBy !== null)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["limits"],
+          message: `${l.id}: a closed limit must name what closed it, and an open one must not`,
+        });
+      }
+    }
+  });
+
+export type Method = z.infer<typeof Method>;
+
+/**
+ * The register of this file's own refinements.
+ *
+ * The methodology page publishes what the build guarantees. A list of
+ * guarantees that can quietly stop being true is worth less than no list, so
+ * every row carries a literal `fragment` of the message its refinement emits,
+ * and the test suite asserts both that each fragment is still present in this
+ * source file and that the number of messages here equals the number of rows
+ * there. Adding a guard without documenting it fails the tests, and so does
+ * leaving a row behind after removing one.
+ */
+export const Invariants = z
+  .object({
+    categories: z
+      .array(
+        z.object({
+          id: z.string().min(1),
+          name: z.string().min(1),
+          gloss: z.string().min(1),
+        }),
+      )
+      .min(1),
+    rows: z
+      .array(
+        z.object({
+          id: z.string().regex(/^[a-z0-9-]+$/),
+          schema: z.string().min(1),
+          category: z.string().min(1),
+          protects: z.string().min(1),
+          /** A literal substring of the emitted message, matched against the
+           *  source by the tests. Never a paraphrase. */
+          fragment: z.string().min(1),
+        }),
+      )
+      .min(1),
+  })
+  .superRefine((d, ctx) => {
+    const known = new Set(d.categories.map((c) => c.id));
+    const seen = new Set<string>();
+    for (const r of d.rows) {
+      if (!known.has(r.category)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["rows"],
+          message: `${r.id}: unknown category ${r.category}`,
+        });
+      }
+      if (seen.has(r.id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["rows"],
+          message: `duplicate invariant id ${r.id}`,
+        });
+      }
+      seen.add(r.id);
+    }
+    // A category with no rows is a heading over an empty promise.
+    for (const c of d.categories) {
+      if (!d.rows.some((r) => r.category === c.id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["categories"],
+          message: `category ${c.id} is declared but no invariant belongs to it`,
+        });
+      }
+    }
+  });
+
+export type Invariants = z.infer<typeof Invariants>;
+
 export type Universe = z.infer<typeof Universe>;
 export type Verdict = z.infer<typeof Verdict>;
 

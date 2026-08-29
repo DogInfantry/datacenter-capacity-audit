@@ -4,6 +4,7 @@ import Link from "next/link";
 const TABS: { href: string; label: string }[] = [
   { href: "/universe", label: "Universe" },
   { href: "/offer", label: "The offer" },
+  { href: "/methodology", label: "Method" },
 ];
 
 export function Nav() {

@@ -1,0 +1,252 @@
+{
+  "_note": "Every refinement in lib/schema.ts, with what it protects. The `fragment` on each row is a literal substring of the message that refinement emits, and the test suite asserts that every fragment is still present in the source and that the number of messages in the source equals the number of rows here. A guard added without a row, or a row left behind after a guard is removed, fails the tests. That is deliberate: a methodology page listing its own guarantees is worth nothing if the list can quietly stop being true.",
+  "categories": [
+    {
+      "id": "FINDING",
+      "name": "A published finding cannot go stale",
+      "gloss": "These encode a claim the site actually makes in prose. If the underlying numbers stop supporting the sentence, the build stops rather than the sentence going quietly wrong."
+    },
+    {
+      "id": "LADDER",
+      "name": "Capacity must descend",
+      "gloss": "Built, then commissioned, then sold. Announced, then claimed, then handed over. A rung that rises means a row was misread, and that descent is the whole product."
+    },
+    {
+      "id": "RECONCILE",
+      "name": "The parts must sum to the stated whole",
+      "gloss": "Wherever a filing prints both a total and its components, both are stored and the identity is asserted. This is what lets an exhibit say a figure is the issuer's own rather than our subtraction."
+    },
+    {
+      "id": "SOURCING",
+      "name": "Evidence cannot be overclaimed",
+      "gloss": "The primary tier is awarded by a check, not by an author. A row cannot call itself primary without naming a filed document."
+    },
+    {
+      "id": "LIKE_FOR_LIKE",
+      "name": "A comparison must measure the same thing",
+      "gloss": "A rate computed over a different set of topics, or a period compared against one that contains it, is not the same measurement however similar it looks."
+    },
+    {
+      "id": "POSSIBLE",
+      "name": "Impossible states are rejected",
+      "gloss": "Nobody can have more live capacity than announced, hand over more than is live, or have spent more on a project than it costs. These catch a mistyped row immediately."
+    },
+    {
+      "id": "EVIDENCE",
+      "name": "A claim must carry its evidence",
+      "gloss": "A graded forecast names what graded it. A refusal that points somewhere names where. Otherwise the register is an opinion with a schema around it."
+    }
+  ],
+  "rows": [
+    {
+      "id": "sisl-clients-reconcile",
+      "schema": "Sisl",
+      "category": "FINDING",
+      "protects": "The top three clients sum, to the second decimal, to the share of revenue the prospectus reports on contracts of at least seven years. The document never joins those two tables, and joined they say the durable contract base and the client concentration are the same three counterparties.",
+      "fragment": "The reconciliation that carries the finding no longer holds."
+    },
+    {
+      "id": "sisl-clients-hyperscaler",
+      "schema": "Sisl",
+      "category": "FINDING",
+      "protects": "Clients one, two and three are Hyperscalers in every period. The concentration exhibit calls them that, and the filing is what says so.",
+      "fragment": "the filing states clients 1, 2 and 3 are Hyperscalers in every period"
+    },
+    {
+      "id": "sisl-definitions-apart",
+      "schema": "Sisl",
+      "category": "FINDING",
+      "protects": "The same headline capacity figure is defined twice, on two different printed pages. If they ever land on one page the finding is gone, so the guard requires them to differ.",
+      "fragment": "the two capacity definitions must cite different printed pages"
+    },
+    {
+      "id": "netweb-order-inside-book",
+      "schema": "Netweb",
+      "category": "FINDING",
+      "protects": "One government order is 69 per cent of the order book. An order larger than the book holding it would push that share past a hundred, which is arithmetic nonsense rather than a finding.",
+      "fragment": "cr order book it is measured against"
+    },
+    {
+      "id": "netweb-book-postdates-award",
+      "schema": "Netweb",
+      "category": "FINDING",
+      "protects": "The order book must be struck after the order was awarded, or the order is not inside it and the concentration exhibit is measuring nothing.",
+      "fragment": "does not postdate the award at"
+    },
+    {
+      "id": "sisl-rungs-descend",
+      "schema": "Sisl",
+      "category": "LADDER",
+      "protects": "In every filed period, built capacity is at least commissioned capacity, which is at least what is sold.",
+      "fragment": "capacity rungs must descend, got built"
+    },
+    {
+      "id": "prospectus-rungs-descend",
+      "schema": "Prospectus",
+      "category": "LADDER",
+      "protects": "The capacity rungs are stored widest first. The finding is that the widest one is an engineering maximum while being called built.",
+      "fragment": "capacity rungs must descend, widest first"
+    },
+    {
+      "id": "anantraj-ladder-descends",
+      "schema": "AnantRaj",
+      "category": "LADDER",
+      "protects": "Announced, then claimed operational, then actually handed over. That descent from 307 to 28 to 8 megawatts is the entire Anant Raj case.",
+      "fragment": "the capacity ladder must descend, got"
+    },
+    {
+      "id": "sisl-sites-sum",
+      "schema": "Sisl",
+      "category": "RECONCILE",
+      "protects": "The site rows must sum to the totals printed in the filing, within the rounding the filing itself introduces. A wider gap means a row was mistyped.",
+      "fragment": "sites sum to"
+    },
+    {
+      "id": "offer-splits-sum",
+      "schema": "Prospectus",
+      "category": "RECONCILE",
+      "protects": "The fresh issue and the offer for sale must add up to the total offer, so the exhibit showing how much never reaches the company is built on the issuer's own split.",
+      "fragment": "the fresh issue and the offer for sale must add up to the total offer"
+    },
+    {
+      "id": "object-funding-reconciles",
+      "schema": "Prospectus",
+      "category": "RECONCILE",
+      "protects": "For each object, money already spent plus net proceeds plus borrowings equals the estimated cost. That identity is what lets the funding gap exhibit say the borrowings are the issuer's own figure rather than our subtraction.",
+      "fragment": "deployed plus net proceeds plus borrowings must equal the total estimated cost"
+    },
+    {
+      "id": "segment-inside-group",
+      "schema": "CompanyDoc",
+      "category": "RECONCILE",
+      "protects": "A segment can never be larger than the group it sits inside, in any filed year.",
+      "fragment": "segment revenue exceeds group revenue in at least one year"
+    },
+    {
+      "id": "family-qualities-account",
+      "schema": "DisclosureRegister",
+      "category": "RECONCILE",
+      "protects": "Confirmed, partial, deflected and declined must account for every question pressed, so the refusal rate has a denominator a reader can check.",
+      "fragment": "the four response qualities must account for every question pressed"
+    },
+    {
+      "id": "family-counts-sum",
+      "schema": "DisclosureRegister",
+      "category": "RECONCILE",
+      "protects": "The per topic counts must add up to the stated denominator for the company.",
+      "fragment": "the family counts must add up to the stated denominator"
+    },
+    {
+      "id": "refusal-count-matches",
+      "schema": "DisclosureRegister",
+      "category": "RECONCILE",
+      "protects": "The headline refusal count must match the topic breakdown beneath it.",
+      "fragment": "the refusal count must match the family breakdown"
+    },
+    {
+      "id": "refusals-all-listed",
+      "schema": "DisclosureRegister",
+      "category": "RECONCILE",
+      "protects": "Every counted refusal must be listed individually, so a reader can read the numerator rather than being told it.",
+      "fragment": "every counted refusal must be listed, so the numerator can be read"
+    },
+    {
+      "id": "universe-primary-needs-filing",
+      "schema": "Universe",
+      "category": "SOURCING",
+      "protects": "A coverage row cannot claim the primary tier without naming a filed document. This is why only one operator in eight carries it.",
+      "fragment": "claims PRIMARY without naming a filed document"
+    },
+    {
+      "id": "anantraj-not-primary",
+      "schema": "AnantRaj",
+      "category": "SOURCING",
+      "protects": "No Anant Raj filing has been opened, so no Anant Raj figure may claim to be traced to one.",
+      "fragment": "no Anant Raj figure is traced to a filing, so it cannot claim PRIMARY"
+    },
+    {
+      "id": "netweb-not-primary",
+      "schema": "Netweb",
+      "category": "SOURCING",
+      "protects": "No Netweb filing has been opened either, and the same guard applies.",
+      "fragment": "no Netweb figure is traced to a filing, so it cannot claim PRIMARY"
+    },
+    {
+      "id": "identical-family-set",
+      "schema": "DisclosureRegister",
+      "category": "LIKE_FOR_LIKE",
+      "protects": "Every company in the disclosure comparison must be measured over the identical set of topics. A rate computed over a different set is a different measurement wearing the same label.",
+      "fragment": "every company must be measured over the identical family set"
+    },
+    {
+      "id": "one-peer-is-self",
+      "schema": "Sisl",
+      "category": "LIKE_FOR_LIKE",
+      "protects": "Exactly one row in the issuer's chosen peer set is the issuer. Without it the peer exhibits cannot tell which bar to highlight.",
+      "fragment": "exactly one peer row must be marked self"
+    },
+    {
+      "id": "mix-one-of-each-span",
+      "schema": "Netweb",
+      "category": "LIKE_FOR_LIKE",
+      "protects": "The revenue mix exhibit draws a quarter against the nine months that contain it and says so out loud. Exactly one row of each, or that sentence describes rows which are not there.",
+      "fragment": "revenueMix must carry exactly one"
+    },
+    {
+      "id": "live-under-announced",
+      "schema": "Universe",
+      "category": "POSSIBLE",
+      "protects": "Nobody can have more capacity live than announced. If that inverts, either a row was read wrong or an announcement has quietly been restated downwards.",
+      "fragment": "MW live against"
+    },
+    {
+      "id": "handed-over-under-live",
+      "schema": "Universe",
+      "category": "POSSIBLE",
+      "protects": "What has been handed over sits inside what is live. Anant Raj is the whole reason this field exists.",
+      "fragment": "MW handed over exceeds"
+    },
+    {
+      "id": "deployed-under-cost",
+      "schema": "Prospectus",
+      "category": "POSSIBLE",
+      "protects": "Money already spent on an object cannot exceed what the object is estimated to cost.",
+      "fragment": "money already spent cannot exceed the estimated cost of the object"
+    },
+    {
+      "id": "graded-claim-has-evidence",
+      "schema": "Claim",
+      "category": "EVIDENCE",
+      "protects": "A forward claim that has been graded must carry the evidence that graded it. An ungraded one stays open and says so.",
+      "fragment": "a graded claim must carry the evidence that graded it"
+    },
+    {
+      "id": "horizon-after-claim",
+      "schema": "Claim",
+      "category": "EVIDENCE",
+      "protects": "A claim's horizon must fall after the date the claim was made, or it was never a forecast.",
+      "fragment": "horizon_end must fall after made_on"
+    },
+    {
+      "id": "refusal-names-where",
+      "schema": "Refusal",
+      "category": "EVIDENCE",
+      "protects": "A refusal recorded as published elsewhere must name where. Refused on the call but published in a filing is ordinary investor relations; refused and published nowhere is a disclosure gap, and only the second is a finding.",
+      "fragment": "published_elsewhere requires naming where it was published"
+    },
+    {
+      "id": "closed-limit-names-evidence",
+      "schema": "Method",
+      "category": "EVIDENCE",
+      "protects": "A known limit marked closed must name what closed it, and an open one must not pretend to. Closing a limit is a claim like any other, and without this a limits list decays into a list of things that simply stopped being mentioned.",
+      "fragment": "a closed limit must name what closed it, and an open one must not"
+    },
+    {
+      "id": "register-refusal-names-where",
+      "schema": "DisclosureRegister",
+      "category": "EVIDENCE",
+      "protects": "The same rule inside the measured register: a refusal that points somewhere must say where it points.",
+      "fragment": "a refusal that points somewhere must say where"
+    }
+  ]
+}

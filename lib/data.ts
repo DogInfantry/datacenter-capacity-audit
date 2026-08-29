@@ -11,7 +11,11 @@ import {
   Universe,
   AnantRaj,
   Netweb,
+  Invariants,
+  Method,
 } from "./schema";
+import invariantsRaw from "@/data/invariants.json";
+import methodRaw from "@/data/method.json";
 import sislRaw from "@/data/sisl.json";
 import universeRaw from "@/data/universe.json";
 import anantRajRaw from "@/data/anantraj.json";
@@ -84,6 +88,13 @@ export const netweb = parse(Netweb, netwebRaw, "data/netweb.json");
  * previously ended up with a data file rendering on no page at all.
  */
 export const COVERED_TICKERS = ["SIFY", "ANANTRAJ", "NETWEB"] as const;
+
+/** What the build guarantees, published rather than asserted. Checked against
+ *  the source of `lib/schema.ts` by the test suite. */
+export const invariants = parse(Invariants, invariantsRaw, "data/invariants.json");
+
+/** Formulas with their denominators, the known limits, and the pivot log. */
+export const method = parse(Method, methodRaw, "data/method.json");
 
 /**
  * Full fiscal years only, indexed to the first of them.

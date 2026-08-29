@@ -1,0 +1,139 @@
+{
+  "_note": "Migrated from the /method route, which predates the rebuild. The formulas are carried over unchanged. The limits are not: one of them said the capacity definition discrepancy was unverified until the prospectus was read, and the prospectus has since been read, so it moves across as closed with the pages that closed it. A limits list that only ever grows is a pose; one that records what was closed and by what is a record.",
+
+  "formulas": [
+    {
+      "name": "Transmission slippage base rate",
+      "formula": "cost weighted mean = sum(delay x approved cost) / sum(approved cost)",
+      "sample": "25 delayed ISTS projects, Rs 24,945 cr approved cost",
+      "note": "Every project was still running when tabled, so each delay is the slip anticipated at that moment rather than the slip realised. The observations are right censored and the figure is a floor."
+    },
+    {
+      "name": "Segment margin",
+      "formula": "(segment revenue - segment operating expense) / segment revenue",
+      "sample": "9 annual periods, FY2018 to FY2026, Form 20-F",
+      "note": "Operating expense is taken as an absolute value because FY2023 is filed with a negative sign while every other year is positive. The magnitudes agree; only the convention differs. The result must land in the 40 to 50 per cent band the sector reports for stabilised colocation, or the series is being misread."
+    },
+    {
+      "name": "Revenue per megawatt",
+      "formula": "data centre segment revenue / contracted MW",
+      "sample": "FY2026 segment revenue over opening and closing contracted capacity, 110 to 130 MW",
+      "note": "Derived, not disclosed. Contracted is the correct denominator because design and commissioned capacity both include megawatts nobody is paying for. Reported as a range because capacity moves during the year. Cross checked against an independent figure of about Rs 0.9 crore per MW per month."
+    },
+    {
+      "name": "Funding gap",
+      "formula": "sum(capex) - sum(operating cash flow), summed not averaged",
+      "sample": "5 financial years, FY2022 to FY2026",
+      "note": "Summed deliberately: a shortfall does not reset each April, it accumulates until someone funds it."
+    },
+    {
+      "name": "Order book concentration",
+      "formula": "anchor order value / total order book value",
+      "sample": "One order of Rs 1,734 cr against a book of Rs 2,507 cr at 30 June 2026",
+      "note": "A ceiling rather than a measurement. The book is dated after the award and the delivery window is still open, so anything already delivered has left the book and the true share can only be lower. Backlog is not revenue, and the exhibit says so beside the bar, because the comparison drawn next to it is a revenue share."
+    },
+    {
+      "name": "Adjusted EBITDA reconstruction",
+      "formula": "operating income + depreciation + add backs, over revenue",
+      "sample": "Equinix, one quarter and one financial year with a stated reference, from Form 10-Q and 10-K",
+      "note": "The check on everything else here. Adjusted EBITDA is not GAAP and is tagged nowhere in the filings database, so the reference is what management said on the call, verbatim and dated. Add backs are stock compensation and any tagged one off charge. An add back that is not tagged is not treated as zero: the period is reported as not reconcilable instead, because a company that does not tag its stock compensation has not told us it pays none."
+    },
+    {
+      "name": "Reconciliation tolerance",
+      "formula": "absolute(rebuilt margin - stated margin), in basis points",
+      "sample": "150 bp against a reported actual, 250 bp against guidance",
+      "note": "Both were fixed in writing before the check was run, so that the result could not be rationalised afterwards. Guidance earns the wider band because a guide is a range and not a point. Equinix cleared the first at 35 basis points for the second quarter of 2025 and the second at 131 basis points for the 2025 financial year. Digital Realty cleared neither, because its add backs cannot be built from the source at all."
+    },
+    {
+      "name": "Refusal rate",
+      "formula": "(declined + deflected) / every question asked in the same topic families",
+      "sample": "Sify 15, Equinix 20, Digital Realty 34 questions, 2024-01-01 to 2026-07-31, families pricing mechanics and cost margin bridge",
+      "note": "A partial answer is an answer, just an incomplete one, and counting it as a refusal would let the measure say whatever was wanted of it. The denominator is a complete topic partition rather than a keyword search: asking the source for the phrase revenue per megawatt finds only questions worded that way, and the denominator then describes the search instead of the calls. Rates are never shown without the counts they came from, because a company that is rarely asked has fewer chances to refuse."
+    },
+    {
+      "name": "Published elsewhere",
+      "formula": "refusals where the answer names a document or public source",
+      "sample": "20 refusals in the window, of which 2 named a source",
+      "note": "The dimension that separates ordinary investor relations from a disclosure gap, and the weakest thing on this page. It is coded from what management said out loud, so it detects a company naming where a figure lives. It cannot show that a figure is unpublished: a company can publish something in a supplemental and simply not mention it while answering. Equinix and Digital Realty both publish extensive quarterly supplements."
+    },
+    {
+      "name": "Schedule slip band",
+      "formula": "stated fiscal year end + observed slippage, at the median, the cost weighted mean and the ninetieth percentile",
+      "sample": "25 delayed inter state transmission projects, the same base rate as the grid page",
+      "note": "The one exhibit that puts all three registers on one axis, and the one most easily rendered dishonestly. The base rate measures transmission, not data centre construction, so this is not a forecast of how late these towers will be. It is the delay distribution of the grid connections a campus depends on, and the prospectus itself places an on site 230 kV substation at Chennai 02 on printed page 111. That distinction is stored as a required field on the data rather than as a sentence, because a sentence can be edited away and a required field cannot. The band is drawn fainter as it extends, because a solid block at 32 months would read as a prediction. Indian fiscal years end on 31 March, so Fiscal 2029 ends in March 2029 and not in December."
+    },
+    {
+      "name": "Segment share of revenue",
+      "formula": "segment revenue / group revenue",
+      "sample": "6 annual periods where both figures are reported",
+      "note": "The cheapest honest test of a stated pivot. It says whether a claimed shift is visible in the accounts. It says nothing about whether the shift is wise."
+    }
+  ],
+
+  "limits": [
+    {
+      "id": "transmission-sample",
+      "status": "OPEN",
+      "limit": "The transmission sample is small, and only seven of its projects are private developers, three of those sharing one parent. It is enough to raise the question of whether ownership predicts delivery and not enough to answer it.",
+      "closedBy": null
+    },
+    {
+      "id": "one-indian-filer",
+      "status": "OPEN",
+      "limit": "Sify is still the only Indian operator here with a full statement and transcript record, because it lists in the United States. One company cannot represent Indian disclosure practice. It anchors the method while the coverage widens.",
+      "closedBy": null
+    },
+    {
+      "id": "derived-revenue-per-mw",
+      "status": "OPEN",
+      "limit": "Revenue per megawatt is derived rather than disclosed, and carries its formula and denominator wherever it appears.",
+      "closedBy": null
+    },
+    {
+      "id": "two-dives-secondary",
+      "status": "OPEN",
+      "limit": "Two of the three deep dives rest entirely on a research note. No Anant Raj or Netweb filing has been opened, so neither page carries a margin, a cash flow or a client table, and both say so on the page rather than in a footnote.",
+      "closedBy": null
+    },
+    {
+      "id": "capacity-definition-unverified",
+      "status": "CLOSED",
+      "limit": "The 188 megawatt definitional discrepancy rested on secondary summaries and was labelled unverified until the prospectus itself could be read.",
+      "closedBy": "The prospectus was read. The same figure is called capacity engineered to support on printed pages 49 and 301, and total available power capacity that can be sold to customers on printed page 142. The discrepancy is now primary, cited by page, and asserted as a build invariant requiring the two definitions to sit on different pages."
+    },
+    {
+      "id": "no-client-concentration",
+      "status": "CLOSED",
+      "limit": "This site published the claim that the prospectus disclosed no revenue concentration by customer.",
+      "closedBy": "That was wrong, and was corrected. The searches used the word customer; the filing says client. The top ten client table is on printed page 36, and the top three sum to the same share of revenue the document reports on contracts of at least seven years. The error is recorded here rather than quietly fixed, because a correction log is worth more than a clean one."
+    }
+  ],
+
+  "pivots": [
+    {
+      "when": "Start",
+      "what": "Began as the brief specified: an eighteen name forensic dashboard scoring listed Indian names on execution against ambition.",
+      "why": "The brief's own thesis. Announcements are measured in gigawatts, delivery in megawatts, and nobody was packaging the gap."
+    },
+    {
+      "when": "Over several sessions",
+      "what": "Narrowed to a single company teardown of Sify Infinit Spaces.",
+      "why": "Sify is the only name in the universe with a filed, public, page citable document. Every step toward it was a reasonable answer to the last instruction, which is exactly why nobody noticed the destination."
+    },
+    {
+      "when": "2026-08-30",
+      "what": "The drift was caught by a symptom rather than by a review: a data file holding Anant Raj at 21 megawatts live against 307 announced was rendering on no page at all, because its only page had been deleted.",
+      "why": "A coverage product that had stopped covering anything. The four routes from the abandoned direction were deleted the same day."
+    },
+    {
+      "when": "2026-08-30",
+      "what": "Pulled back to the brief's own Recommendation 1, a two by two plus three deep dives. The coverage universe was restored and the matrix rebuilt.",
+      "why": "Recommendation 1 is the demoable slice. It carries the whole argument with three worked examples rather than one exhaustive one."
+    },
+    {
+      "when": "2026-08-30",
+      "what": "The three deep dives were completed: Sify on a filing, Anant Raj on delivery, Netweb on an order book.",
+      "why": "Three names, three different units, one argument. The third deliberately owns no megawatts, which is why it is absent from the two by two rather than forced onto it."
+    }
+  ]
+}
