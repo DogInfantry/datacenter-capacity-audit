@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 /** Tickers with a deep-dive. Everything else renders as a card without a link. */
-const COVERED = new Set(["SIFY"]);
+const COVERED = new Set(["SIFY", "ANANTRAJ"]);
 
 export default function Home() {
   const ops = universe.operators;

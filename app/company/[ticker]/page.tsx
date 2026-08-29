@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sisl, universe } from "@/lib/data";
+import { sisl, universe, anantRaj } from "@/lib/data";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
 import { ClientConcentration } from "@/components/ClientConcentration";
 import { SiteMap } from "@/components/SiteMap";
 import { Pictogram, StatTile, Monogram, type IconName } from "@/components/Visual";
+import { AnantRajBody } from "@/components/AnantRajBody";
 
 /**
  * Company deep-dives.
  *
- * Only Sify has one today, because it is the only name in the universe read from
- * a filed document rather than a research note. Anant Raj and Netweb get pages
- * when their data is seeded. Until then the route refuses rather than rendering
- * a shell, so a reader never meets a page that looks finished and is not.
+ * Sify is read from a filed document. Anant Raj is read from a research note and
+ * says so on every figure. Netweb gets a page when its data is seeded; until
+ * then the route refuses rather than rendering a shell, so a reader never meets
+ * a page that looks finished and is not.
  */
-const COVERED = ["SIFY"] as const;
+const COVERED = ["SIFY", "ANANTRAJ"] as const;
 
 export function generateStaticParams() {
   return COVERED.map((ticker) => ({ ticker }));
@@ -33,6 +34,20 @@ export async function generateMetadata({
 export default async function CompanyPage({ params }: PageProps<"/company/[ticker]">) {
   const { ticker } = await params;
   if (!COVERED.includes(ticker as (typeof COVERED)[number])) notFound();
+
+  if (ticker === "ANANTRAJ") {
+    const stub = sisl.periods.find((p) => p.stub)!;
+    return (
+      <AnantRajBody
+        data={anantRaj}
+        sify={[
+          { rung: "Built", mw: stub.builtMW },
+          { rung: "Installed", mw: stub.installedMW },
+          { rung: "Sold", mw: stub.operationalMW },
+        ]}
+      />
+    );
+  }
 
   const row = universe.operators.find((o) => o.ticker === ticker)!;
 

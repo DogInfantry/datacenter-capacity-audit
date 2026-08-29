@@ -1,0 +1,56 @@
+{
+  "_note": "Anant Raj is the flagship execution case in the brief. Nothing here is read from a filing: every figure is a research note or press figure, tagged SECONDARY throughout. No financial statements have been read, so this page deliberately carries no margins, no returns and no cost stack. It is a capacity and delivery page only, and it says so.",
+  "entity": "Anant Raj Cloud",
+  "listedParent": "Anant Raj",
+  "ticker": "ANANTRAJ",
+  "exchange": "NSE",
+  "role": "Real estate developer pivoting to colocation data centres",
+
+  "ladder": [
+    {
+      "rung": "Announced",
+      "mw": 307,
+      "definition": "Target IT load by Fiscal 2032, against roughly 2.1 billion dollars of stated capex. A plan, not an asset.",
+      "kind": "AMBITION"
+    },
+    {
+      "rung": "Operational",
+      "mw": 28,
+      "definition": "IT load described as operational across the two live campuses, Manesar and Panchkula.",
+      "kind": "CLAIMED"
+    },
+    {
+      "rung": "Handed over",
+      "mw": 8,
+      "definition": "Colocation completely handed over to customers. The remainder was still in the handover process.",
+      "kind": "DELIVERED"
+    }
+  ],
+  "ladderSource": {
+    "label": "Blueprint research note, BharatAI Infra Scope, quoting Value Research: only 8 MW of colocation had been completely handed over, while the rest was still in the handover process, and operational capacity is not the same as handed over capacity. This repository's own data/campuses.json separately records Anant Raj Cloud at 307 MW announced against 21 MW live, which disagrees with the 28 MW figure. Both are recorded and neither is averaged.",
+    "asOf": "2026-08",
+    "verification": "SECONDARY"
+  },
+  "conflict": {
+    "field": "Operational capacity",
+    "a": { "value": 28, "source": "Blueprint research note, Manesar 21 plus Panchkula 7" },
+    "b": { "value": 21, "source": "data/campuses.json, recorded earlier in this project" },
+    "note": "A seven megawatt disagreement on a 28 megawatt estate is a quarter of the number. Until a filing settles it the higher figure is carried, and the disagreement is shown rather than resolved."
+  },
+
+  "sites": [
+    { "name": "Manesar", "state": "Haryana", "operationalMW": 21 },
+    { "name": "Panchkula", "state": "Haryana", "operationalMW": 7 }
+  ],
+
+  "targetFiscalYear": "Fiscal 2032",
+  "capexUsdBn": 2.1,
+
+  "notRead": [
+    "Annual report and audited financial statements",
+    "Revenue, margins and cash flow",
+    "Order book or contracted capacity",
+    "Client concentration",
+    "Any figure traced to a document filed with a regulator"
+  ]
+}

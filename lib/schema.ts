@@ -787,6 +787,59 @@ export const Universe = z
     }
   });
 
+export const AnantRaj = z
+  .object({
+    entity: z.string().min(1),
+    listedParent: z.string().min(1),
+    ticker: z.string().min(1),
+    exchange: z.string().min(1),
+    role: z.string().min(1),
+    ladder: z
+      .array(
+        z.object({
+          rung: z.string().min(1),
+          mw: z.number().positive(),
+          definition: z.string().min(1),
+          kind: z.enum(["AMBITION", "CLAIMED", "DELIVERED"]),
+        }),
+      )
+      .length(3),
+    ladderSource: Source,
+    conflict: z.object({
+      field: z.string().min(1),
+      a: z.object({ value: z.number(), source: z.string().min(1) }),
+      b: z.object({ value: z.number(), source: z.string().min(1) }),
+      note: z.string().min(1),
+    }),
+    sites: z.array(z.object({ name: z.string().min(1), state: z.string().min(1), operationalMW: z.number().positive() })).min(1),
+    targetFiscalYear: z.string().min(1),
+    capexUsdBn: z.number().positive(),
+    /** What has deliberately not been read. Rendered on the page, not hidden. */
+    notRead: z.array(z.string().min(1)).min(1),
+  })
+  .superRefine((d, ctx) => {
+    // The ladder must descend. Announced, then claimed operational, then what is
+    // actually handed over. That descent is the entire finding.
+    const mw = d.ladder.map((l) => l.mw);
+    if (!(mw[0] >= mw[1] && mw[1] >= mw[2])) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["ladder"],
+        message: `the capacity ladder must descend, got ${mw.join(" then ")}`,
+      });
+    }
+    // Nothing here is traced to a filing, so nothing here may claim PRIMARY.
+    if (d.ladderSource.verification === "PRIMARY") {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["ladderSource"],
+        message: "no Anant Raj figure is traced to a filing, so it cannot claim PRIMARY",
+      });
+    }
+  });
+
+export type AnantRaj = z.infer<typeof AnantRaj>;
+
 export type Universe = z.infer<typeof Universe>;
 export type Verdict = z.infer<typeof Verdict>;
 
