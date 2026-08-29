@@ -7,7 +7,9 @@ import {
   DisclosureRegister,
   Prospectus,
   DrhpTriage,
+  Sisl,
 } from "./schema";
+import sislRaw from "@/data/sisl.json";
 import registerRaw from "@/data/disclosure_register.json";
 import prospectusRaw from "@/data/prospectus.json";
 import triageRaw from "@/data/drhp_triage.json";
@@ -54,6 +56,26 @@ export const disclosureRegister = parse(
 export const prospectus = parse(Prospectus, prospectusRaw, "data/prospectus.json");
 
 export const drhpTriage = parse(DrhpTriage, triageRaw, "data/drhp_triage.json");
+
+/** The issuing entity's own restated numbers, read from the filed prospectus. */
+export const sisl = parse(Sisl, sislRaw, "data/sisl.json");
+
+/**
+ * Full fiscal years only, indexed to the first of them.
+ *
+ * The stub quarter is excluded rather than annualised. Its return on capital is
+ * filed on an unannualised basis, so putting it on an indexed line beside three
+ * full years would compare three months of return against twelve and invent a
+ * collapse the filing does not claim. The collapse in the stub is real and it is
+ * stated in words elsewhere; it is not drawn here.
+ */
+export function indexedToFirst<K extends "builtMW" | "roce" | "revenue" | "operationalMW">(
+  key: K,
+) {
+  const full = sisl.periods.filter((p) => !p.stub);
+  const base = full[0][key];
+  return full.map((p) => ({ label: p.label, raw: p[key], index: (p[key] / base) * 100 }));
+}
 
 /** Every company harvested so far, data centre operators first. */
 export const companies = [sifyCo, equinix, digitalRealty, wipro, infosys];

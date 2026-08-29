@@ -505,6 +505,94 @@ export const DrhpTriage = z.object({
     .min(50),
 });
 
+/**
+ * A prospectus figure must name the printed page it was read from. The PDF index
+ * is not the printed page, the two differ by four in this document, and a reader
+ * who wants to check a number needs the printed one.
+ */
+export const PagedSource = Source.extend({ page: z.number().int().positive() });
+
+const SislPeriod = z.object({
+  label: z.string().min(1),
+  periodEnd: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  /** A stub quarter. Its ROCE is filed unannualised and must not be compared to a full year. */
+  stub: z.boolean(),
+  revenue: z.number().positive(),
+  ebitda: z.number().positive(),
+  ebitdaMargin: z.number().positive(),
+  pbt: z.number(),
+  pat: z.number(),
+  patMargin: z.number(),
+  roce: z.number(),
+  netDebt: z.number().positive(),
+  netDebtToEbitda: z.number().positive(),
+  builtMW: z.number().positive(),
+  installedMW: z.number().positive(),
+  operationalMW: z.number().positive(),
+  dataCentresBuilt: z.number().int().positive(),
+});
+
+const SislCost = z.object({
+  label: z.string().min(1),
+  power: z.number().positive(),
+  otherDirect: z.number().positive(),
+  employee: z.number().positive(),
+  financeCostPL: z.number().positive(),
+  /** Borrowing cost capitalised into assets under construction rather than expensed. */
+  interestCapitalised: z.number().positive(),
+});
+
+export const Sisl = z
+  .object({
+    entity: z.string().min(1),
+    currency: z.string().min(1),
+    unit: z.string().min(1),
+    periods: z.array(SislPeriod).min(3),
+    periodsSource: PagedSource,
+    costStack: z.array(SislCost).min(3),
+    costStackSource: PagedSource,
+    capitalisationRate: z.number().positive(),
+    contracts: z
+      .array(z.object({ label: z.string().min(1), longContractRevenueShare: z.number().positive() }))
+      .min(3),
+    contractsSource: PagedSource,
+    escalatorMinPct: z.number().positive(),
+    escalatorMaxPct: z.number().positive(),
+    capacityDefinitions: z.object({
+      engineeredToSupport: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
+      availableToSell: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
+    }),
+  })
+  .superRefine((d, ctx) => {
+    // The capacity rungs must descend. Built is what a site is engineered to
+    // support, installed is what is commissioned, operational is what is sold,
+    // so a period where they do not descend means a row was misread.
+    for (const p of d.periods) {
+      if (!(p.builtMW >= p.installedMW && p.installedMW >= p.operationalMW)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["periods"],
+          message: `${p.label}: capacity rungs must descend, got built ${p.builtMW}, installed ${p.installedMW}, operational ${p.operationalMW}`,
+        });
+      }
+    }
+    // The whole finding is that one document defines the same figure twice in two
+    // places. If they ever land on the same printed page, the finding is gone.
+    if (
+      d.capacityDefinitions.engineeredToSupport.page ===
+      d.capacityDefinitions.availableToSell.page
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["capacityDefinitions"],
+        message: "the two capacity definitions must cite different printed pages",
+      });
+    }
+  });
+
+export type Sisl = z.infer<typeof Sisl>;
+export type PagedSource = z.infer<typeof PagedSource>;
+
 export type DrhpTriage = z.infer<typeof DrhpTriage>;
 
 export type Campus = z.infer<typeof Campus>;

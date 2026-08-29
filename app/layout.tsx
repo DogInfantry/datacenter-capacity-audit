@@ -1,27 +1,29 @@
 import type { Metadata } from "next";
-import { Source_Serif_4, Inter } from "next/font/google";
+import { Newsreader, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 
-const serif = Source_Serif_4({
-  variable: "--font-serif-face",
+const display = Newsreader({
+  variable: "--font-display-face",
   subsets: ["latin"],
+  display: "swap",
 });
-const sans = Inter({ variable: "--font-sans-face", subsets: ["latin"] });
+const sans = Geist({ variable: "--font-sans-face", subsets: ["latin"], display: "swap" });
+const mono = Geist_Mono({ variable: "--font-mono-face", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "The Gigawatt Gap",
+  title: "Built, Installed, Sold",
   description:
-    "India announced a gigawatt data centre buildout. This measures what the grid, the water table and the tariff will actually carry.",
+    "Sify Infinit Spaces reports 188 MW of built capacity and earns revenue on 114. This reads the filed prospectus to work out what that costs.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${serif.variable} ${sans.variable} h-full antialiased`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col font-sans">
         <Nav />
         {children}
       </body>

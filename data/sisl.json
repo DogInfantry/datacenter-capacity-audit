@@ -1,0 +1,128 @@
+{
+  "_source": "Sify Infinit Spaces Limited, Draft Red Herring Prospectus, dated October 16, 2025",
+  "_note": "Restated consolidated figures read from the filed document and cited by printed page. Amounts in Indian Rupees millions unless stated. The three months ended June 30, 2025 is a stub period: its return on capital employed is reported by the issuer on an unannualised basis and is therefore not comparable to a full year, which is why the indexed exhibit uses full fiscal years only.",
+  "entity": "Sify Infinit Spaces Limited",
+  "currency": "INR",
+  "unit": "millions",
+
+  "periods": [
+    {
+      "label": "FY2023",
+      "periodEnd": "2023-03-31",
+      "stub": false,
+      "revenue": 10213.40,
+      "ebitda": 4126.06,
+      "ebitdaMargin": 40.40,
+      "pbt": 1268.46,
+      "pat": 966.86,
+      "patMargin": 9.47,
+      "roce": 9.88,
+      "netDebt": 16007.20,
+      "netDebtToEbitda": 3.88,
+      "builtMW": 92.63,
+      "installedMW": 91.00,
+      "operationalMW": 77.09,
+      "dataCentresBuilt": 11
+    },
+    {
+      "label": "FY2024",
+      "periodEnd": "2024-03-31",
+      "stub": false,
+      "revenue": 11141.70,
+      "ebitda": 4652.65,
+      "ebitdaMargin": 41.76,
+      "pbt": 1141.78,
+      "pat": 932.48,
+      "patMargin": 8.37,
+      "roce": 6.75,
+      "netDebt": 21503.16,
+      "netDebtToEbitda": 4.62,
+      "builtMW": 136.20,
+      "installedMW": 99.48,
+      "operationalMW": 85.49,
+      "dataCentresBuilt": 12
+    },
+    {
+      "label": "FY2025",
+      "periodEnd": "2025-03-31",
+      "stub": false,
+      "revenue": 14283.65,
+      "ebitda": 6342.46,
+      "ebitdaMargin": 44.40,
+      "pbt": 1802.64,
+      "pat": 1263.60,
+      "patMargin": 8.85,
+      "roce": 7.92,
+      "netDebt": 23236.04,
+      "netDebtToEbitda": 3.66,
+      "builtMW": 188.04,
+      "installedMW": 127.56,
+      "operationalMW": 111.37,
+      "dataCentresBuilt": 14
+    },
+    {
+      "label": "Q1 FY2026",
+      "periodEnd": "2025-06-30",
+      "stub": true,
+      "revenue": 3985.98,
+      "ebitda": 1767.18,
+      "ebitdaMargin": 44.33,
+      "pbt": 195.97,
+      "pat": 136.32,
+      "patMargin": 3.42,
+      "roce": 1.62,
+      "netDebt": 27389.76,
+      "netDebtToEbitda": 3.87,
+      "builtMW": 188.04,
+      "installedMW": 131.88,
+      "operationalMW": 113.67,
+      "dataCentresBuilt": 14
+    }
+  ],
+  "periodsSource": {
+    "label": "Sify Infinit Spaces DRHP, Basis for Offer Price, key performance indicators, printed page 142; capacity by data centre, printed pages 49 and 301; return on capital employed, printed page 287",
+    "page": 142,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
+
+  "costStack": [
+    { "label": "FY2023", "power": 4282.60, "otherDirect": 362.40, "employee": 318.90, "financeCostPL": 951.90, "interestCapitalised": 128.00 },
+    { "label": "FY2024", "power": 4622.90, "otherDirect": 150.80, "employee": 408.60, "financeCostPL": 1200.50, "interestCapitalised": 514.00 },
+    { "label": "FY2025", "power": 5594.62, "otherDirect": 229.38, "employee": 544.36, "financeCostPL": 1528.14, "interestCapitalised": 515.33 },
+    { "label": "Q1 FY2026", "power": 1463.26, "otherDirect": 86.05, "employee": 176.04, "financeCostPL": 564.15, "interestCapitalised": 98.01 }
+  ],
+  "costStackSource": {
+    "label": "Sify Infinit Spaces DRHP, notes 23 to 26 forming part of the restated consolidated financial information, printed page 398. Borrowing costs are capitalised at 9.30% per annum, stated in the footnote to note 25.",
+    "page": 398,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
+  "capitalisationRate": 9.30,
+
+  "contracts": [
+    { "label": "FY2023", "longContractRevenueShare": 67.04 },
+    { "label": "FY2024", "longContractRevenueShare": 64.06 },
+    { "label": "FY2025", "longContractRevenueShare": 68.34 },
+    { "label": "Q1 FY2026", "longContractRevenueShare": 67.04 }
+  ],
+  "contractsSource": {
+    "label": "Sify Infinit Spaces DRHP, Risk Factor 17, share of total revenue on contract terms of at least 7 years with 5 years of average contract life remaining, printed page 46",
+    "page": 46,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
+  "escalatorMinPct": 2.0,
+  "escalatorMaxPct": 4.0,
+
+  "capacityDefinitions": {
+    "engineeredToSupport": {
+      "quote": "Built Capacity is the maximum IT load a data center is engineered to support, based on business requirements, space planning, and infrastructure feasibility.",
+      "page": 49
+    },
+    "availableToSell": {
+      "quote": "Total available power capacity that can be sold to customers during the year/period.",
+      "page": 142
+    }
+  }
+}
