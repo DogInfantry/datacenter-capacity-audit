@@ -1,0 +1,91 @@
+{
+  "_note": "The sector layer. Only what the first exhibit and its stat tiles actually render is authored here: current capacity, the 2030 forecasts, the build rate and the market size. The hyperscaler pledges and the IndiaAI outlay are in the brief and are deliberately not carried yet, because they have no exhibit, and this repository has already learned once what happens to a data file that renders on no page. Every figure is a research house projection or an industry estimate, so every source is SECONDARY and none may claim otherwise.",
+  "asOf": "2026-08-30",
+
+  "capacity": {
+    "current": {
+      "mw": 1500,
+      "year": 2025,
+      "note": "Operational national capacity, approximately. Colliers counted 1,263 MW as at April 2025 and the year closed near 1.5 GW.",
+      "source": {
+        "label": "Industry estimates, Rubix Data Sciences and Colliers, as carried in the project brief",
+        "asOf": "2025-12",
+        "verification": "SECONDARY"
+      }
+    },
+    "unit": "MW of built capacity",
+    "unitNote": "Every one of these forecasts is stated in built capacity, which is the same word this project has shown does not mean earning. That is the point of the exhibit rather than a caveat on it.",
+    "forecasts": [
+      {
+        "publisher": "Colliers",
+        "mw": 4500,
+        "mwHigh": null,
+        "byYear": 2030,
+        "basis": "Base case national capacity",
+        "source": {
+          "label": "Colliers, India data centre capacity outlook, as carried in the project brief",
+          "asOf": "2025-12",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "publisher": "Rubix Data Sciences",
+        "mw": 6500,
+        "mwHigh": null,
+        "byYear": 2030,
+        "basis": "Base case national capacity",
+        "source": {
+          "label": "Rubix Data Sciences, India data centre report, as carried in the project brief",
+          "asOf": "2025-12",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "publisher": "AI accelerated bull cases",
+        "mw": 8000,
+        "mwHigh": 13500,
+        "byYear": 2032,
+        "basis": "Range across bullish AI demand scenarios, 2030 to 2032",
+        "source": {
+          "label": "Aggregated bull case projections, as carried in the project brief. No single publisher, and the range is reported rather than reconciled.",
+          "asOf": "2025-12",
+          "verification": "SECONDARY"
+        }
+      }
+    ]
+  },
+
+  "buildRate": [
+    {
+      "year": 2024,
+      "addedMW": 191,
+      "source": {
+        "label": "Rubix Data Sciences, capacity added by year, as carried in the project brief",
+        "asOf": "2025-12",
+        "verification": "SECONDARY"
+      }
+    },
+    {
+      "year": 2025,
+      "addedMW": 387,
+      "source": {
+        "label": "Rubix Data Sciences, capacity added by year, as carried in the project brief",
+        "asOf": "2025-12",
+        "verification": "SECONDARY"
+      }
+    }
+  ],
+
+  "market": {
+    "currentBnUsd": 10,
+    "forecastBnUsd": 22,
+    "currentYear": 2025,
+    "forecastYear": 2030,
+    "note": "Market size, not capacity. Reported by Vestian and carried in IBEF summaries.",
+    "source": {
+      "label": "Vestian, India data centre market size, as carried in the project brief",
+      "asOf": "2025-12",
+      "verification": "SECONDARY"
+    }
+  }
+}

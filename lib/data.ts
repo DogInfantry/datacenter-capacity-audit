@@ -13,9 +13,11 @@ import {
   Netweb,
   Invariants,
   Method,
+  Macro,
 } from "./schema";
 import invariantsRaw from "@/data/invariants.json";
 import methodRaw from "@/data/method.json";
+import macroRaw from "@/data/macro.json";
 import sislRaw from "@/data/sisl.json";
 import universeRaw from "@/data/universe.json";
 import anantRajRaw from "@/data/anantraj.json";
@@ -95,6 +97,9 @@ export const invariants = parse(Invariants, invariantsRaw, "data/invariants.json
 
 /** Formulas with their denominators, the known limits, and the pivot log. */
 export const method = parse(Method, methodRaw, "data/method.json");
+
+/** The sector layer. Research house projections, never filed figures. */
+export const macro = parse(Macro, macroRaw, "data/macro.json");
 
 /**
  * Full fiscal years only, indexed to the first of them.

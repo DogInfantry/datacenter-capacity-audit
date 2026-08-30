@@ -235,6 +235,34 @@
       "fragment": "published_elsewhere requires naming where it was published"
     },
     {
+      "id": "forecast-exceeds-actual",
+      "schema": "Macro",
+      "category": "POSSIBLE",
+      "protects": "A 2030 capacity forecast must exceed what is already operational. A projection below today's actual means a row was misread, or a publisher is forecasting a contraction and saying so somewhere this data does not record.",
+      "fragment": "MW already operational"
+    },
+    {
+      "id": "forecast-band-widens",
+      "schema": "Macro",
+      "category": "POSSIBLE",
+      "protects": "Where a publisher gives a band rather than a point, its top must sit above its bottom. An inverted band would draw backwards.",
+      "fragment": "gives a band whose top is not above its bottom"
+    },
+    {
+      "id": "forecast-not-primary",
+      "schema": "Macro",
+      "category": "SOURCING",
+      "protects": "A capacity forecast is a research house projection, not a figure read out of a filing, and cannot claim the primary tier however widely it is quoted.",
+      "fragment": "is a forecast and cannot claim PRIMARY"
+    },
+    {
+      "id": "forecast-spread-is-real",
+      "schema": "Macro",
+      "category": "FINDING",
+      "protects": "The exhibit claims the published forecasts disagree with each other by a factor of three. If one publisher held both the lowest and the highest number, that would be a single house's own band drawn as a disagreement, which is a different and much weaker claim.",
+      "fragment": "the lowest and highest forecasts come from one publisher"
+    },
+    {
       "id": "closed-limit-names-evidence",
       "schema": "Method",
       "category": "EVIDENCE",

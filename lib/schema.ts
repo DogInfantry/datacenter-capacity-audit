@@ -1001,6 +1001,103 @@ export const Method = z
 export type Method = z.infer<typeof Method>;
 
 /**
+ * The sector layer.
+ *
+ * Every figure here is a research house projection rather than a filed number,
+ * and the exhibit built on it turns that into the finding: the published 2030
+ * forecasts disagree by a factor of three, and all of them are stated in built
+ * capacity, the unit this project has already shown does not earn.
+ */
+export const Macro = z
+  .object({
+    asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    capacity: z.object({
+      current: z.object({
+        mw: z.number().positive(),
+        year: z.number().int().positive(),
+        note: z.string().min(1),
+        source: Source,
+      }),
+      unit: z.string().min(1),
+      unitNote: z.string().min(1),
+      forecasts: z
+        .array(
+          z.object({
+            publisher: z.string().min(1),
+            mw: z.number().positive(),
+            /** Present only where the publisher gave a band rather than a point. */
+            mwHigh: z.number().positive().nullable(),
+            byYear: z.number().int().positive(),
+            basis: z.string().min(1),
+            source: Source,
+          }),
+        )
+        .min(3),
+    }),
+    buildRate: z
+      .array(
+        z.object({
+          year: z.number().int().positive(),
+          addedMW: z.number().positive(),
+          source: Source,
+        }),
+      )
+      .min(2),
+    market: z.object({
+      currentBnUsd: z.number().positive(),
+      forecastBnUsd: z.number().positive(),
+      currentYear: z.number().int().positive(),
+      forecastYear: z.number().int().positive(),
+      note: z.string().min(1),
+      source: Source,
+    }),
+  })
+  .superRefine((d, ctx) => {
+    const f = d.capacity.forecasts;
+    for (const row of f) {
+      // A 2030 forecast below what is already operational means a row was
+      // misread, or a publisher is forecasting a contraction and saying so
+      // somewhere this file does not record.
+      if (row.mw <= d.capacity.current.mw) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["capacity", "forecasts"],
+          message: `${row.publisher} forecasts ${row.mw} MW against ${d.capacity.current.mw} MW already operational`,
+        });
+      }
+      // A band must widen, not invert.
+      if (row.mwHigh !== null && row.mwHigh <= row.mw) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["capacity", "forecasts"],
+          message: `${row.publisher} gives a band whose top is not above its bottom`,
+        });
+      }
+      // These are projections. Nothing here is read out of a filing.
+      if (row.source.verification === "PRIMARY") {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["capacity", "forecasts"],
+          message: `${row.publisher} is a forecast and cannot claim PRIMARY`,
+        });
+      }
+    }
+    // The exhibit's claim is that the houses disagree. One publisher holding
+    // both ends of the range would make it a single house's own band drawn as a
+    // disagreement, which is a different and much weaker statement.
+    const sorted = [...f].sort((a, b) => a.mw - b.mw);
+    if (sorted[0].publisher === sorted[sorted.length - 1].publisher) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["capacity", "forecasts"],
+        message: "the lowest and highest forecasts come from one publisher, so there is no disagreement to draw",
+      });
+    }
+  });
+
+export type Macro = z.infer<typeof Macro>;
+
+/**
  * The register of this file's own refinements.
  *
  * The methodology page publishes what the build guarantees. A list of
