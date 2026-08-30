@@ -6,6 +6,8 @@ import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
 import { ClientConcentration } from "@/components/ClientConcentration";
 import { SiteMap } from "@/components/SiteMap";
+import { RiskMatrix } from "@/components/RiskMatrix";
+import { sifyRiskMeasures } from "@/lib/diagnostics/risk";
 import { Pictogram, StatTile, Monogram, type IconName } from "@/components/Visual";
 import { AnantRajBody } from "@/components/AnantRajBody";
 import { NetwebBody } from "@/components/NetwebBody";
@@ -97,6 +99,14 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
     sisl.capacityDefinitions.availableToSell.page -
       sisl.capacityDefinitions.engineeredToSupport.page,
   );
+
+  const riskMeasures = sifyRiskMeasures(sisl);
+  // The pages the register rests on, derived from the rows rather than typed
+  // into the source line, so a row added or moved cannot leave the citation
+  // describing a set of pages the exhibit no longer uses.
+  const riskPages = [...new Set(sisl.risks.rows.map((r) => r.page))]
+    .filter((p): p is number => p !== null)
+    .sort((a, b) => a - b);
 
   const clientsLatest = sisl.clients[0];
   const clientsFirst = sisl.clients[sisl.clients.length - 1];
@@ -306,6 +316,15 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
             <RevenuePerMW peers={sisl.peers} />
           </Exhibit>
         </div>
+
+        <Exhibit
+          n={7}
+          title="Every risk in the worst cell is one the filing already puts a number on"
+          units="Severity against likelihood, graded by this project and not by the issuer. A chip is filled where the magnitude beside the row is derived from the filed numbers and outlined where the row is judgement."
+          source={`Sify Infinit Spaces DRHP, risk factors and the restated financial information, printed pages ${riskPages.join(", ")}.`}
+        >
+          <RiskMatrix register={sisl.risks} measures={riskMeasures} />
+        </Exhibit>
       </section>
 
       <section className="border-t border-line py-12">
@@ -322,7 +341,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
             },
             {
               h: "Still to build",
-              b: "Balance sheet and cash flow, the revenue build and three year forecast, bull base and bear cases, two way sensitivity, implied valuation against peers, and the risk matrix.",
+              b: "Balance sheet and cash flow, the revenue build and three year forecast, bull base and bear cases, two way sensitivity, and an implied valuation against peers. The risk register is built and sits above, with the pillars it cannot evidence marked.",
             },
           ].map((c) => (
             <div key={c.h} className="rounded-md border border-line bg-card p-5">
