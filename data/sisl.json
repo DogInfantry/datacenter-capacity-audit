@@ -237,5 +237,124 @@
       "quote": "Total available power capacity that can be sold to customers during the year/period.",
       "page": 142
     }
+  },
+
+  "risks": {
+    "gradingNote": "Severity and likelihood are this project's own judgement. The magnitude beside each row is not: where a row is marked measured, the figure is derived at render from the filed numbers in this file and moves if they move. The prospectus publishes no risk grading of its own, so nothing here is the issuer's ranking of its own risk factors.",
+    "unevidencedNote": "Three of the six pillars carry no row, and the reason is the same in each case. Cash conversion needs this issuer's cash flow statement, which sits inside the restated financials at printed 349 to 433 and has not been read; the cash flow harvested elsewhere in this repository belongs to Sify Technologies, the listed parent, and cannot stand in for the entity being offered. Governance needs the auditor's report, the related party notes and the outstanding litigation at printed 463, none of them read. Valuation needs a price band, and the document carries none.",
+    "rows": [
+      {
+        "id": "power-cost-base",
+        "risk": "Power is the cost base rather than a line inside it, so a tariff move lands on the margin almost undiluted.",
+        "category": "BUSINESS_MODEL",
+        "severity": "HIGH",
+        "likelihood": "HIGH",
+        "mitigant": "Some contracts pass power through to the customer. The filing does not state what share of revenue is covered that way, so the protection cannot be sized from what has been read.",
+        "measured": true,
+        "note": "Drawn against revenue rather than against total cost, because revenue is the denominator the contractual escalator applies to.",
+        "page": 398,
+        "source": {
+          "label": "Sify Infinit Spaces DRHP, notes 23 to 26 forming part of the restated consolidated financial information, printed page 398",
+          "asOf": "2025-10-16",
+          "verification": "PRIMARY"
+        }
+      },
+      {
+        "id": "unsold-built-capacity",
+        "risk": "Two fifths of built capacity earns nothing while still carrying depreciation, interest and the ground it stands on.",
+        "category": "BALANCE_SHEET",
+        "severity": "HIGH",
+        "likelihood": "HIGH",
+        "mitigant": "Most of the gap sits in two recently commissioned towers, so part of it is a fill rate that has not had time rather than one that has failed.",
+        "measured": true,
+        "note": "The same table is printed twice, at printed 49 under a risk factor and again at printed 301 in the business section, with identical figures.",
+        "page": 301,
+        "source": {
+          "label": "Sify Infinit Spaces DRHP, capacity and capacity utilization by data center, certified by the Independent Chartered Engineer, printed page 301",
+          "asOf": "2025-10-16",
+          "verification": "PRIMARY"
+        }
+      },
+      {
+        "id": "client-concentration",
+        "risk": "Three counterparties are two thirds of the revenue, and the largest of them alone is close to half.",
+        "category": "REVENUE_QUALITY",
+        "severity": "HIGH",
+        "likelihood": "MED",
+        "mitigant": "The same three sit on contracts of at least seven years with roughly five years of average life remaining, so the revenue is contracted rather than held at will.",
+        "measured": true,
+        "note": "Clients are unnamed in the filing, and the issuer states the top ten may not be the same clients in each period. This is therefore concentration by rank rather than by counterparty.",
+        "page": 36,
+        "source": {
+          "label": "Sify Infinit Spaces DRHP, revenue from operations attributable to the top 10 clients, printed page 36",
+          "asOf": "2025-10-16",
+          "verification": "PRIMARY"
+        }
+      },
+      {
+        "id": "contract-escalators",
+        "risk": "Contracts escalate 2 to 4 per cent a year with limited rights to reprice mid term, against a cost base that is mostly power.",
+        "category": "BUSINESS_MODEL",
+        "severity": "MED",
+        "likelihood": "HIGH",
+        "mitigant": "Tenure cuts both ways. The terms that cap the upside also secure the base through a build phase, which is when an estate is least able to replace a customer.",
+        "measured": true,
+        "note": "The share on long contracts is the same figure, to the second decimal, as the top three clients in every period. The document reports the two in different sections and never joins them.",
+        "page": 46,
+        "source": {
+          "label": "Sify Infinit Spaces DRHP, Risk Factor 17, revenue on contract terms of at least 7 years, printed page 46",
+          "asOf": "2025-10-16",
+          "verification": "PRIMARY"
+        }
+      },
+      {
+        "id": "capitalised-interest",
+        "risk": "Borrowing cost is capitalised into assets under construction rather than expensed, and that stops the moment a tower commissions.",
+        "category": "BALANCE_SHEET",
+        "severity": "MED",
+        "likelihood": "HIGH",
+        "mitigant": "Both the amount and the rate are disclosed in the note, so a reader can size the unwind in advance rather than meet it in a later income statement.",
+        "measured": true,
+        "note": "Commissioning moves the same money twice: interest returns to the income statement, and depreciation begins on the asset it was capitalised into.",
+        "page": 398,
+        "source": {
+          "label": "Sify Infinit Spaces DRHP, note 25 and the footnote stating the capitalisation rate, printed page 398",
+          "asOf": "2025-10-16",
+          "verification": "PRIMARY"
+        }
+      },
+      {
+        "id": "leverage",
+        "risk": "Net debt runs close to four times EBITDA while the estate is still filling.",
+        "category": "BALANCE_SHEET",
+        "severity": "MED",
+        "likelihood": "MED",
+        "mitigant": "The ratio is the issuer's own and is disclosed for every period in the key performance indicators, so the trend is visible rather than inferred.",
+        "measured": true,
+        "note": "Read from the stub quarter, the most recent period the filing reports. The ratio there rests on an unannualised EBITDA and is not comparable to a full year.",
+        "page": 142,
+        "source": {
+          "label": "Sify Infinit Spaces DRHP, Basis for Offer Price, key performance indicators, printed page 142",
+          "asOf": "2025-10-16",
+          "verification": "PRIMARY"
+        }
+      },
+      {
+        "id": "capacity-definition",
+        "risk": "The headline capacity figure is defined two ways inside one document, so the same number reads as engineered or as sellable depending on the page.",
+        "category": "REVENUE_QUALITY",
+        "severity": "MED",
+        "likelihood": "MED",
+        "mitigant": "Both definitions are printed and both are carried here. The site draws the rungs separately rather than carrying a single capacity number.",
+        "measured": false,
+        "note": "Not measured, and marked as such. The risk is a definition rather than a magnitude, so this row is judgement and the exhibit draws it outlined.",
+        "page": 49,
+        "source": {
+          "label": "Sify Infinit Spaces DRHP, built capacity defined under Risk Factor 21, printed page 49, against the same figure at printed page 142",
+          "asOf": "2025-10-16",
+          "verification": "PRIMARY"
+        }
+      }
+    ]
   }
 }

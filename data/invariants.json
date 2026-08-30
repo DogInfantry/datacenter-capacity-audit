@@ -270,6 +270,27 @@
       "fragment": "a closed limit must name what closed it, and an open one must not"
     },
     {
+      "id": "risk-page-implies-primary",
+      "schema": "RiskItem",
+      "category": "SOURCING",
+      "protects": "A printed page is what the primary tier means on this site, so the two have to agree. A secondary risk row that attaches a page is borrowing a filing's authority, and a row that cites a page while calling itself secondary understates what it actually rests on. Both directions are rejected.",
+      "fragment": "a risk citing a printed page must be primary, and one without a page cannot be"
+    },
+    {
+      "id": "risk-page-already-read",
+      "schema": "Sisl",
+      "category": "SOURCING",
+      "protects": "A risk row may only cite a printed page this file already cites elsewhere. The register is authored from what was read, so a page number appearing on a risk and nowhere else would mean a figure arrived without the source block that lets a reader check it.",
+      "fragment": "which this file does not cite anywhere else"
+    },
+    {
+      "id": "risk-worst-cell-measured",
+      "schema": "RiskItem",
+      "category": "EVIDENCE",
+      "protects": "The worst cell of the matrix, high severity against high likelihood, is the one a reader looks at first, and it cannot hold a row whose magnitude is not derived from data. The standard failure of a risk register is asserting a catastrophe with nothing behind it, and this refuses to render one.",
+      "fragment": "the worst cell of the matrix cannot hold an unmeasured risk"
+    },
+    {
       "id": "register-refusal-names-where",
       "schema": "DisclosureRegister",
       "category": "EVIDENCE",

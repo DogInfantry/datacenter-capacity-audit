@@ -526,6 +526,87 @@ export const DrhpTriage = z.object({
  */
 export const PagedSource = Source.extend({ page: z.number().int().positive() });
 
+/**
+ * The risk register.
+ *
+ * This is the first surface on this site whose grading is a judgement rather
+ * than a reading. Everything else is read, derived or refused, so the register
+ * has to carry its own honesty in required fields rather than in prose a later
+ * edit can quietly drop. `measured` states whether the magnitude drawn beside a
+ * row is derived from data in this repository or merely asserted, `page` states
+ * which printed page the row rests on, and the register above the rows has to
+ * say out loud that the position in the matrix is ours and not the issuer's.
+ *
+ * The categories are the six forensic pillars of the project brief rather than
+ * a taxonomy invented here. That makes the register the qualitative half of a
+ * framework whose scoring half is blocked for want of a cash flow statement,
+ * and it makes the pillars carrying no row a visible hole rather than a silence.
+ */
+export const RiskPillar = z.enum([
+  "REVENUE_QUALITY",
+  "CASH_CONVERSION",
+  "BALANCE_SHEET",
+  "GOVERNANCE",
+  "BUSINESS_MODEL",
+  "VALUATION",
+]);
+
+const Grade = z.enum(["LOW", "MED", "HIGH"]);
+
+export const RiskItem = z
+  .object({
+    id: z.string().regex(/^[a-z0-9-]+$/),
+    risk: z.string().min(1),
+    category: RiskPillar,
+    severity: Grade,
+    likelihood: Grade,
+    mitigant: z.string().min(1),
+    /** True when the magnitude beside this row is derived at render from data
+     *  in this repository. The derivation lives in lib/diagnostics/risk.ts, and
+     *  a test asserts that every measured id is a key in it, so a row cannot
+     *  claim a derived figure that nothing derives. */
+    measured: z.boolean(),
+    note: z.string().min(1),
+    /** The printed page the row rests on, or null where nothing was read. */
+    page: z.number().int().positive().nullable(),
+    source: Source,
+  })
+  .superRefine((r, ctx) => {
+    // A printed page is what the primary tier means on this site. A secondary
+    // row that attaches one is borrowing a filing's authority, and a row that
+    // cites a page while calling itself secondary understates what it rests on.
+    if ((r.page !== null) !== (r.source.verification === "PRIMARY")) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["page"],
+        message: `${r.id}: a risk citing a printed page must be primary, and one without a page cannot be`,
+      });
+    }
+    // The standard failure of a risk register is asserting a catastrophe with
+    // nothing behind it. The worst cell is the one a reader looks at first, so
+    // it is the one cell that has to be earned rather than graded.
+    if (r.severity === "HIGH" && r.likelihood === "HIGH" && !r.measured) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["measured"],
+        message: `${r.id}: the worst cell of the matrix cannot hold an unmeasured risk`,
+      });
+    }
+  });
+
+export const RiskRegister = z.object({
+  /** That the position in the matrix is this project's own judgement, stated in
+   *  the data rather than in prose, because prose can be edited away. */
+  gradingNote: z.string().min(1),
+  /** Why some pillars carry no row at all, and what document would fill them. */
+  unevidencedNote: z.string().min(1),
+  rows: z.array(RiskItem).min(4),
+});
+
+export type RiskItem = z.infer<typeof RiskItem>;
+export type RiskRegister = z.infer<typeof RiskRegister>;
+export type RiskPillar = z.infer<typeof RiskPillar>;
+
 const SislPeriod = z.object({
   label: z.string().min(1),
   periodEnd: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
@@ -626,6 +707,7 @@ export const Sisl = z
       engineeredToSupport: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
       availableToSell: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
     }),
+    risks: RiskRegister,
   })
   .superRefine((d, ctx) => {
     // The site rows must reconcile to the stated totals. The filing rounds each
@@ -695,6 +777,31 @@ export const Sisl = z
           code: z.ZodIssueCode.custom,
           path: ["periods"],
           message: `${p.label}: capacity rungs must descend, got built ${p.builtMW}, installed ${p.installedMW}, operational ${p.operationalMW}`,
+        });
+      }
+    }
+    // A risk row may only cite a printed page this file already reads.
+    //
+    // The register is authored from what was read, and the instruction standing
+    // over this block is that the prospectus is not reopened. A page number
+    // appearing here and nowhere else in the file would mean a figure arrived
+    // without the source block that lets a reader check it.
+    const read = new Set([
+      d.periodsSource.page,
+      d.costStackSource.page,
+      d.contractsSource.page,
+      d.sitesSource.page,
+      d.peersSource.page,
+      d.clientsSource.page,
+      d.capacityDefinitions.engineeredToSupport.page,
+      d.capacityDefinitions.availableToSell.page,
+    ]);
+    for (const r of d.risks.rows) {
+      if (r.page !== null && !read.has(r.page)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["risks"],
+          message: `${r.id}: cites printed page ${r.page}, which this file does not cite anywhere else`,
         });
       }
     }
