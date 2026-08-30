@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { universe, sisl, prospectus, drhpTriage, invariants, method } from "@/lib/data";
 import { verificationTally, citedPages } from "@/lib/diagnostics/sourcing";
+import { citedPageRanks } from "@/lib/diagnostics/triage";
 import { Exhibit } from "@/components/Exhibits";
 import { SourcingTiers, PageGrid } from "@/components/Sourcing";
+import { ReadingRule } from "@/components/ReadingRule";
 import { InvariantLedger } from "@/components/InvariantLedger";
 import { StatTile, type IconName } from "@/components/Visual";
 
@@ -18,6 +20,7 @@ export default function MethodologyPage() {
   const cited = citedPages(sisl, prospectus);
   const total = prospectus.document.pdfPages;
   const readShare = (cited.length / total) * 100;
+  const triage = citedPageRanks(drhpTriage.pages, cited);
 
   const tiers: { name: string; count: number; tone: string; rule: string; icon: IconName }[] = [
     {
@@ -125,8 +128,12 @@ export default function MethodologyPage() {
             document. Where a filing does exist the reading is narrow and deep,{" "}
             <span className="tnum text-foreground">{cited.length}</span> pages of{" "}
             <span className="tnum text-foreground">{total}</span>, or{" "}
-            <span className="tnum text-foreground">{readShare.toFixed(1)}</span> per cent, chosen by
-            a published rule rather than by browsing.
+            <span className="tnum text-foreground">{readShare.toFixed(1)}</span> per cent. A
+            published rule proposed where to start.{" "}
+            <span className="tnum text-foreground">{triage.foundByRule}</span> of those{" "}
+            <span className="tnum text-foreground">{cited.length}</span> pages came from it and{" "}
+            <span className="tnum text-foreground">{triage.foundByReading}</span> did not, which the
+            next exhibit takes apart.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-muted">
             That is a limit, not a boast. Nothing here supports a claim about the{" "}
@@ -144,6 +151,47 @@ export default function MethodologyPage() {
 
         <Exhibit
           n={2}
+          title={`The rule put two cited pages at ${triage.rows[0].rank} and ${triage.rows[1].rank}, and buried another at ${triage.rows[triage.rows.length - 1].rank} of ${triage.scored}`}
+          units={`Each cited page by its position among the ${triage.scored} scored pages, best first. Score is number density divided by one plus hedge density.`}
+          source={`Reading rule applied to every page of the prospectus. ${drhpTriage.method.lexiconNote}`}
+        >
+          <ReadingRule
+            rows={triage.rows}
+            scored={triage.scored}
+            cutoff={triage.cutoff}
+            lexicon={drhpTriage.method.hedgeLexicon}
+          />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            The rule works exactly where it was designed to and fails exactly where it was not. The
+            two pages that define the same capacity figure two different ways rank{" "}
+            <span className="tnum text-foreground">{triage.rows[0].rank}</span> and{" "}
+            <span className="tnum text-foreground">{triage.rows[1].rank}</span> of{" "}
+            <span className="tnum text-foreground">{triage.scored}</span>, because a definition
+            footnote is dense with numbers and carries almost no hedging. Finding them was the rule
+            doing its job.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The page carrying the contract concentration ranks{" "}
+            <span className="tnum text-foreground">
+              {triage.rows[triage.rows.length - 1].rank}
+            </span>
+            , near the bottom. It is a risk factor, so it is thick with the hedging vocabulary the
+            score divides by, and a density rule will never surface a finding stated in a sentence.
+            That page produced one of the strongest results on this site. It was found by reading
+            forward from a table on another page, not by ranking.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            So the rule is a starting point and not a method.{" "}
+            <span className="tnum text-foreground">{triage.foundByRule}</span> of the cited pages sit
+            in its top decile and <span className="tnum text-foreground">{triage.foundByReading}</span>{" "}
+            do not. Published anyway, with the word list, because a triage that is presented as
+            complete is worse than one that shows where it stops.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={3}
           title={`${invariants.rows.length} claims are asserted at build time, so a sentence that stops being true stops the build`}
           units={`Every refinement in the schema, grouped by what it is for. Each row names the guard, what it protects, and the message the build emits when it fires.`}
           source="Generated from the schema register. The test suite asserts that every fragment below is still present in the schema source, and that the number of guards in the source equals the number of rows here."
