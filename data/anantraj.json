@@ -52,5 +52,92 @@
     "Order book or contracted capacity",
     "Client concentration",
     "Any figure traced to a document filed with a regulator"
-  ]
+  ],
+
+  "risks": {
+    "gradingNote": "Severity and likelihood are this project's own judgement. So, on this page, is the evidence behind them: a magnitude marked measured is derived from figures recorded in this file, and every figure in this file came from a research note rather than from a filing. Derived is not the same as read, and the exhibit says which.",
+    "unevidencedNote": "Four of the six pillars carry no row, and one document would fill all four. No Anant Raj filing has been opened: no annual report, no audited financial statements, no auditor's report and no notes to accounts. Until one is read there is no revenue quality, no cash conversion, no governance and no valuation to grade here, and writing a row for each anyway would be exactly the confidence this page exists to refuse.",
+    "rows": [
+      {
+        "id": "handover-gap",
+        "risk": "Capacity the company calls operational is not capacity a customer has taken, and the drop between the two is hidden inside a figure already described as operational.",
+        "category": "BUSINESS_MODEL",
+        "severity": "HIGH",
+        "likelihood": "HIGH",
+        "mitigant": "The remainder is described as still in the handover process rather than as stalled, so some of it is a queue rather than a failure.",
+        "measured": true,
+        "note": "This is the same gap the Sify pages call built against sold, in a different vocabulary. Neither company uses the other's words, and nothing in either set of words warns a reader which rung is being quoted.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note, BharatAI Infra Scope, quoting Value Research on colocation handed over against capacity called operational",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "id": "delivery-against-ambition",
+        "risk": "The announced target is more than thirty times what has actually been handed over, and the schedule to it runs to Fiscal 2032.",
+        "category": "BUSINESS_MODEL",
+        "severity": "HIGH",
+        "likelihood": "MED",
+        "mitigant": "A long horizon is not by itself a broken promise. The target is dated, so it can be graded later rather than argued about now.",
+        "measured": true,
+        "note": "The site does not grade this claim yet, because its horizon has not passed. It is recorded so that it can be.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note, BharatAI Infra Scope, target IT load by Fiscal 2032",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "id": "source-conflict",
+        "risk": "Two sources give two different figures for operational capacity, and the disagreement is a quarter of the estate.",
+        "category": "BUSINESS_MODEL",
+        "severity": "MED",
+        "likelihood": "HIGH",
+        "mitigant": "Both figures are recorded here and neither is averaged, so a reader sees the disagreement rather than a number that hides it.",
+        "measured": true,
+        "note": "This is a disclosure risk rather than a board governance one. Nothing about the board, the auditor or related parties has been read, so the governance pillar stays empty rather than borrowing this row.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note against data/campuses.json, recorded earlier in this repository",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "id": "capital-programme",
+        "risk": "The target carries a stated capital cost in billions of dollars, against a balance sheet nobody here has opened.",
+        "category": "BALANCE_SHEET",
+        "severity": "HIGH",
+        "likelihood": "MED",
+        "mitigant": "None that can be stated from what has been read. Funding, gearing and the cash already committed are all in the annual report, and the annual report has not been opened.",
+        "measured": true,
+        "note": "The magnitude here is the size of the programme, not an assessment of whether it can be funded. That assessment needs the statements this page does not have.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note, BharatAI Infra Scope, stated capex against the Fiscal 2032 target",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "id": "pivot-execution",
+        "risk": "A real estate developer is building and operating colocation, which is a different business with different customers, different uptime obligations and a different cost base.",
+        "category": "BUSINESS_MODEL",
+        "severity": "MED",
+        "likelihood": "MED",
+        "mitigant": "Land and construction capability are genuine transferable advantages, and they are the two things a pure colocation entrant usually lacks.",
+        "measured": false,
+        "note": "Not measured, and marked as such. There is no figure that captures whether a pivot is being executed well, and inventing one would be worse than grading it openly.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note, BharatAI Infra Scope, real estate to data centre pivot",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      }
+    ]
+  }
 }

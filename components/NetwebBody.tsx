@@ -1,7 +1,9 @@
 import Link from "next/link";
 import type { Netweb } from "@/lib/schema";
 import { orderBookConcentration } from "@/lib/diagnostics/netweb";
+import { netwebRiskMeasures } from "@/lib/diagnostics/risk";
 import { Exhibit } from "./Exhibits";
+import { RiskMatrix } from "./RiskMatrix";
 import { NetwebOrderBook } from "./NetwebOrderBook";
 import { Icon, Monogram, Pictogram, StatTile } from "./Visual";
 
@@ -141,6 +143,15 @@ export function NetwebBody({ data, sify }: Props) {
             project business does not do, and the arithmetic would look more precise than the
             evidence is.
           </p>
+        </Exhibit>
+
+        <Exhibit
+          n={3}
+          title="The one name here with no filing read is the only one that can price itself"
+          units="Severity against likelihood, graded by this project. A chip is filled where the magnitude is derived from the figures recorded for this name and outlined where the row is judgement. Valuation carries a row here and none on the Sify page, because a multiple needs only a price and a reported earnings figure, and the prospectus read for that name carries no price band at all."
+          source={data.source.label}
+        >
+          <RiskMatrix register={data.risks} measures={netwebRiskMeasures(data)} />
         </Exhibit>
       </section>
 

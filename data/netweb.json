@@ -59,5 +59,92 @@
     "label": "Blueprint research note, BharatAI Infra Scope, compiled from company filings, brokerage notes and press reporting. No Netweb document has been opened inside this repository, so nothing on this page is traced to a primary source.",
     "asOf": "2026-08",
     "verification": "SECONDARY"
+  },
+
+  "risks": {
+    "gradingNote": "Severity and likelihood are this project's own judgement. So is the evidence beneath them: a magnitude marked measured is derived from figures recorded in this file, and every figure in this file came from a research note rather than from a filing. Derived is not the same as read, and the exhibit says which.",
+    "unevidencedNote": "Three of the six pillars carry no row. Cash conversion and the balance sheet need revenue, receivables and cash flow in rupees, none of which has been read, and receivables are exactly where a lumpy project business hides. Governance needs the annual report. Valuation is the one pillar this page can evidence without a filing, because a multiple needs only a price and a reported earnings figure, which is also why a multiple is the weakest kind of evidence on the list.",
+    "rows": [
+      {
+        "id": "book-concentration",
+        "risk": "Most of the order book is a single counterparty, and that counterparty is a government mission rather than a commercial customer.",
+        "category": "REVENUE_QUALITY",
+        "severity": "HIGH",
+        "likelihood": "HIGH",
+        "mitigant": "A government award carries lower credit risk than a private buyer of the same size, and the order is already won rather than bid.",
+        "measured": true,
+        "note": "The same shape as the client concentration on the Sify pages, in a different unit. There it is revenue that has been earned. Here it is work that has not.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note, BharatAI Infra Scope, order book and the IndiaAI Mission award",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "id": "delivery-window",
+        "risk": "One order has a published delivery window and the rest of the book has none, so the revenue timing of most of the backlog is unknown.",
+        "category": "BUSINESS_MODEL",
+        "severity": "HIGH",
+        "likelihood": "MED",
+        "mitigant": "The named order is the largest single item and it does carry a window, so the biggest piece of the timing question is answered.",
+        "measured": true,
+        "note": "The magnitude is the part of the book with no schedule, not a claim that it is late. Nothing here says when the remainder converts, because nothing read says so.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note, BharatAI Infra Scope, order book less the single order whose delivery is dated",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "id": "valuation-multiple",
+        "risk": "The multiple is paid today on earnings already reported, while the concentration sits in work not yet delivered. Those are different periods.",
+        "category": "VALUATION",
+        "severity": "HIGH",
+        "likelihood": "MED",
+        "mitigant": "The order book is real and dated, so the growth the multiple anticipates is at least written down somewhere rather than purely narrative.",
+        "measured": true,
+        "note": "A multiple is the only pillar this page can evidence without a filing, and that is a comment on the multiple as much as on the page.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note, BharatAI Infra Scope, trailing earnings multiple",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "id": "mix-is-one-quarter",
+        "risk": "The AI share that defines the story is one quarter, and the nine months containing that quarter are still under half.",
+        "category": "REVENUE_QUALITY",
+        "severity": "MED",
+        "likelihood": "HIGH",
+        "mitigant": "Both readings are reported and both are true. The company is not choosing which one to publish; the market is choosing which one to quote.",
+        "measured": true,
+        "note": "The gap is drawn in points rather than as a ratio, because the longer period contains the shorter one and a ratio between them would imply they are independent readings.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note, BharatAI Infra Scope, AI systems as a share of revenue in the quarter and in the nine months",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      },
+      {
+        "id": "backlog-is-not-revenue",
+        "risk": "The concentration share is a ceiling rather than a measurement, because the book is struck after the award and anything already delivered has left it.",
+        "category": "REVENUE_QUALITY",
+        "severity": "MED",
+        "likelihood": "HIGH",
+        "mitigant": "The direction of the error is known. The true share can only be lower than the figure drawn, never higher, so the exhibit cannot overstate by accident.",
+        "measured": false,
+        "note": "Not measured, and marked as such. Measuring it needs the book split by customer and by delivery date, and the research note gives neither.",
+        "page": null,
+        "source": {
+          "label": "Blueprint research note, BharatAI Infra Scope, order book dated after the award",
+          "asOf": "2026-08",
+          "verification": "SECONDARY"
+        }
+      }
+    ]
   }
 }

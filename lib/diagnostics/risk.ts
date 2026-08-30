@@ -1,4 +1,5 @@
-import type { RiskItem, RiskPillar, Sisl } from "@/lib/schema";
+import type { AnantRaj, Netweb, RiskItem, RiskPillar, Sisl } from "@/lib/schema";
+import { orderBookConcentration } from "./netweb";
 
 /**
  * The risk register, arranged.
@@ -60,13 +61,85 @@ export function sifyRiskMeasures(d: Sisl): Record<string, Measure> {
     },
     "capitalised-interest": {
       value: cost.interestCapitalised,
-      unit: "Rs mn capitalised, not expensed",
+      unit: "million rupees capitalised, not expensed",
       basis: `Borrowing cost taken to assets under construction, ${fy.label}`,
     },
     leverage: {
       value: stub.netDebtToEbitda,
       unit: "times EBITDA",
       basis: `Net debt to EBITDA, ${stub.label}, unannualised`,
+    },
+  };
+}
+
+/**
+ * Anant Raj, where the magnitudes are derived from recorded figures rather than
+ * from a filing, because no Anant Raj document has been opened.
+ *
+ * The distinction matters and the exhibit draws it: derived is not the same as
+ * read. Every number below comes out of `data/anantraj.json`, and every figure
+ * in that file came out of a research note.
+ */
+export function anantRajRiskMeasures(d: AnantRaj): Record<string, Measure> {
+  const [announced, operational, handed] = d.ladder;
+  const conflict = Math.abs(d.conflict.a.value - d.conflict.b.value);
+
+  return {
+    "handover-gap": {
+      value: (1 - handed.mw / operational.mw) * 100,
+      unit: "per cent of what is called operational",
+      basis: "Capacity described as operational, less what is actually handed over",
+    },
+    "delivery-against-ambition": {
+      value: (handed.mw / announced.mw) * 100,
+      unit: "per cent of the announced target",
+      basis: `Handed over against the target for ${d.targetFiscalYear}`,
+    },
+    "source-conflict": {
+      value: (conflict / Math.max(d.conflict.a.value, d.conflict.b.value)) * 100,
+      unit: "per cent of the operational estate in dispute",
+      basis: `Two recorded figures for ${d.conflict.field.toLowerCase()}, neither averaged`,
+    },
+    "capital-programme": {
+      value: d.capexUsdBn,
+      unit: "billion dollars of stated capex",
+      basis: `Stated cost of reaching the target for ${d.targetFiscalYear}`,
+    },
+  };
+}
+
+/**
+ * Netweb, measured on a backlog rather than an estate.
+ *
+ * The concentration comes from the function the order book exhibit already
+ * uses, so the register and that exhibit cannot drift apart into two different
+ * numbers for the same share.
+ */
+export function netwebRiskMeasures(d: Netweb): Record<string, Measure> {
+  const c = orderBookConcentration(d.orderBook, d.anchorOrder);
+  const quarter = d.revenueMix.find((r) => r.span === "QUARTER");
+  const nineMonths = d.revenueMix.find((r) => r.span === "NINE_MONTHS");
+
+  return {
+    "book-concentration": {
+      value: c.sharePct,
+      unit: "per cent of the order book, one counterparty",
+      basis: `${d.anchorOrder.name} against the book at ${d.orderBook.asOf}`,
+    },
+    "delivery-window": {
+      value: c.restCr,
+      unit: "crore rupees of book with no published schedule",
+      basis: "The order book less the single order whose delivery date is known",
+    },
+    "valuation-multiple": {
+      value: d.valuation.trailingPE,
+      unit: "times trailing earnings",
+      basis: "Price paid today against earnings already reported",
+    },
+    "mix-is-one-quarter": {
+      value: (quarter?.aiSharePct ?? 0) - (nineMonths?.aiSharePct ?? 0),
+      unit: "points between the quarter and the nine months holding it",
+      basis: `${quarter?.period ?? ""} against ${nineMonths?.period ?? ""}`,
     },
   };
 }

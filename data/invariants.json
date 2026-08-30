@@ -291,6 +291,13 @@
       "fragment": "the worst cell of the matrix cannot hold an unmeasured risk"
     },
     {
+      "id": "secondary-risk-cites-no-filing",
+      "schema": "SecondaryRiskRegister",
+      "category": "SOURCING",
+      "protects": "On the two pages where no filing has been opened, no risk row may cite a printed page or claim the primary tier. A risk sounds like a fact, so it is the easiest place for a page number to appear unchallenged, and one schema shared by both names means the rule is written once rather than twice.",
+      "fragment": "no risk row on a page with no filing may cite one"
+    },
+    {
       "id": "register-refusal-names-where",
       "schema": "DisclosureRegister",
       "category": "EVIDENCE",

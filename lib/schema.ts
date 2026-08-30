@@ -603,6 +603,26 @@ export const RiskRegister = z.object({
   rows: z.array(RiskItem).min(4),
 });
 
+/**
+ * A register on a page where no filing has been read.
+ *
+ * The two research note pages carry no primary figure anywhere else, and a risk
+ * row is the easiest place for one to appear, because a risk sounds like a fact
+ * and a printed page attached to it would go unchallenged. One schema shared by
+ * both, so the rule is written once and documented once.
+ */
+export const SecondaryRiskRegister = RiskRegister.superRefine((reg, ctx) => {
+  for (const r of reg.rows) {
+    if (r.page !== null || r.source.verification === "PRIMARY") {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["rows"],
+        message: `${r.id}: no risk row on a page with no filing may cite one`,
+      });
+    }
+  }
+});
+
 export type RiskItem = z.infer<typeof RiskItem>;
 export type RiskRegister = z.infer<typeof RiskRegister>;
 export type RiskPillar = z.infer<typeof RiskPillar>;
@@ -923,6 +943,7 @@ export const AnantRaj = z
     capexUsdBn: z.number().positive(),
     /** What has deliberately not been read. Rendered on the page, not hidden. */
     notRead: z.array(z.string().min(1)).min(1),
+    risks: SecondaryRiskRegister,
   })
   .superRefine((d, ctx) => {
     // The ladder must descend. Announced, then claimed operational, then what is
@@ -1002,6 +1023,7 @@ export const Netweb = z
     /** What has deliberately not been read. Rendered on the page, not hidden. */
     notRead: z.array(z.string().min(1)).min(1),
     source: Source,
+    risks: SecondaryRiskRegister,
   })
   .superRefine((d, ctx) => {
     // An order cannot be larger than the book that holds it. If that inverts, a

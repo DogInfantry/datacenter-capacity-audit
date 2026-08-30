@@ -1,31 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import type { AnantRaj } from "@/lib/schema";
+import { anantRajRiskMeasures, pillarCoverage } from "@/lib/diagnostics/risk";
 import { Exhibit } from "./Exhibits";
+import { RiskMatrix } from "./RiskMatrix";
 import { Icon, Monogram, StatTile } from "./Visual";
 
-type Rung = { rung: string; mw: number; definition: string; kind: string };
-
 type Props = {
-  data: {
-    entity: string;
-    listedParent: string;
-    ticker: string;
-    exchange: string;
-    role: string;
-    ladder: Rung[];
-    ladderSource: { label: string; verification: string };
-    conflict: {
-      field: string;
-      a: { value: number; source: string };
-      b: { value: number; source: string };
-      note: string;
-    };
-    sites: { name: string; state: string; operationalMW: number }[];
-    targetFiscalYear: string;
-    capexUsdBn: number;
-    notRead: string[];
-  };
+  /** The schema type rather than a hand written copy of it. A copy drifts the
+   *  moment the data file gains a field, which is how a register ends up
+   *  validated at build and rendered on no page. */
+  data: AnantRaj;
   /** Sify's rungs, for the cross company comparison. */
   sify: { rung: string; mw: number }[];
 };
@@ -47,6 +33,10 @@ const TONE: Record<string, string> = {
  */
 export function AnantRajBody({ data, sify }: Props) {
   const [announced, operational, handed] = data.ladder;
+  // Counted rather than written into the title, so the sentence shortens by
+  // itself the first time a document is read for this name.
+  const covered = pillarCoverage(data.risks.rows).filter((p) => p.count > 0).length;
+  const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six"];
   const max = announced.mw;
   const conflictMax = Math.max(data.conflict.a.value, data.conflict.b.value);
 
@@ -244,6 +234,15 @@ export function AnantRajBody({ data, sify }: Props) {
             </p>
           </Exhibit>
         </div>
+
+        <Exhibit
+          n={4}
+          title={`${WORDS[covered]} of the six forensic pillars carry a row, and the rest name the one document that would fill them`}
+          units="Severity against likelihood, graded by this project. A chip is filled where the magnitude is derived from the figures recorded for this name and outlined where the row is judgement. Nothing on this page is read from a filing."
+          source={data.ladderSource.label}
+        >
+          <RiskMatrix register={data.risks} measures={anantRajRiskMeasures(data)} />
+        </Exhibit>
       </section>
 
       <section className="border-t border-line py-12">
