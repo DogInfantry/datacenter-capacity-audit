@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useState } from "react";
 
 type Row = { rank: number; amount: number; share: number; type: "Hyperscaler" | "Enterprise" };
 type Period = { label: string; top10Amount: number; top10Share: number; rows: Row[] };
@@ -29,7 +29,6 @@ export function ClientConcentration({
   page: number;
   contractPage: number;
 }) {
-  const uid = useId();
   const [hover, setHover] = useState<{ p: string; seg: string } | null>(null);
 
   const W = 720;
@@ -80,14 +79,18 @@ export function ClientConcentration({
           viewBox={`0 0 ${W} ${H}`}
           className="w-full min-w-[36rem]"
           role="img"
-          aria-labelledby={`${uid}-t`}
+          aria-label={
+            // A `title` element inside this svg is hoisted by React as document
+            // metadata and hydrates differently from the server render, which
+            // logged a recoverable error on this page for as long as the exhibit
+            // has existed. An aria-label gives the identical accessible name
+            // with no element to hoist.
+            `Revenue by client across four periods. In ${latest.label} the top three clients, ` +
+            `all Hyperscalers, are ${top3Latest.toFixed(2)} per cent of revenue, the same figure ` +
+            `the prospectus reports separately as revenue on contracts of at least seven years.`
+          }
           onMouseLeave={() => setHover(null)}
         >
-          <title id={`${uid}-t`}>
-            Revenue by client across four periods. In {latest.label} the top three clients, all
-            Hyperscalers, are {top3Latest.toFixed(2)} per cent of revenue, the same figure the
-            prospectus reports separately as revenue on contracts of at least seven years.
-          </title>
 
           {/* The bracket. This is the finding, drawn on the plot. */}
           <g>

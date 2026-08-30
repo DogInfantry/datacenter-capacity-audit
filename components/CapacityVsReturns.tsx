@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useState } from "react";
 
 type Row = { label: string; builtMW: number; roce: number };
 
@@ -19,7 +19,6 @@ type Row = { label: string; builtMW: number; roce: number };
  * collapse steeper than the filing claims.
  */
 export function CapacityVsReturns({ rows, page }: { rows: Row[]; page: number }) {
-  const uid = useId();
   const [hover, setHover] = useState<number | null>(null);
 
   const base = rows[0];
@@ -76,13 +75,16 @@ export function CapacityVsReturns({ rows, page }: { rows: Row[]; page: number })
           viewBox={`0 0 ${W} ${H}`}
           className="w-full min-w-[34rem]"
           role="img"
-          aria-labelledby={`${uid}-t`}
+          aria-label={
+            // An svg `title` carrying an id is hoisted by React as document
+            // metadata and hydrates differently from the server render. A bare
+            // svg title is left alone, which is why the other exhibits are fine
+            // and this one logged a recoverable error on every load.
+            `Built capacity rose to ${Math.round(last.cap)} and return on capital fell to ` +
+            `${Math.round(last.ret)}, both indexed to ${base.label} equals 100.`
+          }
           onMouseLeave={() => setHover(null)}
         >
-          <title id={`${uid}-t`}>
-            Built capacity rose to {Math.round(last.cap)} and return on capital fell to{" "}
-            {Math.round(last.ret)}, both indexed to {base.label} equals 100.
-          </title>
 
           {ticks.map((t) => (
             <g key={t}>
