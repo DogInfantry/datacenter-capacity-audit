@@ -134,6 +134,7 @@ python pipeline/ists_base_rate.py
 ## More
 
 - [ARCHITECTURE.md](ARCHITECTURE.md), how it is built and why
+- [docs/SOURCES.md](docs/SOURCES.md), every document actually read, and what came out of it
 - [docs/GOTCHAS.md](docs/GOTCHAS.md), the failures that cost real time once
 - [ROADMAP.md](ROADMAP.md), what is deliberately unfinished, and what is terminal rather than
   pending
