@@ -1,5 +1,6 @@
 import type { AnantRaj, Netweb, RiskItem, RiskPillar, Sisl } from "@/lib/schema";
 import { orderBookConcentration } from "./netweb";
+import { issuerCapexCover } from "./capital";
 
 /**
  * The risk register, arranged.
@@ -48,6 +49,11 @@ export function sifyRiskMeasures(d: Sisl): Record<string, Measure> {
       value: (1 - fy.operationalMW / fy.builtMW) * 100,
       unit: "per cent of built capacity",
       basis: `Built capacity less what is sold to customers, ${fy.label}`,
+    },
+    "capex-outran-operations": {
+      value: issuerCapexCover(d.cashFlow).multiple,
+      unit: "times the cash operations produced",
+      basis: "Capital expenditure against operating cash, every filed period together",
     },
     "client-concentration": {
       value: clients.rows.filter((r) => r.rank <= 3).reduce((t, r) => t + r.share, 0),

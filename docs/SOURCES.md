@@ -20,7 +20,7 @@ The binary is deliberately not committed, at 12.5 MB. `data/raw/prospectus/drhp_
 carries the URL, the checksum and the printed to PDF page offset, so any figure can be audited
 against a fresh download. **Printed page plus 4 equals the zero based PDF index.**
 
-Ten printed pages are cited across the site. That is 1.8 per cent of the document, and
+Eleven printed pages are cited across the site. That is 2.0 per cent of the document, and
 `/methodology` publishes the count rather than implying more:
 
 | Printed page | Section | What was taken from it |
@@ -34,15 +34,32 @@ Ten printed pages are cited across the site. That is 1.8 per cent of the documen
 | 142 | Basis for offer price | Key performance indicators. Built capacity defined a second way |
 | 144 | Basis for offer price | Peer comparison, the issuer's own chosen peer set |
 | 301 | Our business | Capacity and utilisation by data centre, thirteen sites |
+| 355 | Restated consolidated financials | Statement of cash flow. Cash from operations, tax paid, capital expenditure and right of use payments, four periods |
 | 398 | Restated consolidated financials | Notes 23 to 26, the expense stack |
 
 The two findings that came out of it: the same 188.04 MW figure is defined two different ways on
 printed pages 49 and 142, and the long contract revenue share on page 46 equals the sum of the top
 three clients on page 36 to the second decimal, a reconciliation the document never performs.
 
-**Not read**, with the page map already recorded in `drhp_extracts.json`: the restated standalone
-financials at printed 349 to 433, related party transactions inside those notes, and outstanding
-litigation at printed 463. The standalone accounts are the valuable gap, and they block the model.
+The third finding came out of the cash flow statement at printed 355: across the four filed periods
+the estate absorbed roughly 1.87 times the cash operations produced, and the single period where
+operations covered the spending is the last full year before the offer, with the quarter after it
+back under.
+
+**Not read**, with the page map already recorded in `drhp_extracts.json`: the balance sheet at
+printed 353, the rest of the restated financials through printed 433, related party transactions
+inside those notes, and outstanding litigation at printed 463. The balance sheet is the next page to
+read and it is what the model waits on; the governance pillar of every risk register waits on the
+notes and the litigation.
+
+**The reading order for what remains**, stated before it is used rather than after, so it can be
+judged on its own terms: corporate and business overview with segments, then the chairman or
+managing director letter, then management discussion and analysis, then the board report, then the
+auditor's report and the opinion type, then the financial statements, then the key notes to
+accounts. The sustainability narrative, the ceremonial opening paragraphs, the static mission
+statements and the standard statutory boilerplate are skipped. This is the order that fills the two
+pillars the registers currently leave empty, and the first document it will be applied to end to end
+is an annual report rather than a prospectus.
 
 **Also generated from it:** `data/drhp_triage.json`, a density score for all 553 scorable pages with
 the 28 term hedge lexicon that produced it. `/methodology` publishes both, including the finding

@@ -647,6 +647,33 @@ const SislPeriod = z.object({
   dataCentresBuilt: z.number().int().positive(),
 });
 
+/**
+ * The restated consolidated cash flow, one row per filed period.
+ *
+ * Stored with the parts as well as the total, because the filing prints both
+ * and storing only the total would throw away the check. Every amount is a
+ * magnitude: tax paid and capital expenditure are outflows in the statement and
+ * are held here as positive numbers, with the direction carried by the field
+ * name rather than by a sign that a later edit could flip unnoticed.
+ */
+const SislCashFlow = z
+  .object({
+    label: z.string().min(1),
+    cashFromOperations: z.number().positive(),
+    taxPaid: z.number().positive(),
+    cfo: z.number().positive(),
+    capex: z.number().positive(),
+    /** Land and lease acquisition, which the statement reports separately from
+     *  the purchase of property, plant and equipment. Kept apart rather than
+     *  folded into capex, because folding it in would quietly enlarge the gap
+     *  the exhibit draws. */
+    rightOfUse: z.number().positive(),
+  })
+  .refine((r) => Math.abs(r.cashFromOperations - r.taxPaid - r.cfo) < 0.01, {
+    message: "cash generated from operations less tax paid must equal net cash from operations",
+    path: ["cfo"],
+  });
+
 const SislCost = z.object({
   label: z.string().min(1),
   power: z.number().positive(),
@@ -667,6 +694,8 @@ export const Sisl = z
     costStack: z.array(SislCost).min(3),
     costStackSource: PagedSource,
     capitalisationRate: z.number().positive(),
+    cashFlow: z.array(SislCashFlow).min(3),
+    cashFlowSource: PagedSource,
     contracts: z
       .array(z.object({ label: z.string().min(1), longContractRevenueShare: z.number().positive() }))
       .min(3),
@@ -800,6 +829,20 @@ export const Sisl = z
         });
       }
     }
+    // The estate was built with money the business did not generate, and that
+    // is the claim the cash flow exhibit makes out loud. Across every filed
+    // period taken together, spending on property, plant and equipment exceeds
+    // the cash operations produced. If that ever inverts, the exhibit's
+    // headline has stopped being true and the build should say so.
+    const totalCapex = d.cashFlow.reduce((t, r) => t + r.capex, 0);
+    const totalCfo = d.cashFlow.reduce((t, r) => t + r.cfo, 0);
+    if (totalCapex <= totalCfo) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["cashFlow"],
+        message: `capital expenditure of ${totalCapex.toFixed(2)} no longer exceeds the ${totalCfo.toFixed(2)} of cash operations produced`,
+      });
+    }
     // A risk row may only cite a printed page this file already reads.
     //
     // The register is authored from what was read, and the instruction standing
@@ -809,6 +852,7 @@ export const Sisl = z
     const read = new Set([
       d.periodsSource.page,
       d.costStackSource.page,
+      d.cashFlowSource.page,
       d.contractsSource.page,
       d.sitesSource.page,
       d.peersSource.page,

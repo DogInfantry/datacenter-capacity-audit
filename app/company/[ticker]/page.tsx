@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sisl, universe, anantRaj, netweb, COVERED_TICKERS } from "@/lib/data";
+import { sisl, prospectus, universe, anantRaj, netweb, COVERED_TICKERS } from "@/lib/data";
+import { citedPages } from "@/lib/diagnostics/sourcing";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
 import { ClientConcentration } from "@/components/ClientConcentration";
 import { SiteMap } from "@/components/SiteMap";
 import { RiskMatrix } from "@/components/RiskMatrix";
+import { CapexVsCfo } from "@/components/CapexVsCfo";
 import { sifyRiskMeasures } from "@/lib/diagnostics/risk";
+import { issuerCapexCover } from "@/lib/diagnostics/capital";
 import { Pictogram, StatTile, Monogram, type IconName } from "@/components/Visual";
 import { AnantRajBody } from "@/components/AnantRajBody";
 import { NetwebBody } from "@/components/NetwebBody";
@@ -101,6 +104,12 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
   );
 
   const riskMeasures = sifyRiskMeasures(sisl);
+  const cover = issuerCapexCover(sisl.cashFlow);
+  const cr = (mn: number) => mn / 10;
+  // FY2025 is the pivot the exhibit turns on, so the two rates beside it are
+  // derived from the periods either side rather than written into the prose.
+  const before = cover.periods[cover.periods.length - 3];
+  const pivot = cover.periods[cover.periods.length - 2];
   // The pages the register rests on, derived from the rows rather than typed
   // into the source line, so a row added or moved cannot leave the citation
   // describing a set of pages the exhibit no longer uses.
@@ -325,6 +334,59 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
         >
           <RiskMatrix register={sisl.risks} measures={riskMeasures} />
         </Exhibit>
+
+        <Exhibit
+          n={8}
+          title={`Only ${cover.covered[0].fy} paid for its own construction, and it is the last full year before the offer`}
+          units="Rupees crore, restated consolidated, as filed. Capital expenditure is the purchase of property, plant and equipment. Land and lease payments are reported separately in the same statement and are excluded here rather than folded in, which would enlarge the gap. The stub quarter is not annualised and is compared against its own quarter of cash."
+          source={sisl.cashFlowSource.label}
+          page={sisl.cashFlowSource.page}
+        >
+          <CapexVsCfo
+            rows={sisl.cashFlow.map((r) => ({
+              label: r.label,
+              cfoCr: cr(r.cfo),
+              capexCr: cr(r.capex),
+            }))}
+            aria={`Operating cash flow against capital expenditure for ${cover.periods
+              .map((p) => p.fy)
+              .join(", ")}. Capex is the larger of the two in ${cover.outspent.length} of the ${
+              cover.periods.length
+            } filed periods.`}
+            note="Consolidated figures as filed in the restated statement of cash flow, converted to crore for display only."
+          />
+
+          <p className="mt-4 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            Across the four filed periods the estate absorbed{" "}
+            <span className="tnum text-foreground">
+              {cr(cover.capex).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+            </span>{" "}
+            crore against{" "}
+            <span className="tnum text-foreground">
+              {cr(cover.cfo).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+            </span>{" "}
+            crore of cash from operations, so the building ran at{" "}
+            <span className="tnum text-foreground">{cover.multiple.toFixed(2)}</span> times what the
+            business produced and the difference,{" "}
+            <span className="tnum text-foreground">
+              {cr(cover.gap).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+            </span>{" "}
+            crore, came from somewhere else.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The single covered period is not a change of habit. Capital expenditure fell{" "}
+            <span className="tnum text-foreground">
+              {((1 - pivot.capex / before.capex) * 100).toFixed(0)}
+            </span>{" "}
+            per cent in {pivot.fy} while operating cash rose{" "}
+            <span className="tnum text-foreground">
+              {((pivot.cfo / before.cfo - 1) * 100).toFixed(0)}
+            </span>{" "}
+            per cent, and the quarter that follows it is back to spending more than it earns. Capex
+            leads commissioning by years, so a year of low spending is not a year of low building.
+            It is a gap in the trail, and the offer is what fills it.
+          </p>
+        </Exhibit>
       </section>
 
       <section className="border-t border-line py-12">
@@ -337,7 +399,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
             },
             {
               h: "Read and cited",
-              b: "Ten printed pages of the prospectus: the KPI block, the peer comparison, the client table, the capacity table printed twice, the expense notes, the contract and leased land risk factors, and management's own discussion.",
+              b: `${citedPages(sisl, prospectus).length} printed pages of the prospectus: the KPI block, the peer comparison, the client table, the capacity table printed twice, the expense notes, the statement of cash flow, the contract and leased land risk factors, and management's own discussion.`,
             },
             {
               h: "Still to build",

@@ -100,6 +100,19 @@
   },
   "capitalisationRate": 9.30,
 
+  "cashFlow": [
+    { "label": "FY2023", "cashFromOperations": 4428.40, "taxPaid": 694.40, "cfo": 3734.00, "capex": 8540.44, "rightOfUse": 943.60 },
+    { "label": "FY2024", "cashFromOperations": 2771.50, "taxPaid": 660.10, "cfo": 2111.40, "capex": 9227.20, "rightOfUse": 167.65 },
+    { "label": "FY2025", "cashFromOperations": 6111.56, "taxPaid": 637.40, "cfo": 5474.16, "capex": 4182.41, "rightOfUse": 722.74 },
+    { "label": "Q1 FY2026", "cashFromOperations": 1249.03, "taxPaid": 241.99, "cfo": 1007.04, "capex": 1146.02, "rightOfUse": 423.40 }
+  ],
+  "cashFlowSource": {
+    "label": "Sify Infinit Spaces DRHP, Restated Consolidated Statement of Cash Flow. Capital expenditure is the purchase of property, plant and equipment line. Amounts paid to acquire right of use assets are reported separately in the same statement and are held separately here. Tax paid and capital expenditure are outflows in the filing and are recorded as positive magnitudes.",
+    "page": 355,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
+
   "contracts": [
     { "label": "FY2023", "longContractRevenueShare": 67.04 },
     { "label": "FY2024", "longContractRevenueShare": 64.06 },
@@ -241,7 +254,7 @@
 
   "risks": {
     "gradingNote": "Severity and likelihood are this project's own judgement. The magnitude beside each row is not: where a row is marked measured, the figure is derived at render from the filed numbers in this file and moves if they move. The prospectus publishes no risk grading of its own, so nothing here is the issuer's ranking of its own risk factors.",
-    "unevidencedNote": "Three of the six pillars carry no row, and the reason is the same in each case. Cash conversion needs this issuer's cash flow statement, which sits inside the restated financials at printed 349 to 433 and has not been read; the cash flow harvested elsewhere in this repository belongs to Sify Technologies, the listed parent, and cannot stand in for the entity being offered. Governance needs the auditor's report, the related party notes and the outstanding litigation at printed 463, none of them read. Valuation needs a price band, and the document carries none.",
+    "unevidencedNote": "Two of the six pillars still carry no row. Governance needs the auditor's report, the related party notes and the outstanding litigation at printed 463, none of them read. Valuation needs a price band, and the document carries none. Cash conversion was empty here for the same reason until the restated statement of cash flow at printed 355 was read, and the row it carries now is the first thing that statement says.",
     "rows": [
       {
         "id": "power-cost-base",
@@ -271,6 +284,22 @@
         "page": 301,
         "source": {
           "label": "Sify Infinit Spaces DRHP, capacity and capacity utilization by data center, certified by the Independent Chartered Engineer, printed page 301",
+          "asOf": "2025-10-16",
+          "verification": "PRIMARY"
+        }
+      },
+      {
+        "id": "capex-outran-operations",
+        "risk": "The estate was built with money the business did not generate, in every filed period but one.",
+        "category": "CASH_CONVERSION",
+        "severity": "HIGH",
+        "likelihood": "HIGH",
+        "mitigant": "The gap is disclosed in the issuer's own statement of cash flow rather than reconstructed from other figures, and the offer exists to fund the next stage of it.",
+        "measured": true,
+        "note": "Capital expenditure leads commissioning by years, so the one covered period is a gap in the spending trail rather than a change in how the build is funded. The quarter after it is back to spending more than it earns.",
+        "page": 355,
+        "source": {
+          "label": "Sify Infinit Spaces DRHP, Restated Consolidated Statement of Cash Flow, printed page 355",
           "asOf": "2025-10-16",
           "verification": "PRIMARY"
         }

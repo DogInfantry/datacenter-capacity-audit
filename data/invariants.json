@@ -270,6 +270,20 @@
       "fragment": "a closed limit must name what closed it, and an open one must not"
     },
     {
+      "id": "cashflow-operations-reconcile",
+      "schema": "Sisl",
+      "category": "RECONCILE",
+      "protects": "The filing prints cash generated from operations, the tax paid against it, and the net figure. All three are stored and the identity is asserted, so a mistyped row is caught rather than quietly changing the size of the funding gap the exhibit draws.",
+      "fragment": "cash generated from operations less tax paid must equal net cash from operations"
+    },
+    {
+      "id": "capex-outran-operations",
+      "schema": "Sisl",
+      "category": "FINDING",
+      "protects": "Across every filed period taken together, spending on property, plant and equipment exceeds the cash operations produced. That is the claim the cash flow exhibit makes out loud: the estate was built with money the business did not generate. If it ever inverts the headline has stopped being true.",
+      "fragment": "no longer exceeds the"
+    },
+    {
       "id": "risk-page-implies-primary",
       "schema": "RiskItem",
       "category": "SOURCING",
