@@ -55,6 +55,35 @@
     ]
   },
 
+  "operatorReturns": {
+    "_note": "The only primary figures on this page. Eight data centre operators, five Indian and three global, with return on capital and depreciation rate for three fiscal years, printed as a single table inside the prospectus industry report. NA in the source is carried as null and drawn as an absence, never as a zero.",
+    "fiscalYears": ["FY2023", "FY2024", "FY2025"],
+    "claim": {
+      "quote": "Sify achieved ROCE of 9.88%, 6.75% and 7.92% in Fiscal 2023, Fiscal 2024 and Fiscal 2025, respectively, which is significantly higher than its global peers.",
+      "page": 261
+    },
+    "issuerReason": {
+      "quote": "Sify's depreciation rose from INR 2,083.00 million in Fiscal 2023 to INR 3,268.16 million in Fiscal 2025, resulting in a depreciation rate of 10.33% in Fiscal 2025 the highest among its peers. This partly weighed on its ROCE.",
+      "page": 261
+    },
+    "rows": [
+      { "name": "Sify Infinit Spaces", "market": "DOMESTIC", "self": true, "roce": [9.88, 6.75, 7.92], "depreciationRate": [11.09, 11.0, 10.33] },
+      { "name": "CtrlS Data Centers", "market": "DOMESTIC", "self": false, "roce": [24.62, 13.91, null], "depreciationRate": [7.22, 5.86, null] },
+      { "name": "Nxtra Data", "market": "DOMESTIC", "self": false, "roce": [15.06, 9.47, 8.07], "depreciationRate": [9.26, 9.58, 8.3] },
+      { "name": "ST Telemedia GDC", "market": "DOMESTIC", "self": false, "roce": [9.14, 6.32, null], "depreciationRate": [8.66, 8.78, null] },
+      { "name": "NTT Data Centers", "market": "DOMESTIC", "self": false, "roce": [8.63, 5.82, null], "depreciationRate": [7.3, 6.48, null] },
+      { "name": "Equinix", "market": "GLOBAL", "self": false, "roce": [6.58, 6.92, 7.59], "depreciationRate": [7.38, 7.13, 7.48] },
+      { "name": "Digital Realty", "market": "GLOBAL", "self": false, "roce": [5.92, 4.12, 3.1], "depreciationRate": [6.29, 6.46, 6.7] },
+      { "name": "NEXTDC", "market": "GLOBAL", "self": false, "roce": [1.58, 0.68, -0.19], "depreciationRate": [4.32, 4.36, 4.17] }
+    ],
+    "source": {
+      "label": "Sify Infinit Spaces DRHP, peer benchmarking table inside the commissioned 1Lattice and Cushman and Wakefield industry report. Return on capital employed is EBIT over average capital employed, on the definition printed on the following page. Fiscal years are the Indian convention, ending 31 March. The two largest global names carry a footnote in the source marking a different reporting basis.",
+      "page": 260,
+      "asOf": "2025-10-16",
+      "verification": "PRIMARY"
+    }
+  },
+
   "buildRate": [
     {
       "year": 2024,

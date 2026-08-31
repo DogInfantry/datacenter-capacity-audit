@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { sisl, anantRaj, netweb, prospectus } from "@/lib/data";
+import { sisl, anantRaj, netweb, prospectus, macro } from "@/lib/data";
 import { compareRows, compareSubjects, comparableCount } from "@/lib/diagnostics/compare";
 import { Exhibit } from "@/components/Exhibits";
 import { CompareTable } from "@/components/CompareTable";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
  */
 export default function ComparePage() {
   const subjects = compareSubjects(sisl, anantRaj, netweb);
-  const rows = compareRows(sisl, anantRaj, prospectus);
+  const rows = compareRows(sisl, anantRaj, prospectus, macro);
   const { comparable, total } = comparableCount(rows);
   const share = rows.find((r) => r.metric === "Earning share of the headline")!;
   const sifyShare = share.cells.SIFY.value!;

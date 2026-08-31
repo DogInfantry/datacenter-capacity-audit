@@ -74,7 +74,7 @@ const cell = (value: number | null, unit: string, missing?: string): Cell => ({
  * question of both, even though the two companies use entirely different words
  * for the rungs, which is exactly why the ratio travels and the levels do not.
  */
-export function compareRows(sisl: Sisl, ar: AnantRaj, pros: Prospectus): CompareRow[] {
+export function compareRows(sisl: Sisl, ar: AnantRaj, pros: Prospectus, mac: unknown): CompareRow[] {
   const full = sisl.periods.filter((p) => !p.stub);
   const fy = full[full.length - 1];
   const claimed = ar.annualReport.rungs.find((r) => r.kind === "CLAIMED")!;
@@ -118,7 +118,7 @@ export function compareRows(sisl: Sisl, ar: AnantRaj, pros: Prospectus): Compare
         "How much of each document this project actually opened. A measure of the reading, not of the company.",
       comparable: true,
       cells: {
-        SIFY: cell(citedPages(sisl, pros).length, "pages"),
+        SIFY: cell(citedPages(sisl, pros, mac).length, "pages"),
         ANANTRAJ: cell(
           new Set([
             ...ar.annualReport.rungs.map((r) => r.page),

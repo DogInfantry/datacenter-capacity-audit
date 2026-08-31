@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { macro, sisl } from "@/lib/data";
-import { forecastSpread, requiredRunRate } from "@/lib/diagnostics/macro";
+import { forecastSpread, requiredRunRate, peerReturns, claimFailures } from "@/lib/diagnostics/macro";
 import { Exhibit } from "@/components/Exhibits";
 import { ForecastSpread } from "@/components/ForecastSpread";
 import { BuildRate } from "@/components/BuildRate";
+import { PeerReturns } from "@/components/PeerReturns";
 import { StatTile, type IconName } from "@/components/Visual";
 
 export const metadata: Metadata = {
@@ -19,6 +20,12 @@ export default function MacroPage() {
   const full = sisl.periods.filter((p) => !p.stub);
   const latest = full[full.length - 1];
   const conversion = latest.operationalMW / latest.builtMW;
+
+  const ret = macro.operatorReturns;
+  // The peer table is the only primary source on this page, so both the ranking
+  // and the check against the issuer's own claim are derived rather than read.
+  const peers = peerReturns(ret.rows, ret.fiscalYears);
+  const failures = claimFailures(ret.rows, ret.fiscalYears);
 
   const spread = forecastSpread(macro.capacity.forecasts, conversion);
   const build = [...macro.buildRate].sort((a, b) => a.year - b.year);
@@ -178,6 +185,58 @@ export default function MacroPage() {
             changing the total, and the total is the claim. Nothing here says the forecasts are
             wrong. It says what would have to happen for them to be right, in the one unit the
             sector reports annually, and that the doubling already achieved is not the hard part.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={3}
+          title={`Every Indian operator earned less on its capital in ${peers[1].fy} than in ${peers[0].fy}`}
+          units="Return on capital employed, per cent, on the definition printed in the source. Indian operators solid, global operators dashed. A gap in a line is a year an operator did not report, never a zero."
+          source={ret.source.label}
+          page={ret.source.page}
+        >
+          <PeerReturns rows={ret.rows} fiscalYears={ret.fiscalYears} />
+
+          <p className="mt-5 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            All <span className="tnum text-foreground">{peers[0].domesticCount}</span> Indian
+            operators in the table fell between {peers[0].fy} and {peers[1].fy}. The average went
+            from <span className="tnum text-foreground">{peers[0].domesticMean?.toFixed(2)}</span>{" "}
+            per cent to{" "}
+            <span className="tnum text-foreground">{peers[1].domesticMean?.toFixed(2)}</span>, a drop
+            of{" "}
+            <span className="tnum text-foreground">
+              {(100 - ((peers[1].domesticMean ?? 0) / (peers[0].domesticMean ?? 1)) * 100).toFixed(0)}
+            </span>{" "}
+            per cent in a single year, while the largest global operator moved the other way. Capital
+            is going in faster than it is coming back out, across the whole Indian set rather than at
+            one company.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The issuer&apos;s own summary of this table, at printed page{" "}
+            <span className="tnum">{ret.claim.page}</span>, reads:{" "}
+            <span className="text-foreground">&ldquo;{ret.claim.quote}&rdquo;</span> The comparison
+            is to global peers. Against the Indian operators printed directly above them it ranks{" "}
+            <span className="tnum text-foreground">{peers[0].selfRank}</span> of{" "}
+            <span className="tnum text-foreground">{peers[0].domesticCount}</span> in {peers[0].fy}{" "}
+            and <span className="tnum text-foreground">{peers[1].selfRank}</span> of{" "}
+            <span className="tnum text-foreground">{peers[1].domesticCount}</span> in {peers[1].fy}.
+            {failures.length > 0 && (
+              <>
+                {" "}
+                In {failures.map((f) => f.fy).join(" and ")} it did not beat every global peer
+                either:{" "}
+                <span className="tnum text-foreground">{failures[0].selfValue?.toFixed(2)}</span>{" "}
+                against{" "}
+                <span className="tnum text-foreground">{failures[0].bestGlobal?.toFixed(2)}</span>.
+              </>
+            )}
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The source gives a reason on the same page:{" "}
+            <span className="text-foreground">&ldquo;{ret.issuerReason.quote}&rdquo;</span> Heavy
+            depreciation in a build phase does suppress the ratio, and it is the honest explanation
+            for a low reading. It is also the explanation every operator in the Indian half of this
+            table could give.
           </p>
         </Exhibit>
       </section>

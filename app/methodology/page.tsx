@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { universe, sisl, prospectus, drhpTriage, invariants, method } from "@/lib/data";
+import { universe, sisl, prospectus, drhpTriage, invariants, method, macro } from "@/lib/data";
 import { verificationTally, citedPages } from "@/lib/diagnostics/sourcing";
 import { citedPageRanks } from "@/lib/diagnostics/triage";
 import { Exhibit } from "@/components/Exhibits";
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function MethodologyPage() {
   const tally = verificationTally(universe.operators);
-  const cited = citedPages(sisl, prospectus);
+  const cited = citedPages(sisl, prospectus, macro);
   const total = prospectus.document.pdfPages;
   const readShare = (cited.length / total) * 100;
   const triage = citedPageRanks(drhpTriage.pages, cited);

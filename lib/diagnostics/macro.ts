@@ -83,3 +83,52 @@ export function forecastSpread(forecasts: Forecast[], conversion: number) {
     max: high.mwTop,
   };
 }
+
+type ReturnRow = {
+  name: string;
+  market: "DOMESTIC" | "GLOBAL";
+  self: boolean;
+  roce: (number | null)[];
+  depreciationRate: (number | null)[];
+};
+
+/**
+ * The peer benchmarking table, read against the claim made about it.
+ *
+ * The issuer states its return on capital is significantly higher than its
+ * global peers. The same table carries five Indian operators, and the claim
+ * says nothing about them. This computes both comparisons for every year, so
+ * the page can put the claim beside the table it was drawn from.
+ *
+ * A year where an operator reported nothing is excluded from that year's
+ * ranking rather than counted as a zero, which would invent a last place.
+ */
+export function peerReturns(rows: ReturnRow[], fiscalYears: string[]) {
+  return fiscalYears.map((fy, i) => {
+    const at = (r: ReturnRow) => r.roce[i];
+    const reported = rows.filter((r) => at(r) !== null);
+    const domestic = reported.filter((r) => r.market === "DOMESTIC");
+    const global = reported.filter((r) => r.market === "GLOBAL");
+    const self = rows.find((r) => r.self);
+    const selfValue = self ? at(self) : null;
+    const ranked = [...domestic].sort((a, b) => (at(b) as number) - (at(a) as number));
+    const bestGlobal = global.length ? Math.max(...global.map((r) => at(r) as number)) : null;
+    return {
+      fy,
+      domesticMean: domestic.length
+        ? domestic.reduce((t, r) => t + (at(r) as number), 0) / domestic.length
+        : null,
+      domesticCount: domestic.length,
+      selfValue,
+      selfRank: self ? ranked.findIndex((r) => r.self) + 1 : 0,
+      bestGlobal,
+      /** False in any year the issuer's own table contradicts its claim. */
+      beatsEveryGlobal: selfValue !== null && bestGlobal !== null ? selfValue > bestGlobal : null,
+    };
+  });
+}
+
+/** The years where the claim to beating every global peer does not hold. */
+export function claimFailures(rows: ReturnRow[], fiscalYears: string[]) {
+  return peerReturns(rows, fiscalYears).filter((y) => y.beatsEveryGlobal === false);
+}

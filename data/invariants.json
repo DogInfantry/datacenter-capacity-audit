@@ -242,6 +242,20 @@
       "fragment": "published_elsewhere requires naming where it was published"
     },
     {
+      "id": "peer-returns-cover-every-year",
+      "schema": "Macro",
+      "category": "LIKE_FOR_LIKE",
+      "protects": "Each of the eight operators in the peer benchmarking table carries one reading per fiscal year the table covers, present or explicitly absent. The source prints NA for operators that had not reported, and a short row rather than an explicit absence would shift every value after it into the wrong year.",
+      "fragment": "does not carry one reading per fiscal year the peer table covers"
+    },
+    {
+      "id": "domestic-returns-fell",
+      "schema": "Macro",
+      "category": "FINDING",
+      "protects": "Every Indian operator in the table, not merely the issuer, earned a lower return on capital in the second year than the first. The sector page leads on that, so if one of them rises the page is claiming a decline its own primary source no longer shows.",
+      "fragment": "every domestic operator's return on capital fell across the first two years"
+    },
+    {
       "id": "forecast-exceeds-actual",
       "schema": "Macro",
       "category": "POSSIBLE",

@@ -20,7 +20,7 @@ The binary is deliberately not committed, at 12.5 MB. `data/raw/prospectus/drhp_
 carries the URL, the checksum and the printed to PDF page offset, so any figure can be audited
 against a fresh download. **Printed page plus 4 equals the zero based PDF index.**
 
-Thirteen printed pages are cited across the site. That is 2.3 per cent of the document, and
+Fourteen printed pages are cited across the site. That is 2.5 per cent of the document, and
 `/methodology` publishes the count rather than implying more:
 
 | Printed page | Section | What was taken from it |
@@ -33,6 +33,7 @@ Thirteen printed pages are cited across the site. That is 2.3 per cent of the do
 | 109 | Objects of the offer | Objects, deployment schedule, auditor certification |
 | 142 | Basis for offer price | Key performance indicators. Built capacity defined a second way |
 | 144 | Basis for offer price | Peer comparison, the issuer's own chosen peer set |
+| 260 | Industry overview | The peer benchmarking table. Return on capital, depreciation rate, capex and depreciation for five Indian and three global operators across three fiscal years |
 | 261 | Industry overview | The return on capital formula, printed inside the commissioned 1Lattice and Cushman and Wakefield report rather than beside the issuer's own figures |
 | 301 | Our business | Capacity and utilisation by data centre, thirteen sites |
 | 353 | Restated consolidated financials | Statement of assets and liabilities. Net worth, borrowings, lease liabilities and cash, four periods |
@@ -47,6 +48,13 @@ The third finding came out of the cash flow statement at printed 355: across the
 the estate absorbed roughly 1.87 times the cash operations produced, and the single period where
 operations covered the spending is the last full year before the offer, with the quarter after it
 back under.
+
+The fifth is on printed 260 and 261, and it is about the whole Indian set rather than one company.
+Every one of the five Indian operators in the peer table earned a lower return on capital in Fiscal
+2024 than in Fiscal 2023, the average falling by more than a third in a year. On the facing page the
+issuer summarises that table as showing its own return "significantly higher than its global peers".
+Against the Indian operators printed directly above them it ranks third of five in both comparable
+years, and in Fiscal 2024 it does not clear the best global peer either.
 
 The fourth came from joining the balance sheet at printed 353 to a formula printed at 261, inside the
 industry report the issuer commissioned rather than beside the figures it claims for itself. Rebuilt

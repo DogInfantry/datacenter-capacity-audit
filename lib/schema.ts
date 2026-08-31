@@ -1299,6 +1299,21 @@ export type Method = z.infer<typeof Method>;
  * forecasts disagree by a factor of three, and all of them are stated in built
  * capacity, the unit this project has already shown does not earn.
  */
+/**
+ * The peer benchmarking table, the only primary figures on the sector page.
+ *
+ * Values are nullable because the source prints NA for operators that had not
+ * reported the year, and an absence drawn as a zero would invent a collapse.
+ * Return on capital may be negative; one of the three global names is.
+ */
+const OperatorReturn = z.object({
+  name: z.string().min(1),
+  market: z.enum(["DOMESTIC", "GLOBAL"]),
+  self: z.boolean(),
+  roce: z.array(z.number().nullable()),
+  depreciationRate: z.array(z.number().nullable()),
+});
+
 export const Macro = z
   .object({
     asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
@@ -1325,6 +1340,13 @@ export const Macro = z
         )
         .min(3),
     }),
+    operatorReturns: z.object({
+      fiscalYears: z.array(z.string().min(1)).min(2),
+      claim: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
+      issuerReason: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
+      rows: z.array(OperatorReturn).min(4),
+      source: PagedSource,
+    }),
     buildRate: z
       .array(
         z.object({
@@ -1344,6 +1366,35 @@ export const Macro = z
     }),
   })
   .superRefine((d, ctx) => {
+    // Every operator must carry a reading for every fiscal year the table
+    // covers, present or explicitly absent. A short row would silently shift
+    // every value after it into the wrong year.
+    const r = d.operatorReturns;
+    for (const row of r.rows) {
+      if (row.roce.length !== r.fiscalYears.length ||
+          row.depreciationRate.length !== r.fiscalYears.length) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["operatorReturns", "rows"],
+          message: `${row.name} does not carry one reading per fiscal year the peer table covers`,
+        });
+      }
+    }
+    // The finding: every Indian operator's return on capital fell in the second
+    // year of the table. If one of them rises, the sector page is claiming a
+    // decline that its own primary source no longer shows.
+    const domestic = r.rows.filter((x) => x.market === "DOMESTIC");
+    const rose = domestic.filter(
+      (x) => x.roce[0] !== null && x.roce[1] !== null && x.roce[1] >= x.roce[0],
+    );
+    if (rose.length > 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["operatorReturns", "rows"],
+        message: `every domestic operator's return on capital fell across the first two years, but ${rose.map((x) => x.name).join(", ")} did not`,
+      });
+    }
+
     const f = d.capacity.forecasts;
     for (const row of f) {
       // A 2030 forecast below what is already operational means a row was

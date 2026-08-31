@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sisl, prospectus, universe, anantRaj, netweb, COVERED_TICKERS } from "@/lib/data";
+import { sisl, prospectus, macro, universe, anantRaj, netweb, COVERED_TICKERS } from "@/lib/data";
 import { citedPages } from "@/lib/diagnostics/sourcing";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
@@ -444,7 +444,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
             },
             {
               h: "Read and cited",
-              b: `${citedPages(sisl, prospectus).length} printed pages of the prospectus: the KPI block, the peer comparison, the client table, the capacity table printed twice, the expense notes, the statement of cash flow, the contract and leased land risk factors, and management's own discussion.`,
+              b: `${citedPages(sisl, prospectus, macro).length} printed pages of the prospectus: the KPI block, the peer comparison, the client table, the capacity table printed twice, the expense notes, the statement of cash flow, the contract and leased land risk factors, and management's own discussion.`,
             },
             {
               h: "Still to build",
