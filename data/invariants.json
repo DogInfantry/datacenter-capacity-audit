@@ -161,8 +161,15 @@
       "id": "anantraj-not-primary",
       "schema": "AnantRaj",
       "category": "SOURCING",
-      "protects": "No Anant Raj filing has been opened, so no Anant Raj figure may claim to be traced to one.",
+      "protects": "The capacity ladder on this page comes from a research note, and it may never claim the primary tier however often its figures are repeated. The annual report has since been read and sits in its own block with its own printed pages; this guard keeps the two apart, so the note cannot quietly inherit the report's authority.",
       "fragment": "no Anant Raj figure is traced to a filing, so it cannot claim PRIMARY"
+    },
+    {
+      "id": "anantraj-headline-equals-its-parts",
+      "schema": "AnantRaj",
+      "category": "RECONCILE",
+      "protects": "The annual report prints one headline capacity number in its highlights and, elsewhere, the three pieces it is made of, only one of which is operational. Both are stored and the identity is asserted, which is what lets the exhibit say the composition is the company's own rather than our subtraction.",
+      "fragment": "the headline capacity figure must equal the parts the report says it is made of"
     },
     {
       "id": "netweb-not-primary",

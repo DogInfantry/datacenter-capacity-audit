@@ -9,7 +9,7 @@ brief without going back to the underlying publisher. Only the first two are eve
 
 ---
 
-## 1. The prospectus, the only document read page by page
+## 1. The prospectus, the first document read page by page
 
 **Sify Infinit Spaces Limited, Draft Red Herring Prospectus, dated 16 October 2025.**
 563 pages.
@@ -67,12 +67,56 @@ managing director letter, then management discussion and analysis, then the boar
 auditor's report and the opinion type, then the financial statements, then the key notes to
 accounts. The sustainability narrative, the ceremonial opening paragraphs, the static mission
 statements and the standard statutory boilerplate are skipped. This is the order that fills the two
-pillars the registers currently leave empty, and the first document it will be applied to end to end
-is an annual report rather than a prospectus.
+pillars the registers currently leave empty.
+
+**It has now been used once, on the Anant Raj annual report below, and it half worked.** The first
+section of the order, the corporate and business overview, carried the entire capacity finding, and
+the auditor's opinion was where the order said it would be. The chairman or managing director letter
+does not exist in that report under any of the names the order expects, so that step was skipped
+rather than followed. The financial statements and the notes, which are the last two steps and the
+ones that fill the empty pillars, were not reached.
 
 **Also generated from it:** `data/drhp_triage.json`, a density score for all 553 scorable pages with
 the 28 term hedge lexicon that produced it. `/methodology` publishes both, including the finding
 that the rule ranked the capacity pages 1 and 2 of 553 and buried the contract page at 461.
+
+---
+
+## 1b. The second document read page by page
+
+**Anant Raj Limited, annual report for FY2024-25.** 275 pages.
+`https://nsearchives.nseindia.com/annual_reports/AR_26635_ANANTRAJ_2024_2025_A_28062025220835.pdf`
+SHA256 `0811ca69b22ef07870d29a26a7f16b638288702b71f4c10958c993fbfbe9b8c7`
+
+Filed with the exchange rather than found on a company website. It is here because nothing else
+reaches this filer: the machine harvest that produced the Sify, Equinix, Digital Realty, Infosys and
+Wipro figures covers filers registered with the United States Securities and Exchange Commission, and
+Anant Raj files with SEBI and the Indian exchanges. That is a structural gap, not an oversight, and
+it is why every figure on that page was secondary until now.
+
+**The printed page number is the zero based PDF index minus two**, checked against four pages that
+print their own number.
+
+Read for two things only, and the page says which:
+
+| Printed page | Section | What was taken from it |
+|---|---|---|
+| 3 | Corporate overview, highlights | Operationalised 6 MW at Manesar, an additional 15 MW at Manesar and 7 MW at Panchkula |
+| 5 | Corporate overview, highlights | The 28 MW headline, printed with the words "operational and advance stage to operationalise" |
+| 7 | Corporate overview | Total IT load capacity of 307 MW, and the 0.5 MW of cloud services inside the operational figure |
+| 18 | Corporate overview | The three parks at 50 MW, 200 MW and 57 MW |
+| 112 | Corporate governance report | The audit opinion, unmodified, standalone and consolidated, from Ranjana Vandana and Co. |
+
+The finding: **the 28 MW that reaches the market is the company's own headline with its qualifier
+removed.** The report prints the parts on another page, and they sum to it exactly. Six megawatts are
+operational, of which half a megawatt is cloud services rather than colocation; the other twenty two
+are described as ready or at an advance stage. That also dissolves the source conflict this project
+had recorded and refused to average: 21 is Manesar alone, operational plus ready, and 28 adds
+Panchkula. Two rungs of one ladder, and neither is the operational figure.
+
+**Not read**, in the same file: the audited financial statements and the notes to them, revenue,
+margins, cash flow, and related party transactions. The risk register on that page still carries no
+row for cash conversion or the balance sheet, and that is why.
 
 ---
 
@@ -164,7 +208,8 @@ appear, and the pages say so.
   company announcements, brokerage notes and press reporting. One row of the eight claims primary,
   and only because it is the Sify prospectus.
 - **Anant Raj.** 307 MW announced, 28 called operational, 8 handed over, from a Value Research note.
-  No Anant Raj filing has been opened.
+  The annual report has since been opened and it contradicts the second of those figures. See
+  section 1b.
 - **Netweb.** Order book of Rs 2,507 crore at 30 June 2026, an IndiaAI Mission order of Rs 1,734
   crore awarded September 2025, AI systems at 64 per cent of Q3 FY26 revenue and 48 per cent of
   9M FY26, and about 99 times trailing earnings. No Netweb filing has been opened.
@@ -180,6 +225,6 @@ Equinix and Digital Realty valuation multiples.
 
 ## The honest summary
 
-One document read properly. Three companies' calls coded across a defined window. Five filers
+Two documents read properly, one of them a prospectus and one an annual report. Three companies' calls coded across a defined window. Five filers
 harvested. One government dataset. Everything else on this site is a research note figure wearing a
 tag that says so.

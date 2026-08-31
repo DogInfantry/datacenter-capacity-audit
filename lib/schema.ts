@@ -1042,8 +1042,72 @@ export const AnantRaj = z
     /** What has deliberately not been read. Rendered on the page, not hidden. */
     notRead: z.array(z.string().min(1)).min(1),
     risks: SecondaryRiskRegister,
+    /**
+     * The annual report, read for capacity and for the audit opinion only.
+     *
+     * Kept beside the research note ladder rather than replacing it, because the
+     * two disagree and the disagreement is the point. The note carries a number
+     * the company published; the report carries the qualifier the company
+     * published next to it.
+     */
+    annualReport: z.object({
+      fiscalYear: z.string().min(1),
+      manifest: z.object({
+        url: z.string().url(),
+        hostedBy: z.string().min(1),
+        sha256: z.string().regex(/^[0-9a-f]{64}$/),
+        bytes: z.number().int().positive(),
+        pdfPages: z.number().int().positive(),
+        pageOffset: z.number().int(),
+        pageOffsetNote: z.string().min(1),
+      }),
+      auditOpinion: z.object({
+        type: z.enum(["UNMODIFIED", "QUALIFIED", "ADVERSE", "DISCLAIMER"]),
+        auditor: z.string().min(1),
+        scope: z.string().min(1),
+        page: z.number().int().positive(),
+      }),
+      rungs: z
+        .array(
+          z.object({
+            rung: z.string().min(1),
+            mw: z.number().positive(),
+            kind: z.enum(["AMBITION", "CLAIMED", "DELIVERED"]),
+            definition: z.string().min(1),
+            page: z.number().int().positive(),
+          }),
+        )
+        .min(3),
+      composition: z
+        .array(
+          z.object({
+            part: z.string().min(1),
+            mw: z.number().positive(),
+            operational: z.boolean(),
+            note: z.string().min(1),
+          }),
+        )
+        .min(2),
+      compositionSource: PagedSource,
+    }),
   })
   .superRefine((d, ctx) => {
+    // The headline capacity figure must equal its own stated parts.
+    //
+    // This is the finding. The report prints a single number in its highlights
+    // and, elsewhere, the three pieces it is made of, only one of which is
+    // operational. If those stop adding up, either a part was mistyped or the
+    // company has restated the headline, and both need looking at rather than
+    // rendering.
+    const claimed = d.annualReport.rungs.find((r) => r.kind === "CLAIMED");
+    const parts = d.annualReport.composition.reduce((t, c) => t + c.mw, 0);
+    if (claimed && Math.abs(parts - claimed.mw) > 0.01) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["annualReport", "composition"],
+        message: `the headline capacity figure must equal the parts the report says it is made of, got ${parts} against ${claimed.mw}`,
+      });
+    }
     // The ladder must descend. Announced, then claimed operational, then what is
     // actually handed over. That descent is the entire finding.
     const mw = d.ladder.map((l) => l.mw);

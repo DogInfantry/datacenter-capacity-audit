@@ -47,12 +47,88 @@
   "capexUsdBn": 2.1,
 
   "notRead": [
-    "Annual report and audited financial statements",
+    "The audited financial statements inside the annual report, and the notes to them",
     "Revenue, margins and cash flow",
     "Order book or contracted capacity",
     "Client concentration",
-    "Any figure traced to a document filed with a regulator"
+    "Related party transactions"
   ],
+
+  "annualReport": {
+    "_note": "The first Anant Raj document opened in this repository. It was read for capacity and for the audit opinion only. The financial statements sit in the same file and have not been read, which is why the risk register still carries no row for cash conversion or the balance sheet.",
+    "fiscalYear": "FY2024-25",
+    "manifest": {
+      "url": "https://nsearchives.nseindia.com/annual_reports/AR_26635_ANANTRAJ_2024_2025_A_28062025220835.pdf",
+      "hostedBy": "National Stock Exchange of India, annual reports archive",
+      "sha256": "0811ca69b22ef07870d29a26a7f16b638288702b71f4c10958c993fbfbe9b8c7",
+      "bytes": 4497560,
+      "pdfPages": 275,
+      "pageOffset": -2,
+      "pageOffsetNote": "The printed page number is the zero based PDF index minus two, checked against four pages that print their own number."
+    },
+    "auditOpinion": {
+      "type": "UNMODIFIED",
+      "auditor": "Ranjana Vandana and Co.",
+      "scope": "Standalone and consolidated, for the year ended 31 March 2025",
+      "page": 112
+    },
+    "rungs": [
+      {
+        "rung": "Planned IT load",
+        "mw": 307,
+        "kind": "AMBITION",
+        "definition": "Total IT load capacity the three technology parks are described as equipped to host, at Rai, Panchkula and IMT Manesar. The management discussion puts the horizon at four to five years.",
+        "page": 18
+      },
+      {
+        "rung": "Operational and advance stage to operationalise",
+        "mw": 28,
+        "kind": "CLAIMED",
+        "definition": "The headline capacity figure, printed in the highlights with that exact qualifier attached to it.",
+        "page": 5
+      },
+      {
+        "rung": "Operationalised",
+        "mw": 6,
+        "kind": "DELIVERED",
+        "definition": "IT load actually operational, at Manesar, including 0.5 MW of cloud services.",
+        "page": 3
+      },
+      {
+        "rung": "Operationalised colocation",
+        "mw": 5.5,
+        "kind": "DELIVERED",
+        "definition": "The operational figure less the cloud services inside it, which is a different business sold to different customers.",
+        "page": 7
+      }
+    ],
+    "composition": [
+      {
+        "part": "Operationalised at Manesar",
+        "mw": 6,
+        "operational": true,
+        "note": "Including 0.5 MW for cloud services."
+      },
+      {
+        "part": "Additional at Manesar, ready to operationalise",
+        "mw": 15,
+        "operational": false,
+        "note": "Described as ready to operationalise rather than as operational."
+      },
+      {
+        "part": "Panchkula, advance stage",
+        "mw": 7,
+        "operational": false,
+        "note": "Named in the same sentence as the additional Manesar load, and in the same state."
+      }
+    ],
+    "compositionSource": {
+      "label": "Anant Raj Limited annual report FY2024-25, corporate overview highlights and the management discussion, which state the same three parts in the same words in two places.",
+      "page": 3,
+      "asOf": "2025-06-28",
+      "verification": "PRIMARY"
+    }
+  },
 
   "risks": {
     "gradingNote": "Severity and likelihood are this project's own judgement. So, on this page, is the evidence behind them: a magnitude marked measured is derived from figures recorded in this file, and every figure in this file came from a research note rather than from a filing. Derived is not the same as read, and the exhibit says which.",

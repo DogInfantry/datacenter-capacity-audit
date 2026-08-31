@@ -25,11 +25,12 @@ const TONE: Record<string, string> = {
 /**
  * Anant Raj, the delivery case.
  *
- * No filing has been read for this name, so the page carries capacity and
- * delivery and nothing else. There is no margin, no return, no cost stack, and
- * the list of what was not read sits on the page rather than in a footnote,
- * because a thin page that admits its thinness is worth more than a thick one
- * that does not.
+ * The page carries capacity and delivery and nothing else. There is no margin,
+ * no return and no cost stack, because the annual report was read for capacity
+ * and for the audit opinion only and the financial statements inside it were
+ * not. The list of what was not read sits on the page rather than in a
+ * footnote, because a thin page that admits its thinness is worth more than a
+ * thick one that does not.
  */
 export function AnantRajBody({ data, sify }: Props) {
   const [announced, operational, handed] = data.ladder;
@@ -37,6 +38,13 @@ export function AnantRajBody({ data, sify }: Props) {
   // itself the first time a document is read for this name.
   const covered = pillarCoverage(data.risks.rows).filter((p) => p.count > 0).length;
   const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six"];
+  // The schema guarantees one claimed rung and that the parts sum to it, so the
+  // subtraction below is the report's own arithmetic rather than an estimate.
+  const ar = data.annualReport;
+  const claimed = ar.rungs.find((r) => r.kind === "CLAIMED")!;
+  const arLive = ar.rungs.find((r) => r.rung === "Operationalised")!;
+  const arColo = ar.rungs.find((r) => r.rung === "Operationalised colocation")!;
+  const notYet = ar.composition.filter((c) => !c.operational).reduce((t, c) => t + c.mw, 0);
   const max = announced.mw;
   const conflictMax = Math.max(data.conflict.a.value, data.conflict.b.value);
 
@@ -50,7 +58,8 @@ export function AnantRajBody({ data, sify }: Props) {
               {data.listedParent} · {data.exchange} {data.ticker}
             </p>
             <p className="text-xs text-muted">
-              {data.role} · sourcing {data.ladderSource.verification.toLowerCase()}, no filing read
+              {data.role} · capacity ladder {data.ladderSource.verification.toLowerCase()}, annual
+              report {data.annualReport.fiscalYear} read for capacity and the audit opinion
             </p>
           </div>
         </div>
@@ -242,6 +251,71 @@ export function AnantRajBody({ data, sify }: Props) {
           source={data.ladderSource.label}
         >
           <RiskMatrix register={data.risks} measures={anantRajRiskMeasures(data)} />
+        </Exhibit>
+
+        <Exhibit
+          n={5}
+          title={`The ${claimed.mw} MW everyone repeats is ${arLive.mw} MW operational and ${notYet} MW that is not`}
+          units={`Megawatts of IT load, from the company's own annual report for ${data.annualReport.fiscalYear}. The headline figure and the parts it is made of are both printed in that report, on different pages, and it never subtracts one from the other.`}
+          source={data.annualReport.compositionSource.label}
+          page={data.annualReport.compositionSource.page}
+        >
+          <ul className="space-y-1.5">
+            {data.annualReport.composition.map((c) => (
+              <li
+                key={c.part}
+                className="grid grid-cols-[1fr_3.5rem] items-center gap-3 text-xs sm:grid-cols-[1fr_4rem]"
+              >
+                <span className="min-w-0">
+                  <span className="relative block h-6 rounded-sm bg-grid">
+                    <span
+                      className="absolute inset-y-0 left-0 rounded-sm"
+                      style={{
+                        width: `${(c.mw / claimed.mw) * 100}%`,
+                        background: c.operational ? "var(--rung-4)" : "var(--rung-1)",
+                        border: c.operational ? "none" : "1px solid var(--signal)",
+                      }}
+                    />
+                    <span className="absolute inset-y-0 left-2 flex items-center text-[11px] text-foreground">
+                      {c.part}
+                    </span>
+                  </span>
+                </span>
+                <span className="text-right tnum text-muted">{c.mw} MW</span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-4 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            The highlights page prints <span className="tnum text-foreground">{claimed.mw}</span> MW
+            beside the words{" "}
+            <span className="text-foreground">&ldquo;{claimed.rung.toLowerCase()}&rdquo;</span>. The
+            qualifier is the half that does not travel. Two pages earlier the same report says what
+            is actually operational: <span className="tnum text-foreground">{arLive.mw}</span>{" "}
+            MW at Manesar, of which{" "}
+            <span className="tnum text-foreground">
+              {(arLive.mw - arColo.mw).toFixed(1)}
+            </span>{" "}
+            MW is cloud services rather than colocation.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            This also settles the disagreement drawn above. The two figures recorded there,{" "}
+            <span className="tnum text-foreground">{data.conflict.a.value}</span> and{" "}
+            <span className="tnum text-foreground">{data.conflict.b.value}</span>, were never a
+            contradiction. One is Manesar alone, operational plus ready. The other adds Panchkula.
+            They are two rungs of the same ladder, and neither of them is the operational figure.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The audit opinion on this report is{" "}
+            <span className="text-foreground">
+              {data.annualReport.auditOpinion.type.toLowerCase()}
+            </span>
+            , from {data.annualReport.auditOpinion.auditor}.{" "}
+            {data.annualReport.auditOpinion.scope}, at printed page{" "}
+            <span className="tnum">{data.annualReport.auditOpinion.page}</span>. The financial
+            statements in the same document have not been read, which is why the register above still
+            carries no row for cash conversion or the balance sheet.
+          </p>
         </Exhibit>
       </section>
 
