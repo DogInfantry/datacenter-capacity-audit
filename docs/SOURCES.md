@@ -20,7 +20,7 @@ The binary is deliberately not committed, at 12.5 MB. `data/raw/prospectus/drhp_
 carries the URL, the checksum and the printed to PDF page offset, so any figure can be audited
 against a fresh download. **Printed page plus 4 equals the zero based PDF index.**
 
-Eleven printed pages are cited across the site. That is 2.0 per cent of the document, and
+Thirteen printed pages are cited across the site. That is 2.3 per cent of the document, and
 `/methodology` publishes the count rather than implying more:
 
 | Printed page | Section | What was taken from it |
@@ -33,8 +33,10 @@ Eleven printed pages are cited across the site. That is 2.0 per cent of the docu
 | 109 | Objects of the offer | Objects, deployment schedule, auditor certification |
 | 142 | Basis for offer price | Key performance indicators. Built capacity defined a second way |
 | 144 | Basis for offer price | Peer comparison, the issuer's own chosen peer set |
+| 261 | Industry overview | The return on capital formula, printed inside the commissioned 1Lattice and Cushman and Wakefield report rather than beside the issuer's own figures |
 | 301 | Our business | Capacity and utilisation by data centre, thirteen sites |
-| 355 | Restated consolidated financials | Statement of cash flow. Cash from operations, tax paid, capital expenditure and right of use payments, four periods |
+| 353 | Restated consolidated financials | Statement of assets and liabilities. Net worth, borrowings, lease liabilities and cash, four periods |
+| 355 | Restated consolidated financials | Statement of cash flow. Cash from operations, tax paid, capital expenditure, depreciation and right of use payments, four periods |
 | 398 | Restated consolidated financials | Notes 23 to 26, the expense stack |
 
 The two findings that came out of it: the same 188.04 MW figure is defined two different ways on
@@ -46,11 +48,18 @@ the estate absorbed roughly 1.87 times the cash operations produced, and the sin
 operations covered the spending is the last full year before the offer, with the quarter after it
 back under.
 
-**Not read**, with the page map already recorded in `drhp_extracts.json`: the balance sheet at
-printed 353, the rest of the restated financials through printed 433, related party transactions
-inside those notes, and outstanding litigation at printed 463. The balance sheet is the next page to
-read and it is what the model waits on; the governance pillar of every risk register waits on the
-notes and the litigation.
+The fourth came from joining the balance sheet at printed 353 to a formula printed at 261, inside the
+industry report the issuer commissioned rather than beside the figures it claims for itself. Rebuilt
+from the issuer's own numbers, three of the four published returns on capital land on the second
+decimal, and only on the reading where lease liabilities count as borrowings, which the printed
+definition does not say and which flatters the company less than the alternative. The fourth cannot
+be rebuilt at all, because an average needs a year the four column balance sheet does not carry, and
+it is the highest of the four and half of what the claim to beating global peers rests on.
+
+**Not read**, with the page map already recorded in `drhp_extracts.json`: the rest of the restated
+financials through printed 433, related party transactions inside those notes, and outstanding
+litigation at printed 463. The governance pillar of every risk register waits on the notes and the
+litigation.
 
 **The reading order for what remains**, stated before it is used rather than after, so it can be
 judged on its own terms: corporate and business overview with segments, then the chairman or

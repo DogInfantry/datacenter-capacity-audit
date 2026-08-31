@@ -663,6 +663,10 @@ const SislCashFlow = z
     taxPaid: z.number().positive(),
     cfo: z.number().positive(),
     capex: z.number().positive(),
+    /** Depreciation and amortisation, from the same statement. It is the bridge
+     *  from the published EBITDA to the EBIT that the return on capital formula
+     *  needs, and the document prints it in only this one place. */
+    depreciation: z.number().positive(),
     /** Land and lease acquisition, which the statement reports separately from
      *  the purchase of property, plant and equipment. Kept apart rather than
      *  folded into capex, because folding it in would quietly enlarge the gap
@@ -673,6 +677,23 @@ const SislCashFlow = z
     message: "cash generated from operations less tax paid must equal net cash from operations",
     path: ["cfo"],
   });
+
+/**
+ * The restated consolidated balance sheet, reduced to what the return on
+ * capital formula consumes.
+ *
+ * Borrowings and lease liabilities are held apart rather than summed, because
+ * which of the two belongs inside "total borrowings" is the whole question. The
+ * formula the document prints does not say, and only one of the two readings
+ * reproduces the numbers the issuer publishes.
+ */
+const SislBalance = z.object({
+  label: z.string().min(1),
+  netWorth: z.number().positive(),
+  borrowings: z.number().positive(),
+  leaseLiabilities: z.number().positive(),
+  cash: z.number().positive(),
+});
 
 const SislCost = z.object({
   label: z.string().min(1),
@@ -696,6 +717,11 @@ export const Sisl = z
     capitalisationRate: z.number().positive(),
     cashFlow: z.array(SislCashFlow).min(3),
     cashFlowSource: PagedSource,
+    balanceSheet: z.array(SislBalance).min(3),
+    balanceSheetSource: PagedSource,
+    /** Where the document prints the formula, which is inside the commissioned
+     *  industry report rather than beside the figures the issuer claims. */
+    roceFormulaSource: PagedSource,
     contracts: z
       .array(z.object({ label: z.string().min(1), longContractRevenueShare: z.number().positive() }))
       .min(3),
@@ -829,6 +855,34 @@ export const Sisl = z
         });
       }
     }
+    // The published return on capital must reconcile to the balance sheet.
+    //
+    // The document prints the formula in one place and the answers in another,
+    // and never joins them. Rebuilt from its own numbers, three of the four
+    // published figures land on the second decimal. The fourth cannot be
+    // rebuilt at all, because an average needs a prior year the balance sheet
+    // does not carry. This guard holds the three that can be checked; if the
+    // arithmetic drifts, the exhibit is claiming a reconciliation that has
+    // stopped happening.
+    const bs = new Map(d.balanceSheet.map((b) => [b.label, b]));
+    const dep = new Map(d.cashFlow.map((c) => [c.label, c.depreciation]));
+    const employed = (b: z.infer<typeof SislBalance>) =>
+      b.netWorth + b.borrowings + b.leaseLiabilities - b.cash;
+    d.periods.forEach((p, i) => {
+      const here = bs.get(p.label);
+      const prior = i > 0 ? bs.get(d.periods[i - 1].label) : undefined;
+      const da = dep.get(p.label);
+      if (!here || !prior || da === undefined) return;
+      const ebit = p.ebitda - da;
+      const computed = (ebit / ((employed(prior) + employed(here)) / 2)) * 100;
+      if (Math.abs(computed - p.roce) > 0.05) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["periods", i, "roce"],
+          message: `${p.label}: the published return on capital no longer reconciles to the balance sheet, ${computed.toFixed(2)} against ${p.roce}`,
+        });
+      }
+    });
     // The estate was built with money the business did not generate, and that
     // is the claim the cash flow exhibit makes out loud. Across every filed
     // period taken together, spending on property, plant and equipment exceeds

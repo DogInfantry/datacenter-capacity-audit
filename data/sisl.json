@@ -101,11 +101,30 @@
   "capitalisationRate": 9.30,
 
   "cashFlow": [
-    { "label": "FY2023", "cashFromOperations": 4428.40, "taxPaid": 694.40, "cfo": 3734.00, "capex": 8540.44, "rightOfUse": 943.60 },
-    { "label": "FY2024", "cashFromOperations": 2771.50, "taxPaid": 660.10, "cfo": 2111.40, "capex": 9227.20, "rightOfUse": 167.65 },
-    { "label": "FY2025", "cashFromOperations": 6111.56, "taxPaid": 637.40, "cfo": 5474.16, "capex": 4182.41, "rightOfUse": 722.74 },
-    { "label": "Q1 FY2026", "cashFromOperations": 1249.03, "taxPaid": 241.99, "cfo": 1007.04, "capex": 1146.02, "rightOfUse": 423.40 }
+    { "label": "FY2023", "cashFromOperations": 4428.40, "taxPaid": 694.40, "cfo": 3734.00, "capex": 8540.44, "depreciation": 2083.00, "rightOfUse": 943.60 },
+    { "label": "FY2024", "cashFromOperations": 2771.50, "taxPaid": 660.10, "cfo": 2111.40, "capex": 9227.20, "depreciation": 2555.17, "rightOfUse": 167.65 },
+    { "label": "FY2025", "cashFromOperations": 6111.56, "taxPaid": 637.40, "cfo": 5474.16, "capex": 4182.41, "depreciation": 3268.16, "rightOfUse": 722.74 },
+    { "label": "Q1 FY2026", "cashFromOperations": 1249.03, "taxPaid": 241.99, "cfo": 1007.04, "capex": 1146.02, "depreciation": 1075.70, "rightOfUse": 423.40 }
   ],
+
+  "balanceSheet": [
+    { "label": "FY2023", "netWorth": 9169.34, "borrowings": 15811.60, "leaseLiabilities": 2335.60, "cash": 2140.00 },
+    { "label": "FY2024", "netWorth": 15481.79, "borrowings": 19882.60, "leaseLiabilities": 2903.40, "cash": 1282.84 },
+    { "label": "FY2025", "netWorth": 17408.26, "borrowings": 23181.49, "leaseLiabilities": 3023.94, "cash": 2969.39 },
+    { "label": "Q1 FY2026", "netWorth": 17543.26, "borrowings": 21703.22, "leaseLiabilities": 5952.74, "cash": 266.20 }
+  ],
+  "balanceSheetSource": {
+    "label": "Sify Infinit Spaces DRHP, Restated Consolidated Statement of Assets and Liabilities. Net worth is equity share capital plus other equity. Borrowings are the non current and current borrowing lines added. Lease liabilities are the non current and current lease lines added, held apart from borrowings because which of the two belongs inside total borrowings is the question the printed formula leaves open. Cash is the cash and bank balances line, excluding other bank balances.",
+    "page": 353,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
+  "roceFormulaSource": {
+    "label": "The formula is printed inside the commissioned 1Lattice and Cushman and Wakefield industry report rather than beside the figures the issuer claims for itself: return on capital employed is EBIT over average capital employed, EBIT is EBITDA less depreciation and amortisation, and capital employed is net worth plus total borrowings less cash and cash equivalents.",
+    "page": 261,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
   "cashFlowSource": {
     "label": "Sify Infinit Spaces DRHP, Restated Consolidated Statement of Cash Flow. Capital expenditure is the purchase of property, plant and equipment line. Amounts paid to acquire right of use assets are reported separately in the same statement and are held separately here. Tax paid and capital expenditure are outflows in the filing and are recorded as positive magnitudes.",
     "page": 355,

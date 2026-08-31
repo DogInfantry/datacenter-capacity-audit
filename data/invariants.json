@@ -270,6 +270,13 @@
       "fragment": "a closed limit must name what closed it, and an open one must not"
     },
     {
+      "id": "roce-rebuilds-from-balance-sheet",
+      "schema": "Sisl",
+      "category": "RECONCILE",
+      "protects": "The document prints the return on capital formula inside its commissioned industry report and the answers in the business section, and never joins them. Rebuilt from the issuer's own key performance indicators, cash flow statement and balance sheet, every period that can be rebuilt lands on the published figure to the second decimal, and the exhibit says so. The earliest period is deliberately not covered, because an average needs a year the balance sheet does not carry, and that absence is itself the finding.",
+      "fragment": "the published return on capital no longer reconciles to the balance sheet"
+    },
+    {
       "id": "cashflow-operations-reconcile",
       "schema": "Sisl",
       "category": "RECONCILE",

@@ -30,6 +30,64 @@ export function capexVsCfo(rows: { fy: string; cfo?: number; capex?: number }[])
     }));
 }
 
+type RoceInput = {
+  periods: { label: string; ebitda: number; roce: number }[];
+  balanceSheet: {
+    label: string;
+    netWorth: number;
+    borrowings: number;
+    leaseLiabilities: number;
+    cash: number;
+  }[];
+  cashFlow: { label: string; depreciation: number }[];
+};
+
+/**
+ * The published return on capital, rebuilt from the issuer's own balance sheet.
+ *
+ * The document prints the formula in one place, inside a commissioned industry
+ * report, and the answers in another, as the issuer's own achievement. It never
+ * joins them. This does.
+ *
+ * Both readings of "total borrowings" come back, because the formula does not
+ * say whether lease liabilities sit inside it and the choice moves the answer by
+ * more than half a point. Only one of the two reproduces what the issuer
+ * published, and which one is the finding.
+ *
+ * The first period returns nothing at all. An average needs the capital employed
+ * of the year before, and the balance sheet carries four columns, so there is
+ * nothing to average against. That is not a gap in the method. It is a gap in
+ * the document, and it falls on the highest of the four published figures.
+ */
+export function roceReconciliation(d: RoceInput) {
+  const bs = new Map(d.balanceSheet.map((b) => [b.label, b]));
+  const dep = new Map(d.cashFlow.map((c) => [c.label, c.depreciation]));
+  const employed = (b: RoceInput["balanceSheet"][number], withLeases: boolean) =>
+    b.netWorth + b.borrowings + (withLeases ? b.leaseLiabilities : 0) - b.cash;
+
+  return d.periods.map((p, i) => {
+    const here = bs.get(p.label);
+    const prior = i > 0 ? bs.get(d.periods[i - 1].label) : undefined;
+    const da = dep.get(p.label);
+    const rebuild = (withLeases: boolean) =>
+      here && prior && da !== undefined
+        ? ((p.ebitda - da) / ((employed(prior, withLeases) + employed(here, withLeases)) / 2)) * 100
+        : null;
+    const withLeases = rebuild(true);
+    const withoutLeases = rebuild(false);
+    return {
+      label: p.label,
+      printed: p.roce,
+      withLeases,
+      withoutLeases,
+      deltaWith: withLeases === null ? null : withLeases - p.roce,
+      deltaWithout: withoutLeases === null ? null : withoutLeases - p.roce,
+      /** False where the document cannot check its own published figure. */
+      checkable: withLeases !== null,
+    };
+  });
+}
+
 /**
  * The same question asked of the issuer's own restated statement.
  *

@@ -10,7 +10,8 @@ import { SiteMap } from "@/components/SiteMap";
 import { RiskMatrix } from "@/components/RiskMatrix";
 import { CapexVsCfo } from "@/components/CapexVsCfo";
 import { sifyRiskMeasures } from "@/lib/diagnostics/risk";
-import { issuerCapexCover } from "@/lib/diagnostics/capital";
+import { RoceCheck } from "@/components/RoceCheck";
+import { issuerCapexCover, roceReconciliation } from "@/lib/diagnostics/capital";
 import { Pictogram, StatTile, Monogram, type IconName } from "@/components/Visual";
 import { AnantRajBody } from "@/components/AnantRajBody";
 import { NetwebBody } from "@/components/NetwebBody";
@@ -105,6 +106,11 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
 
   const riskMeasures = sifyRiskMeasures(sisl);
   const cover = issuerCapexCover(sisl.cashFlow);
+  const roce = roceReconciliation(sisl);
+  const checkable = roce.filter((r) => r.checkable);
+  const unchecked = roce.find((r) => !r.checkable)!;
+  const exact = checkable.filter((r) => Math.abs(r.deltaWith ?? 1) < 0.005);
+  const highest = [...roce].sort((a, b) => b.printed - a.printed)[0];
   const cr = (mn: number) => mn / 10;
   // FY2025 is the pivot the exhibit turns on, so the two rates beside it are
   // derived from the periods either side rather than written into the prose.
@@ -385,6 +391,44 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
             per cent, and the quarter that follows it is back to spending more than it earns. Capex
             leads commissioning by years, so a year of low spending is not a year of low building.
             It is a gap in the trail, and the offer is what fills it.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={9}
+          title={`${exact.length} of the ${roce.length} published returns on capital rebuild exactly, and the one that cannot be checked is the highest`}
+          units="Points of return on capital, measured from the figure the issuer published. The formula is the document's own. Zero means the rebuild landed on the published figure."
+          source={`${sisl.roceFormulaSource.label} The inputs are the key performance indicators, the statement of cash flow and the balance sheet, at printed pages ${sisl.periodsSource.page}, ${sisl.cashFlowSource.page} and ${sisl.balanceSheetSource.page}.`}
+          page={sisl.roceFormulaSource.page}
+        >
+          <RoceCheck rows={roce} />
+
+          <p className="mt-4 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            The formula sits on printed page{" "}
+            <span className="tnum text-foreground">{sisl.roceFormulaSource.page}</span>, inside the
+            industry report the issuer commissioned. The figures sit in the business section, as the
+            issuer&apos;s own achievement. The document never joins them, and joined they hold: every
+            period that can be rebuilt lands on the published number to the second decimal.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            It only holds on one reading. Capital employed is defined as net worth plus total
+            borrowings less cash, and the definition does not say whether lease liabilities are
+            borrowings. Counted, the rebuild is exact. Left out, as the words alone would have it,
+            every period comes out{" "}
+            <span className="tnum text-foreground">
+              {(
+                checkable.reduce((t, r) => t + (r.deltaWithout ?? 0), 0) / checkable.length
+              ).toFixed(2)}
+            </span>{" "}
+            points too high. The stricter reading is the one the issuer used, which flatters it less,
+            and the document does not say so anywhere.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            <span className="text-foreground">{unchecked.label}</span> cannot be rebuilt at all. An
+            average needs the capital employed of the year before it, and the balance sheet carries
+            four columns. That period is also the highest of the four at{" "}
+            <span className="tnum text-foreground">{highest.printed.toFixed(2)}</span> per cent, and
+            it is half of what the claim to beating global peers rests on.
           </p>
         </Exhibit>
       </section>
