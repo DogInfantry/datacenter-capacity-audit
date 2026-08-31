@@ -47,11 +47,11 @@
   "capexUsdBn": 2.1,
 
   "notRead": [
-    "The audited financial statements inside the annual report, and the notes to them",
-    "Revenue, margins and cash flow",
-    "Order book or contracted capacity",
-    "Client concentration",
-    "Related party transactions"
+    "A data centre revenue line, which the single segment disclosure does not provide",
+    "A margin or return on capital for the data centre arm",
+    "Revenue per megawatt, which needs a numerator the report does not print",
+    "Contracted or let capacity at the three campuses",
+    "Related party transaction detail beyond the parties named"
   ],
 
   "annualReport": {
@@ -130,9 +130,139 @@
     }
   },
 
+  "financials": {
+    "_note": "The audited consolidated financial statements, read from the same annual report as the capacity ladder. Everything here is in lakhs of rupees, which is the unit the statements print, and it is not converted anywhere in this file. The reason this block exists is the data centre arm at the foot of it: the capacity figures above belong to a subsidiary whose own numbers are printed in two separate places in this report, and neither of them appears in the group income statement.",
+    "unit": "INR lakh",
+    "fiscalYear": "FY2024-25",
+    "priorFiscalYear": "FY2023-24",
+
+    "profitAndLoss": {
+      "revenue": 205997.42,
+      "revenuePrior": 148329.66,
+      "otherIncome": 4030.85,
+      "totalIncome": 210028.27,
+      "costOfSalesAndConstruction": 148272.90,
+      "employeeBenefits": 2232.56,
+      "financeCosts": 1098.76,
+      "depreciation": 3045.95,
+      "otherExpenses": 6324.83,
+      "totalExpenses": 160975.00,
+      "profitBeforeTax": 49053.27,
+      "profitBeforeTaxPrior": 31858.17,
+      "profitAfterTax": 42581.86,
+      "profitAfterTaxPrior": 26592.62,
+      "source": {
+        "label": "Anant Raj Limited annual report FY2024-25, Statement of Consolidated Profit and Loss for the year ended March 31, 2025",
+        "page": 223,
+        "asOf": "2025-06-28",
+        "verification": "PRIMARY"
+      }
+    },
+
+    "balanceSheet": {
+      "totalAssets": 523452.54,
+      "totalEquity": 416078.57,
+      "investmentProperty": 125159.63,
+      "propertyPlantAndEquipment": 10513.58,
+      "capitalWorkInProgress": 3634.92,
+      "inventories": 115126.49,
+      "borrowingsNonCurrent": 38919.57,
+      "borrowingsCurrent": 7747.00,
+      "leaseLiabilityNonCurrent": 1376.24,
+      "leaseLiabilityCurrent": 116.82,
+      "cashAndEquivalents": 33001.97,
+      "source": {
+        "label": "Anant Raj Limited annual report FY2024-25, Consolidated Balance Sheet as at March 31, 2025",
+        "page": 222,
+        "asOf": "2025-06-28",
+        "verification": "PRIMARY"
+      }
+    },
+
+    "cashFlow": {
+      "operatingProfitBeforeWorkingCapital": 49560.87,
+      "cashGeneratedFromOperations": 16559.87,
+      "incomeTax": -6898.85,
+      "netCashFromOperations": 9661.02,
+      "netCashFromOperationsPrior": -2551.89,
+      "currentBorrowingsInsideOperating": -8189.39,
+      "currentBorrowingsInsideOperatingPrior": -4571.44,
+      "acquisitionOfPropertyPlantAndEquipment": 4993.99,
+      "acquisitionOfInvestmentProperty": 2213.45,
+      "additionsToCapitalWorkInProgress": 1485.37,
+      "additionsToRightOfUse": 1221.79,
+      "source": {
+        "label": "Anant Raj Limited annual report FY2024-25, Consolidated Cash Flow Statement for the year ended March 31, 2025. The movement in current borrowings is presented inside operating activities as a working capital adjustment, and repayment of borrowings is presented again under financing.",
+        "page": 224,
+        "asOf": "2025-06-28",
+        "verification": "PRIMARY"
+      }
+    },
+
+    "segment": {
+      "reportableSegments": 1,
+      "description": "real estate development",
+      "quote": "The Company's business activities which are primarily real estate development and related activities fall within a single reportable segment as the management of the Company views the entire business activities as real estate development.",
+      "customerConcentrationQuote": "The Company did not have any external revenue from a particular customer which exceeded 10% of total revenue.",
+      "source": {
+        "label": "Anant Raj Limited annual report FY2024-25, note 40 to the consolidated financial statements, segment reporting",
+        "page": 260,
+        "asOf": "2025-06-28",
+        "verification": "PRIMARY"
+      }
+    },
+
+    "ratios": {
+      "returnOnEquityPct": 10.23,
+      "returnOnEquityPctPrior": 7.27,
+      "returnOnCapitalEmployed": 0.11,
+      "returnOnCapitalEmployedPrior": 0.08,
+      "debtToEquity": 0.11,
+      "debtToEquityPrior": 0.17,
+      "roceFormula": "Earnings before interest and tax over capital employed, where capital employed is equity plus non current liabilities. A closing denominator, not an average one.",
+      "source": {
+        "label": "Anant Raj Limited annual report FY2024-25, note 47 to the consolidated financial statements, financial ratios, with the numerator and denominator printed beside each ratio",
+        "page": 267,
+        "asOf": "2025-06-28",
+        "verification": "PRIMARY"
+      }
+    },
+
+    "dataCentreArm": {
+      "_note": "The subsidiary that holds the data centre business the market prices this company on. Its figures are printed twice in the same report, in the statement of subsidiaries and again in the consolidated entity table, and the two agree to the paisa. Neither appears anywhere in the group income statement, because the group reports one segment and that segment is real estate.",
+      "entity": "Anant Raj Cloud Private Limited",
+      "holdingPct": 100,
+      "shareCapital": 5.00,
+      "reservesAndSurplus": -871.44,
+      "totalAssets": 12196.69,
+      "totalLiabilities": 13063.13,
+      "turnover": 2151.36,
+      "profitBeforeTax": -252.99,
+      "profitAfterTax": -252.99,
+      "source": {
+        "label": "Anant Raj Limited annual report FY2024-25, Form AOC-1, statement containing salient features of the financial statement of subsidiaries, Part A",
+        "page": 79,
+        "asOf": "2025-06-28",
+        "verification": "PRIMARY"
+      },
+      "groupShare": {
+        "netAssetsPct": -0.21,
+        "netAssetsAmount": -866.44,
+        "profitPct": -0.59,
+        "profitAmount": -252.99,
+        "source": {
+          "label": "Anant Raj Limited annual report FY2024-25, note 48 to the consolidated financial statements, additional information on entities consolidated",
+          "page": 268,
+          "asOf": "2025-06-28",
+          "verification": "PRIMARY"
+        }
+      }
+    }
+  },
+
   "risks": {
     "gradingNote": "Severity and likelihood are analyst gradings, not the company's. A magnitude marked measured is derived from the figures recorded for this name, and those figures come from a research note rather than from a filing. Derived is not the same as filed, and each row says which it is.",
-    "unevidencedNote": "One document would close every empty pillar. The audited financial statements and the notes to accounts sit inside the annual report for FY2024-25, and only its capacity pages and its audit opinion are cited here. Without those statements there is no revenue quality, no cash conversion, no governance and no valuation to grade, and a row written anyway would be a grade with nothing behind it.",
+    "unevidencedNote": "The consolidated statements have now been read, and the empty pillars are narrower than the document. The group reports a single segment, real estate development, so revenue quality and valuation for the data centre arm have no published numerator at any level of detail. What the report does give for that arm is one column in the statement of subsidiaries, and the rows below rest on it rather than grading on nothing.",
     "rows": [
       {
         "id": "handover-gap",

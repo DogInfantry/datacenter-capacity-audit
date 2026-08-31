@@ -354,6 +354,55 @@
       "fragment": "power is no longer the majority of operating cost"
     },
     {
+      "id": "anantraj-pl-reconciles",
+      "schema": "AnantRaj",
+      "category": "RECONCILE",
+      "protects": "The consolidated income statement adds up to the profit before tax printed under it. Every line is typed from one printed page, and a mistyped expense would change the margin the page quotes while changing nothing a reader could see.",
+      "fragment": "does not reconcile to its own profit before tax"
+    },
+    {
+      "id": "anantraj-cashflow-reconciles",
+      "schema": "AnantRaj",
+      "category": "RECONCILE",
+      "protects": "Cash generated from operations, less the income tax paid against it, equals the filed operating cash flow. All three are printed on the same statement and all three are stored, so the identity is asserted rather than assumed.",
+      "fragment": "less income tax must equal the filed operating cash flow"
+    },
+    {
+      "id": "dc-arm-net-assets-agree",
+      "schema": "AnantRaj",
+      "category": "RECONCILE",
+      "protects": "The data centre subsidiary is printed twice in the same annual report, once in the statement of subsidiaries and once in the consolidated entity table. Its net assets must agree across both, and against its own share capital plus reserves. That agreement is what lets the exhibit call the figure the report's own rather than a subtraction performed here.",
+      "fragment": "net assets do not agree across the two pages that print them"
+    },
+    {
+      "id": "dc-arm-result-agrees",
+      "schema": "AnantRaj",
+      "category": "RECONCILE",
+      "protects": "The same subsidiary's result for the year must agree across the two pages that print it. One is the statement of subsidiaries, the other the consolidated entity table.",
+      "fragment": "result does not agree across the two pages that print it"
+    },
+    {
+      "id": "dc-arm-is-small",
+      "schema": "AnantRaj",
+      "category": "FINDING",
+      "protects": "The data centre arm this company is priced on is about one per cent of the revenue the group actually reports. That is the deep dive's central claim, and above a tenth of group revenue the sentence is gone.",
+      "fragment": "the data centre arm is no longer a small share of group revenue"
+    },
+    {
+      "id": "dc-arm-loses-money",
+      "schema": "AnantRaj",
+      "category": "FINDING",
+      "protects": "The data centre subsidiary made a loss in the year read. The page says the capacity everyone quotes sits in an entity that does not yet earn, so a profitable arm would be a different page and should fail the build rather than quietly change the meaning.",
+      "fragment": "the data centre arm no longer loses money"
+    },
+    {
+      "id": "anantraj-single-segment",
+      "schema": "AnantRaj",
+      "category": "FINDING",
+      "protects": "The group reports one segment and it is real estate development, which is why no data centre revenue, margin or asset line exists anywhere in the consolidated accounts. If the group ever reports the data centre separately, the central claim on that page changes and the exhibit has to be rebuilt rather than left standing.",
+      "fragment": "the group no longer reports a single segment"
+    },
+    {
       "id": "closed-limit-names-evidence",
       "schema": "Method",
       "category": "EVIDENCE",

@@ -77,12 +77,13 @@ accounts. The sustainability narrative, the ceremonial opening paragraphs, the s
 statements and the standard statutory boilerplate are skipped. This is the order that fills the two
 pillars the registers currently leave empty.
 
-**It has now been used once, on the Anant Raj annual report below, and it half worked.** The first
-section of the order, the corporate and business overview, carried the entire capacity finding, and
-the auditor's opinion was where the order said it would be. The chairman or managing director letter
-does not exist in that report under any of the names the order expects, so that step was skipped
-rather than followed. The financial statements and the notes, which are the last two steps and the
-ones that fill the empty pillars, were not reached.
+**It has now been used twice on the Anant Raj annual report below, and it worked both times.** The
+first section of the order, the corporate and business overview, carried the entire capacity finding,
+and the auditor's opinion was where the order said it would be. The chairman or managing director
+letter does not exist in that report under any of the names the order expects, so that step was
+skipped rather than followed. The financial statements and the key notes, the last two steps, were
+reached on the second pass and produced a larger finding than the first pass did. The order held:
+the segment note and the statement of subsidiaries were where it said they would be.
 
 **Also generated from it:** `data/drhp_triage.json`, a density score for all 553 scorable pages with
 the 28 term hedge lexicon that produced it. `/methodology` publishes both, including the finding
@@ -105,7 +106,8 @@ it is why every figure on that page was secondary until now.
 **The printed page number is the zero based PDF index minus two**, checked against four pages that
 print their own number.
 
-Read for two things only, and the page says which:
+Read in two passes. The first took capacity and the audit opinion. The second took the audited
+consolidated statements and the notes that matter for a data centre:
 
 | Printed page | Section | What was taken from it |
 |---|---|---|
@@ -114,6 +116,13 @@ Read for two things only, and the page says which:
 | 7 | Corporate overview | Total IT load capacity of 307 MW, and the 0.5 MW of cloud services inside the operational figure |
 | 18 | Corporate overview | The three parks at 50 MW, 200 MW and 57 MW |
 | 112 | Corporate governance report | The audit opinion, unmodified, standalone and consolidated, from Ranjana Vandana and Co. |
+| 79 | Annexure V, Form AOC-1, statement of subsidiaries | Anant Raj Cloud Private Limited: share capital, reserves, total assets, total liabilities, turnover and result for the year |
+| 222 | Consolidated balance sheet | Total assets and equity, borrowings and lease liabilities current and non current, cash, investment property, inventories |
+| 223 | Statement of consolidated profit and loss | Revenue, the full expense stack, profit before and after tax, both years |
+| 224 | Consolidated cash flow statement | Cash generated from operations, tax paid, net operating cash flow, and the four capital expenditure lines |
+| 260 | Note 40, segment reporting | The single reportable segment, and the statement that no external customer exceeds ten per cent of revenue |
+| 267 | Note 47, financial ratios | Return on equity, return on capital employed and debt to equity, each with its numerator and denominator printed beside it |
+| 268 | Note 48, entities consolidated | The same subsidiary's share of consolidated net assets and profit, which ties to printed page 79 |
 
 The finding: **the 28 MW that reaches the market is the company's own headline with its qualifier
 removed.** The report prints the parts on another page, and they sum to it exactly. Six megawatts are
@@ -122,9 +131,21 @@ are described as ready or at an advance stage. That also dissolves the source co
 had recorded and refused to average: 21 is Manesar alone, operational plus ready, and 28 adds
 Panchkula. Two rungs of one ladder, and neither is the operational figure.
 
-**Not read**, in the same file: the audited financial statements and the notes to them, revenue,
-margins, cash flow, and related party transactions. The risk register on that page still carries no
-row for cash conversion or the balance sheet, and that is why.
+The second finding is larger than the first. **The data centre arm the market prices this company on
+is 1.0 per cent of its revenue, and it loses money.** Anant Raj Cloud Private Limited turned over
+2,151.36 lakh rupees against the group's 2,05,997.42, lost 252.99, and closed the year with
+liabilities exceeding assets by 866.44. That subsidiary is printed twice, in the statement of
+subsidiaries at printed 79 and in the consolidated entity table at printed 268, and the two agree to
+the paisa. Neither figure appears in the group income statement, because note 40 at printed 260
+states the business falls within a single reportable segment and that segment is real estate
+development. The capacity is disclosed in the corporate overview. The economics of it are disclosed
+only as one column in a statement of subsidiaries.
+
+**Still not published by the company**, at any level of detail, and therefore absent here: a data
+centre revenue line, a margin or return on capital for the arm, revenue per megawatt, and contracted
+or let capacity at the three campuses. A single segment disclosure is what makes each of those
+unavailable rather than merely unread. Related party transaction detail beyond the parties named is
+in the report and is not cited.
 
 ---
 

@@ -3,7 +3,9 @@
 import Link from "next/link";
 import type { AnantRaj } from "@/lib/schema";
 import { anantRajRiskMeasures, pillarCoverage } from "@/lib/diagnostics/risk";
+import { dataCentreArm } from "@/lib/diagnostics/anantraj";
 import { Exhibit } from "./Exhibits";
+import { DataCentreArm } from "./DataCentreArm";
 import { RiskMatrix } from "./RiskMatrix";
 import { Icon, StatTile } from "./Visual";
 import { Logo } from "./Logo";
@@ -42,6 +44,9 @@ export function AnantRajBody({ data, sify }: Props) {
   // The schema guarantees one claimed rung and that the parts sum to it, so the
   // subtraction below is the report's own arithmetic rather than an estimate.
   const ar = data.annualReport;
+  // The subsidiary that holds the capacity above, against the group that
+  // owns it. Both figures are the report's own and are printed twice.
+  const arm = dataCentreArm(data.financials);
   const claimed = ar.rungs.find((r) => r.kind === "CLAIMED")!;
   const arLive = ar.rungs.find((r) => r.rung === "Operationalised")!;
   const arColo = ar.rungs.find((r) => r.rung === "Operationalised colocation")!;
@@ -313,23 +318,80 @@ export function AnantRajBody({ data, sify }: Props) {
             </span>
             , from {data.annualReport.auditOpinion.auditor}.{" "}
             {data.annualReport.auditOpinion.scope}, at printed page{" "}
-            <span className="tnum">{data.annualReport.auditOpinion.page}</span>. The financial
-            statements in the same document are not cited here, and the register above carries no row
-            for cash conversion or the balance sheet.
+            <span className="tnum">{data.annualReport.auditOpinion.page}</span>. The consolidated
+            statements it covers are set out below.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={6}
+          title={`The data centre arm is ${arm.turnoverSharePct.toFixed(1)} per cent of group revenue, and it loses money`}
+          units={`Squares are rupees of consolidated revenue, one hundred in total. Amounts in ${data.financials.unit}, the unit the statements print, converted nowhere.`}
+          source={`${data.financials.dataCentreArm.source.label}, printed page ${arm.subsidiaryPage}, and note 48 to the consolidated financial statements, printed page ${arm.groupTablePage}.`}
+        >
+          <DataCentreArm
+            entity={arm.entity}
+            holdingPct={arm.holdingPct}
+            turnover={arm.turnover}
+            groupRevenue={arm.groupRevenue}
+            turnoverSharePct={arm.turnoverSharePct}
+            pat={arm.pat}
+            groupPat={arm.groupPat}
+            netAssets={arm.netAssets}
+            totalAssets={arm.totalAssets}
+            totalLiabilities={arm.totalLiabilities}
+            subsidiaryPage={arm.subsidiaryPage}
+            groupTablePage={arm.groupTablePage}
+            unit={data.financials.unit}
+            fiscalYear={data.financials.fiscalYear}
+          />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            The megawatts at the top of this page belong to {arm.entity}. In the year read it turned
+            over <span className="tnum text-foreground">{arm.turnover.toLocaleString("en-IN")}</span>{" "}
+            {data.financials.unit} against the group&apos;s{" "}
+            <span className="tnum text-foreground">{arm.groupRevenue.toLocaleString("en-IN")}</span>,
+            lost <span className="tnum text-signal">{Math.abs(arm.pat).toLocaleString("en-IN")}</span>{" "}
+            while the group made{" "}
+            <span className="tnum text-foreground">{arm.groupPat.toLocaleString("en-IN")}</span>, and
+            closed the year with liabilities exceeding assets by{" "}
+            <span className="tnum text-signal">
+              {Math.abs(arm.netAssets).toLocaleString("en-IN")}
+            </span>
+            .
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            None of that appears in the group income statement. Note 40, at printed page{" "}
+            <span className="tnum">{arm.segmentPage}</span>, reads:{" "}
+            <span className="text-foreground">&ldquo;{data.financials.segment.quote}&rdquo;</span>{" "}
+            There is one reportable segment and it is {data.financials.segment.description}, so no
+            data centre revenue, margin or asset line is published anywhere in the consolidated
+            accounts. The capacity is disclosed in the corporate overview. The economics of it are
+            disclosed only as one column in a statement of subsidiaries.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The same note records that{" "}
+            <span className="text-foreground">
+              &ldquo;{data.financials.segment.customerConcentrationQuote}&rdquo;
+            </span>{" "}
+            That is the opposite shape to the other operator read here, where three counterparties
+            are two thirds of revenue. Selling homes to many buyers and selling megawatts to a few
+            hyperscalers are different businesses, and this company&apos;s revenue is still almost
+            entirely the first one.
           </p>
         </Exhibit>
       </section>
 
       <section className="border-t border-line py-12">
-        <p className="sc text-accent">Where the rest of the numbers are</p>
+        <p className="sc text-accent">What the report still does not carry</p>
         <h2 className="mt-3 max-w-3xl font-display text-3xl leading-tight tracking-tight">
-          The capacity is filed. The economics sit in the accounts.
+          A segment that does not exist cannot be measured
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
-          The capacity ladder and the audit opinion above come from the annual report for
-          FY2024-25 and carry their printed pages. Margin, return on capital, the cost stack and
-          client concentration are not among them. Each one sits in the audited financial statements
-          inside that same report.
+          The group publishes one segment, so several of the measures that matter for a data
+          centre operator have no published value for this company at any level of detail. A
+          margin, a return on capital or a revenue per megawatt for the arm would each need a
+          numerator the report does not print.
         </p>
         <ul className="mt-6 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {data.notRead.map((n) => (

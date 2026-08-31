@@ -1040,6 +1040,108 @@ export const AnantRaj = z
     targetFiscalYear: z.string().min(1),
     capexUsdBn: z.number().positive(),
     /** What has deliberately not been read. Rendered on the page, not hidden. */
+    /**
+     * The audited consolidated statements, read from the same annual report as
+     * the capacity ladder above.
+     *
+     * Held in the unit the statements print, lakhs of rupees, and converted
+     * nowhere. The block exists for its last field. The capacity this company
+     * is priced on belongs to a subsidiary whose own numbers are printed twice
+     * in this report and appear nowhere in the group income statement, because
+     * the group reports one segment and that segment is real estate.
+     */
+    financials: z.object({
+      unit: z.literal("INR lakh"),
+      fiscalYear: z.string().min(1),
+      priorFiscalYear: z.string().min(1),
+      profitAndLoss: z.object({
+        revenue: z.number().positive(),
+        revenuePrior: z.number().positive(),
+        otherIncome: z.number(),
+        totalIncome: z.number().positive(),
+        costOfSalesAndConstruction: z.number().positive(),
+        employeeBenefits: z.number().positive(),
+        financeCosts: z.number().positive(),
+        depreciation: z.number().positive(),
+        otherExpenses: z.number().positive(),
+        totalExpenses: z.number().positive(),
+        profitBeforeTax: z.number(),
+        profitBeforeTaxPrior: z.number(),
+        profitAfterTax: z.number(),
+        profitAfterTaxPrior: z.number(),
+        source: PagedSource,
+      }),
+      balanceSheet: z.object({
+        totalAssets: z.number().positive(),
+        totalEquity: z.number().positive(),
+        investmentProperty: z.number().nonnegative(),
+        propertyPlantAndEquipment: z.number().nonnegative(),
+        capitalWorkInProgress: z.number().nonnegative(),
+        inventories: z.number().nonnegative(),
+        borrowingsNonCurrent: z.number().nonnegative(),
+        borrowingsCurrent: z.number().nonnegative(),
+        leaseLiabilityNonCurrent: z.number().nonnegative(),
+        leaseLiabilityCurrent: z.number().nonnegative(),
+        cashAndEquivalents: z.number().nonnegative(),
+        source: PagedSource,
+      }),
+      cashFlow: z.object({
+        operatingProfitBeforeWorkingCapital: z.number(),
+        cashGeneratedFromOperations: z.number(),
+        incomeTax: z.number(),
+        netCashFromOperations: z.number(),
+        netCashFromOperationsPrior: z.number(),
+        /** Presented inside operating activities as a working capital line,
+         *  while repayment of borrowings appears again under financing. Stored
+         *  because the classification is the observation. */
+        currentBorrowingsInsideOperating: z.number(),
+        currentBorrowingsInsideOperatingPrior: z.number(),
+        acquisitionOfPropertyPlantAndEquipment: z.number().nonnegative(),
+        acquisitionOfInvestmentProperty: z.number().nonnegative(),
+        additionsToCapitalWorkInProgress: z.number().nonnegative(),
+        additionsToRightOfUse: z.number().nonnegative(),
+        source: PagedSource,
+      }),
+      segment: z.object({
+        reportableSegments: z.number().int().positive(),
+        description: z.string().min(1),
+        quote: z.string().min(1),
+        customerConcentrationQuote: z.string().min(1),
+        source: PagedSource,
+      }),
+      ratios: z.object({
+        returnOnEquityPct: z.number(),
+        returnOnEquityPctPrior: z.number(),
+        /** Printed as a decimal in the source, not as a percentage. */
+        returnOnCapitalEmployed: z.number(),
+        returnOnCapitalEmployedPrior: z.number(),
+        debtToEquity: z.number(),
+        debtToEquityPrior: z.number(),
+        roceFormula: z.string().min(1),
+        source: PagedSource,
+      }),
+      dataCentreArm: z.object({
+        entity: z.string().min(1),
+        holdingPct: z.number().positive().max(100),
+        shareCapital: z.number(),
+        reservesAndSurplus: z.number(),
+        totalAssets: z.number().positive(),
+        totalLiabilities: z.number().positive(),
+        turnover: z.number().nonnegative(),
+        profitBeforeTax: z.number(),
+        profitAfterTax: z.number(),
+        source: PagedSource,
+        /** The same subsidiary again, as the consolidated entity table prints
+         *  it. Both are stored so the identity can be asserted. */
+        groupShare: z.object({
+          netAssetsPct: z.number(),
+          netAssetsAmount: z.number(),
+          profitPct: z.number(),
+          profitAmount: z.number(),
+          source: PagedSource,
+        }),
+      }),
+    }),
     notRead: z.array(z.string().min(1)).min(1),
     risks: SecondaryRiskRegister,
     /**
@@ -1124,6 +1226,79 @@ export const AnantRaj = z
         code: z.ZodIssueCode.custom,
         path: ["ladderSource"],
         message: "no Anant Raj figure is traced to a filing, so it cannot claim PRIMARY",
+      });
+    }
+
+    const fin = d.financials;
+    const pl = fin.profitAndLoss;
+    // The income statement must add up to the profit printed under it. Every
+    // line is typed from one page, and a mistyped expense would change the
+    // margin the page quotes while changing nothing a reader could see.
+    if (Math.abs(pl.totalIncome - pl.totalExpenses - pl.profitBeforeTax) > 0.01) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials", "profitAndLoss"],
+        message: `the consolidated income statement does not reconcile to its own profit before tax`,
+      });
+    }
+    // Cash generated from operations, less the tax paid against it, is the
+    // filed operating figure. All three are printed and all three are stored.
+    const cf = fin.cashFlow;
+    if (Math.abs(cf.cashGeneratedFromOperations + cf.incomeTax - cf.netCashFromOperations) > 0.01) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials", "cashFlow"],
+        message: `cash generated from operations less income tax must equal the filed operating cash flow`,
+      });
+    }
+    // The subsidiary is printed twice in the same report, in the statement of
+    // subsidiaries and in the consolidated entity table. Asserting the identity
+    // is what lets the exhibit call the figure the report's own rather than a
+    // subtraction performed here.
+    const arm = fin.dataCentreArm;
+    const armNet = arm.shareCapital + arm.reservesAndSurplus;
+    if (
+      Math.abs(armNet - (arm.totalAssets - arm.totalLiabilities)) > 0.01 ||
+      Math.abs(armNet - arm.groupShare.netAssetsAmount) > 0.01
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials", "dataCentreArm"],
+        message: `the data centre subsidiary net assets do not agree across the two pages that print them`,
+      });
+    }
+    if (Math.abs(arm.profitAfterTax - arm.groupShare.profitAmount) > 0.01) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials", "dataCentreArm"],
+        message: `the data centre subsidiary result does not agree across the two pages that print it`,
+      });
+    }
+    // The finding. The arm this company is priced on is a rounding error in the
+    // revenue the group actually reports.
+    if (arm.turnover / pl.revenue > 0.1) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials", "dataCentreArm"],
+        message: `the data centre arm is no longer a small share of group revenue`,
+      });
+    }
+    // And the second half of it. A profitable arm would be a different page.
+    if (arm.profitAfterTax >= 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials", "dataCentreArm"],
+        message: `the data centre arm no longer loses money`,
+      });
+    }
+    // One reportable segment, and it is real estate. If the group ever reports
+    // the data centre separately, the central claim on this page changes and
+    // the exhibit has to be rebuilt rather than quietly left standing.
+    if (fin.segment.reportableSegments !== 1) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials", "segment"],
+        message: `the group no longer reports a single segment`,
       });
     }
   });
