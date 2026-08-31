@@ -84,7 +84,7 @@
     "liveMW": {
       "value": 0,
       "source": {
-        "label": "No capacity reported live at this site at time of writing",
+        "label": "No capacity reported live at this campus at time of writing",
         "asOf": "2026-02",
         "verification": "UNVERIFIED"
       }

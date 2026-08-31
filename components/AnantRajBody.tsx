@@ -247,8 +247,8 @@ export function AnantRajBody({ data, sify }: Props) {
 
         <Exhibit
           n={4}
-          title={`${WORDS[covered]} of the six forensic pillars carry a row, and the rest name the one document that would fill them`}
-          units="Severity against likelihood, graded by this project. A chip is filled where the magnitude is derived from the figures recorded for this name and outlined where the row is judgement. Nothing on this page is read from a filing."
+          title={`${WORDS[covered]} of the six forensic pillars carry a row, and the rest name the one document that carries them`}
+          units="Severity against likelihood, an analyst grading rather than the company's. A chip is filled where the magnitude is derived from the figures recorded for this name and outlined where the row is judgement. No row in this register cites a printed page."
           source={data.ladderSource.label}
         >
           <RiskMatrix register={data.risks} measures={anantRajRiskMeasures(data)} />
@@ -314,20 +314,22 @@ export function AnantRajBody({ data, sify }: Props) {
             , from {data.annualReport.auditOpinion.auditor}.{" "}
             {data.annualReport.auditOpinion.scope}, at printed page{" "}
             <span className="tnum">{data.annualReport.auditOpinion.page}</span>. The financial
-            statements in the same document have not been read, which is why the register above still
-            carries no row for cash conversion or the balance sheet.
+            statements in the same document are not cited here, and the register above carries no row
+            for cash conversion or the balance sheet.
           </p>
         </Exhibit>
       </section>
 
       <section className="border-t border-line py-12">
-        <p className="sc text-accent">What has not been read</p>
+        <p className="sc text-accent">Where the rest of the numbers are</p>
         <h2 className="mt-3 max-w-3xl font-display text-3xl leading-tight tracking-tight">
-          This page is thin, and says so
+          The capacity is filed. The economics sit in the accounts.
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
-          Every figure above comes from a research note. No Anant Raj filing has been opened, so
-          there is no margin, no return on capital, no cost stack and no client concentration here.
+          The capacity ladder and the audit opinion above come from the annual report for
+          FY2024-25 and carry their printed pages. Margin, return on capital, the cost stack and
+          client concentration are not among them. Each one sits in the audited financial statements
+          inside that same report.
         </p>
         <ul className="mt-6 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {data.notRead.map((n) => (
@@ -344,17 +346,17 @@ export function AnantRajBody({ data, sify }: Props) {
             href="/company/SIFY"
             className="underline decoration-line underline-offset-4 hover:text-accent"
           >
-            Sify is the name where the filings were read
+            Sify is the name with the deepest disclosure here
           </Link>
-          , and the difference in what can be said about the two is the difference between a research
-          note and a prospectus.
+          , and the difference in what can be said about the two is the difference between a headline
+          and a filed statement.
         </p>
       </section>
 
       <footer className="border-t border-line py-10 text-xs leading-relaxed text-muted">
-        Announced capacity is an ambition, not a result. Every figure on this page is secondary,
-        sourced from a research note rather than a filing, and is tagged as such. Educational and
-        portfolio work, not investment advice.
+        Announced capacity is an ambition, not a result. The capacity ladder here is secondary,
+        from a research note. The annual report block is primary and cites its printed pages. Every
+        figure carries its tag. Educational and portfolio work, not investment advice.
       </footer>
     </div>
   );

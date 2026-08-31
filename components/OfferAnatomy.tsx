@@ -178,8 +178,8 @@ export function FundingGap({
             />
           </div>
           <p className="mt-1.5 text-xs text-muted">
-            <span className="tnum">{r.borrowedShare.toFixed(0)}</span> per cent of this project is
-            funded by new debt, not by the offer.
+            <span className="tnum">{r.borrowedShare.toFixed(0)}</span> per cent of it is funded by
+            new debt, not by the offer.
           </p>
         </div>
       ))}

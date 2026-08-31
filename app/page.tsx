@@ -59,7 +59,7 @@ export default function Home() {
       k: "Traced to a filing",
       v: `${primary}`,
       u: `of ${ops.length}`,
-      n: "The rest are research note figures, tagged on every row rather than smoothed over.",
+      n: "The rest are research note figures, tagged as such on every row.",
     },
   ];
 
@@ -81,9 +81,12 @@ export default function Home() {
           Three customers are buying them.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-          The sector is being priced on announcements. This separates what has been announced from
-          what is live, on the one unit operators are actually comparable on, then reads the single
-          company whose filings are public to see what delivered megawatts are worth.
+          The sector is being priced on announcements. Announced capacity and live capacity are
+          both counted in megawatts, and across {ops.length} operators they differ by a factor of{" "}
+          <span className="tnum text-foreground">{(announcedMW / liveMW).toFixed(0)}</span>. On the
+          one operator whose filings are public, only{" "}
+          <span className="tnum text-foreground">{soldShare.toFixed(0)}</span> per cent of the
+          capacity it calls built is sold to a customer.
         </p>
 
         <dl className="mt-9 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
@@ -119,8 +122,8 @@ export default function Home() {
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
           Sify Infinit Spaces filed a draft red herring prospectus, so its capacity, clients, cost
-          base and offer are all readable. The rest are research note figures until their filings
-          are read, and they say so on every row.
+          base and offer are all readable. The rest are research note figures, carried at secondary
+          or unverified and tagged that way on every row.
         </p>
 
         <ul className="mt-8 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
@@ -143,7 +146,7 @@ export default function Home() {
                   {c.delivered.toFixed(0)} per cent delivered
                 </span>
                 <span className="mt-2 block text-[11px] text-muted">
-                  {c.href ? "Read the deep dive" : "Not yet covered in depth"}
+                  {c.href ? "Read the deep dive" : "No deep dive"}
                 </span>
               </>
             );
@@ -184,7 +187,7 @@ export default function Home() {
       </section>
 
       <section className="border-t border-line py-12">
-        <p className="sc text-accent">Why this is the interesting question</p>
+        <p className="sc text-accent">What the gap implies</p>
         <div className="mt-6 grid gap-6 sm:grid-cols-3">
           {[
             {

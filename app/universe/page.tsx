@@ -105,7 +105,7 @@ export default function UniversePage() {
             ],
             [
               "Secondary",
-              "A researched figure from company announcements, brokerage notes or press reporting, not yet traced to a filing inside this repository. Most of the universe sits here.",
+              "A researched figure from company announcements, brokerage notes or press reporting, not yet traced to a filing. Most of the universe sits here.",
             ],
             [
               "Unverified",

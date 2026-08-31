@@ -115,7 +115,7 @@ export default function ComparePage() {
             Every figure absent on the {small.name} side sits in the audited accounts of the same
             annual report the capacity rungs above come from. The company files them. They are not
             cited here, and the cell says which document carries each one rather than leaving a
-            space a reader would fill with a zero.
+            blank that reads as a zero.
           </p>
         </Exhibit>
       </section>

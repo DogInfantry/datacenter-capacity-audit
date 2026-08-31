@@ -185,11 +185,11 @@ export default function MacroPage() {
             <span className="tnum text-foreground">{gw(spread.high.mw)}</span> GW. The most
             optimistic case, counted in capacity that earns, arrives at the least optimistic case
             counted the way the industry counts. That is a coincidence of arithmetic rather than a
-            result, and it is the clearest illustration on this site of how much the unit is doing.
+            result, and it is the clearest measure of how much work the unit is doing.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-muted">
-            One estate is not a national conversion rate and this page does not claim it is. It is
-            the only rate anybody has published a filing for, which is the more useful complaint: an
+            One estate is not a national conversion rate. It is the only rate anybody has published
+            a filing for, which is the more useful complaint: an
             entire sector is being sized in a unit whose conversion to revenue has been measured
             exactly once.{" "}
             <Link
@@ -316,7 +316,7 @@ export default function MacroPage() {
             <span className="tnum text-foreground">{aiCount("NOT_STATED")}</span> of the{" "}
             <span className="tnum text-foreground">{ai.providers.length}</span> there is no public
             statement either way, which is a fact about the scheme&apos;s reporting rather than about
-            those providers, and it is why this exhibit groups rather than ranks.
+            those providers, so they are grouped by what was reported and not ranked against each other.
           </p>
         </Exhibit>
 

@@ -43,7 +43,7 @@ export function NetwebOrderBook({ concentration, anchor, bookAsOf, caveat, sify 
         amount: `Rs ${cr(concentration.anchorCr)} cr`,
       },
       tail: { label: "Every other customer", amount: `Rs ${cr(concentration.restCr)} cr` },
-      sourcing: "Research note, no filing read",
+      sourcing: "Research note, no filing cited",
     },
     {
       company: "Sify Infinit Spaces",

@@ -336,7 +336,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
         <Exhibit
           n={7}
           title="Every risk in the worst cell is one the filing already puts a number on"
-          units="Severity against likelihood, graded by this project and not by the issuer. A chip is filled where the magnitude beside the row is derived from the filed numbers and outlined where the row is judgement."
+          units="Severity against likelihood, an analyst grading rather than the issuer's. A chip is filled where the magnitude beside the row is derived from the filed numbers and outlined where the row is judgement."
           source={`Sify Infinit Spaces DRHP, risk factors and the restated financial information, printed pages ${riskPages.join(", ")}.`}
         >
           <RiskMatrix register={sisl.risks} measures={riskMeasures} />

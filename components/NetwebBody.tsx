@@ -40,7 +40,7 @@ export function NetwebBody({ data, sify }: Props) {
               {data.listedParent} · {data.exchange} {data.ticker}
             </p>
             <p className="text-xs text-muted">
-              {data.role} · sourcing {data.source.verification.toLowerCase()}, no filing read
+              {data.role} · sourcing {data.source.verification.toLowerCase()}, no filing cited
             </p>
           </div>
         </div>
@@ -52,8 +52,9 @@ export function NetwebBody({ data, sify }: Props) {
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
           Netweb owns no megawatts. It builds the machines that fill other people&apos;s data
-          centres, so there is no capacity ladder here and it is deliberately absent from the plot
-          on the front page. The unit it is measured on is the order book, and the concentration
+          centres, so it has no capacity ladder and no place on the Execution against Ambition
+          plot, which is drawn in megawatts. The unit it is measured on is the order book, and the
+          concentration
           that sits inside the other names&apos; revenue sits inside its backlog instead.
         </p>
 
@@ -148,8 +149,8 @@ export function NetwebBody({ data, sify }: Props) {
 
         <Exhibit
           n={3}
-          title="The one name here with no filing read is the only one that can price itself"
-          units="Severity against likelihood, graded by this project. A chip is filled where the magnitude is derived from the figures recorded for this name and outlined where the row is judgement. Valuation carries a row here and none on the Sify page, because a multiple needs only a price and a reported earnings figure, and the prospectus read for that name carries no price band at all."
+          title="The one name here with no filing cited is the only one that can price itself"
+          units="Severity against likelihood, an analyst grading rather than the company's. A chip is filled where the magnitude is derived from the figures recorded for this name and outlined where the row is judgement. Valuation carries a row here and none on the Sify page: a multiple needs a price, and a draft prospectus carries no price band."
           source={data.source.label}
         >
           <RiskMatrix register={data.risks} measures={netwebRiskMeasures(data)} />
@@ -157,14 +158,14 @@ export function NetwebBody({ data, sify }: Props) {
       </section>
 
       <section className="border-t border-line py-12">
-        <p className="sc text-accent">The price, and what has not been read</p>
+        <p className="sc text-accent">The price, and what sits behind it</p>
         <h2 className="mt-3 max-w-3xl font-display text-3xl leading-tight tracking-tight">
-          This page is thin, and says so
+          An order book, a price, and no rupee of revenue behind either
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
-          Every figure above comes from a research note. No Netweb filing has been opened, so there
-          is no revenue in rupees, no margin, no cash flow and no receivables here. What the page
-          can say is what the order book is made of, and what is being paid for it.
+          Every figure above comes from a research note rather than from a Netweb filing, so there
+          is no revenue in rupees, no margin, no cash flow and no receivables beside them. What is
+          here is what the order book is made of, and what is being paid for it.
         </p>
 
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
@@ -206,10 +207,10 @@ export function NetwebBody({ data, sify }: Props) {
             href="/company/SIFY"
             className="underline decoration-line underline-offset-4 hover:text-accent"
           >
-            Sify is the name where the filings were read
+            Sify is the name with the deepest disclosure here
           </Link>
-          , and the difference in what can be said about the two is the difference between a research
-          note and a prospectus.
+          , and the difference in what can be said about the two is the difference between a headline
+          and a filed statement.
         </p>
       </section>
 

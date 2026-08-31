@@ -14,7 +14,7 @@
       }
     },
     "unit": "MW of built capacity",
-    "unitNote": "Every one of these forecasts is stated in built capacity, which is the same word this project has shown does not mean earning. That is the point of the exhibit rather than a caveat on it.",
+    "unitNote": "Every one of these forecasts is stated in built capacity, which is the same word the one filed estate shows does not mean earning. It is the finding rather than a caveat on it.",
     "forecasts": [
       {
         "publisher": "Colliers",
@@ -64,7 +64,7 @@
     "providers": [
       { "name": "Yotta", "ticker": null, "status": "MOVED", "offeredGpus": 9216, "note": "The largest single offer, of which 8,192 are H100s." },
       { "name": "NxtGen", "ticker": null, "status": "MOVED", "offeredGpus": null, "note": "Reported as deploying ahead of the empanelled field." },
-      { "name": "E2E Networks", "ticker": "E2E", "status": "MOVED", "offeredGpus": null, "note": "Lowest bidder on the mission tender, and covered in the universe on this site." },
+      { "name": "E2E Networks", "ticker": "E2E", "status": "MOVED", "offeredGpus": null, "note": "Lowest bidder on the mission tender, and one of the covered names." },
       { "name": "Jio Platforms", "ticker": null, "status": "LAGGED", "offeredGpus": null, "note": "Reported as behind on deployment despite being among the largest empanelled names." },
       { "name": "CtrlS", "ticker": null, "status": "LAGGED", "offeredGpus": null, "note": "Reported as behind on deployment. Also the highest returning operator in the peer table above." },
       { "name": "Tata Communications", "ticker": "TATACOMM", "status": "NOT_STATED", "offeredGpus": null, "note": "Empanelled. No deployment progress reported either way." },
@@ -132,7 +132,7 @@
     "targetYear": 2032,
     "estimator": "Ministry of Power",
     "source": {
-      "label": "Ministry of Power estimate of data centre electricity demand, as carried in the project brief. Unlike the transmission delay dataset this project pulled from the ministry directly, this figure has not been traced to the ministry's own publication.",
+      "label": "Ministry of Power estimate of data centre electricity demand, as carried in the project brief. The transmission delay dataset cited elsewhere came from the ministry directly. This figure has not been traced to the ministry's own publication.",
       "asOf": "2025-12",
       "verification": "SECONDARY"
     }

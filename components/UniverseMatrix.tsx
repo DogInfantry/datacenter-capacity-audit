@@ -155,7 +155,7 @@ export function UniverseMatrix({
         <span className="tnum">{rows.length}</span> names.{" "}
         <span className="tnum text-foreground">{plotted}</span> carry megawatts and appear on the
         Execution against Ambition plot. The rest are measured on order books, revenue mix or
-        backlog, and are deliberately not on it.
+        backlog, which are not megawatts and do not plot against them.
       </p>
 
       <div className="mt-5 overflow-x-auto">

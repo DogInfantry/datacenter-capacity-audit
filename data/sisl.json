@@ -272,7 +272,7 @@
   },
 
   "risks": {
-    "gradingNote": "Severity and likelihood are this project's own judgement. The magnitude beside each row is not: where a row is marked measured, the figure is derived at render from the filed numbers in this file and moves if they move. The prospectus publishes no risk grading of its own, so nothing here is the issuer's ranking of its own risk factors.",
+    "gradingNote": "Severity and likelihood are analyst gradings. The magnitude beside each row is not: where a row is marked measured, the figure is derived at render from the filed numbers recorded for this name and moves if they move. The prospectus publishes no risk grading of its own, so nothing here is the issuer's ranking of its own risk factors.",
     "unevidencedNote": "Two of the six pillars still carry no row. Governance needs the auditor's report, the related party notes and the outstanding litigation at printed 463, none of them read. Valuation needs a price band, and the document carries none. Cash conversion was empty here for the same reason until the restated statement of cash flow at printed 355 was read, and the row it carries now is the first thing that statement says.",
     "rows": [
       {

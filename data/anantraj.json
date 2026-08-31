@@ -27,14 +27,14 @@
     }
   ],
   "ladderSource": {
-    "label": "Blueprint research note, BharatAI Infra Scope, quoting Value Research: only 8 MW of colocation had been completely handed over, while the rest was still in the handover process, and operational capacity is not the same as handed over capacity. This repository's own data/campuses.json separately records Anant Raj Cloud at 307 MW announced against 21 MW live, which disagrees with the 28 MW figure. Both are recorded and neither is averaged.",
+    "label": "Blueprint research note, BharatAI Infra Scope, quoting Value Research: only 8 MW of colocation had been completely handed over, while the rest was still in the handover process, and operational capacity is not the same as handed over capacity. A separate campus level record puts Anant Raj Cloud at 307 MW announced against 21 MW live, which disagrees with the 28 MW figure. Both are recorded and neither is averaged.",
     "asOf": "2026-08",
     "verification": "SECONDARY"
   },
   "conflict": {
     "field": "Operational capacity",
     "a": { "value": 28, "source": "Blueprint research note, Manesar 21 plus Panchkula 7" },
-    "b": { "value": 21, "source": "data/campuses.json, recorded earlier in this project" },
+    "b": { "value": 21, "source": "data/campuses.json, the figure recorded before the annual report was cited" },
     "note": "A seven megawatt disagreement on a 28 megawatt estate is a quarter of the number. Until a filing settles it the higher figure is carried, and the disagreement is shown rather than resolved."
   },
 
@@ -131,8 +131,8 @@
   },
 
   "risks": {
-    "gradingNote": "Severity and likelihood are this project's own judgement. So, on this page, is the evidence behind them: a magnitude marked measured is derived from figures recorded in this file, and every figure in this file came from a research note rather than from a filing. Derived is not the same as read, and the exhibit says which.",
-    "unevidencedNote": "Four of the six pillars carry no row, and one document would fill all four. No Anant Raj filing has been opened: no annual report, no audited financial statements, no auditor's report and no notes to accounts. Until one is read there is no revenue quality, no cash conversion, no governance and no valuation to grade here, and writing a row for each anyway would be exactly the confidence this page exists to refuse.",
+    "gradingNote": "Severity and likelihood are analyst gradings, not the company's. A magnitude marked measured is derived from the figures recorded for this name, and those figures come from a research note rather than from a filing. Derived is not the same as filed, and each row says which it is.",
+    "unevidencedNote": "One document would close every empty pillar. The audited financial statements and the notes to accounts sit inside the annual report for FY2024-25, and only its capacity pages and its audit opinion are cited here. Without those statements there is no revenue quality, no cash conversion, no governance and no valuation to grade, and a row written anyway would be a grade with nothing behind it.",
     "rows": [
       {
         "id": "handover-gap",
@@ -177,7 +177,7 @@
         "note": "This is a disclosure risk rather than a board governance one. Nothing about the board, the auditor or related parties has been read, so the governance pillar stays empty rather than borrowing this row.",
         "page": null,
         "source": {
-          "label": "Blueprint research note against data/campuses.json, recorded earlier in this repository",
+          "label": "Blueprint research note against the separately recorded campus level figure",
           "asOf": "2026-08",
           "verification": "SECONDARY"
         }
@@ -188,7 +188,7 @@
         "category": "BALANCE_SHEET",
         "severity": "HIGH",
         "likelihood": "MED",
-        "mitigant": "None that can be stated from what has been read. Funding, gearing and the cash already committed are all in the annual report, and the annual report has not been opened.",
+        "mitigant": "None stated. Funding, gearing and the capital already committed sit in the audited financial statements inside the annual report.",
         "measured": true,
         "note": "The magnitude here is the size of the programme, not an assessment of whether it can be funded. That assessment needs the statements this page does not have.",
         "page": null,

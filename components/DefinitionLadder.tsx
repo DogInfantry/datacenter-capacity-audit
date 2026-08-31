@@ -70,7 +70,7 @@ export function DefinitionLadder() {
         prospectus calls installed. The same estate, with the vocabulary shifted
         one rung. That is why this ladder and the prospectus page appear to
         disagree about what built means, and the disagreement belongs to the
-        company rather than to this site.
+        company rather than to the reporting of it.
       </figcaption>
     </figure>
   );

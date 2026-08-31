@@ -266,8 +266,7 @@ export function ExecutionAmbition({ operators }: { operators: Op[] }) {
       <p className="mt-4 border-t border-line pt-3 text-xs leading-relaxed text-muted">
         Announced capacity is an ambition, not a result: every one of these figures is a company
         statement about the future. Only Sify is traced to a filed document. The rest are research
-        note figures carried at secondary or unverified and marked as such on the row, and they
-        upgrade as filings are read.
+        note figures carried at secondary or unverified and marked as such on the row.
       </p>
     </div>
   );
