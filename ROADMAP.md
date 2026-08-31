@@ -103,12 +103,14 @@ Recorded with the finding each one produced, because a tick is not a result.
   2016 to 2026 and would close most of the gap. FY2016 and FY2017 already have their stated
   margins in the doc and could be checked as well, but they also need annual operating income,
   which the store does not carry before 2020.
-- **The comparison tool.** Three company pages now exist, so the objection that one company does
-  not need a company page has expired. A `/compare` route picking two to four names is the brief's
-  remaining product surface, and it is blocked on something real: the three covered names are
-  measured on three different units, so a side by side table would either compare megawatts against
-  an order book or leave most cells empty. It waits on a fourth and fifth name that share a unit
-  with an existing one.
+- **The comparison tool, built.** It was blocked on something real: three covered names measured
+  on three different units, so a side by side table would either compare megawatts against an order
+  book or leave most cells empty. What unblocked it was not a fourth name but reading a filing for
+  the second operator, which produced one ratio that asks the same question of both. `/compare`
+  leads on how few of its rows survive that test, marks the one that does, excludes Netweb by name
+  with the reason, and draws every absent figure as the document that would fill it rather than as
+  a blank a reader could take for a zero. A fourth operator would still widen it more than a fourth
+  metric would.
 - **The six pillar forensic scorecard.** In the brief, never built, and deliberately not faked. No
   scoring engine exists in this repository; the two by two plots two stated figures against each
   other so a reader can argue with a source rather than with a hidden weighting. Building it needs

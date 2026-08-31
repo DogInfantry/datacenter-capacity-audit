@@ -106,7 +106,7 @@ not committed, because it is 12 MB, but `data/raw/prospectus/drhp_extracts.json`
 SHA256 and the printed to PDF page offset, so anyone can re download the file and audit a number
 against it.
 
-`/methodology` publishes all of it: the sourcing counted from both ends, every one of the thirty
+`/methodology` publishes all of it: the sourcing counted from both ends, every one of the forty two
 build invariants with what it protects and the message it emits when it fires, every formula with
 its denominator and sample, the known limits including two now closed, and a log of how this
 project's direction changed.
