@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Monogram, Icon } from "./Visual";
+import { Monogram, Icon, verdictTone } from "./Visual";
 
 type Op = {
   id: string;
@@ -177,7 +177,7 @@ export function UniverseMatrix({
               <tr key={r.key} className="border-b border-line align-top">
                 <td className="py-3 pr-4">
                   <span className="flex items-center gap-2">
-                    <Monogram name={r.parent} size={22} />
+                    <Monogram name={r.parent} size={22} tone={verdictTone(r.verdict)} />
                     <span>
                       {hasPage.has(r.ticker) ? (
                         <Link

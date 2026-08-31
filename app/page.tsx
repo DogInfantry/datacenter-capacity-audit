@@ -3,7 +3,7 @@ import Link from "next/link";
 import { universe, sisl, COVERED_TICKERS } from "@/lib/data";
 import { Exhibit } from "@/components/Exhibits";
 import { ExecutionAmbition } from "@/components/ExecutionAmbition";
-import { StatTile, Monogram, type IconName } from "@/components/Visual";
+import { StatTile, Monogram, verdictTone, type IconName } from "@/components/Visual";
 
 export const metadata: Metadata = {
   title: "Built, Installed, Sold",
@@ -127,7 +127,7 @@ export default function Home() {
             const body = (
               <>
                 <span className="flex items-center gap-2">
-                  <Monogram name={c.listedParent} size={24} />
+                  <Monogram name={c.listedParent} size={24} tone={verdictTone(c.verdict)} />
                   <span className="text-sm">{c.listedParent}</span>
                 </span>
                 <span className="mt-3 block font-display text-2xl tracking-tight tnum">

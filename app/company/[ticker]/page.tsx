@@ -197,7 +197,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
     <div className="mx-auto w-full min-w-0 max-w-6xl px-5">
       <section className="py-12 sm:py-16">
         <div className="flex items-center gap-3">
-          <Monogram name={row.listedParent} size={34} />
+          <Monogram name={row.listedParent} size={34} tone="var(--accent-deep)" />
           <div>
             <p className="sc text-accent">
               {row.listedParent} · {row.exchange} {row.ticker}

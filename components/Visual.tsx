@@ -91,21 +91,76 @@ export function Icon({
 }
 
 /**
- * Company marks, drawn rather than fetched.
+ * Company marks.
  *
- * A monogram plus a fixed step off this site's ramp, so the four operators are
- * separable at a glance without reproducing anybody's trademark. The letters
- * come from the company name; the colour is ours, not theirs.
+ * Drawn rather than fetched. Real logos are trademarked assets belonging to the
+ * companies being written about, several of them unflatteringly, and a portfolio
+ * repository is not the place to redistribute them.
+ *
+ * The letters carry identity. Colour does not: fourteen companies would need
+ * fourteen hues, this palette has six, and cycling them would invent a grouping
+ * that is not in the data. Where a caller knows a company's verdict it passes
+ * that tone instead, so colour means the same thing on every surface. The four
+ * peers below keep fixed tones, because the peer exhibit uses them as series
+ * identity inside one chart, where a fixed order is the right answer.
  */
-const MARKS: Record<string, { short: string; tone: string }> = {
+const MARKS: Record<string, { short: string; tone?: string }> = {
   "Sify Infinit Spaces": { short: "SI", tone: "var(--accent-deep)" },
   NEXTDC: { short: "NX", tone: "var(--accent)" },
   "Digital Realty": { short: "DR", tone: "var(--rung-2)" },
   Equinix: { short: "EQ", tone: "var(--rung-1)" },
+
+  "Reliance Industries": { short: "RI" },
+  "Adani Enterprises": { short: "AE" },
+  "Bharti Airtel": { short: "BA" },
+  "Tata Communications, 26 per cent holding": { short: "TC" },
+  "Tata Communications": { short: "TC" },
+  "Anant Raj": { short: "AR" },
+  "Techno Electric & Engineering": { short: "TE" },
+  "Sify Technologies": { short: "ST" },
+  "E2E Networks": { short: "E2" },
+  "Netweb Technologies": { short: "NW" },
+  "Tata Consultancy Services": { short: "TCS" },
+  "Black Box": { short: "BB" },
+  "RailTel Corporation": { short: "RT" },
+  "Cummins India": { short: "CI" },
+  "Hitachi Energy India": { short: "HE" },
 };
 
-export function Monogram({ name, size = 26 }: { name: string; size?: number }) {
-  const m = MARKS[name] ?? { short: name.slice(0, 2).toUpperCase(), tone: "var(--muted)" };
+/**
+ * One verdict, one colour, everywhere.
+ *
+ * The coverage matrix already colours its verdict column this way. Sharing it
+ * means a mark on the front page, a row in the matrix and a point on the plot
+ * cannot drift into saying different things in the same hue.
+ */
+export function verdictTone(verdict: string) {
+  switch (verdict) {
+    case "EXECUTING":
+      return "var(--accent-deep)";
+    case "ADVANCING":
+      return "var(--accent)";
+    case "AMBITION_OVER_EXECUTION":
+    case "LAGGING":
+      return "var(--signal)";
+    default:
+      return "var(--muted)";
+  }
+}
+
+export function Monogram({
+  name,
+  size = 26,
+  tone,
+}: {
+  name: string;
+  size?: number;
+  /** Overrides the mark's own colour. Callers that know a company's verdict
+   *  pass its tone, so the mark carries the same meaning as the badge beside it. */
+  tone?: string;
+}) {
+  const m = MARKS[name] ?? { short: name.slice(0, 2).toUpperCase() };
+  const short = m.short;
   return (
     <span
       aria-hidden
@@ -113,13 +168,14 @@ export function Monogram({ name, size = 26 }: { name: string; size?: number }) {
       style={{
         width: size,
         height: size,
-        background: m.tone,
+        background: tone ?? m.tone ?? "var(--muted)",
         color: "var(--on-accent)",
-        fontSize: size * 0.4,
+        // Three letters at the two letter size overflow a small chip.
+        fontSize: size * (short.length > 2 ? 0.32 : 0.4),
         letterSpacing: "0.02em",
       }}
     >
-      {m.short}
+      {short}
     </span>
   );
 }
