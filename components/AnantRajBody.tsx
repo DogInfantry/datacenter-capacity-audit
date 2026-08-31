@@ -5,7 +5,8 @@ import type { AnantRaj } from "@/lib/schema";
 import { anantRajRiskMeasures, pillarCoverage } from "@/lib/diagnostics/risk";
 import { Exhibit } from "./Exhibits";
 import { RiskMatrix } from "./RiskMatrix";
-import { Icon, Monogram, StatTile } from "./Visual";
+import { Icon, StatTile } from "./Visual";
+import { Logo } from "./Logo";
 
 type Props = {
   /** The schema type rather than a hand written copy of it. A copy drifts the
@@ -52,7 +53,7 @@ export function AnantRajBody({ data, sify }: Props) {
     <div className="mx-auto w-full min-w-0 max-w-6xl px-5">
       <section className="py-12 sm:py-16">
         <div className="flex items-center gap-3">
-          <Monogram name={data.listedParent} size={34} tone="var(--accent-deep)" />
+          <Logo ticker={data.ticker} name={data.listedParent} size="lg" tone="var(--accent-deep)" />
           <div>
             <p className="sc text-accent">
               {data.listedParent} · {data.exchange} {data.ticker}

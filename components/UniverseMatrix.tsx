@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Monogram, Icon, verdictTone } from "./Visual";
+import { Icon, verdictTone } from "./Visual";
+import { Logo } from "./Logo";
 
 type Op = {
   id: string;
@@ -158,13 +159,13 @@ export function UniverseMatrix({
       </p>
 
       <div className="mt-5 overflow-x-auto">
-        <table className="w-full min-w-[46rem] border-collapse text-sm">
+        <table className="w-full min-w-[52rem] border-collapse text-sm">
           <caption className="sr-only">
             Coverage universe with verdict, metric and sourcing
           </caption>
           <thead>
             <tr className="border-b border-line text-left text-xs text-muted">
-              <th className="py-2 pr-4 font-medium">Company</th>
+              <th className="w-[17rem] py-2 pr-4 font-medium">Company</th>
               <th className="py-2 pr-4 font-medium">Ticker</th>
               <th className="py-2 pr-4 font-medium">Bucket</th>
               <th className="py-2 pr-4 font-medium">Verdict</th>
@@ -177,7 +178,7 @@ export function UniverseMatrix({
               <tr key={r.key} className="border-b border-line align-top">
                 <td className="py-3 pr-4">
                   <span className="flex items-center gap-2">
-                    <Monogram name={r.parent} size={22} tone={verdictTone(r.verdict)} />
+                    <Logo ticker={r.ticker} name={r.parent} size="sm" tone={verdictTone(r.verdict)} />
                     <span>
                       {hasPage.has(r.ticker) ? (
                         <Link

@@ -223,6 +223,15 @@ Equinix and Digital Realty valuation multiples.
 
 ---
 
+## Company marks
+
+The logos in `public/logos` are each company's own mark, taken from its website or from Wikimedia
+Commons, resized and optimised but not altered. They remain the property of their owners and are
+reproduced here to identify the companies analysed. Ten of the fourteen covered names have one; the
+rest render as a drawn monogram until a mark is added.
+
+---
+
 ## The honest summary
 
 Two documents read properly, one of them a prospectus and one an annual report. Three companies' calls coded across a defined window. Five filers

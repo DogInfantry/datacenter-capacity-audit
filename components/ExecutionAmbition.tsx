@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Monogram, verdictTone } from "./Visual";
+import { verdictTone } from "./Visual";
+import { Logo } from "./Logo";
 
 type Op = {
   id: string;
@@ -231,7 +232,7 @@ export function ExecutionAmbition({ operators }: { operators: Op[] }) {
                   >
                     <td className="py-2 pr-3">
                       <span className="flex items-center gap-2">
-                        <Monogram name={o.listedParent} size={20} tone={verdictTone(o.verdict)} />
+                        <Logo ticker={o.ticker} name={o.listedParent} size="sm" tone={verdictTone(o.verdict)} />
                         <span className={active === o.id ? "text-accent" : ""}>{o.operator}</span>
                       </span>
                     </td>

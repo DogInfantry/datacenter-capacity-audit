@@ -1,5 +1,6 @@
 import type { CompareRow, CompareSubject } from "@/lib/diagnostics/compare";
-import { Icon, Monogram } from "./Visual";
+import { Icon } from "./Visual";
+import { Logo } from "./Logo";
 
 /**
  * Two operators side by side, and the rows where only one of them has a figure.
@@ -37,7 +38,7 @@ export function CompareTable({
               {shown.map((s) => (
                 <th key={s.ticker} scope="col" className="py-3 pr-4 font-medium">
                   <span className="flex items-center gap-2">
-                    <Monogram name={s.name} size={22} tone="var(--accent-deep)" />
+                    <Logo ticker={s.ticker} name={s.name} size="md" tone="var(--accent-deep)" />
                     <span className="truncate">{s.name}</span>
                   </span>
                 </th>
@@ -97,7 +98,7 @@ export function CompareTable({
             className="mt-5 flex gap-2 rounded-md border border-dashed border-line p-4 text-sm leading-relaxed text-muted"
           >
             <span className="mt-0.5 shrink-0">
-              <Monogram name={s.name} size={22} />
+              <Logo ticker={s.ticker} name={s.name} size="sm" />
             </span>
             <span>
               <span className="text-foreground">{s.name} is not in this table.</span> {s.excluded}
