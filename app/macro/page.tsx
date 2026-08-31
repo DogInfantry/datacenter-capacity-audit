@@ -6,6 +6,7 @@ import { Exhibit } from "@/components/Exhibits";
 import { ForecastSpread } from "@/components/ForecastSpread";
 import { BuildRate } from "@/components/BuildRate";
 import { PeerReturns } from "@/components/PeerReturns";
+import { DeploymentLedger } from "@/components/DeploymentLedger";
 import { StatTile, type IconName } from "@/components/Visual";
 
 export const metadata: Metadata = {
@@ -26,6 +27,9 @@ export default function MacroPage() {
   // and the check against the issuer's own claim are derived rather than read.
   const peers = peerReturns(ret.rows, ret.fiscalYears);
   const failures = claimFailures(ret.rows, ret.fiscalYears);
+
+  const ai = macro.indiaAI;
+  const aiCount = (st: string) => ai.providers.filter((p) => p.status === st).length;
 
   const spread = forecastSpread(macro.capacity.forecasts, conversion);
   const build = [...macro.buildRate].sort((a, b) => a.year - b.year);
@@ -237,6 +241,36 @@ export default function MacroPage() {
             depreciation in a build phase does suppress the ratio, and it is the honest explanation
             for a low reading. It is also the explanation every operator in the Indian half of this
             table could give.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={4}
+          title={`A government scheme gave ${ai.providers.length} providers the same deadline, and ${aiCount("NOT_STATED")} of them have no public delivery record at all`}
+          units={`Empanelled cloud providers under the IndiaAI Mission, grouped by what has been reported about deployment. Outlay ${ai.outlayCr.toLocaleString("en-IN")} crore.`}
+          source={ai.source.label}
+        >
+          <DeploymentLedger
+            providers={ai.providers}
+            gpusInstalled={ai.gpusInstalled}
+            installedQualifier={ai.installedQualifier}
+            installedAsOf={ai.installedAsOf}
+          />
+
+          <p className="mt-5 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            This is the clearest place in the sector to watch an announcement separate from a
+            delivery, because every one of these providers accepted the same terms on the same date.{" "}
+            <span className="tnum text-foreground">{aiCount("MOVED")}</span> are reported as
+            deploying and <span className="tnum text-foreground">{aiCount("LAGGED")}</span> as
+            behind, and the two behind are among the largest names on the list. Size did not predict
+            delivery here, which is the result the capacity pages reach from the other direction.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The largest group is the one nobody has reported on. For{" "}
+            <span className="tnum text-foreground">{aiCount("NOT_STATED")}</span> of the{" "}
+            <span className="tnum text-foreground">{ai.providers.length}</span> there is no public
+            statement either way, which is a fact about the scheme&apos;s reporting rather than about
+            those providers, and it is why this exhibit groups rather than ranks.
           </p>
         </Exhibit>
       </section>

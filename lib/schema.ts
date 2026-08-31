@@ -1340,6 +1340,26 @@ export const Macro = z
         )
         .min(3),
     }),
+    indiaAI: z.object({
+      outlayCr: z.number().positive(),
+      gpusInstalled: z.number().int().positive(),
+      installedQualifier: z.string().min(1),
+      installedAsOf: z.string().min(1),
+      providers: z
+        .array(
+          z.object({
+            name: z.string().min(1),
+            /** Set only where the provider is a covered name on this site. */
+            ticker: z.string().min(1).nullable(),
+            status: z.enum(["MOVED", "LAGGED", "NOT_STATED"]),
+            /** GPUs offered to the scheme, where a figure was published. */
+            offeredGpus: z.number().int().positive().nullable(),
+            note: z.string().min(1),
+          }),
+        )
+        .min(5),
+      source: Source,
+    }),
     operatorReturns: z.object({
       fiscalYears: z.array(z.string().min(1)).min(2),
       claim: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
@@ -1366,6 +1386,34 @@ export const Macro = z
     }),
   })
   .superRefine((d, ctx) => {
+    // A published offer must sit inside the national installed total.
+    //
+    // The exhibit says one provider offered more than half of every processor
+    // the scheme has installed. Past a hundred per cent that sentence stops
+    // being a comparison and starts being a sign that two different quantities
+    // have been put in the same ratio.
+    const ai = d.indiaAI;
+    for (const p of ai.providers) {
+      if (p.offeredGpus !== null && p.offeredGpus > ai.gpusInstalled) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["indiaAI", "providers"],
+          message: `${p.name} offered more processors than the scheme has installed nationally`,
+        });
+      }
+    }
+    // The execution ledger needs both sides to exist. A scheme where nobody is
+    // reported as behind, or nobody as ahead, carries no separation between
+    // announcement and delivery and the exhibit has nothing to show.
+    const moved = ai.providers.filter((p) => p.status === "MOVED").length;
+    const lagged = ai.providers.filter((p) => p.status === "LAGGED").length;
+    if (moved === 0 || lagged === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["indiaAI", "providers"],
+        message: `the deployment ledger needs a provider on each side, got ${moved} ahead and ${lagged} behind`,
+      });
+    }
     // Every operator must carry a reading for every fiscal year the table
     // covers, present or explicitly absent. A short row would silently shift
     // every value after it into the wrong year.

@@ -225,9 +225,16 @@ appear, and the pages say so.
 ### In the brief, deliberately not yet carried
 
 Because nothing renders them, and a data file with no page is how this project previously lost a
-finding: the hyperscaler pledges (Microsoft 17.5bn USD, AWS 12.7bn, Google 15bn), the IndiaAI
-Mission outlay of Rs 10,371 crore and its GPU deployment record, state incentive policies, and the
-Equinix and Digital Realty valuation multiples.
+finding: the hyperscaler pledges (Microsoft 17.5bn USD, AWS 12.7bn, Google 15bn), state incentive
+policies, the Ministry of Power demand curve, and the Equinix and Digital Realty valuation
+multiples.
+
+**The IndiaAI Mission is no longer on that list.** The outlay of Rs 10,371 crore, the ten empanelled
+providers, the national installed total of more than 17,300 processors by mid 2025 and the single
+published offer of 9,216 are carried into `data/macro.json` and rendered on the sector page, tagged
+secondary throughout. What is not carried is a per provider installed figure, because none has been
+published; the exhibit groups providers by what was reported about them and marks the five with no
+public record either way.
 
 ---
 

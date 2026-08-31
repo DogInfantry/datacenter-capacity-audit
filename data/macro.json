@@ -55,6 +55,31 @@
     ]
   },
 
+  "indiaAI": {
+    "_note": "The government scheme that handed ten providers a deadline, which makes it the one place a reader can watch announcement and execution separate at provider level. The brief gives one provider's offer and a national installed total, not a per provider deployment table, so no per provider installed figure is recorded here and none is drawn. Status is what has been publicly reported about each, and five of the ten have nothing reported either way.",
+    "outlayCr": 10371,
+    "gpusInstalled": 17300,
+    "installedQualifier": "more than",
+    "installedAsOf": "mid 2025",
+    "providers": [
+      { "name": "Yotta", "ticker": null, "status": "MOVED", "offeredGpus": 9216, "note": "The largest single offer, of which 8,192 are H100s." },
+      { "name": "NxtGen", "ticker": null, "status": "MOVED", "offeredGpus": null, "note": "Reported as deploying ahead of the empanelled field." },
+      { "name": "E2E Networks", "ticker": "E2E", "status": "MOVED", "offeredGpus": null, "note": "Lowest bidder on the mission tender, and covered in the universe on this site." },
+      { "name": "Jio Platforms", "ticker": null, "status": "LAGGED", "offeredGpus": null, "note": "Reported as behind on deployment despite being among the largest empanelled names." },
+      { "name": "CtrlS", "ticker": null, "status": "LAGGED", "offeredGpus": null, "note": "Reported as behind on deployment. Also the highest returning operator in the peer table above." },
+      { "name": "Tata Communications", "ticker": "TATACOMM", "status": "NOT_STATED", "offeredGpus": null, "note": "Empanelled. No deployment progress reported either way." },
+      { "name": "CMS", "ticker": null, "status": "NOT_STATED", "offeredGpus": null, "note": "Empanelled. No deployment progress reported either way." },
+      { "name": "Locuz", "ticker": null, "status": "NOT_STATED", "offeredGpus": null, "note": "Empanelled. No deployment progress reported either way." },
+      { "name": "Orient", "ticker": null, "status": "NOT_STATED", "offeredGpus": null, "note": "Empanelled. No deployment progress reported either way." },
+      { "name": "Vensysco", "ticker": null, "status": "NOT_STATED", "offeredGpus": null, "note": "Empanelled. No deployment progress reported either way." }
+    ],
+    "source": {
+      "label": "Blueprint research note, BharatAI Infra Scope, compiled from IndiaAI Mission announcements and press reporting. The outlay, the empanelled list, the national installed total and the single offer figure are carried from that note and have not been traced to the mission's own publications.",
+      "asOf": "2026-08",
+      "verification": "SECONDARY"
+    }
+  },
+
   "operatorReturns": {
     "_note": "The only primary figures on this page. Eight data centre operators, five Indian and three global, with return on capital and depreciation rate for three fiscal years, printed as a single table inside the prospectus industry report. NA in the source is carried as null and drawn as an absence, never as a zero.",
     "fiscalYears": ["FY2023", "FY2024", "FY2025"],

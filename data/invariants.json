@@ -242,6 +242,20 @@
       "fragment": "published_elsewhere requires naming where it was published"
     },
     {
+      "id": "offer-inside-national-total",
+      "schema": "Macro",
+      "category": "POSSIBLE",
+      "protects": "A single provider's published offer of processors must sit inside the number the scheme has installed nationally. The exhibit says one offer is more than half that national total, and past a hundred per cent the sentence stops being a comparison and starts being a sign that two different quantities have been put in the same ratio.",
+      "fragment": "offered more processors than the scheme has installed nationally"
+    },
+    {
+      "id": "ledger-has-both-sides",
+      "schema": "Macro",
+      "category": "FINDING",
+      "protects": "The government scheme's deployment ledger needs at least one provider reported ahead and at least one behind. That separation between announcement and delivery is the only reason the ledger is on the site, and without both sides the exhibit shows a list of names rather than a finding.",
+      "fragment": "the deployment ledger needs a provider on each side"
+    },
+    {
       "id": "peer-returns-cover-every-year",
       "schema": "Macro",
       "category": "LIKE_FOR_LIKE",
