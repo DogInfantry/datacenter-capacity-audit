@@ -1360,6 +1360,52 @@ export const Macro = z
         .min(5),
       source: Source,
     }),
+    hyperscalers: z.object({
+      cumulative: z.object({
+        bnUsd: z.number().positive(),
+        fromYear: z.number().int().positive(),
+        toLabel: z.string().min(1),
+        note: z.string().min(1),
+        source: Source,
+      }),
+      pledges: z
+        .array(
+          z.object({
+            firm: z.string().min(1),
+            bnUsd: z.number().positive(),
+            horizon: z.string().min(1),
+            /** Set only where the announcement named a capacity. Two of the
+             *  three did not, and a null is the fact rather than a gap. */
+            announcedSiteMW: z.number().positive().nullable(),
+            note: z.string().min(1),
+          }),
+        )
+        .min(3),
+      source: Source,
+    }),
+    power: z.object({
+      currentGw: z.number().positive(),
+      currentNote: z.string().min(1),
+      targetGw: z.number().positive(),
+      /** The fiscal label as the estimator published it, for display. */
+      targetLabel: z.string().min(1),
+      /** The same horizon as an integer, because a fiscal label cannot be
+       *  subtracted from a calendar year. */
+      targetYear: z.number().int().positive(),
+      estimator: z.string().min(1),
+      source: Source,
+    }),
+    unitEconomics: z.object({
+      capexCrPerMW: z.object({ low: z.number().positive(), high: z.number().positive() }),
+      capexSourceLabel: z.string().min(1),
+      ebitdaMarginPct: z.object({
+        low: z.number().positive(),
+        high: z.number().positive(),
+        stabilising: z.number().positive(),
+      }),
+      powerShareOfOpexPct: z.number().positive().max(100),
+      source: Source,
+    }),
     operatorReturns: z.object({
       fiscalYears: z.array(z.string().min(1)).min(2),
       claim: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
@@ -1481,6 +1527,93 @@ export const Macro = z
         code: z.ZodIssueCode.custom,
         path: ["capacity", "forecasts"],
         message: "the lowest and highest forecasts come from one publisher, so there is no disagreement to draw",
+      });
+    }
+
+    const h = d.hyperscalers;
+    const pledged = h.pledges.reduce((t, p) => t + p.bnUsd, 0);
+    // The exhibit's headline is that three firms have pledged a multiple of the
+    // annual size of the market they are pledging into. Below that line it is
+    // an ordinary capital cycle and the exhibit has nothing to say.
+    if (pledged <= d.market.currentBnUsd) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["hyperscalers", "pledges"],
+        message: `three firms pledging ${pledged} no longer exceed the annual market they are pledged into`,
+      });
+    }
+    // Three firms cannot have pledged more than every investor has committed.
+    // Past that point the two figures are counting different things and the
+    // exhibit is drawing one inside the other for no reason.
+    if (pledged > h.cumulative.bnUsd) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["hyperscalers"],
+        message: `three firms have pledged more than the sector's whole recorded commitment`,
+      });
+    }
+    // A pledge is an announcement. This is the same rule the forecasts carry,
+    // and it exists because a widely quoted figure is still not a filed one.
+    if (h.source.verification === "PRIMARY" || h.cumulative.source.verification === "PRIMARY") {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["hyperscalers"],
+        message: `a pledge is an announcement and cannot claim PRIMARY`,
+      });
+    }
+    // The sentence the capacity half of the exhibit exists to carry: one
+    // announced site is most of what the entire country currently operates.
+    const namedSite = Math.max(0, ...h.pledges.map((p) => p.announcedSiteMW ?? 0));
+    if (namedSite <= d.capacity.current.mw / 2) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["hyperscalers", "pledges"],
+        message: `the largest single announced site is under half of national live capacity`,
+      });
+    }
+
+    // A demand curve needs somewhere to go. If the estimate stops sitting above
+    // what data centres already draw, the grid is not the constraint this page
+    // says it is.
+    const pw = d.power;
+    if (pw.targetGw <= pw.currentGw) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["power"],
+        message: `the power demand estimate does not rise above what data centres draw today`,
+      });
+    }
+
+    const ue = d.unitEconomics;
+    // The capital requirement is drawn as a band from the low cost to the high
+    // cost. Inverted, it draws backwards and reads as a saving.
+    if (ue.capexCrPerMW.high <= ue.capexCrPerMW.low) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["unitEconomics", "capexCrPerMW"],
+        message: `the capex per megawatt band inverts`,
+      });
+    }
+    // A stabilising figure quoted outside its own published range means two
+    // different measurements have been carried in as one.
+    if (
+      ue.ebitdaMarginPct.stabilising < ue.ebitdaMarginPct.low ||
+      ue.ebitdaMarginPct.stabilising > ue.ebitdaMarginPct.high
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["unitEconomics", "ebitdaMarginPct"],
+        message: `the stabilising margin sits outside the published margin range`,
+      });
+    }
+    // The page argues the grid is the binding constraint partly because power
+    // is the largest thing an operator buys. Under half it is one cost among
+    // several and the argument is weaker than the page states it.
+    if (ue.powerShareOfOpexPct <= 50) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["unitEconomics"],
+        message: `power is no longer the majority of operating cost`,
       });
     }
   });

@@ -1,5 +1,5 @@
 {
-  "_note": "The sector layer. Only what the first exhibit and its stat tiles actually render is authored here: current capacity, the 2030 forecasts, the build rate and the market size. The hyperscaler pledges and the IndiaAI outlay are in the brief and are deliberately not carried yet, because they have no exhibit, and this repository has already learned once what happens to a data file that renders on no page. Every figure is a research house projection or an industry estimate, so every source is SECONDARY and none may claim otherwise.",
+  "_note": "The sector layer. Nothing is authored here that no exhibit renders, because this repository has already learned once what happens to a data file that renders on no page. Every figure is a research house projection, an industry estimate or a government estimate and is tagged SECONDARY, with one exception: the peer benchmarking table is read out of a filing and carries its printed page. No currency is converted anywhere in this file. Dollar figures stay dollars and rupee figures stay rupees, the same way the company files keep one filer in rupees beside another in dollars, and the only unit both halves of this page share is the megawatt.",
   "asOf": "2026-08-30",
 
   "capacity": {
@@ -76,6 +76,77 @@
     "source": {
       "label": "Blueprint research note, BharatAI Infra Scope, compiled from IndiaAI Mission announcements and press reporting. The outlay, the empanelled list, the national installed total and the single offer figure are carried from that note and have not been traced to the mission's own publications.",
       "asOf": "2026-08",
+      "verification": "SECONDARY"
+    }
+  },
+
+  "hyperscalers": {
+    "_note": "Three foreign firms, three announcements, one country. Each pledge is stated in dollars over a horizon of four to five years, and the estate they are pledged into is measured in megawatts, so nothing here is set against anything it cannot honestly be compared with. The money is compared with money: the annual size of the market being pledged into, and the commitment the whole sector has already recorded. The capacity is compared with capacity: the single announcement that named one, against what the country operates. Two of the three named no capacity at all, and that is carried as null rather than guessed.",
+    "cumulative": {
+      "bnUsd": 94,
+      "fromYear": 2019,
+      "toLabel": "the third quarter of 2025",
+      "note": "Cumulative investment commitments into Indian data centres from every investor, not only the three firms below, and commitments rather than capital deployed.",
+      "source": {
+        "label": "CBRE, cumulative India data centre investment commitments, as carried in the project brief",
+        "asOf": "2025-12",
+        "verification": "SECONDARY"
+      }
+    },
+    "pledges": [
+      {
+        "firm": "Microsoft",
+        "bnUsd": 17.5,
+        "horizon": "over four years, announced December 2025",
+        "announcedSiteMW": null,
+        "note": "Described on announcement as the company's largest single investment anywhere in Asia. No capacity figure was attached to it."
+      },
+      {
+        "firm": "Google",
+        "bnUsd": 15,
+        "horizon": "over five years",
+        "announcedSiteMW": 1000,
+        "note": "For an artificial intelligence hub at Visakhapatnam whose first phase is stated at 1 GW. The only one of the three that named a capacity."
+      },
+      {
+        "firm": "AWS",
+        "bnUsd": 12.7,
+        "horizon": "by 2030",
+        "announcedSiteMW": null,
+        "note": "Of which 8.3 billion dollars is earmarked for Maharashtra. No capacity figure was attached to it."
+      }
+    ],
+    "source": {
+      "label": "Blueprint research note, BharatAI Infra Scope, compiled from company announcements and press reporting. None of the three has been traced to the announcing company's own release.",
+      "asOf": "2026-08",
+      "verification": "SECONDARY"
+    }
+  },
+
+  "power": {
+    "_note": "Electricity demand, which is not the quantity the capacity forecasts above are stated in. Those are IT load, the power the servers themselves draw. This is grid demand, which includes everything the building spends to keep those servers running and cool. The two are never converted into one another on this page, because the conversion is a facility level efficiency figure and nothing in this repository has read one.",
+    "currentGw": 1,
+    "currentNote": "Data centre electricity demand today, approximately, across the whole national estate.",
+    "targetGw": 13.56,
+    "targetLabel": "2031-32",
+    "targetYear": 2032,
+    "estimator": "Ministry of Power",
+    "source": {
+      "label": "Ministry of Power estimate of data centre electricity demand, as carried in the project brief. Unlike the transmission delay dataset this project pulled from the ministry directly, this figure has not been traced to the ministry's own publication.",
+      "asOf": "2025-12",
+      "verification": "SECONDARY"
+    }
+  },
+
+  "unitEconomics": {
+    "_note": "What a megawatt costs to build and what it costs to run. Industry ranges rather than any one operator's figures, which is why they sit in the sector file and not in a company file. The capital cost per megawatt is what turns a capacity forecast into a capital requirement, and it is the only figure here that anything derives from.",
+    "capexCrPerMW": { "low": 60, "high": 70 },
+    "capexSourceLabel": "CareEdge",
+    "ebitdaMarginPct": { "low": 40, "high": 50, "stabilising": 43 },
+    "powerShareOfOpexPct": 65,
+    "source": {
+      "label": "Colocation unit economics. Capital cost per megawatt from CareEdge, the margin range and the cost split from industry commentary, both as carried in the project brief.",
+      "asOf": "2025-12",
       "verification": "SECONDARY"
     }
   },

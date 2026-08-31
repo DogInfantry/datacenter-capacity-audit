@@ -212,6 +212,20 @@ appear, and the pages say so.
   1,263 MW at April 2025.
 - **Build rate.** 387 MW added in 2025 against 191 MW in 2024, per Rubix.
 - **Market size.** About 10 bn USD in 2025 to 22 bn by 2030, per Vestian, carried in IBEF summaries.
+- **Hyperscaler pledges.** Microsoft 17.5 bn USD over four years announced December 2025, Google 15
+  bn over five years for a Visakhapatnam hub whose first phase is stated at 1 GW, AWS 12.7 bn by
+  2030 of which 8.3 bn is earmarked for Maharashtra. Company announcements and press reporting, none
+  traced to the announcing company's own release. Only the Google figure names a capacity, and the
+  sector page draws only that one against the national estate.
+- **Cumulative sector commitment.** Nearly 94 bn USD committed to Indian data centres between 2019
+  and the third quarter of 2025, per CBRE. Commitments, not capital deployed.
+- **The power demand curve.** Data centre electricity demand of about 1 GW today against 13.56 GW by
+  2031-32, a Ministry of Power estimate. Not traced to the ministry's own publication, unlike the
+  transmission delay dataset in section 4, which was pulled from the ministry directly.
+- **Unit economics.** Capital cost of 60 to 70 crore rupees per megawatt per CareEdge, colocation
+  EBITDA margins of 40 to 50 per cent stabilising near 43, and power at about 65 per cent of
+  operating cost. The capital cost is the only one of these anything derives from: it is what turns
+  each capacity forecast into a capital requirement on the sector page.
 - **The coverage universe.** Eight operators and a six name watchlist in `data/universe.json`, from
   company announcements, brokerage notes and press reporting. One row of the eight claims primary,
   and only because it is the Sify prospectus.
@@ -225,9 +239,9 @@ appear, and the pages say so.
 ### In the brief, deliberately not yet carried
 
 Because nothing renders them, and a data file with no page is how this project previously lost a
-finding: the hyperscaler pledges (Microsoft 17.5bn USD, AWS 12.7bn, Google 15bn), state incentive
-policies, the Ministry of Power demand curve, and the Equinix and Digital Realty valuation
-multiples.
+finding: state incentive policies, of which Maharashtra's electricity duty exemption is the most
+generous, and the Equinix and Digital Realty valuation multiples that would anchor a valuation panel
+this project has not built.
 
 **The IndiaAI Mission is no longer on that list.** The outlay of Rs 10,371 crore, the ten empanelled
 providers, the national installed total of more than 17,300 processors by mid 2025 and the single
@@ -235,6 +249,16 @@ published offer of 9,216 are carried into `data/macro.json` and rendered on the 
 secondary throughout. What is not carried is a per provider installed figure, because none has been
 published; the exhibit groups providers by what was reported about them and marks the five with no
 public record either way.
+
+**The hyperscaler pledges, the demand curve and the unit economics are no longer on it either.** All
+three are in `data/macro.json` and all three are rendered, tagged secondary, and listed above. Three
+things about them are worth stating rather than leaving implicit. Two of the three pledges name no
+capacity, so only the one that does is set against national live capacity and the other two appear
+nowhere in that comparison. Grid demand and built IT load capacity are different measurements, and
+the factor between them is a facility efficiency figure this project has not read, so the two are
+drawn on one axis for magnitude and never converted. And no exchange rate appears anywhere: the
+pledges stay in dollars, the capital requirement stays in rupees, and the government scheme's own
+outlay is what the rupee figures are benchmarked against.
 
 ---
 

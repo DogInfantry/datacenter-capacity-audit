@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { macro, sisl } from "@/lib/data";
-import { forecastSpread, requiredRunRate, peerReturns, claimFailures } from "@/lib/diagnostics/macro";
+import {
+  forecastSpread,
+  requiredRunRate,
+  peerReturns,
+  claimFailures,
+  pledgeScale,
+  capitalRequirement,
+} from "@/lib/diagnostics/macro";
 import { Exhibit } from "@/components/Exhibits";
 import { ForecastSpread } from "@/components/ForecastSpread";
 import { BuildRate } from "@/components/BuildRate";
 import { PeerReturns } from "@/components/PeerReturns";
 import { DeploymentLedger } from "@/components/DeploymentLedger";
+import { HyperscalerPledges } from "@/components/HyperscalerPledges";
+import { PowerAndCapital } from "@/components/PowerAndCapital";
 import { StatTile, type IconName } from "@/components/Visual";
 
 export const metadata: Metadata = {
@@ -42,6 +51,28 @@ export default function MacroPage() {
     newest.addedMW,
   );
 
+  // Three announcements, one country. The pledges are compared with money and
+  // the one announcement that named a capacity is compared with capacity.
+  const hs = macro.hyperscalers;
+  const pledges = pledgeScale(
+    hs.pledges,
+    hs.cumulative.bnUsd,
+    macro.market.currentBnUsd,
+    macro.capacity.current.mw,
+  );
+
+  // The same forecasts as the first exhibit, priced at the published build cost
+  // and set against the outlay of the government scheme in exhibit four.
+  const pw = macro.power;
+  const ue = macro.unitEconomics;
+  const capital = capitalRequirement(
+    macro.capacity.forecasts,
+    macro.capacity.current.mw,
+    ue.capexCrPerMW.low,
+    ue.capexCrPerMW.high,
+    ai.outlayCr,
+  );
+
   const gw = (mw: number) => (mw / 1000).toFixed(1);
 
   const tiles: { icon: IconName; k: string; v: string; u: string; n: string; tone?: "signal" }[] = [
@@ -74,6 +105,21 @@ export default function MacroPage() {
       u: "bn USD",
       n: `${macro.market.currentYear} to ${macro.market.forecastYear}. ${macro.market.note}`,
     },
+    {
+      icon: "contract",
+      k: "Pledged by three firms",
+      v: `${pledges.total.toFixed(1)}`,
+      u: "bn USD",
+      n: `${pledges.rows.map((p) => p.firm).join(", ")}, on horizons of four to five years, against a market that turned over ${macro.market.currentBnUsd} bn USD in ${macro.market.currentYear}.`,
+    },
+    {
+      icon: "grid",
+      k: `Grid demand by ${pw.targetLabel}`,
+      v: `${pw.targetGw}`,
+      u: "GW",
+      n: `Against about ${pw.currentGw} GW drawn today, on the ${pw.estimator} estimate. Electricity is what has to arrive before a megawatt earns.`,
+      tone: "signal",
+    },
   ];
 
   return (
@@ -93,7 +139,7 @@ export default function MacroPage() {
           not what earns.
         </p>
 
-        <dl className="mt-8 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="mt-8 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {tiles.map((t) => (
             <StatTile
               key={t.k}
@@ -271,6 +317,153 @@ export default function MacroPage() {
             <span className="tnum text-foreground">{ai.providers.length}</span> there is no public
             statement either way, which is a fact about the scheme&apos;s reporting rather than about
             those providers, and it is why this exhibit groups rather than ranks.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={5}
+          title={`Three firms have pledged ${pledges.timesMarket.toFixed(1)} times what the market they are pledging into earns in a year`}
+          units={`Billions of US dollars above, megawatts below. The two panels are separate scales in different units and nothing is drawn across them.`}
+          source={`${hs.source.label} Cumulative commitment from ${hs.cumulative.source.label}. National capacity from ${macro.capacity.current.source.label}.`}
+        >
+          <HyperscalerPledges
+            stacked={pledges.stacked}
+            total={pledges.total}
+            max={pledges.max}
+            cumulativeBnUsd={hs.cumulative.bnUsd}
+            cumulativeFromYear={hs.cumulative.fromYear}
+            cumulativeToLabel={hs.cumulative.toLabel}
+            marketBnUsd={macro.market.currentBnUsd}
+            marketYear={macro.market.currentYear}
+            currentMW={macro.capacity.current.mw}
+            currentYear={macro.capacity.current.year}
+            siteFirm={pledges.largest ? pledges.largest.firm : null}
+            siteMW={pledges.largestSiteMW}
+            unnamedCount={pledges.unnamedCount}
+          />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            Microsoft, Google and AWS have between them pledged{" "}
+            <span className="tnum text-foreground">{pledges.total.toFixed(1)}</span> billion dollars
+            to Indian data centres. The market they are pledging into turned over{" "}
+            <span className="tnum text-foreground">{macro.market.currentBnUsd}</span> billion in{" "}
+            {macro.market.currentYear}. Those pledges sit inside{" "}
+            <span className="tnum text-foreground">{hs.cumulative.bnUsd}</span> billion committed by
+            every investor since {hs.cumulative.fromYear}, so three foreign firms account for{" "}
+            <span className="tnum text-foreground">
+              {(pledges.shareOfCumulative * 100).toFixed(0)}
+            </span>{" "}
+            per cent of everything the sector has been promised in six years.
+          </p>
+          {pledges.largest && pledges.largestSiteShare !== null && (
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              Only one of the three attached a capacity to the money. {pledges.largest.firm} put{" "}
+              <span className="tnum text-foreground">
+                {(pledges.largestSiteMW as number).toLocaleString("en-IN")}
+              </span>{" "}
+              MW on the first phase of a single site at Visakhapatnam. India operates{" "}
+              <span className="tnum text-foreground">
+                {macro.capacity.current.mw.toLocaleString("en-IN")}
+              </span>{" "}
+              MW in total. One announced phase of one campus is{" "}
+              <span className="tnum text-foreground">
+                {(pledges.largestSiteShare * 100).toFixed(0)}
+              </span>{" "}
+              per cent of a national estate that took two decades to build, and it is announced
+              rather than built. The other {pledges.unnamedCount} pledges name no capacity at all,
+              which means the largest numbers in this sector are denominated in a unit that cannot
+              be checked against anything that exists.
+            </p>
+          )}
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Per gigawatt actually running, the pledges come to{" "}
+            <span className="tnum text-foreground">{pledges.perGwLive.toFixed(0)}</span> billion
+            dollars, and the whole sector commitment to{" "}
+            <span className="tnum text-foreground">
+              {pledges.cumulativePerGwLive.toFixed(0)}
+            </span>
+            . Capital is not what the sector is short of.{" "}
+            <Link
+              href="/universe"
+              className="underline decoration-line underline-offset-4 hover:text-accent"
+            >
+              The listed names sit here
+            </Link>
+            , and none of them is the counterparty to any of these three announcements.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={6}
+          title={`The grid is asked to carry ${(pw.targetGw / pw.currentGw).toFixed(1)} times today's data centre demand by ${pw.targetLabel}`}
+          units={`Gigawatts above, lakh crore rupees below. Grid demand and built IT load capacity are different quantities and are not converted into one another.`}
+          source={`Demand from ${pw.source.label} Build cost and cost split from ${ue.source.label} Scheme outlay from ${ai.source.label}`}
+        >
+          <PowerAndCapital
+            currentGw={pw.currentGw}
+            targetGw={pw.targetGw}
+            targetLabel={pw.targetLabel}
+            estimator={pw.estimator}
+            builtCurrentGw={macro.capacity.current.mw / 1000}
+            builtCurrentYear={macro.capacity.current.year}
+            forecastLowGw={spread.low.mw / 1000}
+            forecastHighGw={spread.high.mwTop / 1000}
+            capital={capital}
+            capexLow={ue.capexCrPerMW.low}
+            capexHigh={ue.capexCrPerMW.high}
+            capexSourceLabel={ue.capexSourceLabel}
+            benchmarkLabel={`IndiaAI Mission, whole outlay`}
+            marginLow={ue.ebitdaMarginPct.low}
+            marginHigh={ue.ebitdaMarginPct.high}
+            marginStable={ue.ebitdaMarginPct.stabilising}
+            powerShare={ue.powerShareOfOpexPct}
+          />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            The {pw.estimator} puts data centre electricity demand at{" "}
+            <span className="tnum text-foreground">{pw.targetGw}</span> GW by {pw.targetLabel},
+            against about <span className="tnum text-foreground">{pw.currentGw}</span> GW today. That
+            is <span className="tnum text-foreground">{(pw.targetGw / pw.currentGw).toFixed(1)}</span>{" "}
+            times in six years, and it is a different measurement from the capacity forecasts in the
+            first exhibit: this is what the buildings draw from the grid, those are what the servers
+            inside them are rated for. Both are rising by an order of magnitude and neither is
+            delivered by an announcement.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Priced at the published build cost of{" "}
+            <span className="tnum text-foreground">{ue.capexCrPerMW.low}</span> to{" "}
+            <span className="tnum text-foreground">{ue.capexCrPerMW.high}</span> crore rupees a
+            megawatt, the most conservative forecast on this page needs{" "}
+            <span className="tnum text-foreground">
+              {capital.cheapest.addMW.toLocaleString("en-IN")}
+            </span>{" "}
+            MW of new capacity costing{" "}
+            <span className="tnum text-foreground">{capital.cheapest.lakhCrLow.toFixed(1)}</span> to{" "}
+            <span className="tnum text-foreground">{capital.cheapest.lakhCrHigh.toFixed(1)}</span>{" "}
+            lakh crore. The IndiaAI Mission, the country&apos;s flagship programme for this
+            technology and the scheme in the exhibit above, has a total outlay of{" "}
+            <span className="tnum text-foreground">{ai.outlayCr.toLocaleString("en-IN")}</span>{" "}
+            crore. The base case alone costs{" "}
+            <span className="tnum text-foreground">
+              {capital.cheapest.timesBenchmark.toFixed(0)}
+            </span>{" "}
+            times the whole mission, and it is the red rule at the foot of the chart.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Electricity is{" "}
+            <span className="tnum text-foreground">{ue.powerShareOfOpexPct}</span> per cent of what
+            these operators spend to run, on a stabilised margin near{" "}
+            <span className="tnum text-foreground">{ue.ebitdaMarginPct.stabilising}</span> per cent.
+            The single largest recurring cost is the one input that cannot be commissioned by
+            writing a cheque, and the transmission that carries it has a measured delay record of
+            its own,{" "}
+            <Link
+              href="/offer"
+              className="underline decoration-line underline-offset-4 hover:text-accent"
+            >
+              drawn against one company&apos;s deployment schedule here
+            </Link>
+            .
           </p>
         </Exhibit>
       </section>

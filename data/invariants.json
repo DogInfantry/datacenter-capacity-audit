@@ -298,6 +298,62 @@
       "fragment": "the lowest and highest forecasts come from one publisher"
     },
     {
+      "id": "pledges-exceed-market",
+      "schema": "Macro",
+      "category": "FINDING",
+      "protects": "Three foreign firms have pledged more than the annual size of the entire Indian data centre market they are pledging into. That mismatch is the exhibit's headline. Below that line the pledges are an ordinary capital cycle and the exhibit has nothing left to say.",
+      "fragment": "no longer exceed the annual market they are pledged into"
+    },
+    {
+      "id": "pledges-inside-sector-commitment",
+      "schema": "Macro",
+      "category": "POSSIBLE",
+      "protects": "Three firms cannot have pledged more than every investor in the sector has committed in total. The exhibit draws the one inside the other, so past that point the two figures are counting different things and the drawing is meaningless rather than merely wrong.",
+      "fragment": "pledged more than the sector's whole recorded commitment"
+    },
+    {
+      "id": "pledge-not-primary",
+      "schema": "Macro",
+      "category": "SOURCING",
+      "protects": "A corporate investment pledge is an announcement, not a figure read out of a filing, and cannot claim the primary tier however widely it is quoted. The same rule the capacity forecasts already carry.",
+      "fragment": "a pledge is an announcement and cannot claim PRIMARY"
+    },
+    {
+      "id": "announced-site-dwarfs-estate",
+      "schema": "Macro",
+      "category": "FINDING",
+      "protects": "The capacity half of the pledge exhibit rests on one sentence: a single announced site is most of what the whole country currently operates. Only one of the three pledges named a capacity at all, so if either that figure or national live capacity moves, the sentence goes with it.",
+      "fragment": "the largest single announced site is under half of national live capacity"
+    },
+    {
+      "id": "demand-estimate-rises",
+      "schema": "Macro",
+      "category": "POSSIBLE",
+      "protects": "The government's estimate of data centre electricity demand must sit above what data centres already draw. A demand curve that does not rise has nowhere to go, and the page's claim that the grid rather than land or capital is the binding constraint rests on it rising steeply.",
+      "fragment": "does not rise above what data centres draw today"
+    },
+    {
+      "id": "capex-band-widens",
+      "schema": "Macro",
+      "category": "POSSIBLE",
+      "protects": "The capital requirement is drawn as a band from the low build cost to the high one. Inverted, it draws backwards and a reader sees a saving where the data says a range.",
+      "fragment": "the capex per megawatt band inverts"
+    },
+    {
+      "id": "stabilising-margin-inside-range",
+      "schema": "Macro",
+      "category": "POSSIBLE",
+      "protects": "The stabilised colocation margin is quoted inside a published range for the same measure. A stabilising figure sitting outside its own range means two different measurements have been carried in as one, which is exactly the failure this project found in a capacity definition.",
+      "fragment": "the stabilising margin sits outside the published margin range"
+    },
+    {
+      "id": "power-is-majority-of-opex",
+      "schema": "Macro",
+      "category": "FINDING",
+      "protects": "The page argues the grid is the binding constraint partly because electricity is the largest single thing a colocation operator buys. Under half of operating cost it is one line among several and the argument is weaker than the page states it.",
+      "fragment": "power is no longer the majority of operating cost"
+    },
+    {
       "id": "closed-limit-names-evidence",
       "schema": "Method",
       "category": "EVIDENCE",
