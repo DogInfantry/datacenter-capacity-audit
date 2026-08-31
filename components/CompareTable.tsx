@@ -76,7 +76,7 @@ export function CompareTable({
                             <Icon name="warning" size={13} />
                           </span>
                           <span>
-                            <span className="block text-foreground">Not read</span>
+                            <span className="block text-foreground">No figure cited</span>
                             {c?.missing}
                           </span>
                         </span>
