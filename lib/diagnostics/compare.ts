@@ -72,12 +72,27 @@ const cell = (value: number | null, unit: string, missing?: string): Cell => ({
  * question of both, even though the two companies use entirely different words
  * for the rungs, which is exactly why the ratio travels and the levels do not.
  */
+/**
+ * Lakhs to millions.
+ *
+ * A change of scale inside one currency, the same move as megawatts to
+ * gigawatts, and not a currency conversion. Ten lakh is one million by
+ * definition, so nothing below rests on a rate that would have to be sourced
+ * and could not be. The two filings print different scales; the table prints
+ * one, and says which in every unit label.
+ */
+const lakhToMillion = (lakh: number) => lakh / 10;
+
 export function compareRows(sisl: Sisl, ar: AnantRaj): CompareRow[] {
   const full = sisl.periods.filter((p) => !p.stub);
   const fy = full[full.length - 1];
   const claimed = ar.annualReport.rungs.find((r) => r.kind === "CLAIMED")!;
   const live = ar.annualReport.rungs.find((r) => r.rung === "Operationalised")!;
-  const priorCfo = sisl.cashFlow[sisl.cashFlow.length - 2];
+  // The last full year, which ends on the same date as the other company's, so
+  // the rows below are the same twelve months on both sides.
+  const cfoLatest = sisl.cashFlow[sisl.cashFlow.length - 2];
+  const fin = ar.financials;
+  const arm = fin.dataCentreArm;
 
   return [
     {
@@ -114,40 +129,47 @@ export function compareRows(sisl: Sisl, ar: AnantRaj): CompareRow[] {
       },
     },
     {
-      metric: "Revenue",
+      metric: "Revenue from data centres",
       basis:
-        "One operator files a restated income statement inside its offer document. The other's sits in a set of audited accounts, and the figure below names where.",
+        "The second row that is like for like. One of these companies is a data centre operator entire, so its revenue is the answer. The other prints its data centre arm as one column in a statement of subsidiaries, and that column is the answer. Same measure, same period end, both filed.",
+      comparable: true,
+      kind: "FINANCIAL",
+      cells: {
+        SIFY: cell(fy.revenue, "Rs mn"),
+        ANANTRAJ: cell(lakhToMillion(arm.turnover), "Rs mn"),
+      },
+    },
+    {
+      metric: "Revenue, whole group",
+      basis:
+        "Not a comparison, and it is here to stop the row above being read as one. For one company the group is the data centre. For the other the group is a property developer, and the data centre is about one per cent of it.",
       comparable: false,
       kind: "FINANCIAL",
       cells: {
         SIFY: cell(fy.revenue, "Rs mn"),
-        ANANTRAJ: cell(
-          null,
-          "Rs mn",
-          "The audited financial statements, inside the same annual report the capacity figures come from.",
-        ),
+        ANANTRAJ: cell(lakhToMillion(fin.profitAndLoss.revenue), "Rs mn"),
       },
     },
     {
-      metric: "Operating cash flow",
+      metric: "Operating cash flow, whole group",
       basis:
-        "The number that says whether the estate above pays for itself. It exists for both companies and is cited for one.",
+        "Filed by both, at group level by both. For one that is cash from selling megawatts. For the other it is mostly cash from selling homes, so the levels sit side by side without asking the same question.",
       comparable: false,
       kind: "FINANCIAL",
       cells: {
-        SIFY: cell(priorCfo.cfo, "Rs mn"),
-        ANANTRAJ: cell(null, "Rs mn", "The statement of cash flow in the same annual report."),
+        SIFY: cell(cfoLatest.cfo, "Rs mn"),
+        ANANTRAJ: cell(lakhToMillion(fin.cashFlow.netCashFromOperations), "Rs mn"),
       },
     },
     {
-      metric: "Return on capital",
+      metric: "Return on capital, as each publishes it",
       basis:
-        "Published by one operator and rebuilt from its own balance sheet to check it. The other does not print the ratio, and the inputs to it sit in the accounts.",
+        "Both print the ratio and neither prints the same one. One divides by average capital employed, the other by capital employed at the close. A closing denominator in a year of rising equity flatters the result, so these two numbers are not a ranking however alike they look.",
       comparable: false,
       kind: "FINANCIAL",
       cells: {
-        SIFY: cell(fy.roce, "per cent"),
-        ANANTRAJ: cell(null, "per cent", "The financial statements, and a capital employed figure."),
+        SIFY: cell(fy.roce, "per cent, average capital"),
+        ANANTRAJ: cell(fin.ratios.returnOnCapitalEmployed * 100, "per cent, closing capital"),
       },
     },
   ];

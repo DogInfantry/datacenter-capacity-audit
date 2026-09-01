@@ -20,10 +20,11 @@ export const metadata: Metadata = {
 /**
  * Two operators, the same question, very different answers.
  *
- * The page leads on the one ratio that survives two vocabularies, because that
- * count is the most honest thing it knows about itself. Everything below the
- * ladders is a level or a one sided figure, and each absence names the document
- * the number lives in rather than showing a blank a reader can mistake for zero.
+ * The page leads on how few measures survive two vocabularies, because that
+ * count is the most honest thing it knows about itself. Two do: earning share
+ * of the headline, and what each company's data centres actually earned. The
+ * rest are levels, including the one place both companies print the same words
+ * for return on capital and divide by different denominators.
  */
 export default function ComparePage() {
   const subjects = compareSubjects(sisl, anantRaj, netweb);
@@ -31,6 +32,10 @@ export default function ComparePage() {
   const { comparable, total } = comparableCount(rows);
   const ladders = compareLadders(sisl, anantRaj);
   const [big, small] = [...ladders.companies].sort((a, b) => b.headlineMW - a.headlineMW);
+  // The second like for like row, and the multiple it produces. Derived from
+  // the row rather than restated, so the title cannot drift from the table.
+  const dcRow = rows.find((r) => r.metric === "Revenue from data centres")!;
+  const dcMultiple = dcRow.cells.SIFY.value! / dcRow.cells.ANANTRAJ.value!;
 
   return (
     <div className="mx-auto w-full min-w-0 max-w-5xl px-5">
@@ -49,8 +54,9 @@ export default function ComparePage() {
           those levels side by side produces a table that looks like a comparison and is not one.
         </p>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
-          One ratio survives. What earns, divided by what the company headlines, asks the same
-          question of both, and both publish both numbers in a filed document. On that measure{" "}
+          Two measures survive. What earns divided by what the company headlines, and what each
+          company&apos;s data centres actually earned. Both ask the same question of both, and
+          every figure in them is printed in a filed document. On the first,{" "}
           <Link
             href="/company/SIFY"
             className="underline decoration-line underline-offset-4 hover:text-accent"
@@ -66,8 +72,8 @@ export default function ComparePage() {
             {small.name}
           </Link>{" "}
           on <span className="tnum text-foreground">{small.earningShare.toFixed(1)}</span>. Of{" "}
-          <span className="tnum text-foreground">{total}</span> measures below, that is the{" "}
-          <span className="tnum text-foreground">{comparable}</span> which travels between them.
+          <span className="tnum text-foreground">{total}</span> measures below,{" "}
+          <span className="tnum text-foreground">{comparable}</span> travel between them.
         </p>
       </section>
 
@@ -105,17 +111,26 @@ export default function ComparePage() {
 
         <Exhibit
           n={2}
-          title="Below the capacity, one operator files the numbers into an offer document and the other into its accounts"
-          units="Revenue, cash generation and return on capital. A cell without a figure names the document that carries it, because a blank in a comparison table reads as a zero."
+          title={`${big.name} earns ${dcMultiple.toFixed(0)} times what ${small.name}'s data centre arm earns`}
+          units="Millions of rupees on both sides, and the same twelve months to 31 March 2025. Lakhs are restated as millions, which is a change of scale inside one currency rather than a conversion between two."
           source="Sify Infinit Spaces from its draft red herring prospectus. Anant Raj from its annual report for FY2024-25, filed with the exchange. Both pinned by checksum and cited by printed page in the sources document."
         >
           <CompareTable subjects={subjects} rows={rows.filter((r) => r.kind === "FINANCIAL")} />
 
           <p className="mt-5 border-t border-line pt-4 text-sm leading-relaxed text-muted">
-            Every figure absent on the {small.name} side sits in the audited accounts of the same
-            annual report the capacity rungs above come from. The company files them. They are not
-            cited here, and the cell says which document carries each one rather than leaving a
-            blank that reads as a zero.
+            Both sides are filed figures for the same year now. The row that travels is the first
+            one, because it asks each company what its data centres earned:{" "}
+            {big.name} is a data centre operator entire, and {small.name} prints its arm as one
+            column in a statement of subsidiaries. On that measure they are{" "}
+            <span className="tnum text-foreground">{dcMultiple.toFixed(0)}</span> times apart.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The three rows under it are levels rather than comparisons, and the last is the sharpest
+            of them. Both companies print the words return on capital employed, and neither prints
+            the same arithmetic: one divides by average capital employed, the other by capital
+            employed at the close. In a year when equity rose, the closing denominator is the
+            kinder one. The higher number on that row is not the better return, it is the different
+            formula.
           </p>
         </Exhibit>
       </section>

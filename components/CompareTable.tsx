@@ -3,15 +3,18 @@ import { Icon } from "./Visual";
 import { Logo } from "./Logo";
 
 /**
- * Two operators side by side, and the rows where only one of them has a figure.
+ * Two operators side by side, with every row marked for whether it is actually
+ * a comparison.
  *
- * A comparison table's usual failure is that an empty cell reads as a zero. Here
- * an absent figure is drawn as a sentence naming the document that would fill
- * it, so a reader sees a gap in the reading rather than a gap in the company.
+ * A comparison table's usual failure is that an empty cell reads as a zero, so
+ * an absent figure is drawn as a sentence naming the document that carries it.
+ * Both companies' accounts have now been read and no cell in the financial
+ * table is empty, but the branch stays because the next company added will
+ * arrive with holes before it arrives without them.
  *
- * The one row that is genuinely like for like is marked on its face. Everything
- * else is a level rather than a ratio, and levels do not travel between two
- * companies that use different words for the same rung.
+ * The rows that are genuinely like for like are marked on their face.
+ * Everything else is a level, and levels do not travel between two companies
+ * that use different words, or different denominators, for the same thing.
  */
 const fmt = (n: number) => n.toLocaleString("en-IN", { maximumFractionDigits: n < 1000 ? 2 : 0 });
 
@@ -29,8 +32,8 @@ export function CompareTable({
       <div className="overflow-x-auto">
         <table className="w-full min-w-[34rem] border-collapse text-sm">
           <caption className="sr-only">
-            Two data centre operators compared. One row is like for like; the rest are levels, or
-            figures that exist for only one of them.
+            Two data centre operators compared. One row here is like for like; the rest are
+            levels, which sit side by side without asking the same question.
           </caption>
           <thead>
             <tr className="border-b border-line text-left align-bottom">
