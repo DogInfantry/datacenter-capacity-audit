@@ -473,13 +473,108 @@ export type Prospectus = z.infer<typeof Prospectus>;
  * behind the score ships with it, so a reader can disagree with the ranking on
  * its own terms rather than taking it on trust.
  */
+/**
+ * How a document's printed page numbers map onto positions in its PDF.
+ *
+ * Every primary claim here names a printed page, so this mapping is load
+ * bearing for the whole site, and until it was written down as data it was a
+ * sentence in a manifest that nobody could check. Two documents recorded the
+ * same field name with opposite sign conventions: one meant index equals
+ * printed plus four, the other meant printed equals index minus two. Applying
+ * either reading to the other document moves every citation.
+ *
+ * So the mapping is stored as a position rather than an offset. `pdfIndexOfPrintedOne`
+ * names where printed page one sits, and a position cannot be read backwards.
+ * The anchors beside it are folios the document prints on itself, recovered by
+ * `pipeline/find_folios.py`, and the refinement below recomputes each one from
+ * the declared mapping. The claim and the evidence for it therefore travel
+ * together, and editing one without the other fails the build.
+ *
+ * A spread sets two printed pages on one PDF page, so a printed page is half a
+ * PDF page and which half it is has to be recorded. `validFromPdfIndex` marks
+ * where the mapping starts holding, because front matter is often numbered on
+ * its own terms and pretending one rule covers the file is how an offset ends
+ * up quietly wrong at one end of a document.
+ */
+export const Pagination = z
+  .object({
+    kind: z.enum(["SINGLE", "SPREAD"]),
+    printedPagesPerPdfPage: z.union([z.literal(1), z.literal(2)]),
+    pdfIndexOfPrintedOne: z.number().int().nonnegative(),
+    halfOfPrintedOne: z.enum(["LEFT", "RIGHT"]).nullable(),
+    validFromPdfIndex: z.number().int().nonnegative(),
+    /** Folios the document prints on itself. Evidence, not decoration. */
+    anchors: z
+      .array(
+        z.object({
+          pdfIndex: z.number().int().nonnegative(),
+          printedPage: z.number().int().positive(),
+          half: z.enum(["LEFT", "RIGHT"]).nullable(),
+        }),
+      )
+      .min(2),
+    derivedBy: z.string().min(1),
+  })
+  .superRefine((p, ctx) => {
+    const spread = p.printedPagesPerPdfPage === 2;
+    const slot = (pdfIndex: number, half: "LEFT" | "RIGHT" | null) =>
+      spread ? pdfIndex * 2 + (half === "RIGHT" ? 1 : 0) : pdfIndex;
+    const origin = slot(p.pdfIndexOfPrintedOne, p.halfOfPrintedOne);
+
+    // The check the whole block exists for. Each anchor is a page the document
+    // numbered itself; recomputing it from the declared mapping is what turns
+    // the mapping from an assertion into a measurement.
+    for (const a of p.anchors) {
+      const predicted = slot(a.pdfIndex, a.half) - origin + 1;
+      if (predicted !== a.printedPage) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["anchors"],
+          message: `the declared pagination does not reproduce a folio the document prints: index ${a.pdfIndex} would be printed page ${predicted}, and the document prints ${a.printedPage}`,
+        });
+      }
+      if (a.pdfIndex < p.validFromPdfIndex) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["anchors"],
+          message: `an anchor sits before the index the mapping is declared to hold from`,
+        });
+      }
+      if (spread !== (a.half !== null)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["anchors"],
+          message: `an anchor names a half on a single page layout, or omits one on a spread`,
+        });
+      }
+    }
+    // Anchors on one page, or the same page twice, are a coincidence rather
+    // than a check. Two distinct pages are the minimum that can disagree.
+    if (new Set(p.anchors.map((a) => `${a.pdfIndex}:${a.half}`)).size < 2) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["anchors"],
+        message: `a pagination needs at least two distinct anchors to be checkable`,
+      });
+    }
+    if (spread !== (p.halfOfPrintedOne !== null)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["halfOfPrintedOne"],
+        message: `a spread must say which half carries printed page one, and a single page layout must not`,
+      });
+    }
+  });
+
+export type Pagination = z.infer<typeof Pagination>;
+
 export const DrhpTriage = z.object({
   document: z.object({
     title: z.string().min(1),
     documentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     sha256: z.string().regex(/^[0-9a-f]{64}$/),
     pdfPages: z.number().int().positive(),
-    pageOffset: z.number().int(),
+    pagination: Pagination,
     scoredPages: z.number().int().positive(),
   }),
   method: z.object({
@@ -1185,8 +1280,7 @@ export const AnantRaj = z
         sha256: z.string().regex(/^[0-9a-f]{64}$/),
         bytes: z.number().int().positive(),
         pdfPages: z.number().int().positive(),
-        pageOffset: z.number().int(),
-        pageOffsetNote: z.string().min(1),
+        pagination: Pagination,
       }),
       auditOpinion: z.object({
         type: z.enum(["UNMODIFIED", "QUALIFIED", "ADVERSE", "DISCLAIMER"]),
@@ -1914,7 +2008,7 @@ export const TechnoElectric = z
         sha256: z.string().regex(/^[0-9a-f]{64}$/),
         bytes: z.number().int().positive(),
         pdfPages: z.number().int().positive(),
-        pageOffsetNote: z.string().min(1),
+        pagination: Pagination,
       }),
     }),
     campuses: z

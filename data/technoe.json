@@ -14,7 +14,36 @@
       "sha256": "862265cb8f78636d7cc82440409e5629fa32f0e24dd04a2a42173a46e99e3def",
       "bytes": 6626981,
       "pdfPages": 219,
-      "pageOffsetNote": "Laid out as two page spreads. From PDF index 10 onward the left half of index n is printed page 2n minus 4 and the right half is 2n minus 3, checked against the folios printed on indexes 10, 20, 38, 39 and 100. Halves were separated by the horizontal position of each text run rather than by splitting the extracted string."
+"pagination": {
+        "kind": "SPREAD",
+        "printedPagesPerPdfPage": 2,
+        "pdfIndexOfPrintedOne": 2,
+        "halfOfPrintedOne": "RIGHT",
+        "validFromPdfIndex": 7,
+        "anchors": [
+          {
+            "pdfIndex": 7,
+            "printedPage": 11,
+            "half": "RIGHT"
+          },
+          {
+            "pdfIndex": 38,
+            "printedPage": 72,
+            "half": "LEFT"
+          },
+          {
+            "pdfIndex": 100,
+            "printedPage": 196,
+            "half": "LEFT"
+          },
+          {
+            "pdfIndex": 157,
+            "printedPage": 311,
+            "half": "RIGHT"
+          }
+        ],
+        "derivedBy": "Fitted by pipeline/find_folios.py, which reads the folios the document prints on itself, takes the mapping the largest number of them agree on, and lists the ones that disagree. 320 folios agreed."
+      }
     }
   },
 

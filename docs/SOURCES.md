@@ -18,7 +18,7 @@ SHA256 `30f945978b141ffc9b622c547bd32b9abe3d70a9e2e983ab6e474752af44525f`
 
 The binary is deliberately not committed, at 12.5 MB. `data/raw/prospectus/drhp_extracts.json`
 carries the URL, the checksum and the printed to PDF page offset, so any figure can be audited
-against a fresh download. **Printed page plus 4 equals the zero based PDF index.**
+against a fresh download. **Printed page one sits at PDF index 5**, and 556 folios the document prints on itself agree.
 
 Fourteen printed pages are cited across the site. That is 2.5 per cent of the document, and
 `/methodology` publishes the count rather than implying more:
@@ -103,8 +103,8 @@ Wipro figures covers filers registered with the United States Securities and Exc
 Anant Raj files with SEBI and the Indian exchanges. That is a structural gap, not an oversight, and
 it is why every figure on that page was secondary until now.
 
-**The printed page number is the zero based PDF index minus two**, checked against four pages that
-print their own number.
+**Printed page one sits at PDF index 3**, and 267 folios the document prints on itself agree, from
+index 4 through to index 219.
 
 Read in two passes. The first took capacity and the audit opinion. The second took the audited
 consolidated statements and the notes that matter for a data centre:
@@ -169,12 +169,16 @@ Filed with the exchange on 1 September 2026 and opened the day after. It was ope
 `data/universe.json` carried this operator at 36 MW live, from the research note, and nothing had
 tested that figure against the company.
 
-**This report is laid out as two page spreads**, so one PDF page carries two printed pages and the
-offset used on the other two documents does not apply. From PDF index 10 onward the left half of
-index n is printed page 2n minus 4 and the right half is 2n minus 3, checked against the folios
-printed on indexes 10, 20, 38, 39 and 100. Which half a figure sits in was resolved by the horizontal
-position of each text run rather than by splitting the extracted string, because the folio itself
-sits near the gutter and lands on the wrong side of a naive split.
+**This report is laid out as two page spreads**, so one PDF page carries two printed pages and a
+printed page is half a PDF page. **Printed page one is the right half of PDF index 2**, and 320 folios
+agree. Both halves of a spread are consecutive, so printed 72 is the left half of index 38 and
+printed 73 is the right half of the same index.
+
+Which half a figure sits in was resolved by the horizontal position of each text run rather than by
+splitting the extracted string. The folio itself could not be used for that: this document sets both
+numbers of a spread in one run at the left edge, sometimes twice over, so index 100 reads "196 197"
+and index 38 reads "72 7372 73". A rule that took position alone found eight folios out of several
+hundred and every one of them was a stray table number.
 
 | Printed page | Section | What was taken from it |
 |---|---|---|
@@ -197,6 +201,30 @@ sentence are recorded and neither is resolved here.
 
 **Not taken from it:** the financial statements, the order book and the transmission business, which
 is the majority of this company. The megawatts were the question.
+
+---
+
+## 1d. How a printed page becomes a position in the PDF
+
+Every primary claim above names a printed page, so the mapping from that number to a position in the
+file carries the whole citation chain. It used to be a sentence in each manifest, and the sentences
+disagreed with each other: one document recorded the offset as a positive number meaning index equals
+printed plus four, another recorded it as a negative number meaning printed equals index minus two.
+Applying either reading to the other document moves every citation by four pages, and nothing in the
+build would have noticed.
+
+The mapping is now stored as **the position of printed page one** rather than as a signed offset,
+because a position cannot be read backwards. Beside it sit **anchors**: folios the document prints on
+itself, recovered by `pipeline/find_folios.py`, which fits the mapping the largest number of printed
+folios agree on and lists the ones that disagree. A build guard recomputes every anchor from the
+declared mapping, so the claim and its evidence cannot drift apart. Moving any of the three mappings
+by a single page fails the build with a message naming what the document actually prints.
+
+| Document | Layout | Printed page one | Folios agreeing |
+|---|---|---|---|
+| Sify DRHP | One printed page per PDF page | PDF index 5 | 556 |
+| Anant Raj annual report | One printed page per PDF page | PDF index 3 | 267 |
+| Techno Electric annual report | Two page spreads | Right half of PDF index 2 | 320 |
 
 ---
 

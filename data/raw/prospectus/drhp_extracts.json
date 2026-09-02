@@ -11,8 +11,36 @@
     "sha256": "30f945978b141ffc9b622c547bd32b9abe3d70a9e2e983ab6e474752af44525f",
     "bytes": 12536752,
     "pdfPages": 563,
-    "pageOffset": 4,
-    "pageOffsetNote": "PDF zero based index = printed page number + 4. Verified against four section headings: printed 1, 17, 35 and 79. Cite printed page numbers, not PDF indices."
+    "pagination": {
+      "kind": "SINGLE",
+      "printedPagesPerPdfPage": 1,
+      "pdfIndexOfPrintedOne": 5,
+      "halfOfPrintedOne": null,
+      "validFromPdfIndex": 6,
+      "anchors": [
+        {
+          "pdfIndex": 6,
+          "printedPage": 2,
+          "half": null
+        },
+        {
+          "pdfIndex": 145,
+          "printedPage": 141,
+          "half": null
+        },
+        {
+          "pdfIndex": 285,
+          "printedPage": 281,
+          "half": null
+        },
+        {
+          "pdfIndex": 424,
+          "printedPage": 420,
+          "half": null
+        }
+      ],
+      "derivedBy": "Fitted by pipeline/find_folios.py, which reads the folios the document prints on itself, takes the mapping the largest number of them agree on, and lists the ones that disagree. 556 folios agreed."
+    }
   },
   "sectionMap": {
     "_note": "Printed page numbers from the table of contents on printed page 5.",

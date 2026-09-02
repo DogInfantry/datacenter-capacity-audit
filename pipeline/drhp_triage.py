@@ -120,7 +120,12 @@ def triage(pdf_path):
         )
 
     reader = pypdf.PdfReader(str(pdf_path))
-    offset = manifest["pageOffset"]
+    # The mapping is stored as the position of printed page one rather than as a
+    # signed offset, because a signed offset was recorded with two different
+    # conventions across two documents and neither could be checked. Recovering
+    # the offset from the position keeps one representation.
+    pagination = manifest["pagination"]
+    offset = pagination["pdfIndexOfPrintedOne"] - 1
     pages = []
     for i, page in enumerate(reader.pages):
         scored = score_page(page.extract_text() or "")
@@ -151,7 +156,7 @@ def triage(pdf_path):
             "documentDate": "2025-10-16",
             "sha256": digest,
             "pdfPages": len(reader.pages),
-            "pageOffset": offset,
+            "pagination": pagination,
             "scoredPages": len(pages),
         },
         "method": {

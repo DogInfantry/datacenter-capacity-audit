@@ -118,7 +118,7 @@ export default function MethodologyPage() {
         >
           <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
             <SourcingTiers tiers={tiers} total={tally.total} />
-            <PageGrid totalPages={total} cited={cited} offset={drhpTriage.document.pageOffset} />
+            <PageGrid totalPages={total} cited={cited} offset={drhpTriage.document.pagination.pdfIndexOfPrintedOne - 1} />
           </div>
 
           <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">

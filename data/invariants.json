@@ -446,6 +446,41 @@
       "fragment": "a cited printed page falls outside the document it is attributed to"
     },
     {
+      "id": "pagination-reproduces-the-printed-folio",
+      "schema": "Pagination",
+      "category": "EVIDENCE",
+      "protects": "Every primary claim on this site names a printed page, so the mapping from a printed page to a position in the PDF carries the whole citation chain. Each document stores folios it prints on itself, recovered by pipeline/find_folios.py, and this recomputes every one of them from the declared mapping. Editing the mapping without the evidence fails the build. Before this existed the mapping was a sentence, and two documents wrote the same field name with opposite sign conventions.",
+      "fragment": "the declared pagination does not reproduce a folio the document prints"
+    },
+    {
+      "id": "pagination-anchor-inside-its-range",
+      "schema": "Pagination",
+      "category": "EVIDENCE",
+      "protects": "Front matter is frequently numbered on its own terms, so a mapping is declared to hold only from a stated index onward. An anchor taken from before that point would appear to confirm a rule it is not governed by, which is the most flattering way to be wrong about pagination.",
+      "fragment": "an anchor sits before the index the mapping is declared to hold from"
+    },
+    {
+      "id": "pagination-anchor-half-matches-layout",
+      "schema": "Pagination",
+      "category": "POSSIBLE",
+      "protects": "A printed page on a two page spread is half a PDF page and has to say which half. On a single page layout there are no halves to name. An anchor that names one where none exists, or omits one where it matters, cannot be checked against the document.",
+      "fragment": "an anchor names a half on a single page layout, or omits one on a spread"
+    },
+    {
+      "id": "pagination-needs-two-anchors",
+      "schema": "Pagination",
+      "category": "EVIDENCE",
+      "protects": "One anchor cannot disagree with anything, so a mapping resting on a single folio is an assertion wearing the shape of a measurement. Two distinct positions are the minimum that can contradict each other.",
+      "fragment": "a pagination needs at least two distinct anchors to be checkable"
+    },
+    {
+      "id": "pagination-declares-its-layout-once",
+      "schema": "Pagination",
+      "category": "POSSIBLE",
+      "protects": "A spread has to say which half of which PDF page carries printed page one, because the two halves are consecutive positions and starting on the wrong one shifts every citation in the document by one page. A single page layout has no half to declare.",
+      "fragment": "must say which half carries printed page one"
+    },
+    {
       "id": "closed-limit-names-evidence",
       "schema": "Method",
       "category": "EVIDENCE",
