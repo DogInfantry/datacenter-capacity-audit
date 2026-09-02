@@ -119,7 +119,8 @@ consolidated statements and the notes that matter for a data centre:
 | 79 | Annexure V, Form AOC-1, statement of subsidiaries | Anant Raj Cloud Private Limited: share capital, reserves, total assets, total liabilities, turnover and result for the year |
 | 222 | Consolidated balance sheet | Total assets and equity, borrowings and lease liabilities current and non current, cash, investment property, inventories |
 | 223 | Statement of consolidated profit and loss | Revenue, the full expense stack, profit before and after tax, both years |
-| 224 | Consolidated cash flow statement | Cash generated from operations, tax paid, net operating cash flow, and the four capital expenditure lines |
+| 224 | Consolidated cash flow statement | Cash generated from operations, tax paid, net operating cash flow, the movement in current borrowings presented among the working capital adjustments, and the four capital expenditure lines |
+| 225 | Consolidated cash flow statement, continued | Cash flows from finance activities. Proceeds and repayment of borrowings, both filed years |
 | 260 | Note 40, segment reporting | The single reportable segment, and the statement that no external customer exceeds ten per cent of revenue |
 | 267 | Note 47, financial ratios | Return on equity, return on capital employed and debt to equity, each with its numerator and denominator printed beside it |
 | 268 | Note 48, entities consolidated | The same subsidiary's share of consolidated net assets and profit, which ties to printed page 79 |
@@ -140,6 +141,15 @@ the paisa. Neither figure appears in the group income statement, because note 40
 states the business falls within a single reportable segment and that segment is real estate
 development. The capacity is disclosed in the corporate overview. The economics of it are disclosed
 only as one column in a statement of subsidiaries.
+
+The third finding is a presentation choice rather than a number. The movement in current borrowings,
+8,189.39 lakh out, is presented inside operating activities as a working capital adjustment at printed
+224, while proceeds and repayment of borrowings appear again under finance activities at printed 225.
+Capital expenditure is 9,914.60 lakh across the four lines the investing section prints. Against
+operating cash flow as filed that is 1.03 times the cash the year produced; against operating cash
+flow with the borrowings movement taken back out, 17,850.41, it is 0.56 times. The spending does not
+change and the answer does. Both filed years present the item the same way, and a build guard now
+asserts that both sections still carry it.
 
 **Still not published by the company**, at any level of detail, and therefore absent here: a data
 centre revenue line, a margin or return on capital for the arm, revenue per megawatt, and contracted

@@ -3,8 +3,9 @@
 import Link from "next/link";
 import type { AnantRaj } from "@/lib/schema";
 import { anantRajRiskMeasures, pillarCoverage } from "@/lib/diagnostics/risk";
-import { dataCentreArm } from "@/lib/diagnostics/anantraj";
+import { cashConversion, dataCentreArm } from "@/lib/diagnostics/anantraj";
 import { Exhibit } from "./Exhibits";
+import { CapexVsCfo } from "./CapexVsCfo";
 import { DataCentreArm } from "./DataCentreArm";
 import { RiskMatrix } from "./RiskMatrix";
 import { Icon, StatTile } from "./Visual";
@@ -17,6 +18,9 @@ type Props = {
   data: AnantRaj;
   /** Sify's rungs, for the cross company comparison. */
   sify: { rung: string; mw: number }[];
+  /** The same question asked of the operator with a filed prospectus, derived
+   *  from its restated cash flow rather than written down here. */
+  sifyCover: { multiple: number; periods: number };
 };
 
 const TONE: Record<string, string> = {
@@ -28,14 +32,17 @@ const TONE: Record<string, string> = {
 /**
  * Anant Raj, the delivery case.
  *
- * The page carries capacity and delivery and nothing else. There is no margin,
- * no return and no cost stack, because the annual report was read for capacity
- * and for the audit opinion only and the financial statements inside it were
- * not. The list of what was not read sits on the page rather than in a
- * footnote, because a thin page that admits its thinness is worth more than a
- * thick one that does not.
+ * Two tiers of evidence run down this page and every exhibit says which it is
+ * standing on. The capacity ladder and the source conflict come from a research
+ * note. The composition, the data centre arm and the cash conversion below it
+ * come from the audited annual report and cite their printed pages.
+ *
+ * What the group still does not publish stays listed at the foot of the page
+ * rather than in a footnote, because a single reportable segment makes several
+ * of the measures that matter for an operator unavailable rather than missing,
+ * and a page that says which is worth more than one that quietly omits them.
  */
-export function AnantRajBody({ data, sify }: Props) {
+export function AnantRajBody({ data, sify, sifyCover }: Props) {
   const [announced, operational, handed] = data.ladder;
   // Counted rather than written into the title, so the sentence shortens by
   // itself the first time a document is read for this name.
@@ -47,6 +54,9 @@ export function AnantRajBody({ data, sify }: Props) {
   // The subsidiary that holds the capacity above, against the group that
   // owns it. Both figures are the report's own and are printed twice.
   const arm = dataCentreArm(data.financials);
+  // Capital spending against the cash the year produced, twice, because the
+  // statement's own classification changes the answer.
+  const cc = cashConversion(data.financials);
   const claimed = ar.rungs.find((r) => r.kind === "CLAIMED")!;
   const arLive = ar.rungs.find((r) => r.rung === "Operationalised")!;
   const arColo = ar.rungs.find((r) => r.rung === "Operationalised colocation")!;
@@ -65,7 +75,8 @@ export function AnantRajBody({ data, sify }: Props) {
             </p>
             <p className="text-xs text-muted">
               {data.role} · capacity ladder {data.ladderSource.verification.toLowerCase()}, annual
-              report {data.annualReport.fiscalYear} read for capacity and the audit opinion
+              report {data.annualReport.fiscalYear} read for capacity, the audit opinion and the
+              consolidated statements
             </p>
           </div>
         </div>
@@ -378,6 +389,88 @@ export function AnantRajBody({ data, sify }: Props) {
             are two thirds of revenue. Selling homes to many buyers and selling megawatts to a few
             hyperscalers are different businesses, and this company&apos;s revenue is still almost
             entirely the first one.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={7}
+          title={`Capital spending was ${cc.coverFiled.toFixed(2)} times the cash operations produced, or ${cc.coverRestated.toFixed(2)}, depending on where one line sits`}
+          units={`Amounts in ${data.financials.unit}, the unit the consolidated statements print, converted nowhere. Capital expenditure is the four lines the investing section prints, summed. Both bars on the left are the year as filed; both on the right are the same year with one working capital line taken back out.`}
+          source={`${data.financials.cashFlow.source.label} Printed pages ${cc.operating.page} and ${cc.financing.page}.`}
+        >
+          <CapexVsCfo
+            unit={data.financials.unit.replace("INR", "Rs")}
+            precision={2}
+            rows={[
+              { label: "As filed", cfo: cc.filed, capex: cc.capex },
+              { label: "Borrowings line removed", cfo: cc.restated, capex: cc.capex },
+            ]}
+            aria={`Capital expenditure of ${cc.capex.toFixed(0)} against operating cash flow of ${cc.filed.toFixed(0)} as filed and ${cc.restated.toFixed(0)} with the movement in current borrowings removed, in ${data.financials.unit}.`}
+            note={`Capital expenditure is the same in both pairs and is the sum of ${cc.capexLines.length} lines: ${cc.capexLines.map((l) => l.label.toLowerCase()).join(", ")}.`}
+          />
+
+          <div className="mt-6 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2">
+            {[cc.operating, cc.financing].map((sec) => (
+              <div key={sec.section} className="bg-card p-4">
+                <p className="sc text-accent">{sec.section}</p>
+                <p className="mt-2 text-sm leading-snug text-foreground">
+                  &ldquo;{sec.printedAs}&rdquo;
+                </p>
+                <p className="mt-2 tnum text-2xl">
+                  {Math.abs(sec.amount).toLocaleString("en-IN", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-muted">
+                  Outflow, printed page <span className="tnum">{sec.page}</span>. The year before
+                  carries{" "}
+                  <span className="tnum">
+                    {Math.abs(sec.prior).toLocaleString("en-IN", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </span>{" "}
+                  on the same line.
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            Capital expenditure was{" "}
+            <span className="tnum text-foreground">
+              {cc.capex.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span>{" "}
+            {data.financials.unit}. Against the operating cash flow the statement files,{" "}
+            <span className="tnum text-foreground">
+              {cc.filed.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span>
+            , the spending is{" "}
+            <span className="tnum text-signal">{cc.coverFiled.toFixed(2)}</span> times the cash. Take
+            the borrowings movement back out and operating cash flow is{" "}
+            <span className="tnum text-foreground">
+              {cc.restated.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span>
+            , and the same spending is{" "}
+            <span className="tnum text-foreground">{cc.coverRestated.toFixed(2)}</span> times it. The
+            building did not change size. One line changed section.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Borrowings reach a reader twice in this statement. The movement in them sits among the
+            working capital adjustments inside operating activities at printed page{" "}
+            <span className="tnum">{cc.operating.page}</span>, and the repayment of them appears
+            again under finance activities on the page after it. Both filed years do it, so the
+            classification is a habit rather than a one year effect.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The other operator read here, whose figures come from a filed prospectus, absorbed{" "}
+            <span className="tnum text-foreground">{sifyCover.multiple.toFixed(2)}</span> times the
+            cash its operations produced across{" "}
+            <span className="tnum text-foreground">{sifyCover.periods}</span> filed periods. That is
+            a capital programme outrunning the business by a wide margin, and it is visible without
+            reclassifying anything. What sits on this page is narrower and turns on where a line is
+            printed rather than on how much was spent.
           </p>
         </Exhibit>
       </section>

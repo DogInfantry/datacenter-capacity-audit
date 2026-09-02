@@ -79,12 +79,13 @@ export function sifyRiskMeasures(d: Sisl): Record<string, Measure> {
 }
 
 /**
- * Anant Raj, where the magnitudes are derived from recorded figures rather than
- * from a filing, because no Anant Raj document has been opened.
+ * Anant Raj, whose magnitudes come from two tiers of evidence at once.
  *
- * The distinction matters and the exhibit draws it: derived is not the same as
- * read. Every number below comes out of `data/anantraj.json`, and every figure
- * in that file came out of a research note.
+ * The four below are derived from the capacity figures a research note carried,
+ * and derived is not the same as read. The annual report has since been read
+ * and its own figures are stored in the same file, so a magnitude taken from it
+ * carries the printed page and the row that uses it says primary. The register
+ * keeps the two apart rather than letting the second quietly upgrade the first.
  */
 export function anantRajRiskMeasures(d: AnantRaj): Record<string, Measure> {
   const [announced, operational, handed] = d.ladder;

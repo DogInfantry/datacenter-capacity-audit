@@ -1096,6 +1096,20 @@ export const AnantRaj = z
          *  because the classification is the observation. */
         currentBorrowingsInsideOperating: z.number(),
         currentBorrowingsInsideOperatingPrior: z.number(),
+        /** The label the statement prints beside it, kept so an exhibit can
+         *  quote the report rather than paraphrase what it did. */
+        currentBorrowingsInsideOperatingPrintedAs: z.string().min(1),
+        /** The same category of item again, in the finance section, on its own
+         *  printed page. Stored so the double presentation can be asserted
+         *  instead of described, which is what the cash conversion exhibit
+         *  rests on. Held as a negative, matching the bracket convention the
+         *  statement prints and the operating side line above. */
+        financingRepaymentOfBorrowings: z.object({
+          amount: z.number(),
+          amountPrior: z.number(),
+          printedAs: z.string().min(1),
+          source: PagedSource,
+        }),
         acquisitionOfPropertyPlantAndEquipment: z.number().nonnegative(),
         acquisitionOfInvestmentProperty: z.number().nonnegative(),
         additionsToCapitalWorkInProgress: z.number().nonnegative(),
@@ -1249,6 +1263,44 @@ export const AnantRaj = z
         code: z.ZodIssueCode.custom,
         path: ["financials", "cashFlow"],
         message: `cash generated from operations less income tax must equal the filed operating cash flow`,
+      });
+    }
+    // Borrowings reach the reader twice, from two sections, on two pages. The
+    // movement sits among the working capital adjustments while the repayment
+    // sits under finance activities, and both filed years do it. A page that
+    // says so has to be held to the document saying so.
+    const borrowings = cf.financingRepaymentOfBorrowings;
+    if (
+      cf.currentBorrowingsInsideOperating >= 0 ||
+      cf.currentBorrowingsInsideOperatingPrior >= 0 ||
+      borrowings.amount >= 0 ||
+      borrowings.amountPrior >= 0 ||
+      borrowings.source.page === cf.source.page
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials", "cashFlow"],
+        message: `borrowings must be an outflow in both the operating and the finance sections, each on its own printed page`,
+      });
+    }
+    // The finding itself. Capital expenditure is the four lines the investing
+    // section prints, and whether the year paid for its own building turns on
+    // where one working capital line sits. If a restatement ever lands both
+    // readings on the same side of one, the sentence the exhibit is built
+    // around is gone and the build stops rather than the sentence going
+    // quietly wrong.
+    const capexLines =
+      cf.acquisitionOfPropertyPlantAndEquipment +
+      cf.acquisitionOfInvestmentProperty +
+      cf.additionsToCapitalWorkInProgress +
+      cf.additionsToRightOfUse;
+    const coverFiled = capexLines / cf.netCashFromOperations;
+    const coverRestated = capexLines / (cf.netCashFromOperations - cf.currentBorrowingsInsideOperating);
+    if (!(coverFiled > 1 && coverRestated < 1)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials", "cashFlow"],
+        message: `the capex cover must change side when that line leaves operating activities, got ${coverFiled.toFixed(2)} as filed against ${coverRestated.toFixed(2)} without it`,
       });
     }
     // The subsidiary is printed twice in the same report, in the statement of

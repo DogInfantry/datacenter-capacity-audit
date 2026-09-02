@@ -39,3 +39,59 @@ export function dataCentreArm(fin: AnantRaj["financials"]) {
     segmentPage: fin.segment.source.page,
   };
 }
+
+/**
+ * Cash conversion, and the single line that decides it.
+ *
+ * Capital expenditure is the four lines the investing section prints, summed
+ * rather than taken from a total the statement never strikes. Operating cash
+ * flow is returned twice: as the statement files it, and again with the
+ * movement in current borrowings taken back out of it.
+ *
+ * That movement is a financing item sitting among the working capital
+ * adjustments, and the repayment of borrowings is printed again in the finance
+ * section on the next page. Both readings are the report's own arithmetic on
+ * the report's own figures; neither is an adjustment invented here, which is
+ * why both are returned and neither is called the right one.
+ *
+ * Lakhs of rupees throughout, the unit the statements print. Nothing rescaled
+ * and nothing converted.
+ */
+export function cashConversion(fin: AnantRaj["financials"]) {
+  const cf = fin.cashFlow;
+  const capexLines = [
+    { label: "Acquisition of property, plant and equipment", amount: cf.acquisitionOfPropertyPlantAndEquipment },
+    { label: "Acquisition of investment property", amount: cf.acquisitionOfInvestmentProperty },
+    { label: "Capital work in progress", amount: cf.additionsToCapitalWorkInProgress },
+    { label: "Right to use assets", amount: cf.additionsToRightOfUse },
+  ];
+  const capex = capexLines.reduce((t, l) => t + l.amount, 0);
+  const filed = cf.netCashFromOperations;
+  // The line is stored as an outflow, so taking it out of the section adds it
+  // back to the cash the section reports.
+  const restated = filed - cf.currentBorrowingsInsideOperating;
+
+  return {
+    capexLines,
+    capex,
+    filed,
+    restated,
+    coverFiled: capex / filed,
+    coverRestated: capex / restated,
+    /** The same category of item, as each section prints it. */
+    operating: {
+      printedAs: cf.currentBorrowingsInsideOperatingPrintedAs,
+      amount: cf.currentBorrowingsInsideOperating,
+      prior: cf.currentBorrowingsInsideOperatingPrior,
+      page: cf.source.page,
+      section: "Operating activities",
+    },
+    financing: {
+      printedAs: cf.financingRepaymentOfBorrowings.printedAs,
+      amount: cf.financingRepaymentOfBorrowings.amount,
+      prior: cf.financingRepaymentOfBorrowings.amountPrior,
+      page: cf.financingRepaymentOfBorrowings.source.page,
+      section: "Finance activities",
+    },
+  };
+}

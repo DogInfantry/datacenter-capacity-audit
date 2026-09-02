@@ -368,6 +368,20 @@
       "fragment": "less income tax must equal the filed operating cash flow"
     },
     {
+      "id": "anantraj-borrowings-in-both-sections",
+      "schema": "AnantRaj",
+      "category": "RECONCILE",
+      "protects": "The movement in current borrowings is presented among the working capital adjustments inside operating activities, and the repayment of borrowings is presented again under finance activities on the next printed page. Both filed years do it. The cash conversion exhibit says the classification is the observation, so the document has to keep doing it: the guard fails if either side stops being an outflow or if the two stop being printed on different pages.",
+      "fragment": "must be an outflow in both the operating and the finance sections"
+    },
+    {
+      "id": "anantraj-capex-cover-changes-side",
+      "schema": "AnantRaj",
+      "category": "FINDING",
+      "protects": "Capital expenditure is the four lines the investing section prints. Against operating cash flow as filed it is more than covered; against operating cash flow with the borrowings line taken out it is comfortably covered. The exhibit's whole sentence is that one presentation choice moves the answer across one, so if a restatement ever lands both readings on the same side, the build stops instead of the sentence going quietly wrong.",
+      "fragment": "must change side when that line leaves operating activities"
+    },
+    {
       "id": "dc-arm-net-assets-agree",
       "schema": "AnantRaj",
       "category": "RECONCILE",

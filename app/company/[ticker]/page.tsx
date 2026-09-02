@@ -69,6 +69,10 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
           { rung: "Installed", mw: stub.installedMW },
           { rung: "Sold", mw: stub.operationalMW },
         ]}
+        sifyCover={{
+          multiple: issuerCapexCover(sisl.cashFlow).multiple,
+          periods: issuerCapexCover(sisl.cashFlow).periods.length,
+        }}
       />
     );
   }
@@ -352,8 +356,8 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
           <CapexVsCfo
             rows={sisl.cashFlow.map((r) => ({
               label: r.label,
-              cfoCr: cr(r.cfo),
-              capexCr: cr(r.capex),
+              cfo: cr(r.cfo),
+              capex: cr(r.capex),
             }))}
             aria={`Operating cash flow against capital expenditure for ${cover.periods
               .map((p) => p.fy)

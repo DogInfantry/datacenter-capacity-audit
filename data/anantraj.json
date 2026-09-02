@@ -1,5 +1,5 @@
 {
-  "_note": "Anant Raj is the flagship execution case in the brief. Nothing here is read from a filing: every figure is a research note or press figure, tagged SECONDARY throughout. No financial statements have been read, so this page deliberately carries no margins, no returns and no cost stack. It is a capacity and delivery page only, and it says so.",
+  "_note": "Anant Raj is the flagship execution case in the brief. Two tiers of evidence sit side by side here and each figure says which it is. The capacity ladder, the source conflict and the risk gradings that rest on them are SECONDARY, from a research note. The annualReport and financials blocks are PRIMARY and every figure in them cites the printed page it was read from. The two are kept apart rather than merged because they disagree, and the disagreement is the finding.",
   "entity": "Anant Raj Cloud",
   "listedParent": "Anant Raj",
   "ticker": "ANANTRAJ",
@@ -55,7 +55,7 @@
   ],
 
   "annualReport": {
-    "_note": "The first Anant Raj document opened in this repository. It was read for capacity and for the audit opinion only. The financial statements sit in the same file and have not been read, which is why the risk register still carries no row for cash conversion or the balance sheet.",
+    "_note": "The first Anant Raj document opened in this repository, read in two passes. The first pass took the capacity figures and the audit opinion, which are held here. The second took the audited consolidated statements and the notes that matter for a data centre, which are held in the financials block below.",
     "fiscalYear": "FY2024-25",
     "manifest": {
       "url": "https://nsearchives.nseindia.com/annual_reports/AR_26635_ANANTRAJ_2024_2025_A_28062025220835.pdf",
@@ -187,6 +187,18 @@
       "netCashFromOperationsPrior": -2551.89,
       "currentBorrowingsInsideOperating": -8189.39,
       "currentBorrowingsInsideOperatingPrior": -4571.44,
+      "currentBorrowingsInsideOperatingPrintedAs": "Increase/(decrease) in current borrowings",
+      "financingRepaymentOfBorrowings": {
+        "amount": -7818.45,
+        "amountPrior": -40699.96,
+        "printedAs": "Proceeds/(repayment) from borrowings",
+        "source": {
+          "label": "Anant Raj Limited annual report FY2024-25, Consolidated Cash Flow Statement, section C, cash flows from finance activities. The statement notes that figures in brackets indicate cash outflow",
+          "page": 225,
+          "asOf": "2025-06-28",
+          "verification": "PRIMARY"
+        }
+      },
       "acquisitionOfPropertyPlantAndEquipment": 4993.99,
       "acquisitionOfInvestmentProperty": 2213.45,
       "additionsToCapitalWorkInProgress": 1485.37,

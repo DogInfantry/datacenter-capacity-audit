@@ -75,7 +75,7 @@ export const sisl = parse(Sisl, sislRaw, "data/sisl.json");
 /** The coverage universe: announced against delivered megawatts. */
 export const universe = parse(Universe, universeRaw, "data/universe.json");
 
-/** Capacity and delivery only. No filing has been read for this name. */
+/** The research note ladder, and the audited annual report read against it. */
 export const anantRaj = parse(AnantRaj, anantRajRaw, "data/anantraj.json");
 
 /** Order book rather than megawatts, because this one builds the servers. */

@@ -9,24 +9,37 @@ const M = { top: 34, right: 20, bottom: 44, left: 52 };
  * scale, and the entire point of the exhibit is that one bar is taller than the
  * other, which a second axis would let you hide.
  *
- * The rows arrive already converted and already labelled, and the caller passes
- * its own description and note. This component previously carried a sentence
+ * The rows arrive already labelled and in whatever unit the caller reads its
+ * statements in, which the caller names. One filer here reports in rupees and
+ * is shown in crore; the other reports in lakhs and stays in lakhs, because a
+ * page that prints one scale should not print two.
+ *
+ * The caller passes its own description and note. This component previously carried a sentence
  * asserting that capex exceeded cash flow in every period, which was true of the
  * filer it was written for and is false of the issuer it now also serves. A
  * claim belongs with the data that supports it, not baked into a chart.
  */
-type Row = { label: string; cfoCr: number; capexCr: number };
+type Row = { label: string; cfo: number; capex: number };
 
 export function CapexVsCfo({
   rows: data,
   aria,
   note,
+  unit = "Rs cr",
+  precision = 1,
 }: {
   rows: Row[];
   aria: string;
   note: string;
+  /** The unit the caller's statements print, named on the axis. */
+  unit?: string;
+  /** Decimals on the multiple above each pair. One is enough where the pairs
+   *  are far apart. Where the finding is that a multiple sits just above one,
+   *  a single decimal rounds it to 1.0 and reads as exactly covered, which is
+   *  the opposite of what the bars show. */
+  precision?: number;
 }) {
-  const max = Math.max(...data.flatMap((r) => [r.cfoCr, r.capexCr]));
+  const max = Math.max(...data.flatMap((r) => [r.cfo, r.capex]));
   const yMax = Math.ceil(max / 200) * 200;
 
   const bandW = (W - M.left - M.right) / data.length;
@@ -53,7 +66,7 @@ export function CapexVsCfo({
         aria-label={aria}
       >
         <text x={M.left - 10} y={M.top - 14} textAnchor="end" fontSize={11} fill="var(--muted)">
-          Rs cr
+          {unit}
         </text>
 
         {Array.from({ length: 5 }, (_, i) => (yMax / 4) * i).map((v) => (
@@ -74,12 +87,12 @@ export function CapexVsCfo({
 
         {data.map((r, i) => {
           const x = M.left + i * bandW;
-          const cfo = r.cfoCr;
-          const cap = r.capexCr;
+          const cfo = r.cfo;
+          const cap = r.capex;
           const outspent = cap > cfo;
           return (
             <g key={r.label}>
-              <title>{`${r.label}: operating cash Rs ${cfo.toFixed(0)} cr, capex Rs ${cap.toFixed(0)} cr`}</title>
+              <title>{`${r.label}: operating cash ${cfo.toFixed(0)} ${unit}, capex ${cap.toFixed(0)} ${unit}`}</title>
               <rect
                 x={x + bandW / 2 - barW - 1}
                 y={py(cfo)}
@@ -105,7 +118,7 @@ export function CapexVsCfo({
                   fontWeight={600}
                   fill="var(--foreground)"
                 >
-                  {(cap / cfo).toFixed(1)}x
+                  {(cap / cfo).toFixed(precision)}x
                 </text>
               ) : null}
               <text
