@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sisl, prospectus, macro, universe, anantRaj, netweb, COVERED_TICKERS } from "@/lib/data";
+import {
+  sisl,
+  sify,
+  prospectus,
+  macro,
+  universe,
+  anantRaj,
+  netweb,
+  COVERED_TICKERS,
+  ladder,
+} from "@/lib/data";
 import { citedPages } from "@/lib/diagnostics/sourcing";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
+import { CapacityStep } from "@/components/CapacityStep";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
 import { ClientConcentration } from "@/components/ClientConcentration";
 import { SiteMap } from "@/components/SiteMap";
@@ -110,6 +121,14 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
   );
 
   const riskMeasures = sifyRiskMeasures(sisl);
+  // The commissioning record as management described it on its own calls, which
+  // is a different source from the prospectus the rest of this page reads.
+  const said = ladder(sify).filter((o) => o.commissioned_mw);
+  const saidFirst = said[0];
+  const saidLast = said[said.length - 1];
+  const saidYears =
+    (Date.parse(saidLast.date) - Date.parse(saidFirst.date)) / (365.25 * 86_400_000);
+  const missed = sify.claims.filter((c) => c.status === "MISSED");
   const cover = issuerCapexCover(sisl.cashFlow);
   const roce = roceReconciliation(sisl);
   const checkable = roce.filter((r) => r.checkable);
@@ -282,9 +301,34 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
           />
         </Exhibit>
 
+        <Exhibit
+          n={3}
+          title={`Management put commissioned capacity at ${saidLast.commissioned_mw} MW after ${saidYears.toFixed(1)} years of answering the question, and ${missed.length} dated promises came due unmet`}
+          units="Megawatts commissioned, taken from management's own answers on earnings calls rather than from the prospectus. Stepped rather than smoothed, because capacity arrives in lumps and a straight line between two quarters would draw megawatts that were never live. The dates promises were made are marked on the axis; their targets are not drawn as levels, because the verbatim claims do not say whether the figure is incremental or absolute."
+          source={sify.source.label}
+        >
+          <CapacityStep data={sify} />
+
+          <p className="mt-4 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            Across <span className="tnum text-foreground">{said.length}</span> calls between{" "}
+            {saidFirst.date} and {saidLast.date}, commissioned capacity moved from{" "}
+            <span className="tnum text-foreground">{saidFirst.commissioned_mw}</span> MW to{" "}
+            <span className="tnum text-foreground">{saidLast.commissioned_mw}</span> MW. The flat
+            stretches are the finding, so nothing here softens them.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            This is the same estate the rest of the page reads out of the prospectus, described in
+            different words. On the call the figure is what has been commissioned. In the filed
+            document the widest number is built capacity, and it is{" "}
+            <span className="tnum text-foreground">{fy25.builtMW}</span> MW. The promises marked
+            here carry the date they were made rather than a verdict, because that is what the
+            record supports.
+          </p>
+        </Exhibit>
+
         <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr]">
           <Exhibit
-            n={3}
+            n={4}
             title="Six cities, and most of what earns sits in two states"
             units="Bubble area is built MW. The inner disc is the share sold. Equirectangular projection, no border drawn."
             source={sisl.sitesSource.label}
@@ -294,7 +338,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
           </Exhibit>
 
           <Exhibit
-            n={4}
+            n={5}
             title="Sixty megawatts in every hundred earn anything"
             units={`Built capacity converted to sold, ${fy25.label}. Each square is one per cent of ${fy25.builtMW} MW.`}
             source="Sify Infinit Spaces DRHP, capacity by data centre."
@@ -317,7 +361,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Exhibit
-            n={5}
+            n={6}
             title="Two towers hold a quarter of the estate and sell almost none of it"
             units={`Megawatts by data centre, as at ${sisl.sitesAsOf}. Bars nest: sold inside commissioned inside engineered.`}
             source={sisl.sitesSource.label}
@@ -327,7 +371,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
           </Exhibit>
 
           <Exhibit
-            n={6}
+            n={7}
             title="The same megawatts earn far more elsewhere, and lose money doing it"
             units="Revenue per MW, Rs millions, across the issuer's own chosen peer set."
             source={sisl.peersSource.label}
@@ -338,7 +382,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
         </div>
 
         <Exhibit
-          n={7}
+          n={8}
           title="Every risk in the worst cell is one the filing already puts a number on"
           units="Severity against likelihood, an analyst grading rather than the issuer's. A chip is filled where the magnitude beside the row is derived from the filed numbers and outlined where the row is judgement."
           source={`Sify Infinit Spaces DRHP, risk factors and the restated financial information, printed pages ${riskPages.join(", ")}.`}
@@ -347,7 +391,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
         </Exhibit>
 
         <Exhibit
-          n={8}
+          n={9}
           title={`Only ${cover.covered[0].fy} paid for its own construction, and it is the last full year before the offer`}
           units="Rupees crore, restated consolidated, as filed. Capital expenditure is the purchase of property, plant and equipment. Land and lease payments are reported separately in the same statement and are excluded here rather than folded in, which would enlarge the gap. The stub quarter is not annualised and is compared against its own quarter of cash."
           source={sisl.cashFlowSource.label}
@@ -400,7 +444,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
         </Exhibit>
 
         <Exhibit
-          n={9}
+          n={10}
           title={`${exact.length} of the ${roce.length} published returns on capital rebuild exactly, and the one that cannot be checked is the highest`}
           units="Points of return on capital, measured from the figure the issuer published. The formula is the document's own. Zero means the rebuild landed on the published figure."
           source={`${sisl.roceFormulaSource.label} The inputs are the key performance indicators, the statement of cash flow and the balance sheet, at printed pages ${sisl.periodsSource.page}, ${sisl.cashFlowSource.page} and ${sisl.balanceSheetSource.page}.`}

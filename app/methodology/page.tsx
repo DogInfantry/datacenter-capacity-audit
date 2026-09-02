@@ -7,6 +7,7 @@ import { Exhibit } from "@/components/Exhibits";
 import { SourcingTiers, PageGrid } from "@/components/Sourcing";
 import { ReadingRule } from "@/components/ReadingRule";
 import { InvariantLedger } from "@/components/InvariantLedger";
+import { Cite } from "@/components/Cite";
 import { StatTile, type IconName } from "@/components/Visual";
 
 export const metadata: Metadata = {
@@ -21,6 +22,13 @@ export default function MethodologyPage() {
   const total = prospectus.document.pdfPages;
   const readShare = (cited.length / total) * 100;
   const triage = citedPageRanks(drhpTriage.pages, cited);
+
+  // One operator per tier, picked out of the coverage data rather than written
+  // down, so a tier that empties stops being demonstrated instead of being
+  // faked with a row that no longer belongs to it.
+  const tierExamples = (["PRIMARY", "SECONDARY", "UNVERIFIED"] as const)
+    .map((v) => universe.operators.find((o) => o.source.verification === v))
+    .filter((o) => o !== undefined);
 
   const tiers: { name: string; count: number; tone: string; rule: string; icon: IconName }[] = [
     {
@@ -119,6 +127,22 @@ export default function MethodologyPage() {
           <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
             <SourcingTiers tiers={tiers} total={tally.total} />
             <PageGrid totalPages={total} cited={cited} offset={drhpTriage.document.pagination.pdfIndexOfPrintedOne - 1} />
+          </div>
+
+          <div className="mt-6 border-t border-line pt-4">
+            <p className="text-sm leading-relaxed text-muted">
+              The tag beside a figure states what kind of claim that figure makes about its own
+              evidence, and it is the same tag wherever it appears. One of each, each carrying a
+              real row, with the document named on hover:
+            </p>
+            <p className="mt-3 flex flex-wrap items-baseline gap-x-7 gap-y-3 text-sm">
+              {tierExamples.map((o) => (
+                <span key={o.ticker} className="text-foreground">
+                  {o.operator}
+                  <Cite source={o.source} />
+                </span>
+              ))}
+            </p>
           </div>
 
           <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">

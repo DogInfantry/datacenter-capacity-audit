@@ -24,7 +24,10 @@ export function CapacityStep({ data }: { data: CapacityLadder }) {
   const xs = obs.map((o) => day(o.date));
   const x0 = Math.min(...xs);
   const x1 = Math.max(...xs);
-  const yMax = 140;
+  // Derived, with one gridline of headroom above the tallest observation. A
+  // typed ceiling is a displayed number that stops matching its data the
+  // first time a new quarter is coded.
+  const yMax = Math.ceil(Math.max(...obs.map((o) => o.commissioned_mw!)) / 20) * 20 + 20;
 
   const px = (d: string) =>
     M.left + ((day(d) - x0) / (x1 - x0)) * (W - M.left - M.right);
