@@ -138,7 +138,9 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
   const cashReadings = sisl.periods.map((p) => {
     const cf = sisl.cashFlow.find((c) => c.label === p.label)!;
     const bs = sisl.balanceSheet.find((b) => b.label === p.label)!;
-    return pillar("SIFY", sisl.entity, p.stub ? `${p.label}, unannualised` : p.label, [
+    const basis = p.basis === "CONSOLIDATED" ? "consolidated" : "standalone";
+    const period = p.stub ? `${p.label}, ${basis}, unannualised` : `${p.label}, ${basis}`;
+    return pillar("SIFY", sisl.entity, period, [
       cfoToPat(cf.cfo, p.pat),
       accrualRatio(p.pat, cf.cfo, cf.cfi, bs.totalAssets),
     ]);
@@ -494,6 +496,22 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
             per cent in {accrualPeak.period}, near the threshold, and falls away in the year capital
             spending fell. Nothing about the earnings changed between those readings. The spending
             did.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The basis beside each period is the document&apos;s own. All four columns sit under a
+            heading that reads restated consolidated, and the column header printed above them says
+            consolidated for the two most recent and standalone for the two older ones. The series
+            still holds, because the associate contributed{" "}
+            <span className="tnum text-foreground">
+              {sisl.periods.filter((p) => p.basis === "STANDALONE").reduce((t, p) => t + Math.abs(p.associateShareOfProfit), 0)}
+            </span>{" "}
+            in the standalone years, so a consolidated statement for those years would have been the
+            same statement. Where it does register is the stub, whose share of the associate&apos;s
+            loss is{" "}
+            <span className="tnum text-foreground">
+              {((Math.abs(stub.associateShareOfProfit) / stub.pat) * 100).toFixed(1)}
+            </span>{" "}
+            per cent of the profit reported for that quarter.
           </p>
         </Exhibit>
 

@@ -8,6 +8,8 @@
   "periods": [
     {
       "label": "FY2023",
+      "basis": "STANDALONE",
+      "associateShareOfProfit": 0,
       "periodEnd": "2023-03-31",
       "stub": false,
       "revenue": 10213.40,
@@ -26,6 +28,8 @@
     },
     {
       "label": "FY2024",
+      "basis": "STANDALONE",
+      "associateShareOfProfit": 0,
       "periodEnd": "2024-03-31",
       "stub": false,
       "revenue": 11141.70,
@@ -44,6 +48,8 @@
     },
     {
       "label": "FY2025",
+      "basis": "CONSOLIDATED",
+      "associateShareOfProfit": -0.45,
       "periodEnd": "2025-03-31",
       "stub": false,
       "revenue": 14283.65,
@@ -62,6 +68,8 @@
     },
     {
       "label": "Q1 FY2026",
+      "basis": "CONSOLIDATED",
+      "associateShareOfProfit": -11.41,
       "periodEnd": "2025-06-30",
       "stub": true,
       "revenue": 3985.98,
@@ -99,6 +107,13 @@
     "verification": "PRIMARY"
   },
   "capitalisationRate": 9.30,
+
+  "basisSource": {
+    "label": "Sify Infinit Spaces DRHP, restated financial information. The statements are titled Restated Consolidated throughout, and the column header printed above them reads Consolidated for the two most recent periods and Standalone for the two older ones. The auditor's examination report says the same in words. The associate is SKVR Software Solution Private Limited, and its share of profit is printed on the restated statement of profit and loss",
+    "page": 353,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
 
   "cashFlow": [
     { "label": "FY2023", "cashFromOperations": 4428.40, "taxPaid": 694.40, "cfo": 3734.00, "capex": 8540.44, "depreciation": 2083.00, "rightOfUse": 943.60, "cfi": -9578.34 },

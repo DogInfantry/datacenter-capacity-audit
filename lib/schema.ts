@@ -730,6 +730,18 @@ const SislPeriod = z.object({
   periodEnd: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   /** A stub quarter. Its ROCE is filed unannualised and must not be compared to a full year. */
   stub: z.boolean(),
+  /**
+   * Which entity the column reports.
+   *
+   * The statements are titled Restated Consolidated throughout, and the column
+   * header printed above them says otherwise for the two older periods. Storing
+   * it per period is what lets the guard below establish that the four columns
+   * are still comparable rather than assuming it.
+   */
+  basis: z.enum(["CONSOLIDATED", "STANDALONE"]),
+  /** The associate's share of profit in this period. Zero is the reason a
+   *  standalone column can sit in the same series as a consolidated one. */
+  associateShareOfProfit: z.number(),
   revenue: z.number().positive(),
   ebitda: z.number().positive(),
   ebitdaMargin: z.number().positive(),
@@ -873,6 +885,7 @@ export const Sisl = z
         .min(1),
       unservedSource: PagedSource,
     }),
+    basisSource: PagedSource,
     cashFlow: z.array(SislCashFlow).min(3),
     cashFlowSource: PagedSource,
     balanceSheet: z.array(SislBalance).min(3),
@@ -1048,6 +1061,32 @@ export const Sisl = z
           message: `${c.label}: investing cash is no longer an outflow, so the accrual ratio caveat needs rewriting`,
         });
       }
+    }
+    // The four columns a reader takes as one series are not one reporting
+    // entity. Two are consolidated and two are standalone, and the document
+    // titles all four Restated Consolidated. What makes the series comparable
+    // anyway is that the associate contributed nothing in the standalone years,
+    // so standalone and consolidated would have been the same statement. That
+    // is the condition, so it is the thing asserted: a standalone column
+    // carrying an associate share stops the series being like for like and
+    // every exhibit spanning all four periods would need rewriting.
+    for (const p of d.periods) {
+      if (p.basis === "STANDALONE" && p.associateShareOfProfit !== 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["periods"],
+          message: `${p.label}: a standalone column carries an associate share, so the four period series is no longer like for like`,
+        });
+      }
+    }
+    // The basis changes once, forward in time. Consolidation begins and does not
+    // stop, so the newest column is the consolidated one.
+    if (d.periods[d.periods.length - 1].basis !== "CONSOLIDATED") {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["periods"],
+        message: `the most recent period is no longer the consolidated one`,
+      });
     }
     // The materiality policy was adopted before the document that publishes it,
     // which is the ordinary order and is asserted so that a later reading cannot

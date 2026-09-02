@@ -417,6 +417,20 @@
       "fragment": "the disclosure threshold is no longer set by the profit test"
     },
     {
+      "id": "sisl-standalone-columns-carry-no-associate",
+      "schema": "Sisl",
+      "category": "LIKE_FOR_LIKE",
+      "protects": "The four filed columns are not one reporting entity. Two are consolidated and two are standalone, and the document titles all four Restated Consolidated. What makes them comparable anyway is that the associate contributed nothing in the standalone years, so a consolidated statement for those years would have been the same statement. That condition is asserted rather than assumed: a standalone column carrying an associate share would mean every exhibit spanning all four periods is comparing a group against a parent.",
+      "fragment": "a standalone column carries an associate share"
+    },
+    {
+      "id": "sisl-basis-changes-forward",
+      "schema": "Sisl",
+      "category": "POSSIBLE",
+      "protects": "Consolidation begins and does not stop, so the most recent column is the consolidated one. An inversion would mean the columns have been read in the wrong order, which is the error most likely to go unnoticed on a statement whose four columns run most recent first while the stored rows ascend.",
+      "fragment": "the most recent period is no longer the consolidated one"
+    },
+    {
       "id": "dc-arm-net-assets-agree",
       "schema": "AnantRaj",
       "category": "RECONCILE",

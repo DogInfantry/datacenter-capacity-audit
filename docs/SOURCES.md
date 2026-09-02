@@ -36,12 +36,26 @@ Fourteen printed pages are cited across the site. That is 2.5 per cent of the do
 | 260 | Industry overview | The peer benchmarking table. Return on capital, depreciation rate, capex and depreciation for five Indian and three global operators across three fiscal years |
 | 261 | Industry overview | The return on capital formula, printed inside the commissioned 1Lattice and Cushman and Wakefield report rather than beside the issuer's own figures |
 | 301 | Our business | Capacity and utilisation by data centre, thirteen sites |
-| 353 | Restated consolidated financials | Statement of assets and liabilities. Net worth, borrowings, lease liabilities and cash, four periods |
+| 350 | Auditor's examination report | The report names the periods it covers and which entity each one is: consolidated for June 2025 and March 2025, standalone for March 2024 and 2023 |
+| 353 | Restated consolidated financials | Statement of assets and liabilities. Net worth, borrowings, lease liabilities, cash and total assets, four periods, and the Consolidated against Standalone column header printed above them |
 | 355 | Restated consolidated financials | Statement of cash flow. Cash from operations, tax paid, capital expenditure, depreciation and right of use payments, four periods |
 | 398 | Restated consolidated financials | Notes 23 to 26, the expense stack |
 | 463 | Outstanding litigation and material developments | The policy on materiality, adopted by board resolution two days before the document is dated. Three tests, the lower of which sets the disclosure threshold |
 | 464 | Litigation involving the Company | The Visakhapatnam land writ naming the Company, and two summary criminal cases the Company says it learned of from the E-courts services website |
 | 470 | Outstanding litigation, tax and creditors | Twenty income tax appeals found by third party checks and unquantifiable for want of service, a GST show cause notice of 1,175.83 million, and the creditor materiality threshold |
+
+The seventh is about the four columns rather than about anything in them. The restated statements
+are titled **Restated Consolidated** throughout, and the header printed directly above the columns
+reads **Consolidated** for the two most recent periods and **Standalone** for the two older ones. The
+auditor's examination report at printed 350 says the same in words. Four columns a reader takes as
+one series are therefore two reporting entities.
+
+The series survives it, and the reason is worth stating rather than assuming. The associate, SKVR
+Software Solution Private Limited, contributed nothing at all in the two standalone years, so a
+consolidated statement for those years would have been the same statement. Where it does register is
+the stub quarter, whose share of the associate's loss is 8.4 per cent of the profit reported for it.
+The condition is now a build guard: a standalone column carrying an associate share would mean every
+exhibit spanning four periods is comparing a group against a parent.
 
 The two findings that came out of it: the same 188.04 MW figure is defined two different ways on
 printed pages 49 and 142, and the long contract revenue share on page 46 equals the sum of the top
