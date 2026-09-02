@@ -21,6 +21,8 @@ import { SiteMap } from "@/components/SiteMap";
 import { RiskMatrix } from "@/components/RiskMatrix";
 import { CapexVsCfo } from "@/components/CapexVsCfo";
 import { sifyRiskMeasures } from "@/lib/diagnostics/risk";
+import { accrualRatio, cfoToPat, pillar } from "@/lib/diagnostics/cashQuality";
+import { CashConversion } from "@/components/CashConversion";
 import { RoceCheck } from "@/components/RoceCheck";
 import { issuerCapexCover, roceReconciliation } from "@/lib/diagnostics/capital";
 import { Pictogram, StatTile, type IconName } from "@/components/Visual";
@@ -129,6 +131,21 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
   const saidYears =
     (Date.parse(saidLast.date) - Date.parse(saidFirst.date)) / (365.25 * 86_400_000);
   const missed = sify.claims.filter((c) => c.status === "MISSED");
+  // Cash conversion, one reading per filed period. The stub is labelled rather
+  // than annualised, because a quarter of cash against a quarter of profit is a
+  // real ratio and a quarter scaled up by four is not.
+  const cashReadings = sisl.periods.map((p) => {
+    const cf = sisl.cashFlow.find((c) => c.label === p.label)!;
+    const bs = sisl.balanceSheet.find((b) => b.label === p.label)!;
+    return pillar("SIFY", sisl.entity, p.stub ? `${p.label}, unannualised` : p.label, [
+      cfoToPat(cf.cfo, p.pat),
+      accrualRatio(p.pat, cf.cfo, cf.cfi, bs.totalAssets),
+    ]);
+  });
+  const conv = cashReadings.map((r) => r.metrics[0].value!);
+  const accrualPeak = cashReadings.reduce((a, r) =>
+    Math.abs(r.metrics[1].value!) > Math.abs(a.metrics[1].value!) ? r : a,
+  );
   const cover = issuerCapexCover(sisl.cashFlow);
   const roce = roceReconciliation(sisl);
   const checkable = roce.filter((r) => r.checkable);
@@ -445,6 +462,37 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
 
         <Exhibit
           n={10}
+          title={`Every filed period turns profit into at least ${Math.min(...conv).toFixed(1)} times as much operating cash, and the accrual ratio still peaks at ${accrualPeak.metrics[1].value!.toFixed(0)} per cent`}
+          units="Two measures of one idea, one row per filed period. Rupees millions behind them, restated and as filed. The thresholds are the ones published on the methodology page, applied here from the same file that publishes them. The stub quarter is compared against its own quarter of cash rather than annualised."
+          source={`${sisl.cashFlowSource.label} Total assets from the restated statement of assets and liabilities at printed page ${sisl.balanceSheetSource.page}.`}
+          page={sisl.cashFlowSource.page}
+        >
+          <CashConversion readings={cashReadings} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            On the first measure this issuer is the opposite of a cash conversion problem. Profit
+            after tax turns into between{" "}
+            <span className="tnum text-foreground">{Math.min(...conv).toFixed(2)}</span> and{" "}
+            <span className="tnum text-foreground">{Math.max(...conv).toFixed(2)}</span> times as
+            much operating cash across the filed periods, which is what a business with heavy
+            depreciation and customers on contract looks like.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The second measure is the one to read carefully, and it is why both are shown. Its
+            numerator adds investing cash back in, so on an operator part way through building an
+            estate it moves with the size of the build rather than with the quality of the
+            earnings. It sits at{" "}
+            <span className="tnum text-foreground">
+              {accrualPeak.metrics[1].value!.toFixed(1)}
+            </span>{" "}
+            per cent in {accrualPeak.period}, near the threshold, and falls away in the year capital
+            spending fell. Nothing about the earnings changed between those readings. The spending
+            did.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={11}
           title={`${exact.length} of the ${roce.length} published returns on capital rebuild exactly, and the one that cannot be checked is the highest`}
           units="Points of return on capital, measured from the figure the issuer published. The formula is the document's own. Zero means the rebuild landed on the published figure."
           source={`${sisl.roceFormulaSource.label} The inputs are the key performance indicators, the statement of cash flow and the balance sheet, at printed pages ${sisl.periodsSource.page}, ${sisl.cashFlowSource.page} and ${sisl.balanceSheetSource.page}.`}

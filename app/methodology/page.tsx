@@ -8,6 +8,7 @@ import { SourcingTiers, PageGrid } from "@/components/Sourcing";
 import { ReadingRule } from "@/components/ReadingRule";
 import { InvariantLedger } from "@/components/InvariantLedger";
 import { Cite } from "@/components/Cite";
+import { CASH_CONVERSION } from "@/lib/config";
 import { StatTile, type IconName } from "@/components/Visual";
 
 export const metadata: Metadata = {
@@ -232,6 +233,57 @@ export default function MethodologyPage() {
             longer way of asking to be trusted.
           </p>
         </Exhibit>
+      </section>
+
+      <section className="border-t border-line py-12">
+        <p className="sc text-accent">The bands a reading is graded against</p>
+        <h2 className="mt-3 max-w-3xl font-display text-3xl leading-tight tracking-tight">
+          The thresholds are published, so disagreeing means disagreeing with a number
+        </h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+          Cash conversion is the first of the six pillars to be built. These are the bands it
+          applies, and they are read from the same file the pages apply, so the rule shown here and
+          the rule used to colour a cell cannot drift apart. A build guard fails if a component
+          writes a band of its own.
+        </p>
+        <dl className="mt-7 grid gap-px overflow-hidden rounded-md border border-line bg-line lg:grid-cols-2">
+          <div className="bg-card p-5">
+            <dt className="font-display text-lg tracking-tight">
+              Operating cash to profit after tax
+            </dt>
+            <dd className="mt-2 text-sm leading-relaxed text-muted">
+              Flagged below{" "}
+              <span className="tnum text-foreground">{CASH_CONVERSION.cfoToPat.amberBelow}</span>,
+              serious below{" "}
+              <span className="tnum text-foreground">{CASH_CONVERSION.cfoToPat.redBelow}</span>.
+              Refused where profit after tax is not positive, because the quotient changes sign
+              without the cash changing and a negative reading would sort like a grade.
+            </dd>
+          </div>
+          <div className="bg-card p-5">
+            <dt className="font-display text-lg tracking-tight">Sloan accrual ratio</dt>
+            <dd className="mt-2 text-sm leading-relaxed text-muted">
+              Net income less operating cash less investing cash, over total assets. Outside plus or
+              minus{" "}
+              <span className="tnum text-foreground">
+                {(CASH_CONVERSION.accrualRatio.redOutside * 100).toFixed(0)}
+              </span>{" "}
+              per cent is the danger line. Its numerator adds investing cash back in, so on an
+              operator part way through a build it moves with the size of the build rather than with
+              the quality of the earnings. Both measures are shown for that reason and neither is
+              called the verdict.
+            </dd>
+          </div>
+        </dl>
+        <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted">
+          A combined reading is withheld below{" "}
+          <span className="tnum text-foreground">
+            {CASH_CONVERSION.minimumMetricsForCombined}
+          </span>{" "}
+          resolved measures rather than averaged over the gap, and the two are never averaged
+          against each other. Where they disagree, the disagreement is reported instead, because the
+          midpoint of a contradiction is not a finding.
+        </p>
       </section>
 
       <section className="border-t border-line py-12">

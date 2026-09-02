@@ -382,6 +382,27 @@
       "fragment": "must change side when that line leaves operating activities"
     },
     {
+      "id": "anantraj-cash-conversion-stays-red",
+      "schema": "AnantRaj",
+      "category": "FINDING",
+      "protects": "Operating cash is under half the profit reported beside it, and it stays under half on the other reading of the borrowings classification as well. That is the cash conversion pillar's headline for this name, and the whole point of publishing it is that it does not depend on choosing between two presentations of the same statement. If either reading ever clears the threshold the sentence is gone and the build stops.",
+      "fragment": "must stay under half the profit reported beside it on both readings"
+    },
+    {
+      "id": "sisl-assets-exceed-equity",
+      "schema": "Sisl",
+      "category": "POSSIBLE",
+      "protects": "Total assets exceed net worth in every filed period, which is an identity rather than a finding. It is asserted because total assets were read out of one column of a four column restated statement, and a column taken one place across would move the accrual ratio without looking wrong on the page.",
+      "fragment": "total assets do not exceed net worth, so a column has been read across"
+    },
+    {
+      "id": "sisl-investing-stays-an-outflow",
+      "schema": "Sisl",
+      "category": "FINDING",
+      "protects": "Every filed period spends more on investing than it recovers. That is what makes the accrual ratio on this filer move with the size of the build rather than with the quality of the earnings, which is the caveat published beside the ratio. A period that turned positive would make that caveat wrong.",
+      "fragment": "investing cash is no longer an outflow"
+    },
+    {
       "id": "dc-arm-net-assets-agree",
       "schema": "AnantRaj",
       "category": "RECONCILE",

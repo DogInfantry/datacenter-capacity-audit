@@ -84,7 +84,7 @@ Recorded with the finding each one produced, because a tick is not a result.
   and Netweb on an order book because it manufactures servers and owns no estate. The third is
   deliberately absent from the two by two rather than forced onto it, since an order book and a
   megawatt do not belong on the same axes. That completes the brief's own Recommendation 1.
-- **The invariant register, checked against the code.** Thirty build guards are published on
+- **The invariant register, checked against the code.** Seventy five build guards are published on
   `/methodology` with what each protects and the message it emits. Three tests assert that every
   documented fragment still exists in the schema source, that each identifies exactly one guard,
   and that the count in the source equals the count documented. The mechanism caught its own author
@@ -109,12 +109,24 @@ Recorded with the finding each one produced, because a tick is not a result.
   the second operator, which produced one ratio that asks the same question of both. `/compare`
   leads on how few of its rows survive that test, marks the one that does, excludes Netweb by name
   with the reason, and draws every absent figure as the document that would fill it rather than as
-  a blank a reader could take for a zero. A fourth operator would still widen it more than a fourth
-  metric would.
+  a blank a reader could take for a zero. A third operator has since been added from a filed annual report, and the
+  page carries three ladders on one scale. A fourth would still widen it more than a fourth metric
+  would.
 - **The six pillar forensic scorecard.** In the brief, never built, and deliberately not faked. No
   scoring engine exists in this repository; the two by two plots two stated figures against each
-  other so a reader can argue with a source rather than with a hidden weighting. Building it needs
-  cash flow and balance sheet data for more than one name, which is the same blocker as below.
+  other so a reader can argue with a source rather than with a hidden weighting. Cash conversion, the pillar the brief calls
+  the heart of the engine, now exists on the two names whose statements have been read. It computes
+  operating cash against profit and the Sloan accrual ratio, grades both against thresholds
+  published on `/methodology` and read from the same file that applies them, refuses a ratio where
+  profit after tax is not positive, and withholds a combined reading rather than averaging over a
+  measure it could not compute. The finding is that the two measures disagree on Anant Raj: profit
+  converts to cash at 0.23 times, red on the brief's own threshold and still red at 0.42 on the
+  other reading of the borrowings classification, while the accrual ratio calls the same year clean.
+  They disagree because the second adds investing cash back into its numerator, which also means it
+  tracks the size of Sify's build rather than the quality of its earnings. Both are shown and
+  neither is called the verdict. What blocks the remaining five is narrower and different: profit
+  after tax and total assets are absent from `data/companies/*.json`, and re-harvesting them from
+  EDGAR is what would let a pillar cover the global peers rather than only the Indian names.
 - **The rest of the prospectus teardown.** The document is read and partly extracted: the offer,
   the objects and deployment schedule, and the capacity definitions, each cited by printed page.
   Still to extract, with the page map already recorded in
@@ -136,7 +148,8 @@ Recorded with the finding each one produced, because a tick is not a result.
 - **The Indian four.** Netweb and Anant Raj now have pages, but built from research note figures
   rather than statements: capacity and delivery for one, order book and revenue mix for the other,
   with no margin, no cash flow and no client table on either. Both pages list what was not read
-  rather than hiding it. E2E and Techno Electric have nothing yet. All four still need Screener
+  rather than hiding it. Techno Electric has had its annual report read for capacity, which corrected the coverage row
+  from 36 MW live to 24, but no statements. E2E has nothing yet. All four still need Screener
   exports by hand, because no structured source exists, which is why they trail the structured set.
 
 ## Terminal, not pending

@@ -4,8 +4,10 @@ import Link from "next/link";
 import type { AnantRaj } from "@/lib/schema";
 import { anantRajRiskMeasures, pillarCoverage } from "@/lib/diagnostics/risk";
 import { cashConversion, dataCentreArm } from "@/lib/diagnostics/anantraj";
+import { accrualRatio, cfoToPat, metricsDisagree, pillar } from "@/lib/diagnostics/cashQuality";
 import { Exhibit } from "./Exhibits";
 import { CapexVsCfo } from "./CapexVsCfo";
+import { CashConversion } from "./CashConversion";
 import { DataCentreArm } from "./DataCentreArm";
 import { RiskMatrix } from "./RiskMatrix";
 import { Icon, StatTile } from "./Visual";
@@ -65,6 +67,23 @@ export function AnantRajBody({ data, sify, sifyCover }: Props) {
   // Capital spending against the cash the year produced, twice, because the
   // statement's own classification changes the answer.
   const cc = cashConversion(data.financials);
+  // The pillar on both readings of the same statement, because the guard holds
+  // the finding to both and a page that showed one would be choosing.
+  const fin = data.financials;
+  const pat = fin.profitAndLoss.profitAfterTax;
+  const ta = fin.balanceSheet.totalAssets;
+  const cfi = fin.cashFlow.netCashFromInvesting;
+  const readings = [
+    pillar("ANANTRAJ", data.listedParent, `${fin.fiscalYear}, as filed`, [
+      cfoToPat(cc.filed, pat),
+      accrualRatio(pat, cc.filed, cfi, ta),
+    ]),
+    pillar("ANANTRAJ", data.listedParent, `${fin.fiscalYear}, borrowings line removed`, [
+      cfoToPat(cc.restated, pat),
+      accrualRatio(pat, cc.restated, cfi, ta),
+    ]),
+  ];
+  const split = metricsDisagree(readings[0]);
   const claimed = ar.rungs.find((r) => r.kind === "CLAIMED")!;
   const arLive = ar.rungs.find((r) => r.rung === "Operationalised")!;
   const arColo = ar.rungs.find((r) => r.rung === "Operationalised colocation")!;
@@ -479,6 +498,35 @@ export function AnantRajBody({ data, sify, sifyCover }: Props) {
             a capital programme outrunning the business by a wide margin, and it is visible without
             reclassifying anything. What sits on this page is narrower and turns on where a line is
             printed rather than on how much was spent.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={8}
+          title={`Operating cash is ${readings[0].metrics[0].value!.toFixed(2)} times the profit reported beside it, and the accrual ratio calls the same year clean`}
+          units={`Two measures of one idea, on both readings of the statement. The amounts behind them are in ${data.financials.unit}. The thresholds are the ones published on the methodology page, applied here from the same file that publishes them.`}
+          source={`${data.financials.profitAndLoss.source.label}, printed page ${data.financials.profitAndLoss.source.page}; the cash flow statement at printed pages ${cc.operating.page} and ${cc.financing.page}; and the consolidated balance sheet at printed page ${data.financials.balanceSheet.source.page}.`}
+        >
+          <CashConversion readings={readings} />
+
+          {split && (
+            <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+              The two measures disagree, and the disagreement is the useful part. Profit is not
+              arriving as cash, which the first reports and the second does not, because the second
+              adds investing cash back into its numerator. On a company whose spending is small
+              against its balance sheet that addition leaves the ratio calm. Neither is wrong. One
+              asks whether profit became cash and the other asks whether the balance sheet is
+              accumulating accruals, and only the first of those is failing here.
+            </p>
+          )}
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The result holds on both readings. As the statement files it, operating cash is{" "}
+            <span className="tnum text-signal">{readings[0].metrics[0].value!.toFixed(2)}</span>{" "}
+            times profit after tax. With the borrowings movement taken back out of operating
+            activities it is{" "}
+            <span className="tnum text-signal">{readings[1].metrics[0].value!.toFixed(2)}</span>.
+            Both sit under the threshold, so the reading does not depend on settling which
+            presentation is the right one.
           </p>
         </Exhibit>
       </section>

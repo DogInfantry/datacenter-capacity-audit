@@ -231,6 +231,8 @@
       "acquisitionOfInvestmentProperty": 2213.45,
       "additionsToCapitalWorkInProgress": 1485.37,
       "additionsToRightOfUse": 1221.79,
+      "netCashFromInvesting": -7212.78,
+      "netCashFromInvestingPrior": 18082.61,
       "source": {
         "label": "Anant Raj Limited annual report FY2024-25, Consolidated Cash Flow Statement for the year ended March 31, 2025. The movement in current borrowings is presented inside operating activities as a working capital adjustment, and repayment of borrowings is presented again under finance activities.",
         "page": 224,

@@ -770,6 +770,9 @@ const SislCashFlow = z
      *  folded into capex, because folding it in would quietly enlarge the gap
      *  the exhibit draws. */
     rightOfUse: z.number().positive(),
+    /** Net cash used in investing, held with its filed sign so the accrual
+     *  ratio does not depend on remembering which way it points. */
+    cfi: z.number(),
   })
   .refine((r) => Math.abs(r.cashFromOperations - r.taxPaid - r.cfo) < 0.01, {
     message: "cash generated from operations less tax paid must equal net cash from operations",
@@ -788,6 +791,9 @@ const SislCashFlow = z
 const SislBalance = z.object({
   label: z.string().min(1),
   netWorth: z.number().positive(),
+  /** The denominator of the accrual ratio, and the one line on this statement
+   *  that nothing else here uses. */
+  totalAssets: z.number().positive(),
   borrowings: z.number().positive(),
   leaseLiabilities: z.number().positive(),
   cash: z.number().positive(),
@@ -963,6 +969,32 @@ export const Sisl = z
     // arithmetic drifts, the exhibit is claiming a reconciliation that has
     // stopped happening.
     const bs = new Map(d.balanceSheet.map((b) => [b.label, b]));
+    // Assets exceed equity in every filed period, which is an identity rather
+    // than a finding. It is asserted because total assets arrived as one column
+    // of a four column statement and a column read one place across would
+    // change the accrual ratio without looking wrong.
+    for (const b of d.balanceSheet) {
+      if (b.totalAssets <= b.netWorth) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["balanceSheet"],
+          message: `${b.label}: total assets do not exceed net worth, so a column has been read across`,
+        });
+      }
+    }
+    // Every filed period spends more on investing than it recovers. That is the
+    // estate being built, and it is what makes the accrual ratio move with the
+    // build rather than with earnings quality on this filer. If a period ever
+    // turns positive the caveat published beside the ratio stops applying.
+    for (const c of d.cashFlow) {
+      if (c.cfi >= 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["cashFlow"],
+          message: `${c.label}: investing cash is no longer an outflow, so the accrual ratio caveat needs rewriting`,
+        });
+      }
+    }
     const dep = new Map(d.cashFlow.map((c) => [c.label, c.depreciation]));
     const employed = (b: z.infer<typeof SislBalance>) =>
       b.netWorth + b.borrowings + b.leaseLiabilities - b.cash;
@@ -1212,6 +1244,9 @@ export const AnantRaj = z
         acquisitionOfInvestmentProperty: z.number().nonnegative(),
         additionsToCapitalWorkInProgress: z.number().nonnegative(),
         additionsToRightOfUse: z.number().nonnegative(),
+        /** The investing section's own total, signed as filed. */
+        netCashFromInvesting: z.number(),
+        netCashFromInvestingPrior: z.number(),
         source: PagedSource,
       }),
       segment: z.object({
@@ -1456,6 +1491,22 @@ export const AnantRaj = z
         code: z.ZodIssueCode.custom,
         path: ["financials", "segment"],
         message: `the group no longer reports a single segment`,
+      });
+    }
+    // The pillar's headline, and the reason it is worth publishing. Operating
+    // cash is a fraction of the profit reported beside it, and it stays a
+    // fraction on the other reading of the borrowings classification too. A
+    // finding that survives both readings of a disputed presentation does not
+    // depend on picking the right one, and if either ever clears the threshold
+    // the sentence resting on it is gone.
+    const conversionFiled = cf.netCashFromOperations / pl.profitAfterTax;
+    const conversionRestated =
+      (cf.netCashFromOperations - cf.currentBorrowingsInsideOperating) / pl.profitAfterTax;
+    if (!(conversionFiled < 0.5 && conversionRestated < 0.5)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["financials"],
+        message: `operating cash must stay under half the profit reported beside it on both readings, got ${conversionFiled.toFixed(2)} as filed and ${conversionRestated.toFixed(2)} without the borrowings line`,
       });
     }
     // A risk row may cite only a page this file already records. A page number
