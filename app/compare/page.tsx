@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { sisl, anantRaj, netweb } from "@/lib/data";
+import { sisl, anantRaj, netweb, technoe } from "@/lib/data";
 import {
   compareRows,
   compareSubjects,
   comparableCount,
   compareLadders,
+  technoDisclosure,
 } from "@/lib/diagnostics/compare";
 import { Exhibit } from "@/components/Exhibits";
 import { CapacityLadders } from "@/components/CapacityLadders";
@@ -14,24 +15,38 @@ import { CompareTable } from "@/components/CompareTable";
 export const metadata: Metadata = {
   title: "Compare",
   description:
-    "Two Indian data centre operators, both read from a filed document. One earns on most of its headline capacity and the other on a fifth of it.",
+    "Three Indian data centre operators, each read from a filed document, each using different words for capacity. What earns against what is headlined is the one question that survives all three vocabularies.",
 };
 
 /**
- * Two operators, the same question, very different answers.
+ * Three operators, the same question, very different answers.
  *
- * The page leads on how few measures survive two vocabularies, because that
+ * The page leads on how few measures survive three vocabularies, because that
  * count is the most honest thing it knows about itself. Two do: earning share
  * of the headline, and what each company's data centres actually earned. The
- * rest are levels, including the one place both companies print the same words
- * for return on capital and divide by different denominators.
+ * rest are levels, including the one place two of them print the same words for
+ * return on capital and divide by different denominators.
+ *
+ * The third operator reaches the ladders and none of the financial rows. Its
+ * megawatts are filed and cited; its statements sit in the same report and are
+ * not drawn on, and a financial row built from nothing would be the false
+ * equivalence this page exists to refuse.
  */
 export default function ComparePage() {
-  const subjects = compareSubjects(sisl, anantRaj, netweb);
+  const subjects = compareSubjects(sisl, anantRaj, netweb, technoe);
   const rows = compareRows(sisl, anantRaj);
   const { comparable, total } = comparableCount(rows);
-  const ladders = compareLadders(sisl, anantRaj);
-  const [big, small] = [...ladders.companies].sort((a, b) => b.headlineMW - a.headlineMW);
+  const ladders = compareLadders(sisl, anantRaj, technoe);
+  // Looked up by ticker rather than by size, because the prose links each name
+  // to its own page and a sort would silently reassign those links the moment
+  // a fourth operator arrived.
+  const at = Object.fromEntries(ladders.companies.map((c) => [c.ticker, c]));
+  const big = at.SIFY;
+  const small = at.ANANTRAJ;
+  const third = at.TECHNOE;
+  const ranked = [...ladders.companies].sort((a, b) => b.earningShare - a.earningShare);
+  const te = technoDisclosure(technoe);
+  const noida = te.phased[0];
   // The second like for like row, and the multiple it produces. Derived from
   // the row rather than restated, so the title cannot drift from the table.
   const dcRow = rows.find((r) => r.metric === "Revenue from data centres")!;
@@ -42,21 +57,25 @@ export default function ComparePage() {
       <section className="py-12 sm:py-16">
         <p className="sc text-accent">Compare</p>
         <h1 className="mt-3 max-w-3xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">
-          The same question, asked of two operators.
+          The same question, asked of three operators.
           <br />
-          <span className="tnum">{big.earningShare.toFixed(0)}</span> per cent, and{" "}
-          <span className="tnum">{small.earningShare.toFixed(0)}</span>.
+          <span className="tnum">{ranked[0].earningShare.toFixed(0)}</span> per cent,{" "}
+          <span className="tnum">{ranked[1].earningShare.toFixed(0)}</span>, and{" "}
+          <span className="tnum">{ranked[2].earningShare.toFixed(0)}</span>.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-          Two companies build data centres in India and neither uses the other&apos;s words. One
-          publishes built, installed and sold capacity. The other publishes a headline that mixes
-          operational with advance stage, and an operational figure two pages away from it. Putting
-          those levels side by side produces a table that looks like a comparison and is not one.
+          Three companies build data centres in India and no two of them use the same words. One
+          publishes built, installed and sold capacity. One publishes a headline that mixes
+          operational with advance stage, and an operational figure two pages away from it. The
+          third publishes neither an estate nor a headline, only three campuses and the phasing
+          inside one of them. Putting those levels side by side produces a table that looks like
+          a comparison and is not one.
         </p>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
-          Two measures survive. What earns divided by what the company headlines, and what each
-          company&apos;s data centres actually earned. Both ask the same question of both, and
-          every figure in them is printed in a filed document. On the first,{" "}
+          Two measures survive. What earns divided by what the company headlines, asked of all
+          three, and what each company&apos;s data centres actually earned, asked of the two whose
+          statements are cited here. Every figure in them is printed in a filed document. On the
+          first,{" "}
           <Link
             href="/company/SIFY"
             className="underline decoration-line underline-offset-4 hover:text-accent"
@@ -71,7 +90,9 @@ export default function ComparePage() {
           >
             {small.name}
           </Link>{" "}
-          on <span className="tnum text-foreground">{small.earningShare.toFixed(1)}</span>. Of{" "}
+          on <span className="tnum text-foreground">{small.earningShare.toFixed(1)}</span>, and{" "}
+          {third.name} on{" "}
+          <span className="tnum text-foreground">{third.earningShare.toFixed(1)}</span>. Of{" "}
           <span className="tnum text-foreground">{total}</span> measures below,{" "}
           <span className="tnum text-foreground">{comparable}</span> travel between them.
         </p>
@@ -80,14 +101,14 @@ export default function ComparePage() {
       <section className="space-y-6 border-t border-line py-12">
         <Exhibit
           n={1}
-          title={`${big.name} sells ${big.earningShare.toFixed(0)} per cent of what it headlines. ${small.name} operates ${small.earningShare.toFixed(0)}`}
-          units={`Megawatts, both ladders on one scale. Each column is that company's own rungs in its own words, and no bar in one column is the same measurement as the bar beside it.`}
-          source={`${big.sourceLabel} ${small.sourceLabel}`}
+          title={`Three operators earn on ${ranked.map((c) => c.earningShare.toFixed(0)).join(", ")} per cent of what each of them headlines`}
+          units={`Megawatts, all three ladders on one scale. Each column is that company's own rungs in its own words, and no bar in one column is the same measurement as the bar beside it.`}
+          source={ladders.companies.map((c) => c.sourceLabel).join(" ")}
         >
           <CapacityLadders
             companies={ladders.companies}
             max={ladders.max}
-            scaleNote={`One scale, so relative size is visible as well as relative shape. ${big.name} headlines ${ladders.sizeMultiple.toFixed(1)} times the megawatts ${small.name} does, and both ladders are drawn against the widest rung in the exhibit rather than each against its own.`}
+            scaleNote={`One scale, so relative size is visible as well as relative shape. ${big.name} headlines ${ladders.sizeMultiple.toFixed(1)} times the megawatts the smallest estate here does, and every ladder is drawn against the widest rung in the exhibit rather than each against its own.`}
           />
 
           <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
@@ -95,17 +116,44 @@ export default function ComparePage() {
             three rungs of one estate defined in one document. {small.name} descends from a headline
             printed with the words &ldquo;operational and advance stage to operationalise&rdquo; to
             an operational figure printed elsewhere in the same report, and then to the part of that
-            figure which is colocation rather than cloud. Reading either ladder against the other
-            rung by rung would set one definition beside a different one.
+            figure which is colocation rather than cloud. {third.name} descends from three campuses
+            added together, a total the report never prints, to the one of them it calls
+            &ldquo;commissioned and live&rdquo;. Reading any ladder against another rung by rung
+            would set one definition beside a different one.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-muted">
             The number above each ladder is the one that travels, because it is built from that
             company&apos;s own two figures.{" "}
             <span className="tnum text-foreground">{big.earningShare.toFixed(1)}</span> per cent
             against <span className="tnum text-foreground">{small.earningShare.toFixed(1)}</span> is
-            not a difference in disclosure quality. Both companies disclosed enough to be measured.
-            It is a difference in how much of what reaches the market is a built asset with a
-            customer on it.
+            not a difference in disclosure quality. Every company here disclosed enough to be
+            measured. It is a difference in how much of what reaches the market is a built asset
+            with a customer on it.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The third ladder carries the same gap inside a single address. {third.name} describes{" "}
+            {noida.name} as a <span className="tnum text-foreground">{noida.campusMW}</span> MW
+            campus whose first phase is{" "}
+            <span className="tnum text-foreground">{noida.firstPhaseMW * 1000}</span> kW, both in
+            one sentence at printed page <span className="tnum">{noida.page}</span>. That is{" "}
+            <span className="tnum text-signal">{noida.ratio.toFixed(0)}</span> to one between the
+            number attached to the site and the first increment due to run on it, without leaving
+            one campus or one page.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The rung above it carries the warning the other two ladders carry. The words on{" "}
+            {third.name}&apos;s live campus are{" "}
+            <span className="text-foreground">&ldquo;{third.earningWords}&rdquo;</span> A campus is
+            called commissioned and live in the same breath as a second phase of it still being
+            planned, which is what makes{" "}
+            <span className="tnum text-foreground">{third.earningMW}</span> MW the campus rather
+            than what earns on it. Set against the{" "}
+            <span className="tnum text-foreground">{te.targetMW}</span> MW targeted by {te.targetBy}{" "}
+            at printed page <span className="tnum">{te.targetPage}</span>, it is{" "}
+            <span className="tnum text-signal">
+              {((third.earningMW / te.targetMW) * 100).toFixed(1)}
+            </span>{" "}
+            per cent.
           </p>
         </Exhibit>
 

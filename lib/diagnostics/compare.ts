@@ -1,4 +1,4 @@
-import type { AnantRaj, Netweb, Sisl } from "@/lib/schema";
+import type { AnantRaj, Netweb, Sisl, TechnoElectric } from "@/lib/schema";
 
 /**
  * The comparison, and the reason most of it is empty.
@@ -44,10 +44,22 @@ export type CompareSubject = {
   excluded: string | null;
 };
 
-export function compareSubjects(sisl: Sisl, ar: AnantRaj, nw: Netweb): CompareSubject[] {
+export function compareSubjects(
+  sisl: Sisl,
+  ar: AnantRaj,
+  nw: Netweb,
+  te: TechnoElectric,
+): CompareSubject[] {
   return [
     { ticker: "SIFY", name: sisl.entity, unit: "megawatts", excluded: null },
     { ticker: "ANANTRAJ", name: ar.listedParent, unit: "megawatts", excluded: null },
+    {
+      ticker: "TECHNOE",
+      name: te.listedParent,
+      unit: "megawatts",
+      excluded:
+        "Its megawatts are filed and cited, so it stands in the ladders. The financial statements in the same report are not drawn on here, so it appears in none of the financial rows.",
+    },
     {
       ticker: "NETWEB",
       name: nw.listedParent,
@@ -197,25 +209,56 @@ export type LadderCompany = {
   earningMW: number;
   earningShare: number;
   sourceLabel: string;
+  /** The company's own words for the earning rung, where the phrasing carries a
+   *  qualifier worth quoting rather than paraphrasing. */
+  earningWords?: string;
 };
 
 /**
- * The two estates as ladders on one megawatt scale.
+ * The third operator's disclosure, at a level the other two are not measured on.
+ *
+ * Sify and Anant Raj publish an estate. This one publishes three campuses and
+ * the phasing inside one of them, which puts the announced against delivered gap
+ * inside a single address rather than across a portfolio. Returned as numbers so
+ * the page states the ratio rather than repeating it.
+ */
+export function technoDisclosure(te: TechnoElectric) {
+  const phased = te.campuses.filter((c) => c.firstPhaseMW !== null);
+  return {
+    phased: phased.map((c) => ({
+      name: c.name,
+      campusMW: c.mw,
+      firstPhaseMW: c.firstPhaseMW as number,
+      ratio: c.mw / (c.firstPhaseMW as number),
+      words: c.statusWords,
+      page: c.page,
+    })),
+    live: te.campuses
+      .filter((c) => c.status === "LIVE")
+      .map((c) => ({ name: c.name, mw: c.mw, words: c.statusWords, page: c.page })),
+    targetMW: te.target.mw,
+    targetBy: te.target.by,
+    targetPage: te.target.page,
+  };
+}
+
+/**
+ * The three estates as ladders on one megawatt scale.
  *
  * Each ladder is one company's own published rungs in that company's own words.
  * The words do not correspond across the two, which is why nothing is drawn
  * between them and only the ratio at the foot of each ladder travels: what
  * earns over what is headlined, asked of each company against its own numbers.
  *
- * One shared scale rather than two indexed ones. Indexing each estate to its own
- * top would draw both ladders the same width and hide that one of these
- * companies operates an order of magnitude more capacity than the other.
+ * One shared scale rather than three indexed ones. Indexing each estate to its
+ * own top would draw every ladder the same width and hide that one of these
+ * companies operates an order of magnitude more capacity than the others.
  *
  * Forward looking rungs are excluded. A planned figure is not capacity and
  * putting it on the same axis as a built one is the move this whole site exists
  * to point at.
  */
-export function compareLadders(sisl: Sisl, ar: AnantRaj) {
+export function compareLadders(sisl: Sisl, ar: AnantRaj, te: TechnoElectric) {
   const full = sisl.periods.filter((p) => !p.stub);
   const fy = full[full.length - 1];
   const page = sisl.periodsSource.page;
@@ -223,6 +266,10 @@ export function compareLadders(sisl: Sisl, ar: AnantRaj) {
   const arRungs = ar.annualReport.rungs.filter((r) => r.kind !== "AMBITION");
   const claimed = arRungs.find((r) => r.kind === "CLAIMED")!;
   const live = arRungs.find((r) => r.rung === "Operationalised")!;
+  // Only the campuses the report calls live. The 250 MW target is an ambition
+  // and is excluded here for the same reason Anant Raj's 307 is.
+  const teLive = te.campuses.filter((c) => c.status === "LIVE").reduce((t, c) => t + c.mw, 0);
+  const tePortfolio = te.campuses.reduce((t, c) => t + c.mw, 0);
 
   const companies: LadderCompany[] = [
     {
@@ -248,6 +295,34 @@ export function compareLadders(sisl: Sisl, ar: AnantRaj) {
       earningMW: live.mw,
       earningShare: (live.mw / claimed.mw) * 100,
       sourceLabel: ar.annualReport.compositionSource.label,
+    },
+    // The third operator publishes campuses rather than an estate, so its widest
+    // rung is the three of them added together. That sum is not a figure the
+    // report prints, and the rung is named for what it is rather than borrowing
+    // the authority of a printed total.
+    {
+      ticker: "TECHNOE",
+      name: te.listedParent,
+      period: te.annualReport.fiscalYear,
+      rungs: [
+        {
+          rung: "Three campuses added together",
+          mw: tePortfolio,
+          kind: "CLAIMED" as const,
+          page: te.campusesSource.page,
+        },
+        {
+          rung: "Commissioned and live",
+          mw: teLive,
+          kind: "DELIVERED" as const,
+          page: te.campusesSource.page,
+        },
+      ],
+      headlineMW: tePortfolio,
+      earningMW: teLive,
+      earningShare: (teLive / tePortfolio) * 100,
+      sourceLabel: te.campusesSource.label,
+      earningWords: te.campuses.find((c) => c.status === "LIVE")?.statusWords,
     },
   ];
 

@@ -8,13 +8,14 @@ import { Pictogram } from "./Visual";
 const TONES = ["var(--rung-1)", "var(--rung-2)", "var(--rung-4)", "var(--rung-4)"];
 
 /**
- * Two estates, two vocabularies, one megawatt scale.
+ * Three estates, three vocabularies, one megawatt scale.
  *
  * Each column is one company's own rungs in its own words. Nothing is drawn
  * between the columns, because a bar in one is not the same measurement as the
- * bar beside it: one company publishes built, installed and sold, the other
- * publishes a headline that mixes operational with advance stage and an
- * operational figure printed two pages away.
+ * bar beside it: one publishes built, installed and sold, one publishes a
+ * headline that mixes operational with advance stage and an operational figure
+ * printed two pages away, and one publishes three campuses that no printed
+ * total ever adds up.
  *
  * What does travel is the figure above each ladder, which is that company's own
  * earning capacity over its own headline. It is the same question asked twice,
@@ -39,7 +40,7 @@ export function CapacityLadders({
 
   return (
     <div>
-      <div className="grid gap-px overflow-hidden rounded-md border border-line bg-line lg:grid-cols-2">
+      <div className="grid gap-px overflow-hidden rounded-md border border-line bg-line lg:grid-cols-3">
         {companies.map((c) => (
           <div key={c.ticker} className="bg-card p-5">
             <div className="flex items-center gap-2.5">
@@ -88,7 +89,7 @@ export function CapacityLadders({
 
       <p className="mt-4 text-xs leading-relaxed text-muted">{scaleNote}</p>
 
-      <div className="mt-5 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2">
+      <div className="mt-5 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-3">
         {companies.map((c) => (
           <div key={c.ticker} className="bg-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted">{c.name}</p>
