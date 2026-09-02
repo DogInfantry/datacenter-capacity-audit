@@ -25,6 +25,10 @@ const LOGOS: Record<string, { file: string; tile: "light" | "dark" }> = {
   NETWEB: { file: "NETWEB.png", tile: "dark" },
   CUMMINSIND: { file: "CUMMINSIND.svg", tile: "light" },
   POWERINDIA: { file: "POWERINDIA.svg", tile: "light" },
+  TCS: { file: "TCS.svg", tile: "light" },
+  BBOX: { file: "BBOX.svg", tile: "light" },
+  TECHNOE: { file: "TECHNOE.png", tile: "light" },
+  RAILTEL: { file: "RAILTEL.png", tile: "light" },
 };
 
 const SIZES = { sm: 18, md: 24, lg: 34 } as const;

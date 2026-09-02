@@ -367,8 +367,15 @@ outlay is what the rupee figures are benchmarked against.
 
 The logos in `public/logos` are each company's own mark, taken from its website or from Wikimedia
 Commons, resized and optimised but not altered. They remain the property of their owners and are
-reproduced here to identify the companies analysed. Ten of the fourteen covered names have one; the
-rest render as a drawn monogram until a mark is added.
+reproduced here to identify the companies analysed. All fourteen covered names now have one; a name
+without a mark renders as a drawn monogram instead.
+
+Two of the last four came from Wikimedia Commons, Tata Consultancy Services and Black Box. The other
+two are from the companies themselves: RailTel from its own site, and Techno Electric from
+`techno.co.in`, which is the address printed in its annual report. That last one is worth recording,
+because searching the web for the company name reaches `techno-electric.com` first, and that is a
+residential electrical contractor in the United States with a similar name and no connection to the
+Indian filer. The annual report settled it.
 
 ---
 
