@@ -128,3 +128,60 @@ export function statedForFy(
     null
   );
 }
+
+/**
+ * The subsidiary's own accounts against the parent's segment note.
+ *
+ * Sify Infinit Spaces files a prospectus reporting its own revenue. Its parent,
+ * Sify Technologies, files a 20-F reporting a data centre segment. Both describe
+ * the same business, neither cites the other, and until now this project used
+ * the segment note as a stand in for the subsidiary without ever testing whether
+ * that substitution held.
+ *
+ * Both figures are rupees. The prospectus prints millions and the 20-F prints
+ * absolute, which is a change of scale inside one currency and is applied here
+ * rather than a rate, because there is no rate to apply.
+ *
+ * What the comparison finds is not a match and not drift. It is a gap of about
+ * the same size every year while the business grows by forty per cent, which is
+ * the signature of a fixed item sitting inside one boundary and outside the
+ * other. Naming that item would need a reconciliation neither document performs,
+ * so this reports the gap and stops there.
+ */
+export type SegmentGap = {
+  fy: string;
+  /** The subsidiary's own revenue, from its prospectus, in millions. */
+  subsidiary: number;
+  /** The parent's data centre segment for the same year, rescaled to millions. */
+  segment: number;
+  gap: number;
+  gapPct: number;
+  /** Which entity the subsidiary column reports for that year. */
+  basis: string;
+};
+
+export function subsidiaryAgainstSegment(
+  periods: { label: string; revenue: number; stub: boolean; basis: string }[],
+  segments: CompanySegment[],
+): { rows: SegmentGap[]; meanGap: number; spread: number } {
+  const bySegment = new Map(segments.map((s) => [s.fy, s.revenue / 1e6]));
+
+  const rows = periods
+    .filter((p) => !p.stub && bySegment.has(p.label))
+    .map((p) => {
+      const segment = bySegment.get(p.label)!;
+      const gap = p.revenue - segment;
+      return {
+        fy: p.label,
+        subsidiary: p.revenue,
+        segment,
+        gap,
+        gapPct: (gap / p.revenue) * 100,
+        basis: p.basis,
+      };
+    });
+
+  const gaps = rows.map((r) => r.gap);
+  const meanGap = gaps.reduce((t, g) => t + g, 0) / gaps.length;
+  return { rows, meanGap, spread: Math.max(...gaps) - Math.min(...gaps) };
+}

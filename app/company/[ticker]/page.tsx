@@ -13,6 +13,8 @@ import {
   ladder,
 } from "@/lib/data";
 import { citedPages } from "@/lib/diagnostics/sourcing";
+import { subsidiaryAgainstSegment } from "@/lib/diagnostics/reconcile";
+import { sifyCo } from "@/lib/data";
 import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { CapacityStep } from "@/components/CapacityStep";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
@@ -149,6 +151,10 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
   // The bar this issuer set for telling anyone about a dispute, computed from
   // its own statements because the document publishes the formula and never
   // the number.
+  // The subsidiary's own accounts against the segment its parent reports for
+  // the same business, which this project used as a stand in for years
+  // without testing whether the substitution held.
+  const seg = subsidiaryAgainstSegment(sisl.periods, sifyCo.segments);
   const bar = materialityThreshold(sisl);
   const reach = disclosureReach(sisl);
   const accrualPeak = cashReadings.reduce((a, r) =>
@@ -601,6 +607,68 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
 
         <Exhibit
           n={12}
+          title={`Two filings measure the same business and differ by the same ${seg.meanGap.toFixed(0)} million every year`}
+          units={`Rupees millions. The subsidiary's own revenue from its prospectus against the data centre segment its parent reports in its 20-F, for the ${seg.rows.length} years both cover. The 20-F prints absolute rupees and the prospectus prints millions, a change of scale inside one currency, and no rate is applied anywhere because there is none to apply.`}
+          source={`Sify Infinit Spaces DRHP, restated statement of profit and loss at printed page ${sisl.periodsSource.page}, against the data centre segment reported by Sify Technologies in its annual report on Form 20-F, held in the harvested filings.`}
+        >
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[30rem] border-collapse text-sm">
+              <thead>
+                <tr className="border-b border-line text-left text-[11px] uppercase tracking-wider text-muted">
+                  <th className="py-2 pr-4 font-normal">Year</th>
+                  <th className="py-2 pr-4 text-right font-normal">Subsidiary, own accounts</th>
+                  <th className="py-2 pr-4 text-right font-normal">Parent, data centre segment</th>
+                  <th className="py-2 text-right font-normal">Gap</th>
+                </tr>
+              </thead>
+              <tbody>
+                {seg.rows.map((r) => (
+                  <tr key={r.fy} className="border-b border-line">
+                    <td className="py-2.5 pr-4">
+                      {r.fy}
+                      <span className="ml-2 text-[11px] text-muted">
+                        {r.basis === "CONSOLIDATED" ? "consolidated" : "standalone"}
+                      </span>
+                    </td>
+                    <td className="py-2.5 pr-4 text-right tnum">
+                      {r.subsidiary.toLocaleString("en-IN", { maximumFractionDigits: 2 })}
+                    </td>
+                    <td className="py-2.5 pr-4 text-right tnum text-muted">
+                      {r.segment.toLocaleString("en-IN", { maximumFractionDigits: 2 })}
+                    </td>
+                    <td className="py-2.5 text-right tnum text-signal">{r.gap.toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-5 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            Across these years the subsidiary&apos;s revenue grows{" "}
+            <span className="tnum text-foreground">
+              {(((seg.rows[seg.rows.length - 1].subsidiary - seg.rows[0].subsidiary) / seg.rows[0].subsidiary) * 100).toFixed(0)}
+            </span>{" "}
+            per cent and the gap moves by{" "}
+            <span className="tnum text-foreground">{seg.spread.toFixed(2)}</span> million. A
+            difference that holds its size while the business it sits inside grows by two fifths is
+            a fixed item on one side of a boundary, not a measurement drifting from another.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            It also survives the change of reporting basis. Two of these years are the subsidiary
+            standalone and one is consolidated, and the gap does not notice, which is the second
+            thing suggesting it belongs to the definition of the segment rather than to the
+            perimeter of the company.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Neither document cites the other and neither reconciles the two, so what the item is
+            cannot be named from either of them. What can be said is that the parent&apos;s segment
+            and the subsidiary&apos;s accounts are not the same measurement, and anyone treating one
+            as a stand in for the other is out by a fixed amount in every year they overlap.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={13}
           title={`${exact.length} of the ${roce.length} published returns on capital rebuild exactly, and the one that cannot be checked is the highest`}
           units="Points of return on capital, measured from the figure the issuer published. The formula is the document's own. Zero means the rebuild landed on the published figure."
           source={`${sisl.roceFormulaSource.label} The inputs are the key performance indicators, the statement of cash flow and the balance sheet, at printed pages ${sisl.periodsSource.page}, ${sisl.cashFlowSource.page} and ${sisl.balanceSheetSource.page}.`}

@@ -311,6 +311,15 @@ Structured pulls into `data/companies/*.json`, validated by `CompanyDoc`, with t
 All five index from SEC EDGAR. Sify's is `https://www.sec.gov/Archives/edgar/data/1094324`; the rest
 resolve through the EDGAR company browse endpoint recorded on each file.
 
+**The Sify harvest is now used for a second check, against the prospectus rather than against a
+call.** Sify Technologies reports a data centre segment in its 20-F; Sify Infinit Spaces reports its
+own revenue in the prospectus. Both describe the same business, neither cites the other, and neither
+reconciles the two. Across the three years they overlap the subsidiary reports more than the segment
+by 87.79, 87.70 and 87.65 million rupees, while the business grows forty per cent and the reporting
+basis changes from standalone to consolidated underneath it. A difference that holds its size
+through both is a fixed item on one side of a boundary rather than a measurement drifting from
+another. What the item is cannot be named from either document, and is not guessed at here.
+
 Equinix and Digital Realty exist in this repository for one reason: to check the method against
 companies that publish the answer. Rebuilding Equinix's own adjusted EBITDA from its own filings
 lands 35 basis points from what its chief executive said on the call, against a 150 basis point
