@@ -403,6 +403,20 @@
       "fragment": "investing cash is no longer an outflow"
     },
     {
+      "id": "sisl-materiality-policy-precedes-its-document",
+      "schema": "Sisl",
+      "category": "POSSIBLE",
+      "protects": "The board resolution adopting the materiality policy is dated before the offer document that publishes it. That is the ordinary order, and it is asserted because the page states the sequence and a mistyped date would leave the sentence describing an impossibility.",
+      "fragment": "the materiality policy is dated after the document that publishes it"
+    },
+    {
+      "id": "sisl-threshold-set-by-the-profit-test",
+      "schema": "Sisl",
+      "category": "FINDING",
+      "protects": "The policy takes the lower of three tests, and the profit one binds by a wide margin because profit is small against both net worth and turnover. That is what the exhibit says, and it is the reason the disclosure bar is far lower than a net worth test alone would set. If earnings ever grow into either of the other tests the bar rises several times over without the policy changing a word, and the sentence resting on it is gone.",
+      "fragment": "the disclosure threshold is no longer set by the profit test"
+    },
+    {
       "id": "dc-arm-net-assets-agree",
       "schema": "AnantRaj",
       "category": "RECONCILE",

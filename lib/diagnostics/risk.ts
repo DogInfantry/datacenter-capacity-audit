@@ -2,6 +2,7 @@ import type { AnantRaj, Netweb, RiskItem, RiskPillar, Sisl } from "@/lib/schema"
 import { cashConversion, dataCentreArm } from "./anantraj";
 import { orderBookConcentration } from "./netweb";
 import { issuerCapexCover } from "./capital";
+import { disclosureReach } from "./governance";
 
 /**
  * The risk register, arranged.
@@ -41,6 +42,11 @@ export function sifyRiskMeasures(d: Sisl): Record<string, Measure> {
   const contract = d.contracts.find((c) => c.label === clients.label);
 
   return {
+    "unserved-proceedings": {
+      value: disclosureReach(d).unservedCount,
+      unit: "proceedings the document describes as unserved",
+      basis: "Litigation the issuer says it found on a public database rather than by service",
+    },
     "power-cost-base": {
       value: (cost.power / fy.revenue) * 100,
       unit: "per cent of revenue",

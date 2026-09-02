@@ -271,10 +271,91 @@
     }
   },
 
+  "governance": {
+    "_note": "The legal section, read for the one thing a reader cannot get from the narrative: how large a matter has to be before this issuer is obliged to tell anyone about it, and how the matters it does disclose reached it. The threshold is not printed as a number anywhere. It is printed as a formula whose three inputs are in the financial statements, so the figure is derived at render from the issuer's own numbers rather than typed here.",
+    "materiality": {
+      "adoptedOn": "2025-10-14",
+      "documentDated": "2025-10-16",
+      "rule": "LOWER_OF",
+      "tests": [
+        { "label": "2 per cent of net worth", "basis": "NET_WORTH", "rate": 0.02 },
+        { "label": "2 per cent of turnover", "basis": "REVENUE", "rate": 0.02 },
+        { "label": "5 per cent of average absolute profit after tax, last three years", "basis": "AVG_ABS_PAT_3", "rate": 0.05 }
+      ],
+      "carveOut": "The net worth test is disapplied where the arithmetic value of net worth is negative.",
+      "source": {
+        "label": "Sify Infinit Spaces DRHP, Section VI, outstanding litigation and material developments, the policy on materiality adopted by the Board",
+        "page": 463,
+        "asOf": "2025-10-16",
+        "verification": "PRIMARY"
+      }
+    },
+    "creditors": {
+      "thresholdSharePct": 5,
+      "thresholdMn": 71.32,
+      "asOf": "2025-06-30",
+      "materialCount": 1,
+      "materialMn": 88.78,
+      "otherCount": 97,
+      "otherMn": 254.45,
+      "source": {
+        "label": "Sify Infinit Spaces DRHP, Section VI, outstanding dues to creditors, on the materiality policy adopted by the same Board resolution",
+        "page": 470,
+        "asOf": "2025-10-16",
+        "verification": "PRIMARY"
+      }
+    },
+    "quantified": [
+      {
+        "matter": "Show cause notice from the Joint Commissioner, GST, to Sify Technologies Limited",
+        "amountMn": 1175.83,
+        "page": 470
+      }
+    ],
+    "unserved": [
+      {
+        "matter": "Appeals by the Income Tax Department in the Madras High Court against a favourable order to Sify Technologies Limited",
+        "count": 20,
+        "foundVia": "independent third party checks by the Company",
+        "quote": "No notice has been served on STL and no details of the grounds or quantum are available, accordingly, the amounts cannot be quantified.",
+        "page": 470
+      },
+      {
+        "matter": "Summary criminal cases against the Company and the Individual Promoters before the Judicial Magistrate First Class, Thane",
+        "count": 2,
+        "foundVia": "the E-courts services website",
+        "quote": "neither our Company nor the Individual Promoters have received notices, summons or any other document in relation to this matter and the disclosure included herein is based on the information available on the E-courts services website.",
+        "page": 464
+      }
+    ],
+    "unservedSource": {
+      "label": "Sify Infinit Spaces DRHP, Section VI, litigation involving the Company and its Promoters",
+      "page": 464,
+      "asOf": "2025-10-16",
+      "verification": "PRIMARY"
+    }
+  },
+
   "risks": {
     "gradingNote": "Severity and likelihood are analyst gradings. The magnitude beside each row is not: where a row is marked measured, the figure is derived at render from the filed numbers recorded for this name and moves if they move. The prospectus publishes no risk grading of its own, so nothing here is the issuer's ranking of its own risk factors.",
-    "unevidencedNote": "Two of the six pillars still carry no row. Governance needs the auditor's report, the related party notes and the outstanding litigation at printed 463, none of them read. Valuation needs a price band, and the document carries none. Cash conversion was empty here for the same reason until the restated statement of cash flow at printed 355 was read, and the row it carries now is the first thing that statement says.",
+    "unevidencedNote": "One of the six pillars still carries no row. Valuation needs a price band and the draft document carries none, which is a property of a draft red herring prospectus rather than a gap that reading harder would close. Governance was empty until the outstanding litigation at printed 463 was read, and the row it carries now is what that section says about itself rather than about any single matter. The auditor's report and the related party notes inside the restated financial information are still not cited, so the governance pillar is opened rather than finished.",
     "rows": [
+      {
+        "id": "unserved-proceedings",
+        "risk": "Several proceedings disclosed in the legal section reached the issuer through public databases rather than through service, and the largest class of them cannot be quantified at all.",
+        "category": "GOVERNANCE",
+        "severity": "MED",
+        "likelihood": "HIGH",
+        "mitigant": "The issuer discloses both the fact and the method in its own words and names the database in each case, which is more than the policy on materiality obliges it to say.",
+        "measured": true,
+        "note": "The magnitude is the count of proceedings the document itself describes as unserved. This is an observation about how information reaches the issuer rather than a view on the merits of any matter, and the twenty tax appeals carry no amount, so the largest number in the section is not necessarily the largest exposure in it.",
+        "page": 470,
+        "source": {
+          "label": "Sify Infinit Spaces DRHP, Section VI, outstanding litigation and material developments",
+          "asOf": "2025-10-16",
+          "verification": "PRIMARY"
+        }
+      },
       {
         "id": "power-cost-base",
         "risk": "Power is the cost base rather than a line inside it, so a tariff move lands on the margin almost undiluted.",

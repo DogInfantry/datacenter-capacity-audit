@@ -22,6 +22,7 @@ import { RiskMatrix } from "@/components/RiskMatrix";
 import { CapexVsCfo } from "@/components/CapexVsCfo";
 import { sifyRiskMeasures } from "@/lib/diagnostics/risk";
 import { accrualRatio, cfoToPat, pillar } from "@/lib/diagnostics/cashQuality";
+import { disclosureReach, materialityThreshold } from "@/lib/diagnostics/governance";
 import { CashConversion } from "@/components/CashConversion";
 import { RoceCheck } from "@/components/RoceCheck";
 import { issuerCapexCover, roceReconciliation } from "@/lib/diagnostics/capital";
@@ -143,6 +144,11 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
     ]);
   });
   const conv = cashReadings.map((r) => r.metrics[0].value!);
+  // The bar this issuer set for telling anyone about a dispute, computed from
+  // its own statements because the document publishes the formula and never
+  // the number.
+  const bar = materialityThreshold(sisl);
+  const reach = disclosureReach(sisl);
   const accrualPeak = cashReadings.reduce((a, r) =>
     Math.abs(r.metrics[1].value!) > Math.abs(a.metrics[1].value!) ? r : a,
   );
@@ -493,6 +499,90 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
 
         <Exhibit
           n={11}
+          title={`A dispute has to reach ${bar.threshold.toFixed(0)} million rupees before it must be disclosed, and the smallest of three tests sets that`}
+          units={`Rupees millions. The policy takes the lower of three tests over figures from ${bar.period}, and the document publishes the formula rather than the figure, so each row is computed from the issuer's own restated statements. The profit test averages the three years ${bar.window.join(", ")}.`}
+          source={`${sisl.governance.materiality.source.label}, adopted by board resolution dated ${sisl.governance.materiality.adoptedOn}, two days before the document itself is dated.`}
+          page={bar.page}
+        >
+          <ul className="space-y-2.5">
+            {bar.tests.map((t) => (
+              <li key={t.basis}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 text-sm">
+                  <span className={t.binding ? "text-foreground" : "text-muted"}>{t.label}</span>
+                  <span className="tnum text-muted">
+                    {t.value.toLocaleString("en-IN", { maximumFractionDigits: 2 })}
+                    {t.binding && <span className="ml-2 text-signal">binds</span>}
+                  </span>
+                </div>
+                <div className="mt-1.5 h-5 w-full rounded-sm bg-grid">
+                  <div
+                    className="h-5 rounded-sm"
+                    style={{
+                      width: `${(t.value / Math.max(...bar.tests.map((x) => x.value))) * 100}%`,
+                      background: t.binding ? "var(--signal)" : "var(--rung-1)",
+                    }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-5 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            The policy takes the lowest of the three, so the bar is{" "}
+            <span className="tnum text-signal">{bar.threshold.toFixed(2)}</span> million rupees,{" "}
+            <span className="tnum text-foreground">{bar.shareOfRevenuePct.toFixed(2)}</span> per
+            cent of a year&apos;s revenue, and the next test up sits{" "}
+            <span className="tnum text-foreground">
+              {(bar.nextUp / bar.threshold).toFixed(1)}
+            </span>{" "}
+            times higher. Taking the lowest is the inclusive choice and it is worth saying so: a net
+            worth test alone would have set the bar at{" "}
+            <span className="tnum text-foreground">
+              {bar.tests.find((t) => t.basis === "NET_WORTH")!.value.toFixed(0)}
+            </span>
+            . It also means the bar moves with earnings rather than with the size of the company, so
+            a more profitable year raises it.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Against that bar, the largest matter carrying a number is{" "}
+            <span className="tnum text-foreground">
+              {reach.largest.amountMn.toLocaleString("en-IN")}
+            </span>{" "}
+            million,{" "}
+            <span className="tnum text-foreground">{reach.largestOverThreshold.toFixed(0)}</span>{" "}
+            times the threshold. The more interesting entries carry no number at all.
+          </p>
+
+          <div className="mt-5 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2">
+            {reach.unserved.map((u) => (
+              <div key={u.matter} className="bg-card p-4">
+                <p className="flex items-baseline gap-2">
+                  <span className="font-display text-2xl tnum">{u.count}</span>
+                  <span className="text-xs text-muted">found via {u.foundVia}</span>
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-muted">{u.matter}</p>
+                <p className="mt-2 text-xs leading-relaxed text-foreground">
+                  &ldquo;{u.quote}&rdquo;
+                </p>
+                <p className="mt-1 text-[11px] text-muted">
+                  Printed page <span className="tnum">{u.page}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-5 text-sm leading-relaxed text-muted">
+            <span className="tnum text-foreground">{reach.unservedCount}</span> proceedings reached
+            this issuer through a public database rather than through service, in its own words on
+            both counts. Twenty of them carry no amount, because the grounds and the quantum are not
+            available to a party nobody has served. So the largest number in the legal section is
+            the largest number that could be written down, which is a different thing from the
+            largest exposure in it.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={12}
           title={`${exact.length} of the ${roce.length} published returns on capital rebuild exactly, and the one that cannot be checked is the highest`}
           units="Points of return on capital, measured from the figure the issuer published. The formula is the document's own. Zero means the rebuild landed on the published figure."
           source={`${sisl.roceFormulaSource.label} The inputs are the key performance indicators, the statement of cash flow and the balance sheet, at printed pages ${sisl.periodsSource.page}, ${sisl.cashFlowSource.page} and ${sisl.balanceSheetSource.page}.`}

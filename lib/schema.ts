@@ -819,6 +819,60 @@ export const Sisl = z
     costStack: z.array(SislCost).min(3),
     costStackSource: PagedSource,
     capitalisationRate: z.number().positive(),
+    /**
+     * The legal section, read for what it says about the disclosure itself.
+     *
+     * The materiality threshold is never printed as a number. It is printed as
+     * a formula over three figures that live in the financial statements, so it
+     * is derived rather than stored, and the bases below name which figure each
+     * test takes rather than carrying a value that could drift from it.
+     */
+    governance: z.object({
+      materiality: z.object({
+        adoptedOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+        documentDated: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+        rule: z.literal("LOWER_OF"),
+        tests: z
+          .array(
+            z.object({
+              label: z.string().min(1),
+              basis: z.enum(["NET_WORTH", "REVENUE", "AVG_ABS_PAT_3"]),
+              rate: z.number().positive().max(1),
+            }),
+          )
+          .min(2),
+        carveOut: z.string().min(1),
+        source: PagedSource,
+      }),
+      creditors: z.object({
+        thresholdSharePct: z.number().positive(),
+        thresholdMn: z.number().positive(),
+        asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+        materialCount: z.number().int().nonnegative(),
+        materialMn: z.number().nonnegative(),
+        otherCount: z.number().int().nonnegative(),
+        otherMn: z.number().nonnegative(),
+        source: PagedSource,
+      }),
+      /** Matters with a number attached. */
+      quantified: z
+        .array(z.object({ matter: z.string().min(1), amountMn: z.number().positive(), page: z.number().int().positive() }))
+        .min(1),
+      /** Matters the issuer says reached it other than by service, with its own
+       *  words for how. The count is of proceedings, not of entries. */
+      unserved: z
+        .array(
+          z.object({
+            matter: z.string().min(1),
+            count: z.number().int().positive(),
+            foundVia: z.string().min(1),
+            quote: z.string().min(1),
+            page: z.number().int().positive(),
+          }),
+        )
+        .min(1),
+      unservedSource: PagedSource,
+    }),
     cashFlow: z.array(SislCashFlow).min(3),
     cashFlowSource: PagedSource,
     balanceSheet: z.array(SislBalance).min(3),
@@ -995,6 +1049,40 @@ export const Sisl = z
         });
       }
     }
+    // The materiality policy was adopted before the document that publishes it,
+    // which is the ordinary order and is asserted so that a later reading cannot
+    // quietly invert it while the page describes a sequence.
+    const gov = d.governance;
+    if (!(gov.materiality.adoptedOn <= gov.materiality.documentDated)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["governance"],
+        message: `the materiality policy is dated after the document that publishes it`,
+      });
+    }
+    // The finding the exhibit rests on. Of the three tests the policy takes the
+    // lower of, the profit one binds, and it binds by a wide margin because
+    // profit is small against both net worth and turnover. If earnings ever grow
+    // into either of the other tests the disclosure bar jumps several times over
+    // without the policy changing a word, and the sentence saying so is gone.
+    const fullPeriods = d.periods.filter((p) => !p.stub);
+    const latest = fullPeriods[fullPeriods.length - 1];
+    const sheet = d.balanceSheet.find((b) => b.label === latest.label);
+    if (sheet) {
+      const avgAbsPat =
+        fullPeriods.slice(-3).reduce((t, p) => t + Math.abs(p.pat), 0) /
+        Math.min(3, fullPeriods.length);
+      const byBasis = { NET_WORTH: sheet.netWorth, REVENUE: latest.revenue, AVG_ABS_PAT_3: avgAbsPat };
+      const values = gov.materiality.tests.map((t) => t.rate * byBasis[t.basis]);
+      const binding = gov.materiality.tests[values.indexOf(Math.min(...values))];
+      if (binding.basis !== "AVG_ABS_PAT_3") {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["governance", "materiality"],
+          message: `the disclosure threshold is no longer set by the profit test, so the exhibit's claim about it has changed`,
+        });
+      }
+    }
     const dep = new Map(d.cashFlow.map((c) => [c.label, c.depreciation]));
     const employed = (b: z.infer<typeof SislBalance>) =>
       b.netWorth + b.borrowings + b.leaseLiabilities - b.cash;
@@ -1043,6 +1131,11 @@ export const Sisl = z
       d.clientsSource.page,
       d.capacityDefinitions.engineeredToSupport.page,
       d.capacityDefinitions.availableToSell.page,
+      d.governance.materiality.source.page,
+      d.governance.creditors.source.page,
+      d.governance.unservedSource.page,
+      ...d.governance.unserved.map((u) => u.page),
+      ...d.governance.quantified.map((q) => q.page),
     ]);
     for (const r of d.risks.rows) {
       if (r.page !== null && !read.has(r.page)) {

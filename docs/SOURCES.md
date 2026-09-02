@@ -39,6 +39,9 @@ Fourteen printed pages are cited across the site. That is 2.5 per cent of the do
 | 353 | Restated consolidated financials | Statement of assets and liabilities. Net worth, borrowings, lease liabilities and cash, four periods |
 | 355 | Restated consolidated financials | Statement of cash flow. Cash from operations, tax paid, capital expenditure, depreciation and right of use payments, four periods |
 | 398 | Restated consolidated financials | Notes 23 to 26, the expense stack |
+| 463 | Outstanding litigation and material developments | The policy on materiality, adopted by board resolution two days before the document is dated. Three tests, the lower of which sets the disclosure threshold |
+| 464 | Litigation involving the Company | The Visakhapatnam land writ naming the Company, and two summary criminal cases the Company says it learned of from the E-courts services website |
+| 470 | Outstanding litigation, tax and creditors | Twenty income tax appeals found by third party checks and unquantifiable for want of service, a GST show cause notice of 1,175.83 million, and the creditor materiality threshold |
 
 The two findings that came out of it: the same 188.04 MW figure is defined two different ways on
 printed pages 49 and 142, and the long contract revenue share on page 46 equals the sum of the top
@@ -64,10 +67,24 @@ definition does not say and which flatters the company less than the alternative
 be rebuilt at all, because an average needs a year the four column balance sheet does not carry, and
 it is the highest of the four and half of what the claim to beating global peers rests on.
 
+The sixth came out of the legal section and is about the disclosure rather than about a dispute. The
+threshold a matter must reach before it has to be disclosed is never printed as a figure; it is
+printed as a formula taking the lower of three tests, over net worth, turnover and average profit.
+Computed from the issuer's own restated statements the profit test binds, at 52.72 million rupees,
+which is 5.4 times below the next test up and 0.37 per cent of a year's revenue. Taking the lowest
+is the inclusive choice and is worth saying plainly. It also means the bar moves with earnings
+rather than with the size of the company.
+
+Against that bar, twenty two proceedings are disclosed which the issuer says reached it through
+public databases rather than through service, in its own words on both counts, and the twenty tax
+appeals among them carry no amount because the grounds and quantum are not available to a party
+nobody has served. The largest number in the section is therefore the largest number that could be
+written down rather than the largest exposure in it.
+
 **Not read**, with the page map already recorded in `drhp_extracts.json`: the rest of the restated
-financials through printed 433, related party transactions inside those notes, and outstanding
-litigation at printed 463. The governance pillar of every risk register waits on the notes and the
-litigation.
+financials through printed 433, and related party transactions inside those notes. The governance
+pillar is opened rather than finished: it rests on the litigation section alone, and the auditor's
+report and the related party notes are still not cited.
 
 **The reading order for what remains**, stated before it is used rather than after, so it can be
 judged on its own terms: corporate and business overview with segments, then the chairman or
