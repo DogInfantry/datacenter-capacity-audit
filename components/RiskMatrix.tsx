@@ -66,11 +66,11 @@ export function RiskMatrix({
   // selected list rather than a survey, and the exhibit says so rather than
   // letting an empty column read as an absence of low risks.
   const lows = rows.filter((r) => r.severity === "LOW" || r.likelihood === "LOW").length;
-  // Derived rather than passed in. On the two research note pages nothing is
-  // read from a filing, and a legend saying otherwise would be the exact
-  // overclaim the rest of those pages is careful to avoid.
-  const fromFiling = rows.some((r) => r.page !== null);
-  const derivedFrom = fromFiling ? "read from the filing" : "derived from the recorded figures";
+  // Counted rather than tested. A register can hold rows from a filing beside
+  // rows from a research note, and a single flag would describe every row by
+  // whichever kind happened to appear first, which is the overclaim these
+  // pages are careful to avoid.
+  const filed = rows.filter((r) => r.page !== null).length;
 
   return (
     <div>
@@ -81,7 +81,7 @@ export function RiskMatrix({
             className="h-2.5 w-2.5 rounded-sm"
             style={{ background: "var(--accent)" }}
           />
-          Magnitude {derivedFrom}
+          Magnitude derived from the recorded numbers
         </span>
         <span className="flex items-center gap-2">
           <span
@@ -232,7 +232,15 @@ export function RiskMatrix({
           <span className="text-foreground">
             {measured} of {rows.length}
           </span>{" "}
-          carry a figure {derivedFrom} rather than a grade. {register.gradingNote}
+          carry a figure derived from the recorded numbers rather than a grade
+          {filed > 0 ? (
+            <>
+              , and <span className="text-foreground">{filed}</span> rest on a printed page
+            </>
+          ) : (
+            ", and none rests on a printed page"
+          )}
+          . {register.gradingNote}
         </p>
         {lows === 0 && (
           <p className="mt-3 text-sm leading-relaxed text-muted">

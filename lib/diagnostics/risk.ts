@@ -1,4 +1,5 @@
 import type { AnantRaj, Netweb, RiskItem, RiskPillar, Sisl } from "@/lib/schema";
+import { cashConversion, dataCentreArm } from "./anantraj";
 import { orderBookConcentration } from "./netweb";
 import { issuerCapexCover } from "./capital";
 
@@ -90,8 +91,23 @@ export function sifyRiskMeasures(d: Sisl): Record<string, Measure> {
 export function anantRajRiskMeasures(d: AnantRaj): Record<string, Measure> {
   const [announced, operational, handed] = d.ladder;
   const conflict = Math.abs(d.conflict.a.value - d.conflict.b.value);
+  // The two rows that rest on the annual report take their magnitudes from the
+  // same functions the exhibits use, so a register and a chart cannot end up
+  // printing two different numbers for one measurement.
+  const arm = dataCentreArm(d.financials);
+  const cc = cashConversion(d.financials);
 
   return {
+    "revenue-quality-single-segment": {
+      value: arm.turnoverSharePct,
+      unit: "per cent of consolidated revenue, the data centre arm",
+      basis: `${arm.entity} turnover against group revenue, ${d.financials.fiscalYear}`,
+    },
+    "cash-conversion-classification": {
+      value: Math.abs(cc.operating.amount / cc.filed) * 100,
+      unit: "per cent of the operating cash flow the statement files",
+      basis: `A finance item presented among the working capital adjustments, ${d.financials.fiscalYear}`,
+    },
     "handover-gap": {
       value: (1 - handed.mw / operational.mw) * 100,
       unit: "per cent of what is called operational",

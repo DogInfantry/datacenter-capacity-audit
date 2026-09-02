@@ -606,10 +606,13 @@ export const RiskRegister = z.object({
 /**
  * A register on a page where no filing has been read.
  *
- * The two research note pages carry no primary figure anywhere else, and a risk
- * row is the easiest place for one to appear, because a risk sounds like a fact
- * and a printed page attached to it would go unchallenged. One schema shared by
- * both, so the rule is written once and documented once.
+ * Netweb carries no primary figure anywhere, and a risk row is the easiest
+ * place for one to appear, because a risk sounds like a fact and a printed page
+ * attached to it would go unchallenged.
+ *
+ * Anant Raj used this until its annual report was read. Once a document is
+ * open, a blanket ban stops protecting anything and starts hiding the rows that
+ * earned a page, so that name moved to the base register and a per row check.
  */
 export const SecondaryRiskRegister = RiskRegister.superRefine((reg, ctx) => {
   for (const r of reg.rows) {
@@ -1157,9 +1160,17 @@ export const AnantRaj = z
       }),
     }),
     notRead: z.array(z.string().min(1)).min(1),
-    risks: SecondaryRiskRegister,
     /**
-     * The annual report, read for capacity and for the audit opinion only.
+     * A register carrying two tiers of evidence at once.
+     *
+     * Not the secondary register below: the annual report has been read, so a
+     * row resting on it may cite its printed page. The rule that stops an
+     * overclaim moves from the register to the row, and is asserted in the
+     * refinement at the foot of this schema.
+     */
+    risks: RiskRegister,
+    /**
+     * The annual report, read in two passes.
      *
      * Kept beside the research note ladder rather than replacing it, because the
      * two disagree and the disagreement is the point. The note carries a number
@@ -1352,6 +1363,34 @@ export const AnantRaj = z
         path: ["financials", "segment"],
         message: `the group no longer reports a single segment`,
       });
+    }
+    // A risk row may cite only a page this file already records. A page number
+    // appearing on a risk and nowhere else would mean a magnitude arrived
+    // without the source block that lets a reader check it, which is the exact
+    // failure the register exists to avoid. Sify has the same rule as a test;
+    // here it is a build guard, because this register mixes a research note
+    // ladder with rows that rest on an audited statement.
+    const recordedPages = new Set<number>([
+      d.annualReport.auditOpinion.page,
+      d.annualReport.compositionSource.page,
+      ...d.annualReport.rungs.map((r) => r.page),
+      pl.source.page,
+      fin.balanceSheet.source.page,
+      cf.source.page,
+      cf.financingRepaymentOfBorrowings.source.page,
+      fin.segment.source.page,
+      fin.ratios.source.page,
+      arm.source.page,
+      arm.groupShare.source.page,
+    ]);
+    for (const row of d.risks.rows) {
+      if (row.page !== null && !recordedPages.has(row.page)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["risks", "rows"],
+          message: `${row.id}: a risk row cites a printed page this file does not record`,
+        });
+      }
     }
   });
 

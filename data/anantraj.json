@@ -204,7 +204,7 @@
       "additionsToCapitalWorkInProgress": 1485.37,
       "additionsToRightOfUse": 1221.79,
       "source": {
-        "label": "Anant Raj Limited annual report FY2024-25, Consolidated Cash Flow Statement for the year ended March 31, 2025. The movement in current borrowings is presented inside operating activities as a working capital adjustment, and repayment of borrowings is presented again under financing.",
+        "label": "Anant Raj Limited annual report FY2024-25, Consolidated Cash Flow Statement for the year ended March 31, 2025. The movement in current borrowings is presented inside operating activities as a working capital adjustment, and repayment of borrowings is presented again under finance activities.",
         "page": 224,
         "asOf": "2025-06-28",
         "verification": "PRIMARY"
@@ -274,7 +274,7 @@
 
   "risks": {
     "gradingNote": "Severity and likelihood are analyst gradings, not the company's. A magnitude marked measured is derived from the figures recorded for this name, and those figures come from a research note rather than from a filing. Derived is not the same as filed, and each row says which it is.",
-    "unevidencedNote": "The consolidated statements have now been read, and the empty pillars are narrower than the document. The group reports a single segment, real estate development, so revenue quality and valuation for the data centre arm have no published numerator at any level of detail. What the report does give for that arm is one column in the statement of subsidiaries, and the rows below rest on it rather than grading on nothing.",
+    "unevidencedNote": "Two of the six pillars carry no row. Governance is one: the related party note and the board report inside the same annual report are where that evidence is printed. Valuation is the other, and it is a harder absence, because the group reports a single segment and that segment is real estate development, so the data centre arm has no published revenue, margin or return on capital at any level of detail and no multiple can be struck against it. The rows that do rest on the annual report cite the page they were read from; the rows that rest on the research note carry no page and say so.",
     "rows": [
       {
         "id": "handover-gap",
@@ -332,12 +332,44 @@
         "likelihood": "MED",
         "mitigant": "None stated. Funding, gearing and the capital already committed sit in the audited financial statements inside the annual report.",
         "measured": true,
-        "note": "The magnitude here is the size of the programme, not an assessment of whether it can be funded. That assessment needs the statements this page does not have.",
+        "note": "The magnitude here is the size of the programme, not an assessment of whether it can be funded. The stated cost is in dollars and the consolidated balance sheet is in rupees, and no exchange rate is read anywhere here, so the two are recorded side by side rather than divided into one another.",
         "page": null,
         "source": {
           "label": "Blueprint research note, BharatAI Infra Scope, stated capex against the Fiscal 2032 target",
           "asOf": "2026-08",
           "verification": "SECONDARY"
+        }
+      },
+      {
+        "id": "revenue-quality-single-segment",
+        "risk": "The business the market prices this company on has no published revenue line. The group reports one segment and it is real estate development, so the data centre arm's revenue, margin and return exist nowhere in the consolidated accounts.",
+        "category": "REVENUE_QUALITY",
+        "severity": "HIGH",
+        "likelihood": "HIGH",
+        "mitigant": "The arm's turnover and result are printed once, as a column in the statement of subsidiaries, and the same figures appear again in the consolidated entity table. That is enough to size it, and it is not enough to test the quality of it.",
+        "measured": true,
+        "note": "The magnitude is the arm's turnover against consolidated revenue. Whether that revenue is recognised well cannot be assessed from a single column with no disaggregation, no receivable and no contract balance beside it.",
+        "page": 260,
+        "source": {
+          "label": "Anant Raj Limited annual report FY2024-25, note 40 to the consolidated financial statements, segment reporting, read against the statement of subsidiaries at printed page 79",
+          "asOf": "2025-06-28",
+          "verification": "PRIMARY"
+        }
+      },
+      {
+        "id": "cash-conversion-classification",
+        "risk": "Reported operating cash flow nets a financing item into operations. The movement in current borrowings is presented among the working capital adjustments, so the figure is built on a different definition from the one a screen or a peer comparison assumes.",
+        "category": "CASH_CONVERSION",
+        "severity": "MED",
+        "likelihood": "HIGH",
+        "mitigant": "The line is disclosed on its own row rather than buried in an aggregate, and the repayment of borrowings is shown again under finance activities, so a reader who reads both sections can restate it. The audit opinion on the statements is unmodified.",
+        "measured": true,
+        "note": "The direction is worth stating: the classification lowers reported operating cash flow rather than lifting it, so the company screens worse on cash conversion than the conventional presentation would show. The risk is comparability, not flattery.",
+        "page": 224,
+        "source": {
+          "label": "Anant Raj Limited annual report FY2024-25, Consolidated Cash Flow Statement, the movement in current borrowings inside operating activities, read against the repayment of borrowings under finance activities at printed page 225",
+          "asOf": "2025-06-28",
+          "verification": "PRIMARY"
         }
       },
       {

@@ -47,6 +47,14 @@ export function AnantRajBody({ data, sify, sifyCover }: Props) {
   // Counted rather than written into the title, so the sentence shortens by
   // itself the first time a document is read for this name.
   const covered = pillarCoverage(data.risks.rows).filter((p) => p.count > 0).length;
+  // Counted, so the sentence shortens by itself as rows move off the research
+  // note and onto the report.
+  const cited = data.risks.rows.filter((r) => r.page !== null).length;
+  // The pages the register itself rests on, so the source line under it names
+  // both documents rather than only the one the ladder came from.
+  const citedPages = [...new Set(data.risks.rows.map((r) => r.page).filter((n) => n !== null))]
+    .sort((a, b) => a - b)
+    .join(" and ");
   const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six"];
   // The schema guarantees one claimed rung and that the parts sum to it, so the
   // subtraction below is the report's own arithmetic rather than an estimate.
@@ -264,8 +272,8 @@ export function AnantRajBody({ data, sify, sifyCover }: Props) {
         <Exhibit
           n={4}
           title={`${WORDS[covered]} of the six forensic pillars carry a row, and the rest name the one document that carries them`}
-          units="Severity against likelihood, an analyst grading rather than the company's. A chip is filled where the magnitude is derived from the figures recorded for this name and outlined where the row is judgement. No row in this register cites a printed page."
-          source={data.ladderSource.label}
+          units={`Severity against likelihood, an analyst grading rather than the company's. A chip is filled where the magnitude is derived from the figures recorded for this name and outlined where the row is judgement. ${cited} of ${data.risks.rows.length} rows cite a printed page.`}
+          source={`${data.ladderSource.label} The rows on revenue quality and cash conversion rest on the ${data.annualReport.fiscalYear} annual report instead, at printed pages ${citedPages}.`}
         >
           <RiskMatrix register={data.risks} measures={anantRajRiskMeasures(data)} />
         </Exhibit>

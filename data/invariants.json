@@ -417,6 +417,14 @@
       "fragment": "the group no longer reports a single segment"
     },
     {
+      "id": "anantraj-risk-cites-a-recorded-page",
+      "schema": "AnantRaj",
+      "category": "SOURCING",
+      "protects": "A risk row on this name may cite only a printed page the file already records, taken from the annual report block or from one of the source blocks on the audited statements. A page number appearing on a risk and nowhere else would mean a magnitude arrived without the source block that lets a reader check it. The register mixes rows resting on a research note with rows resting on the audited statements, so the rule is enforced per row rather than by banning pages outright."
+      ,
+      "fragment": "a risk row cites a printed page this file does not record"
+    },
+    {
       "id": "closed-limit-names-evidence",
       "schema": "Method",
       "category": "EVIDENCE",
