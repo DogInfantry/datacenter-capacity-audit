@@ -4,6 +4,7 @@ import Link from "next/link";
 const TABS: { href: string; label: string }[] = [
   { href: "/macro", label: "The sector" },
   { href: "/universe", label: "Universe" },
+  { href: "/company", label: "Companies" },
   { href: "/compare", label: "Compare" },
   { href: "/offer", label: "The offer" },
   { href: "/methodology", label: "Method" },
