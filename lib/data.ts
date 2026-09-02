@@ -10,6 +10,7 @@ import {
   Sisl,
   Universe,
   AnantRaj,
+  TechnoElectric,
   Netweb,
   Invariants,
   Method,
@@ -21,6 +22,7 @@ import macroRaw from "@/data/macro.json";
 import sislRaw from "@/data/sisl.json";
 import universeRaw from "@/data/universe.json";
 import anantRajRaw from "@/data/anantraj.json";
+import technoeRaw from "@/data/technoe.json";
 import netwebRaw from "@/data/netweb.json";
 import registerRaw from "@/data/disclosure_register.json";
 import prospectusRaw from "@/data/prospectus.json";
@@ -74,6 +76,10 @@ export const sisl = parse(Sisl, sislRaw, "data/sisl.json");
 
 /** The coverage universe: announced against delivered megawatts. */
 export const universe = parse(Universe, universeRaw, "data/universe.json");
+
+/** The third operator read from a filing, and the one that corrects a figure
+ *  the coverage universe had carried from a research note. */
+export const technoe = parse(TechnoElectric, technoeRaw, "data/technoe.json");
 
 /** The research note ladder, and the audited annual report read against it. */
 export const anantRaj = parse(AnantRaj, anantRajRaw, "data/anantraj.json");

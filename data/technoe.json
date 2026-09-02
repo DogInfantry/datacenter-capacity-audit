@@ -1,0 +1,82 @@
+{
+  "_note": "The third document read page by page in this repository, and the first read for a name that was previously carried entirely from the research note. It exists because data/universe.json recorded this operator at 36 MW live, and the company's own annual report does not support that figure. Everything here is PRIMARY and cites the printed page it was read from. The report is laid out as two page spreads, so one PDF page carries two printed pages; the offset note in the manifest records how they were separated.",
+  "entity": "Techno Digital",
+  "listedParent": "Techno Electric & Engineering Company",
+  "ticker": "TECHNOE",
+  "exchange": "NSE",
+  "role": "Power transmission engineering contractor building hyperscale and edge data centres",
+
+  "annualReport": {
+    "fiscalYear": "FY2025-26",
+    "manifest": {
+      "url": "https://nsearchives.nseindia.com/annual_reports/AR_31018_TECHNOE_2025_2026_A_6626981_01092026181431.pdf",
+      "hostedBy": "National Stock Exchange of India, annual reports archive",
+      "sha256": "862265cb8f78636d7cc82440409e5629fa32f0e24dd04a2a42173a46e99e3def",
+      "bytes": 6626981,
+      "pdfPages": 219,
+      "pageOffsetNote": "Laid out as two page spreads. From PDF index 10 onward the left half of index n is printed page 2n minus 4 and the right half is 2n minus 3, checked against the folios printed on indexes 10, 20, 38, 39 and 100. Halves were separated by the horizontal position of each text run rather than by splitting the extracted string."
+    }
+  },
+
+  "campuses": [
+    {
+      "name": "Chennai",
+      "mw": 24,
+      "status": "LIVE",
+      "statusWords": "Commissioned and live. Receiving strong demand signals from global and domestic cloud operators. Phase II capex planning is underway.",
+      "firstPhaseMW": null,
+      "page": 72
+    },
+    {
+      "name": "Kolkata",
+      "mw": 8,
+      "status": "UNDER_CONSTRUCTION",
+      "statusWords": "Under development; targeted for commissioning in FY 2026-27.",
+      "firstPhaseMW": null,
+      "page": 72
+    },
+    {
+      "name": "Noida",
+      "mw": 16,
+      "status": "UNDER_CONSTRUCTION",
+      "statusWords": "Phase 2 (5 MW) Under development; Phase 1 (500 kW) expected commissioning by Q2 FY27.",
+      "firstPhaseMW": 0.5,
+      "page": 72
+    }
+  ],
+  "campusesSource": {
+    "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, management discussion and analysis, hyperscale campuses",
+    "page": 72,
+    "asOf": "2026-09-01",
+    "verification": "PRIMARY"
+  },
+
+  "target": {
+    "mw": 250,
+    "by": "FY 2029-30",
+    "words": "Data centre capacity targeted by FY 2029-30 across hyperscale and edge",
+    "page": 73
+  },
+  "targetSource": {
+    "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, management discussion and analysis, stated data centre capacity target",
+    "page": 73,
+    "asOf": "2026-09-01",
+    "verification": "PRIMARY"
+  },
+
+  "edgeNetwork": {
+    "locations": 102,
+    "states": 23,
+    "counterparty": "RailTel Corporation of India",
+    "contract": "Build, Operate and Maintain",
+    "mw": null,
+    "mwNote": "The edge network is disclosed as a count of locations and states. No megawatt figure is printed for it, so the megawatts recorded here are the three hyperscale campuses only, and the target the campuses are measured against covers hyperscale and edge together.",
+    "page": 73
+  },
+  "edgeNetworkSource": {
+    "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, management discussion and analysis, edge data centre network",
+    "page": 73,
+    "asOf": "2026-09-01",
+    "verification": "PRIMARY"
+  }
+}

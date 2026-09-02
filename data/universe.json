@@ -96,14 +96,14 @@
       "ticker": "TECHNOE",
       "exchange": "NSE",
       "announcedMW": 250,
-      "liveMW": 36,
+      "liveMW": 24,
       "handedOverMW": null,
       "verdict": "PLANNING",
-      "note": "Power engineering and construction contractor moving into data centres. A one billion dollar, 250 MW plan with 36 MW at Chennai, plus an edge joint venture with RailTel.",
+      "note": "Power engineering and construction contractor moving into data centres. The annual report for FY2025-26 names three hyperscale campuses: Chennai at 24 MW, called commissioned and live with a second phase still being planned, Kolkata at 8 MW under development, and Noida at 16 MW whose first phase is 500 kW. Live is the Chennai figure, 12 MW below what this row carried while it rested on the research note. The RailTel edge network is disclosed as 102 locations across 23 states with no megawatt figure beside it, so it adds sites rather than capacity.",
       "source": {
-        "label": "Blueprint research note, BharatAI Infra Scope",
-        "asOf": "2026-08",
-        "verification": "SECONDARY"
+        "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, management discussion and analysis. Hyperscale campuses at printed page 72, the stated capacity target at printed page 73",
+        "asOf": "2026-09-01",
+        "verification": "PRIMARY"
       }
     },
     {
@@ -116,7 +116,7 @@
       "liveMW": 113.67,
       "handedOverMW": 113.67,
       "verdict": "EXECUTING",
-      "note": "The only row here read from a filed document rather than a research note. 188.04 MW of built capacity against 113.67 MW sold to customers, both certified by an independent chartered engineer. Announced is the issuer's own built capacity figure, which its own footnotes define two different ways.",
+      "note": "The deepest read of any row here, and the only one whose capacity is certified rather than described. 188.04 MW of built capacity against 113.67 MW sold to customers, both certified by an independent chartered engineer. Announced is the issuer's own built capacity figure, which its own footnotes define two different ways.",
       "source": {
         "label": "Sify Infinit Spaces draft red herring prospectus dated 16 October 2025, capacity by data centre, printed pages 49 and 301",
         "asOf": "2025-10-16",

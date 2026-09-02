@@ -425,6 +425,27 @@
       "fragment": "a risk row cites a printed page this file does not record"
     },
     {
+      "id": "technoe-ladder-descends",
+      "schema": "TechnoElectric",
+      "category": "LADDER",
+      "protects": "What is commissioned and live sits inside the three campus portfolio, which sits inside the capacity targeted by Fiscal 2030. This is the same descent every other operator on the site is held to, and an inversion means a campus was misread or a target has quietly been restated downwards.",
+      "fragment": "must descend from the target through the portfolio to what is live"
+    },
+    {
+      "id": "technoe-first-phase-is-a-fraction",
+      "schema": "TechnoElectric",
+      "category": "FINDING",
+      "protects": "The Noida campus carries a headline of 16 MW and a first phase of 500 kW, so the announced against delivered gap this site exists to draw appears inside a single site rather than only across an estate. If a restatement ever makes a stated first phase a material share of its campus, the sentence resting on it is gone and the build stops.",
+      "fragment": "a stated first phase is no longer a small fraction of the campus"
+    },
+    {
+      "id": "technoe-page-inside-document",
+      "schema": "TechnoElectric",
+      "category": "SOURCING",
+      "protects": "The report is laid out as two page spreads, so one PDF page carries two printed pages and a printed page number can only run to about twice the PDF page count. A citation beyond that is a misread offset rather than a typo, and the offset is the single most likely thing to be wrong when a document is paginated this way.",
+      "fragment": "a cited printed page falls outside the document it is attributed to"
+    },
+    {
       "id": "closed-limit-names-evidence",
       "schema": "Method",
       "category": "EVIDENCE",

@@ -1005,7 +1005,7 @@ export const Universe = z
       }
       // Only a figure traced to a filed document inside this repository may claim
       // PRIMARY. Research notes and press reporting are SECONDARY at best.
-      if (o.source.verification === "PRIMARY" && !/prospectus|20-F|filing/i.test(o.source.label)) {
+      if (o.source.verification === "PRIMARY" && !/prospectus|20-F|filing|annual report/i.test(o.source.label)) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ["operators"],
@@ -1885,6 +1885,123 @@ export const Macro = z
   });
 
 export type Macro = z.infer<typeof Macro>;
+
+/**
+ * Techno Electric, the third operator read from a filed document.
+ *
+ * It is here because the coverage universe carried this name at 36 megawatts
+ * live, from a research note, and the company's own annual report does not
+ * support that figure. One campus is described as commissioned and live and it
+ * is 24 megawatts, and the same bullet says a second phase of it is still being
+ * planned, which is the same trap the other two names set in their own words.
+ *
+ * The report is laid out as two page spreads, so a printed page is half a PDF
+ * page. Every page below was resolved by the horizontal position of the text
+ * rather than by a formula over the index.
+ */
+export const TechnoElectric = z
+  .object({
+    entity: z.string().min(1),
+    listedParent: z.string().min(1),
+    ticker: z.string().min(1),
+    exchange: z.enum(["NSE", "BSE", "NASDAQ"]),
+    role: z.string().min(1),
+    annualReport: z.object({
+      fiscalYear: z.string().min(1),
+      manifest: z.object({
+        url: z.string().url(),
+        hostedBy: z.string().min(1),
+        sha256: z.string().regex(/^[0-9a-f]{64}$/),
+        bytes: z.number().int().positive(),
+        pdfPages: z.number().int().positive(),
+        pageOffsetNote: z.string().min(1),
+      }),
+    }),
+    campuses: z
+      .array(
+        z.object({
+          name: z.string().min(1),
+          mw: z.number().positive(),
+          status: z.enum(["LIVE", "UNDER_CONSTRUCTION", "ANNOUNCED"]),
+          /** The report's own words for the status, quoted rather than graded. */
+          statusWords: z.string().min(1),
+          /** What the report says the first phase of the campus is, where it
+           *  says. Null where the report gives no phasing. */
+          firstPhaseMW: z.number().positive().nullable(),
+          page: z.number().int().positive(),
+        }),
+      )
+      .min(3),
+    campusesSource: PagedSource,
+    target: z.object({
+      mw: z.number().positive(),
+      by: z.string().min(1),
+      words: z.string().min(1),
+      page: z.number().int().positive(),
+    }),
+    targetSource: PagedSource,
+    edgeNetwork: z.object({
+      locations: z.number().int().positive(),
+      states: z.number().int().positive(),
+      counterparty: z.string().min(1),
+      contract: z.string().min(1),
+      /** Null, and the note beside it says the disclosure is a count of sites
+       *  rather than a capacity. */
+      mw: z.number().positive().nullable(),
+      mwNote: z.string().min(1),
+      page: z.number().int().positive(),
+    }),
+    edgeNetworkSource: PagedSource,
+  })
+  .superRefine((d, ctx) => {
+    const live = d.campuses.filter((c) => c.status === "LIVE").reduce((t, c) => t + c.mw, 0);
+    const portfolio = d.campuses.reduce((t, c) => t + c.mw, 0);
+    // The same descent every other name on this site is held to. What is live
+    // sits inside what is being built, which sits inside what is targeted. An
+    // inversion means a campus was misread or a target was quietly restated.
+    if (!(live <= portfolio && portfolio <= d.target.mw)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["campuses"],
+        message: `the campus ladder must descend from the target through the portfolio to what is live, got ${d.target.mw} then ${portfolio} then ${live}`,
+      });
+    }
+    // The finding. One campus carries a headline figure and a first phase that
+    // is a fraction of it, which is the announced against delivered gap inside
+    // a single site rather than across an estate.
+    for (const c of d.campuses) {
+      if (c.firstPhaseMW !== null && c.firstPhaseMW / c.mw > 0.1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["campuses"],
+          message: `${c.name}: a stated first phase is no longer a small fraction of the campus it belongs to`,
+        });
+      }
+    }
+    // A printed page has to be able to exist in the document. The spread layout
+    // means the printed range runs to about twice the PDF page count, and a
+    // citation outside it is a misread offset rather than a typo.
+    const maxPrinted = d.annualReport.manifest.pdfPages * 2;
+    const cited = [
+      ...d.campuses.map((c) => c.page),
+      d.target.page,
+      d.edgeNetwork.page,
+      d.campusesSource.page,
+      d.targetSource.page,
+      d.edgeNetworkSource.page,
+    ];
+    for (const page of cited) {
+      if (page > maxPrinted) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["annualReport"],
+          message: `a cited printed page falls outside the document it is attributed to`,
+        });
+      }
+    }
+  });
+
+export type TechnoElectric = z.infer<typeof TechnoElectric>;
 
 /**
  * The register of this file's own refinements.

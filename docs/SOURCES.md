@@ -159,6 +159,47 @@ in the report and is not cited.
 
 ---
 
+## 1c. The third document read page by page
+
+**Techno Electric & Engineering Company Limited, annual report for FY2025-26.** 219 PDF pages.
+`https://nsearchives.nseindia.com/annual_reports/AR_31018_TECHNOE_2025_2026_A_6626981_01092026181431.pdf`
+SHA256 `862265cb8f78636d7cc82440409e5629fa32f0e24dd04a2a42173a46e99e3def`
+
+Filed with the exchange on 1 September 2026 and opened the day after. It was opened for one reason:
+`data/universe.json` carried this operator at 36 MW live, from the research note, and nothing had
+tested that figure against the company.
+
+**This report is laid out as two page spreads**, so one PDF page carries two printed pages and the
+offset used on the other two documents does not apply. From PDF index 10 onward the left half of
+index n is printed page 2n minus 4 and the right half is 2n minus 3, checked against the folios
+printed on indexes 10, 20, 38, 39 and 100. Which half a figure sits in was resolved by the horizontal
+position of each text run rather than by splitting the extracted string, because the folio itself
+sits near the gutter and lands on the wrong side of a naive split.
+
+| Printed page | Section | What was taken from it |
+|---|---|---|
+| 72 | Management discussion, hyperscale campuses | The three campuses, each with the report's own words for its status: Chennai 24 MW, Kolkata 8 MW, Noida 16 MW and its 500 kW first phase |
+| 73 | Management discussion, edge network | 102 edge locations across 23 states with RailTel, on a Build, Operate and Maintain contract, with no megawatt figure attached |
+| 73 | Management discussion, stated target | 250 MW of data centre capacity targeted by FY 2029-30, across hyperscale and edge |
+
+The finding is the figure that changed. **The company names one campus as commissioned and live and
+it is 24 MW, not 36.** The row carried 36 for as long as nothing had been read, and the correction is
+12 MW on a 36 MW claim. What is live is 9.6 per cent of what is targeted.
+
+The second finding is the same gap drawn inside a single site. **Noida is described as a 16 MW campus
+whose first phase is 500 kW**, so the ratio between the headline and the first delivered increment is
+about thirty two to one without leaving one address.
+
+The third is a definition rather than a number. Chennai is called "Commissioned and live" in the same
+bullet that says "Phase II capex planning is underway", so the 24 MW is the campus rather than what
+is earning, in the same way 188.04 MW and 28 MW are on the other two names. Both halves of the
+sentence are recorded and neither is resolved here.
+
+**Not taken from it:** the financial statements, the order book and the transmission business, which
+is the majority of this company. The megawatts were the question.
+
+---
+
 ## 2. Earnings calls, read as transcripts
 
 Coded into `data/raw/transcripts/`. The window is **1 January 2024 to 31 July 2026**, defined on the
@@ -258,8 +299,9 @@ appear, and the pages say so.
   operating cost. The capital cost is the only one of these anything derives from: it is what turns
   each capacity forecast into a capital requirement on the sector page.
 - **The coverage universe.** Eight operators and a six name watchlist in `data/universe.json`, from
-  company announcements, brokerage notes and press reporting. One row of the eight claims primary,
-  and only because it is the Sify prospectus.
+  company announcements, brokerage notes and press reporting. Two rows of the eight claim primary:
+  Sify, from the prospectus, and Techno Electric, from the annual report read in section 1c, which
+  is also the row that reading corrected.
 - **Anant Raj.** 307 MW announced, 28 called operational, 8 handed over, from a Value Research note.
   The annual report has since been opened and it contradicts the second of those figures. See
   section 1b.
