@@ -66,7 +66,7 @@ export function ThemeToggle() {
       type="button"
       onClick={next}
       // Width is fixed so cycling the label does not shift the nav beside it.
-      className="ml-auto inline-flex w-[6.5rem] shrink-0 items-center justify-center gap-1.5 rounded-sm border border-line px-2 py-1 text-xs text-muted transition-colors hover:text-accent"
+      className="inline-flex w-[6.5rem] shrink-0 items-center justify-center gap-1.5 rounded-sm border border-line px-2 py-1 text-xs text-muted transition-colors hover:text-accent"
       aria-label={`Colour theme: ${LABEL[choice ?? "system"]}. Activate to change.`}
     >
       <Icon name="power" size={12} />
