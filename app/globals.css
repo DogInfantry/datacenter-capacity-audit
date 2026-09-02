@@ -19,7 +19,11 @@
   --grid: #e6eaee;
 
   /* Accent carries identity, signal carries the thing going wrong. */
-  --accent: #1b6ef3;
+  /* Darkened from #1b6ef3, which measured 4.22 to 1 against the page at the
+     11 pixel size the small caps labels use, under the 4.5 floor. The chart
+     ramp below deliberately keeps the original value: those are graphical
+     fills judged at 3 to 1, and the ramp was colour checked as a set. */
+  --accent: #1a66e6;
   --accent-deep: #0b3a8f;
   --accent-soft: #e8f0fe;
   --signal: #d8232a;
