@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "./ThemeToggle";
 
 /** Routes from the rejected build were deleted; only live routes are listed. */
 const TABS: { href: string; label: string }[] = [
@@ -26,6 +27,7 @@ export function Nav() {
             </li>
           ))}
         </ul>
+        <ThemeToggle />
       </nav>
     </header>
   );
