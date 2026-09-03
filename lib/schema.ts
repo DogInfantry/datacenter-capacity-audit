@@ -2929,6 +2929,95 @@ export const E2E = z
     }
   });
 
+/**
+ * The brief's six pillars against the subjects they can be put to.
+ *
+ * This exists because the same statement was being written as prose in the page
+ * and going stale every time a measure was added. A coverage claim is data, and
+ * the states below are checked against the coverage they claim rather than
+ * being labels anyone can type.
+ */
+export const PillarCoverage = z
+  .object({
+    subjects: z
+      .array(
+        z.object({
+          id: z.string().regex(/^[A-Z0-9]+$/),
+          label: z.string().min(1),
+          kind: z.enum(["HAND_READ", "HARVESTED"]),
+          mark: z.string().min(1),
+        }),
+      )
+      .min(2),
+    pillars: z
+      .array(
+        z.object({
+          id: z.enum([
+            "REVENUE_QUALITY",
+            "CASH_CONVERSION",
+            "BALANCE_SHEET",
+            "GOVERNANCE",
+            "BUSINESS_MODEL",
+            "VALUATION",
+          ]),
+          label: z.string().min(1),
+          state: z.enum(["BUILT", "PARTIAL", "BLOCKED", "TERMINAL"]),
+          covered: z.array(z.string()),
+          exhibits: z.array(z.number().int().positive()),
+          open: z.string().min(1),
+        }),
+      )
+      .length(6),
+  })
+  .superRefine((d, ctx) => {
+    const ids = new Set(d.subjects.map((s) => s.id));
+    // A cell can only be filled for a subject that exists, and filling one twice
+    // would inflate the count the page publishes.
+    for (const p of d.pillars) {
+      const seen = new Set<string>();
+      for (const c of p.covered) {
+        if (!ids.has(c) || seen.has(c)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["pillars"],
+            message: `${p.id} claims a subject that is unknown or counted twice, ${c}`,
+          });
+        }
+        seen.add(c);
+      }
+    }
+    // Six distinct pillars, because the brief names six and the page counts them.
+    if (new Set(d.pillars.map((p) => p.id)).size !== d.pillars.length) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["pillars"],
+        message: `the six pillars are no longer six distinct ones`,
+      });
+    }
+    // The states have to mean something mechanical, or they are decoration. Built
+    // covers most of what it could, terminal covers none, and the two in between
+    // cover some but not most.
+    const half = d.subjects.length / 2;
+    for (const p of d.pillars) {
+      const n = p.covered.length;
+      const ok =
+        p.state === "BUILT"
+          ? n > half
+          : p.state === "TERMINAL"
+            ? n === 0
+            : n > 0 && n <= half;
+      if (!ok) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["pillars"],
+          message: `${p.id} is labelled ${p.state} while covering ${n} of ${d.subjects.length} subjects, so the label no longer describes the coverage`,
+        });
+      }
+    }
+  });
+
+export type PillarCoverage = z.infer<typeof PillarCoverage>;
+
 export const Invariants = z
   .object({
     categories: z

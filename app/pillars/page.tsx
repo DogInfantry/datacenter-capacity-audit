@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { companies, sisl, sifyCo, disclosureRegister, e2e, technoe, macro } from "@/lib/data";
+import {
+  companies,
+  sisl,
+  sifyCo,
+  disclosureRegister,
+  e2e,
+  technoe,
+  macro,
+  pillarCoverage,
+} from "@/lib/data";
 import { growthQuality, earningsQuality } from "@/lib/diagnostics/e2e";
 import { RevenueQuality } from "@/components/RevenueQuality";
 import { refusalRate, pressurePerCall } from "@/lib/diagnostics/disclosure";
@@ -17,6 +26,8 @@ import { supplierFinance } from "@/lib/diagnostics/supplierFinance";
 import { SupplierFinance } from "@/components/SupplierFinance";
 import { payablesAgeing } from "@/lib/diagnostics/payables";
 import { PayablesAgeing } from "@/components/PayablesAgeing";
+import { coverageMatrix } from "@/lib/diagnostics/coverage";
+import { PillarMatrix } from "@/components/PillarMatrix";
 
 export const metadata: Metadata = {
   title: "Pillars",
@@ -87,6 +98,7 @@ export default function PillarsPage() {
   const sf2 = technoe.supplierFinance;
   const payd = payablesAgeing(technoe);
   const pay2 = technoe.payables;
+  const cov = coverageMatrix(pillarCoverage);
 
   return (
     <main className="mx-auto w-full max-w-5xl px-5 py-12">
@@ -418,37 +430,11 @@ export default function PillarsPage() {
       <section className="mt-12 border-t border-line pt-8">
         <p className="sc text-accent">What is not here</p>
         <h2 className="mt-3 max-w-3xl font-display text-2xl leading-tight tracking-tight">
-          Five pillars, and how far each one has got
+          Six pillars against ten subjects, and {cov.filled} of the {cov.total} cells filled
         </h2>
-        <dl className="mt-6 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2">
-          {[
-            {
-              h: "Governance",
-              b: "Three names now. The materiality threshold, the associate exposure and the key management coverage on the operator whose prospectus is read page by page, eleven struck off counterparties on the second, and on the third an emphasis of matter over overdue balances in Exhibit 6, plus two notes that each table a balance in one clause and deny it in the next, in Exhibits 6 and 8. The three United States filers have had no governance section opened.",
-            },
-            {
-              h: "Revenue quality",
-              b: "Two results, in Exhibit 4 and Exhibit 5 above. Customer concentration is read for the two Indian operators, and one of them states the same concentration in three sections including an audited note, all agreeing exactly. Growth quality is read for a third, whose exit run rate annualises below the year it reported. Pricing, contract duration and churn are unread for every filer.",
-            },
-            {
-              h: "Balance sheet",
-              b: "Built for the operator whose statements are read page by page, in Exhibit 3 above, and opened on a second name in Exhibit 7, where a supplier finance arrangement moves a liability from trade payables into borrowings without any cash moving. The five harvested filers have total assets but no borrowings or lease liability split, so leverage cannot yet be asked of them.",
-            },
-            {
-              h: "Business model",
-              b: "Rests on segment disclosure, and the segmentation is not like for like across this set. Two filers are pure plays, two segment by industry vertical and one by service line. The sixth, in Exhibit 6 above, discloses no segments at all across 433 printed pages, so the business it calls its most consequential decision in a generation cannot be sized apart from the engineering business funding it.",
-            },
-            {
-              h: "Valuation",
-              b: "Terminal rather than pending. Every figure here comes from a filed document, no market data source has been read, and a draft prospectus carries no price band. A half sourced multiple is worse than no multiple.",
-            },
-          ].map((c) => (
-            <div key={c.h} className="bg-card p-5">
-              <dt className="font-display text-lg tracking-tight">{c.h}</dt>
-              <dd className="mt-2 text-sm leading-relaxed text-muted">{c.b}</dd>
-            </div>
-          ))}
-        </dl>
+        <div className="mt-6 overflow-x-auto rounded-md border border-line bg-card p-5">
+          <PillarMatrix data={cov} />
+        </div>
       </section>
     </main>
   );

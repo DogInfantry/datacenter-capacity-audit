@@ -1,0 +1,65 @@
+{
+  "_note": "The brief's six forensic pillars against the subjects this coverage can put them to. A subject is an entity with a document read by hand or a machine harvest, so the denominator is what could be asked rather than what exists. Covered means the measure is computed and rendered somewhere on the site, not that the question is closed.",
+  "subjects": [
+    { "id": "SISL", "label": "Sify Infinit Spaces", "kind": "HAND_READ", "mark": "Sify Infinit Spaces" },
+    { "id": "SIFY", "label": "Sify Technologies", "kind": "HARVESTED", "mark": "Sify Technologies" },
+    { "id": "ANANTRAJ", "label": "Anant Raj", "kind": "HAND_READ", "mark": "Anant Raj Cloud" },
+    { "id": "TECHNOE", "label": "Techno Electric", "kind": "HAND_READ", "mark": "Techno Digital" },
+    { "id": "E2E", "label": "E2E Networks", "kind": "HAND_READ", "mark": "E2E Networks" },
+    { "id": "NETWEB", "label": "Netweb", "kind": "HAND_READ", "mark": "Netweb Technologies" },
+    { "id": "EQIX", "label": "Equinix", "kind": "HARVESTED", "mark": "Equinix" },
+    { "id": "DLR", "label": "Digital Realty", "kind": "HARVESTED", "mark": "Digital Realty" },
+    { "id": "INFY", "label": "Infosys", "kind": "HARVESTED", "mark": "Infosys" },
+    { "id": "WIT", "label": "Wipro", "kind": "HARVESTED", "mark": "Wipro" }
+  ],
+  "pillars": [
+    {
+      "id": "CASH_CONVERSION",
+      "label": "Cash conversion",
+      "state": "BUILT",
+      "covered": ["SISL", "SIFY", "ANANTRAJ", "EQIX", "DLR", "INFY", "WIT"],
+      "exhibits": [1, 2],
+      "open": "The three names with no statements read cannot be asked it. Operating cash and profit after tax are what it needs, and neither is filed in a form this coverage holds for Techno Electric, E2E or Netweb."
+    },
+    {
+      "id": "BALANCE_SHEET",
+      "label": "Balance sheet",
+      "state": "PARTIAL",
+      "covered": ["SISL", "TECHNOE"],
+      "exhibits": [3, 7, 8],
+      "open": "The five harvested filers carry total assets and no borrowings or lease liability split, and that harvest was attempted once and abandoned because the store returns maturity schedule rows that look like balances."
+    },
+    {
+      "id": "GOVERNANCE",
+      "label": "Governance",
+      "state": "PARTIAL",
+      "covered": ["SISL", "ANANTRAJ", "TECHNOE"],
+      "exhibits": [6, 8],
+      "open": "No governance section has been opened for any of the five harvested filers, and neither E2E nor Netweb has a filing read for that purpose."
+    },
+    {
+      "id": "REVENUE_QUALITY",
+      "label": "Revenue quality",
+      "state": "PARTIAL",
+      "covered": ["SISL", "ANANTRAJ", "E2E"],
+      "exhibits": [4, 5],
+      "open": "Concentration and growth only. Pricing, contract duration and churn are unread for every subject, and one single customer revenue line running 2017 to 2026 is filed and unpulled."
+    },
+    {
+      "id": "BUSINESS_MODEL",
+      "label": "Business model",
+      "state": "BLOCKED",
+      "covered": ["TECHNOE", "NETWEB"],
+      "exhibits": [6],
+      "open": "One clean answer and no measure. Segmentation is not like for like across the set: two subjects are pure plays, two segment by industry vertical, one by service line, and one discloses no segments at all."
+    },
+    {
+      "id": "VALUATION",
+      "label": "Valuation",
+      "state": "TERMINAL",
+      "covered": [],
+      "exhibits": [],
+      "open": "Terminal rather than pending. Every figure here comes from a filed document, no market data source is in the repository, and a draft prospectus carries no price band. A half sourced multiple is worse than no multiple."
+    }
+  ]
+}

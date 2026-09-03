@@ -4,6 +4,7 @@ import {
   CapacityLadder,
   CompanyDoc,
   DisclosureRegister,
+  PillarCoverage,
   Prospectus,
   DrhpTriage,
   Sisl,
@@ -28,6 +29,7 @@ import registerRaw from "@/data/disclosure_register.json";
 import prospectusRaw from "@/data/prospectus.json";
 import triageRaw from "@/data/drhp_triage.json";
 import baseRateRaw from "@/data/base_rate.json";
+import pillarsRaw from "@/data/pillars.json";
 import sifyRaw from "@/data/sify_capacity.json";
 import e2eRaw from "@/data/e2e.json";
 import sifyCoRaw from "@/data/companies/sify.json";
@@ -49,6 +51,7 @@ function parse<T extends z.ZodTypeAny>(schema: T, raw: unknown, what: string): z
 }
 
 export const baseRate = parse(BaseRate, baseRateRaw, "data/base_rate.json");
+export const pillarCoverage = parse(PillarCoverage, pillarsRaw, "data/pillars.json");
 export const sify = parse(CapacityLadder, sifyRaw, "data/sify_capacity.json");
 export const e2e = parse(E2E, e2eRaw, "data/e2e.json");
 export const sifyCo = parse(CompanyDoc, sifyCoRaw, "data/companies/sify.json");

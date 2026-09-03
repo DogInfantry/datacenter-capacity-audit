@@ -730,6 +730,27 @@
       "category": "RECONCILE",
       "protects": "Twenty cells transcribed by hand from a printed table across two years. A single mistyped bucket would leave every derived share slightly wrong and nothing else would notice, so each year is summed against the total the filing prints.",
       "fragment": "against a printed total of"
+    },
+    {
+      "id": "coverage-cell-names-a-real-subject",
+      "schema": "PillarCoverage",
+      "category": "POSSIBLE",
+      "protects": "A filled cell has to name a subject that exists and may only be filled once for a pillar. Both mistakes would inflate the count of measured cells the page publishes as its own completeness.",
+      "fragment": "claims a subject that is unknown or counted twice"
+    },
+    {
+      "id": "coverage-keeps-six-pillars",
+      "schema": "PillarCoverage",
+      "category": "POSSIBLE",
+      "protects": "The brief names six pillars and the page counts them. A duplicate identifier would leave one pillar unrepresented while the count still read six.",
+      "fragment": "the six pillars are no longer six distinct ones"
+    },
+    {
+      "id": "coverage-state-describes-the-coverage",
+      "schema": "PillarCoverage",
+      "category": "EVIDENCE",
+      "protects": "The four states are checked against the coverage they claim rather than being labels anyone can type: built covers most of the subjects it could, terminal covers none, and the two in between cover some but not most. Without this the picture and the badge on it could drift apart silently.",
+      "fragment": "so the label no longer describes the coverage"
     }
   ]
 }
