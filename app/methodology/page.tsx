@@ -10,8 +10,10 @@ import { InvariantLedger } from "@/components/InvariantLedger";
 import { Cite } from "@/components/Cite";
 import { CASH_CONVERSION } from "@/lib/config";
 import { StatTile, type IconName } from "@/components/Visual";
+import { techArticleLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/methodology" },
   title: "Methodology",
   description:
     "How far each figure on this site has actually been checked, counted rather than asserted, and every invariant that fails the build when a claim stops being true.",
@@ -89,6 +91,19 @@ export default function MethodologyPage() {
 
   return (
     <div className="mx-auto w-full min-w-0 max-w-6xl px-5">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            techArticleLd({
+              headline: "How every figure here was checked, counted rather than asserted",
+              description:
+                "The sourcing counted from both ends, every build invariant with what it protects, every formula with its denominator, the known limits including the ones now closed, and a log of how the direction changed.",
+              path: "/methodology",
+            }),
+          ),
+        }}
+      />
       <section className="py-12 sm:py-16">
         <p className="sc text-accent">Methodology</p>
         <h1 className="mt-4 max-w-4xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">

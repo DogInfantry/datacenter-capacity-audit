@@ -34,8 +34,8 @@
   "conflict": {
     "field": "Operational capacity",
     "a": { "value": 28, "source": "Blueprint research note, Manesar 21 plus Panchkula 7" },
-    "b": { "value": 21, "source": "data/campuses.json, the figure recorded before the annual report was cited" },
-    "note": "A seven megawatt disagreement on a 28 megawatt estate is a quarter of the number. Until a filing settles it the higher figure is carried, and the disagreement is shown rather than resolved."
+    "b": { "value": 21, "source": "The figure this coverage recorded before the annual report was cited" },
+    "note": "A seven megawatt disagreement on a 28 megawatt estate is a quarter of the number. The annual report dissolved it rather than picking a side: 21 is Manesar alone and 28 is Manesar plus Panchkula, which are two rungs of one ladder rather than two readings of one rung. Both figures are kept because the disagreement is what sent a reader to the filing."
   },
 
   "sites": [

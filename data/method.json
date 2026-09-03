@@ -86,14 +86,20 @@
     {
       "id": "derived-revenue-per-mw",
       "status": "OPEN",
-      "limit": "Revenue per megawatt is derived rather than disclosed, and carries its formula and denominator wherever it appears.",
+      "limit": "Revenue per megawatt is derived rather than disclosed. The formula and its denominator are published here, but the figure itself is computed by a function no page calls, so it appears on no exhibit. A measure that renders nowhere is not a published measure, and saying so is cheaper than implying otherwise.",
+      "closedBy": null
+    },
+    {
+      "id": "netweb-no-filing",
+      "status": "OPEN",
+      "limit": "No Netweb filing has been opened. Its page rests on an order book and a revenue mix taken from research notes, so it carries no margin, no cash flow and no client table, and the page says so rather than leaving a reader to infer it. An order book is also a ceiling rather than a measurement, because anything already delivered has left it.",
       "closedBy": null
     },
     {
       "id": "two-dives-secondary",
-      "status": "OPEN",
+      "status": "CLOSED",
       "limit": "Two of the three deep dives rest entirely on a research note. No Anant Raj or Netweb filing has been opened, so neither page carries a margin, a cash flow or a client table, and both say so on the page rather than in a footnote.",
-      "closedBy": null
+      "closedBy": "The Anant Raj annual report for FY2024-25 was read page by page and its accounts now render: the profit and loss, the cash flow on both readings of the borrowings classification, the related party lending and the struck off register. What remains true of this limit is Netweb alone, which is recorded as its own entry below."
     },
     {
       "id": "capacity-definition-unverified",

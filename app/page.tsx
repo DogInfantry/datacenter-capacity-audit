@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { universe, sisl, COVERED_TICKERS } from "@/lib/data";
+import { universe, sisl, prospectus, invariants, macro, COVERED_TICKERS } from "@/lib/data";
+import { citedPages } from "@/lib/diagnostics/sourcing";
+import { datasetLd, faqLd } from "@/lib/seo";
 import { Exhibit } from "@/components/Exhibits";
 import { ExecutionAmbition } from "@/components/ExecutionAmbition";
 import { StatTile, verdictTone, type IconName } from "@/components/Visual";
 import { Logo } from "@/components/Logo";
 
 export const metadata: Metadata = {
-  title: "Built, Installed, Sold",
+  // The layout already sets this title. What the root route needs is its own
+  // description and a canonical, not a second copy of the name.
+  description:
+    "India's listed data centre and AI infrastructure names, with what was announced and what was delivered kept in separate columns.",
+  alternates: { canonical: "/" },
 };
 
 /**
@@ -63,6 +69,45 @@ export default function Home() {
     },
   ];
 
+  // The rungs are looked up by the name the filing gives them rather than by
+  // position, so a reordering cannot silently swap two figures.
+  const rung = (n: string) => prospectus.capacity.rungs.find((r) => r.name === n)!;
+  const built = rung("Built").mw;
+  const installed = rung("Installed").mw;
+  const operational = rung("Operational").mw;
+
+  // What a machine reads instead of the prose. Every figure below is the one
+  // the page itself renders, so the two cannot disagree.
+  const ld = [
+    datasetLd({
+      documentsRead: 4,
+      invariants: invariants.rows.length,
+      citedPages: citedPages(sisl, prospectus, macro).length,
+    }),
+    faqLd([
+      {
+        q: "Is announced data centre capacity the same as operational capacity?",
+        a: `No, and the gap is large. One filed prospectus reports ${built} MW as built, ${installed} MW as installed and ${operational} MW as operational, which it defines as sold to customers and generating revenue. All three describe one estate on one date, and the headline is the widest of the three.`,
+      },
+      {
+        q: "What does built capacity mean in a data centre filing?",
+        a: `It can mean designed rather than delivered. The prospectus defines built capacity as ${rung("Built").definition} Eleven days after that document was dated, the same estate was described on an earnings call as 188 megawatts of design capacity of which about 130 megawatt is built. The filed document moved the word one rung up.`,
+      },
+      {
+        q: "How much of India's announced data centre capacity is earning revenue?",
+        a: `On the operators covered here it runs from about ${((operational / built) * 100).toFixed(0)} per cent down to under 3 per cent. Sify Infinit Spaces keeps ${((operational / built) * 100).toFixed(0)} per cent of its widest figure by the time it reaches revenue. Anant Raj announces 307 MW, calls 28 MW operational and reports 8 MW handed over to customers, which is 2.6 per cent of what was announced.`,
+      },
+      {
+        q: "Which Indian listed companies have data centre exposure?",
+        a: `${universe.operators.length} operators are tracked with announced capacity set against delivered capacity, alongside a watchlist of names deliberately left off the plot. Three carry a deep dive read from a filed document: Sify Infinit Spaces from a draft prospectus, Anant Raj from an annual report, and Netweb on an order book because it owns no capacity at all.`,
+      },
+      {
+        q: "How are the figures verified?",
+        a: `Every figure carries the document it came from and a verification tag, and a figure read from a filing carries the printed page as well. ${invariants.rows.length} build invariants assert the published claims against the underlying data, so a claim that stops being true fails the build instead of going stale on the page.`,
+      },
+    ]),
+  ];
+
   const cards = [...ops]
     .sort((a, b) => b.announcedMW - a.announcedMW)
     .map((o) => ({
@@ -73,6 +118,13 @@ export default function Home() {
 
   return (
     <div className="mx-auto w-full min-w-0 max-w-6xl px-5">
+      {ld.map((block, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }}
+        />
+      ))}
       <section className="py-14 sm:py-20">
         <p className="sc text-accent">India · Data centres and AI infrastructure</p>
         <h1 className="mt-4 max-w-4xl font-display text-4xl leading-[1.08] tracking-tight sm:text-5xl">

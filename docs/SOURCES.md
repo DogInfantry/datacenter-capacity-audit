@@ -20,7 +20,7 @@ The binary is deliberately not committed, at 12.5 MB. `data/raw/prospectus/drhp_
 carries the URL, the checksum and the printed to PDF page offset, so any figure can be audited
 against a fresh download. **Printed page one sits at PDF index 5**, and 556 folios the document prints on itself agree.
 
-Fourteen printed pages are cited across the site. That is 2.5 per cent of the document, and
+Twenty printed pages are cited across the site. That is 3.6 per cent of the document, and
 `/methodology` publishes the count rather than implying more:
 
 | Printed page | Section | What was taken from it |
@@ -576,6 +576,7 @@ Indian filer. The annual report settled it.
 
 ## The honest summary
 
-Two documents read properly, one of them a prospectus and one an annual report. Three companies' calls coded across a defined window. Five filers
+Four documents read properly, one prospectus and three annual reports, one of the three read
+twice. Three companies' calls coded across a defined window. Five filers
 harvested. One government dataset. Everything else on this site is a research note figure wearing a
 tag that says so.

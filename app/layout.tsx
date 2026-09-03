@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Newsreader, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
+import { SITE, websiteLd } from "@/lib/seo";
 
 const display = Newsreader({
   variable: "--font-display-face",
@@ -13,9 +14,31 @@ const sans = Geist({ variable: "--font-sans-face", subsets: ["latin"], display: 
 const mono = Geist_Mono({ variable: "--font-mono-face", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Built, Installed, Sold",
-  description:
-    "Sify Infinit Spaces reports 188 MW of built capacity and earns revenue on 114. This reads the filed prospectus to work out what that costs.",
+  // metadataBase is what turns every relative image and canonical below into an
+  // absolute URL. Without it a crawler and a link preview both see nothing.
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: SITE.name,
+    // So a subpage reads "Pillars, Built, Installed, Sold" rather than a bare
+    // "Pillars", which says nothing in a search result or a browser tab.
+    template: `%s, ${SITE.name}`,
+  },
+  description: SITE.description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    title: SITE.name,
+    description: SITE.description,
+    url: SITE.url,
+    locale: SITE.locale,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.name,
+    description: SITE.description,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -36,6 +59,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Script id="theme-preference" strategy="beforeInteractive">
           {"try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}"}
         </Script>
+        <script
+          type="application/ld+json"
+          // Structured data is the only part of a page a retrieval model reads
+          // as fact rather than as prose it has to interpret.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd()) }}
+        />
         <Nav />
         {children}
       </body>
