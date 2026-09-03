@@ -29,7 +29,10 @@ const WORD: Record<Band, string> = {
   REFUSED: "refused",
 };
 
-function Chip({ band }: { band: Band }) {
+/** Exported so the cross filer exhibit grades a cell the same way this one
+ *  does. Two components writing their own bands is how the rule shown and the
+ *  rule applied drift apart. */
+export function Chip({ band }: { band: Band }) {
   return (
     <span
       className="rounded-sm border px-1.5 py-0.5 text-[10px] uppercase tracking-wide"

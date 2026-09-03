@@ -124,9 +124,18 @@ Recorded with the finding each one produced, because a tick is not a result.
   other reading of the borrowings classification, while the accrual ratio calls the same year clean.
   They disagree because the second adds investing cash back into its numerator, which also means it
   tracks the size of Sify's build rather than the quality of its earnings. Both are shown and
-  neither is called the verdict. What blocks the remaining five is narrower and different: profit
-  after tax and total assets are absent from `data/companies/*.json`, and re-harvesting them from
-  EDGAR is what would let a pillar cover the global peers rather than only the Indian names.
+  neither is called the verdict.
+
+  **The harvest that was blocking the rest is done.** Profit after tax, total assets and investing
+  cash now sit on every row of `data/companies/*.json`, pulled through the filings store rather than
+  from EDGAR directly, each carrying the filing that served it. `/pillars` runs the pillar across
+  all five filers, and the result is about the measure rather than about any one of them: Sify
+  Technologies, the listed parent, scores 12.03 times and then 35.12 times on operating cash to
+  profit while its profit line falls from 1,532 million rupees to a loss of 1,366 million, and then
+  the measure refuses. A ratio against profit reads best exactly where the profit line is worst,
+  which is why refusing a non-positive denominator is the measure working rather than failing. The
+  data centre subsidiary underneath it converts between 2.26 and 4.33 times across the same years.
+  Nowhere else here is one business measured from two documents on one pillar.
 - **The rest of the prospectus teardown.** The document is read and partly extracted: the offer,
   the objects and deployment schedule, and the capacity definitions, each cited by printed page.
   Still to extract, with the page map already recorded in
@@ -134,9 +143,9 @@ Recorded with the finding each one produced, because a tick is not a result.
   entity at printed 349, related party transactions inside its notes, customer concentration, and
   outstanding litigation at printed 463. The standalone accounts are the valuable one, because
   they turn the Sify Technologies segment note into something checkable rather than assumed.
-- **`cashQuality.ts` and `concentration.ts`.** Both need PAT and total assets, which are available
-  and simply not yet pulled. Concentration is the more interesting of the two: Sify discloses a
-  single customer revenue line running 2017 to 2026.
+- **`concentration.ts`.** `cashQuality.ts` has its inputs and is built. Concentration was the more
+  interesting of the two anyway: Sify discloses a single customer revenue line running 2017 to 2026,
+  and that table is read for one filer and unread for the other four.
 - **Disclosure rates beyond the two unit economics families.** The register measures pricing
   mechanics and cost margin bridge, chosen so that every published rate rests on topics that are
   unambiguously unit economics. Capacity milestone and capital allocation were pulled during the

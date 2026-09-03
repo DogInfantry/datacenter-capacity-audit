@@ -241,10 +241,14 @@ export default function MethodologyPage() {
           The thresholds are published, so disagreeing means disagreeing with a number
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
-          Cash conversion is the first of the six pillars to be built. These are the bands it
-          applies, and they are read from the same file the pages apply, so the rule shown here and
-          the rule used to colour a cell cannot drift apart. A build guard fails if a component
-          writes a band of its own.
+          Cash conversion is the first of the six pillars to be built, and it now runs on every
+          filer in this coverage whose statements are machine readable. The readings are on{" "}
+          <Link href="/pillars" className="underline decoration-line underline-offset-4">
+            the pillars page
+          </Link>
+          . These are the bands it applies, and they are read from the same file the pages apply,
+          so the rule shown here and the rule used to colour a cell cannot drift apart. A build
+          guard fails if a component writes a band of its own.
         </p>
         <dl className="mt-7 grid gap-px overflow-hidden rounded-md border border-line bg-line lg:grid-cols-2">
           <div className="bg-card p-5">

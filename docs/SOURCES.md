@@ -302,14 +302,32 @@ Structured pulls into `data/companies/*.json`, validated by `CompanyDoc`, with t
 
 | Company | Years | Filings drawn on |
 |---|---|---|
-| Sify Technologies | FY2021 to FY2026 | 20-F for FY2023, FY2025 and FY2026, and a 20-F/A for FY2024 |
-| Equinix | FY2018 to FY2025 | 10-K for FY2020 through FY2025 |
-| Digital Realty | FY2017 to FY2025 | 10-K for FY2019 through FY2025 |
-| Infosys | FY2022 to FY2026 | 20-F for FY2024, FY2025 and FY2026 |
-| Wipro | FY2022 to FY2026 | 20-F for FY2024, FY2025 and FY2026 |
+| Sify Technologies | FY2021 to FY2026 | 20-F for FY2023, FY2025 and FY2026, and 20-F/A for FY2022 and FY2024 |
+| Equinix | FY2018 to FY2025 | 10-K for FY2018 through FY2025 |
+| Digital Realty | FY2017 to FY2025 | 10-K for FY2018 through FY2025 |
+| Infosys | FY2022 to FY2026 | 20-F for FY2023 through FY2026 |
+| Wipro | FY2022 to FY2026 | 20-F for FY2023 through FY2026 |
 
 All five index from SEC EDGAR. Sify's is `https://www.sec.gov/Archives/edgar/data/1094324`; the rest
-resolve through the EDGAR company browse endpoint recorded on each file.
+resolve through the EDGAR company browse endpoint recorded on each file. **The pulls are served
+through the FactIQ filings store rather than fetched from EDGAR directly**, which is what the
+`_source` line in every `data/raw/filings/*/facts.json` records. The store names the filing that
+served each individual figure, and that is why the three fields below carry a source each rather
+than sharing the row's.
+
+**Three concepts were added on 2026-09-03**, for all five filers: profit after tax, total assets and
+net cash used in investing. Together they are what the cash conversion pillar needs, and their
+absence was the stated blocker on every remaining pillar. Under US GAAP they are `Assets`, `Net
+income loss` and `Net cash provided by used in investing activities`; under IFRS they are `Assets
+(IFRS)`, `Profit loss (IFRS)` and `Cash flows from used in investing activities`. Each figure is
+taken in the currency its own file declares. Sify and Wipro publish both a rupee and a dollar series
+and only the rupee one is stored, because taking the other would be a currency conversion arriving
+through the back door.
+
+**Total assets stop one year short of the cash flow for both US filers.** A 10-K prints its
+statement of financial position for the year it closes and the year before, and the store serves
+what was printed, so FY2025 has operating and investing cash on both sides and no balance sheet to
+divide by. The accrual ratio refuses those two cells and names the reason on the page.
 
 **The Sify harvest is now used for a second check, against the prospectus rather than against a
 call.** Sify Technologies reports a data centre segment in its 20-F; Sify Infinit Spaces reports its

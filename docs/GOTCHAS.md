@@ -107,3 +107,21 @@ sideways instead of the table.
 **Re-validate the palette whenever a hue changes**, in both themes, against this site's own
 surfaces. The first palette shipped with two hues 10.1 apart on the normal vision scale against a
 floor of 15, and full colour readers could not separate them.
+
+## The filings store
+
+**Asking for a concept by name returns a different concept without saying so.** Asking Infosys for
+`Assets (IFRS)` returned `Other current assets`, and asking for `Profit loss (IFRS)` returned `Other
+adjustments to reconcile profit loss`. Both came back as ordinary results with ordinary looking
+numbers and no warning. The rendered tree names the concept actually selected, so read that name on
+every response and match it against what was asked for. This is the same failure as `ROCE` matching
+inside "process", one layer up: the fuzzy match is in the server rather than in a regex.
+
+**An empty result is not evidence the series is absent.** Filtering Infosys by annual report type
+returned zero rows for a concept the metrics view shows as annual with ten points. Check the metrics
+view for the point count before concluding a filer does not publish something, and filter by date
+rather than by report type when the two disagree.
+
+**The concept name differs by accounting standard.** US filers carry `Assets` and `Net income
+loss`; the IFRS filers carry `Assets (IFRS)` and `Profit loss (IFRS)`. When a name misses, the
+server lists the near neighbours it does hold, and that list is the fastest way to the right string.

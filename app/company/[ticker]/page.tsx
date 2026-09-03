@@ -23,7 +23,7 @@ import { SiteMap } from "@/components/SiteMap";
 import { RiskMatrix } from "@/components/RiskMatrix";
 import { CapexVsCfo } from "@/components/CapexVsCfo";
 import { sifyRiskMeasures } from "@/lib/diagnostics/risk";
-import { accrualRatio, cfoToPat, pillar } from "@/lib/diagnostics/cashQuality";
+import { sislReadings } from "@/lib/diagnostics/cashQuality";
 import { disclosureReach, materialityThreshold } from "@/lib/diagnostics/governance";
 import { CashConversion } from "@/components/CashConversion";
 import { RoceCheck } from "@/components/RoceCheck";
@@ -134,19 +134,9 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
   const saidYears =
     (Date.parse(saidLast.date) - Date.parse(saidFirst.date)) / (365.25 * 86_400_000);
   const missed = sify.claims.filter((c) => c.status === "MISSED");
-  // Cash conversion, one reading per filed period. The stub is labelled rather
-  // than annualised, because a quarter of cash against a quarter of profit is a
-  // real ratio and a quarter scaled up by four is not.
-  const cashReadings = sisl.periods.map((p) => {
-    const cf = sisl.cashFlow.find((c) => c.label === p.label)!;
-    const bs = sisl.balanceSheet.find((b) => b.label === p.label)!;
-    const basis = p.basis === "CONSOLIDATED" ? "consolidated" : "standalone";
-    const period = p.stub ? `${p.label}, ${basis}, unannualised` : `${p.label}, ${basis}`;
-    return pillar("SIFY", sisl.entity, period, [
-      cfoToPat(cf.cfo, p.pat),
-      accrualRatio(p.pat, cf.cfo, cf.cfi, bs.totalAssets),
-    ]);
-  });
+  // Cash conversion, one reading per filed period. The same readings back the
+  // arm against parent exhibit on /pillars, so they are built in one place.
+  const cashReadings = sislReadings(sisl);
   const conv = cashReadings.map((r) => r.metrics[0].value!);
   // The bar this issuer set for telling anyone about a dispute, computed from
   // its own statements because the document publishes the formula and never
