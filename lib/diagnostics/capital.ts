@@ -59,6 +59,81 @@ type RoceInput = {
  * nothing to average against. That is not a gap in the method. It is a gap in
  * the document, and it falls on the highest of the four published figures.
  */
+/**
+ * Leverage, and the two questions the document answers only by arithmetic.
+ *
+ * The first is a definition. The return on capital formula this issuer prints
+ * defines capital employed as net worth plus total borrowings less cash, and
+ * never says whether a lease liability is a borrowing. `roceReconciliation`
+ * already establishes that the published returns only rebuild on the reading
+ * where it is, which is an inference from a result. The net debt line settles it
+ * directly: in every filed period the issuer's own published net debt equals
+ * borrowings plus lease liabilities less cash, to the paisa. The convention is
+ * stated nowhere. It is provable from a figure printed beside the one that
+ * needed it.
+ *
+ * The second is a basis. The ratio is published for the stub quarter as well as
+ * the full years, and a quarter of earnings against a balance sheet would give a
+ * number four times too large. Dividing the published net debt by the published
+ * ratio recovers the earnings figure the issuer used, and for the stub it is
+ * four times the quarter's own. So the stub is annualised here, while the same
+ * document reports the stub's return on capital unannualised. Two ratios, one
+ * period, opposite conventions, neither labelled.
+ */
+export type LeverageRow = {
+  label: string;
+  stub: boolean;
+  /** As the issuer publishes it. */
+  netDebt: number;
+  /** Rebuilt from the balance sheet lines, counting leases as debt. */
+  rebuilt: number;
+  /** Whether the rebuild lands on the published figure. */
+  leasesAreDebt: boolean;
+  /** The same measure with lease liabilities taken back out, which is what the
+   *  printed definition gives a reader who reads it literally. */
+  netDebtExLeases: number;
+  netDebtToEbitda: number;
+  /** The earnings figure the published ratio implies, over the earnings the
+   *  same period reports. One for a full year, four for an annualised quarter. */
+  earningsMultiple: number;
+  annualised: boolean;
+};
+
+/** Declared rather than intersected with `RoceInput`. An intersection keeps the
+ *  narrower `periods` of the two and the extra fields never arrive, which the
+ *  compiler reports at the use site rather than here. */
+export function leverage(d: {
+  periods: {
+    label: string;
+    stub: boolean;
+    ebitda: number;
+    netDebt: number;
+    netDebtToEbitda: number;
+  }[];
+  balanceSheet: { label: string; borrowings: number; leaseLiabilities: number; cash: number }[];
+}): LeverageRow[] {
+  const bs = new Map(d.balanceSheet.map((b) => [b.label, b]));
+  return d.periods.map((p) => {
+    const b = bs.get(p.label)!;
+    const rebuilt = b.borrowings + b.leaseLiabilities - b.cash;
+    const impliedEarnings = p.netDebt / p.netDebtToEbitda;
+    const earningsMultiple = impliedEarnings / p.ebitda;
+    return {
+      label: p.label,
+      stub: p.stub,
+      netDebt: p.netDebt,
+      rebuilt,
+      leasesAreDebt: Math.abs(rebuilt - p.netDebt) < 0.01,
+      netDebtExLeases: b.borrowings - b.cash,
+      netDebtToEbitda: p.netDebtToEbitda,
+      earningsMultiple,
+      // Four times the period's own earnings, within the rounding the published
+      // ratio carries at two decimals.
+      annualised: Math.abs(earningsMultiple - 4) < 0.05,
+    };
+  });
+}
+
 export function roceReconciliation(d: RoceInput) {
   const bs = new Map(d.balanceSheet.map((b) => [b.label, b]));
   const dep = new Map(d.cashFlow.map((c) => [c.label, c.depreciation]));

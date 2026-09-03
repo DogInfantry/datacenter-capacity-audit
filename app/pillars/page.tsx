@@ -2,22 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { companies, sisl, sifyCo } from "@/lib/data";
 import { armAgainstParent, peerCashConversion } from "@/lib/diagnostics/cashQuality";
+import { leverage } from "@/lib/diagnostics/capital";
 import { CASH_CONVERSION } from "@/lib/config";
 import { Exhibit } from "@/components/Exhibits";
 import { PeerCashConversion } from "@/components/PeerCashConversion";
+import { Leverage } from "@/components/Leverage";
 
 export const metadata: Metadata = {
   title: "Pillars",
   description:
-    "Cash conversion asked of every filer in this coverage whose statements are machine readable, and asked twice of one business: the data centre arm and the listed group that owns it.",
+    "Two of the brief's six forensic pillars, built. Cash conversion across every filer whose statements are machine readable, and leverage on both readings of a lease liability the filing never defines.",
 };
 
 /**
- * The forensic scorecard, one pillar in.
+ * The forensic scorecard, two pillars in.
  *
- * The brief asks for six. This route carries the one the brief calls the heart
- * of the engine and says so, rather than shipping five empty headings that
- * would read as work in progress instead of as work not done.
+ * The brief asks for six. This route carries the two that have been built and
+ * names the four that have not, rather than shipping empty headings that would
+ * read as work in progress instead of as work not done.
  *
  * The page is not a ranking. Two of these filers are IT services groups and two
  * are colocation pure plays, and none of the four is a comparable of the Indian
@@ -39,6 +41,8 @@ export default function PillarsPage() {
   const armRows = pair.filter((r) => r.ticker === "SISL");
   const parentRows = pair.filter((r) => r.ticker === sifyCo.ticker);
   const armConv = armRows.map((r) => r.metrics[0].value).filter((v): v is number => v !== null);
+  const lev = leverage(sisl);
+  const levStub = lev.find((r) => r.annualised);
   const parentConv = parentRows
     .map((r) => r.metrics[0].value)
     .filter((v): v is number => v !== null);
@@ -60,10 +64,10 @@ export default function PillarsPage() {
         question at all.
       </h1>
       <p className="mt-5 max-w-2xl leading-relaxed text-muted">
-        Cash conversion is the first of the brief&rsquo;s six pillars to be built, and the only
-        one on this page. It runs two measures of the same idea and reports them side by side
-        rather than averaging them, because they can disagree and the disagreement is worth more
-        than either verdict alone. The bands are published on{" "}
+        Cash conversion is the first of the brief&rsquo;s six pillars to be built and the balance
+        sheet is the second. The first runs two measures of the same idea and reports them side by
+        side rather than averaging them, because they can disagree and the disagreement is worth
+        more than either verdict alone. The bands are published on{" "}
         <Link href="/methodology" className="underline decoration-line underline-offset-4">
           the methodology page
         </Link>{" "}
@@ -131,6 +135,58 @@ export default function PillarsPage() {
             in every year they overlap.
           </p>
         </Exhibit>
+
+        <Exhibit
+          n={3}
+          title="The document never says whether a lease is a borrowing. Its own net debt line answers it in every period"
+          units={`Rupees millions and times earnings, for the operator whose statements are read page by page. Net debt as the issuer publishes it, rebuilt from the balance sheet lines beside it, and the leverage ratio on both readings of the lease liability. Source at printed page ${sisl.balanceSheetSource.page}.`}
+          source={sisl.balanceSheetSource.label}
+          page={sisl.balanceSheetSource.page}
+        >
+          <Leverage rows={lev} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            The return on capital formula this issuer prints defines capital employed as net worth
+            plus total borrowings less cash, and never says whether a lease liability counts as a
+            borrowing. That question decides the answer:{" "}
+            <Link
+              href="/company/SIFY"
+              className="underline decoration-line underline-offset-4"
+            >
+              the published returns only rebuild on the reading where it does
+            </Link>
+            , which is an inference drawn backwards from a result. The net debt line settles it
+            forwards. In all{" "}
+            <span className="tnum text-foreground">
+              {lev.filter((r) => r.leasesAreDebt).length}
+            </span>{" "}
+            filed periods the issuer&rsquo;s own published net debt equals borrowings plus lease
+            liabilities less cash, to the paisa. The convention is written nowhere and provable
+            everywhere.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            It is also the stricter of the two. Read the printed wording literally and leverage
+            falls to{" "}
+            <span className="tnum text-foreground">
+              {(lev[0].netDebtExLeases / (lev[0].netDebt / lev[0].netDebtToEbitda)).toFixed(2)}
+            </span>{" "}
+            times from{" "}
+            <span className="tnum text-foreground">{lev[0].netDebtToEbitda.toFixed(2)}</span> in the
+            first filed period. The issuer took the reading that flatters it less, here and on the
+            return on capital, and states that choice in neither place.
+          </p>
+          {levStub && (
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              One more thing falls out of the same arithmetic. Dividing published net debt by the
+              published ratio recovers the earnings figure behind it, and for{" "}
+              <span className="text-foreground">{levStub.label}</span> that is{" "}
+              <span className="tnum text-foreground">{levStub.earningsMultiple.toFixed(2)}</span>{" "}
+              times the earnings the same period reports, so the quarter is annualised for this
+              ratio. The same document reports that quarter&rsquo;s return on capital
+              unannualised. Two ratios, one period, opposite conventions, and neither is labelled.
+            </p>
+          )}
+        </Exhibit>
       </div>
 
       <section className="mt-12 border-t border-line pt-8">
@@ -150,7 +206,7 @@ export default function PillarsPage() {
             },
             {
               h: "Balance sheet",
-              b: "Total assets now exist for every harvested filer, which is what this pillar was waiting on. The borrowings and lease liability split is the next piece, and only one document has been read for it.",
+              b: "Built for the operator whose statements are read page by page, in Exhibit 3 above. The five harvested filers have total assets but no borrowings or lease liability split, so leverage cannot yet be asked of them, and no second operator has had a balance sheet read.",
             },
             {
               h: "Business model",

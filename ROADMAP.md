@@ -149,6 +149,21 @@ Recorded with the finding each one produced, because a tick is not a result.
   related party. What is still open is the other three filers, none of whose governance sections
   have been opened.
 
+- **The balance sheet pillar, built on the one operator read page by page.** It needed no new data:
+  the borrowings and lease liability split was already stored. What it produced was the answer to a
+  question this project had left open and marked as an inference. The printed definition of capital
+  employed never says whether a lease liability is a borrowing, and the return on capital rebuild
+  only lands on the published figures if it is, which is reasoning backwards from a result. The net
+  debt line settles it forwards: in all four filed periods the issuer's own published net debt
+  equals borrowings plus lease liabilities less cash, to the paisa, and that identity is now a
+  guard. It is also the stricter reading, worth 0.57 times earnings in the first filed period, and
+  the issuer states the choice in neither place. A second result fell out of the same arithmetic:
+  dividing published net debt by the published ratio recovers the earnings behind it, and for the
+  stub quarter that is four times the quarter's own, so leverage is annualised where the same
+  document reports the same quarter's return on capital unannualised. What blocks the pillar going
+  wider is narrow: the five harvested filers carry total assets but no borrowings or lease
+  liability split, and no second operator has had a balance sheet read.
+
 - **The rest of the prospectus teardown.** The document is read and partly extracted: the offer,
   the objects and deployment schedule, and the capacity definitions, each cited by printed page.
   Still to extract, with the page map already recorded in

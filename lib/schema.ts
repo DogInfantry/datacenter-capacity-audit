@@ -1352,6 +1352,30 @@ export const Sisl = z
     // figure covering every officer named is an ordinary disclosure and the page
     // should stop calling it a shortfall. A guard on the amounts would not catch
     // that, since the amounts would still be there.
+    // Net debt must equal borrowings plus lease liabilities less cash.
+    //
+    // This is the finding, asserted rather than described. The formula the
+    // document prints for capital employed never says whether a lease is a
+    // borrowing, and the return on capital rebuild only lands on the published
+    // figures if it is. That is an inference from a result. This identity is the
+    // direct statement of the same convention, from a line printed beside the
+    // one that needed it, and it holds in every filed period. If it stops
+    // holding, the page's claim that the issuer treats leases as debt has
+    // stopped being true and the build should fail instead of the sentence
+    // going stale.
+    for (const p of d.periods) {
+      const b = d.balanceSheet.find((x) => x.label === p.label);
+      if (!b) continue;
+      const rebuilt = b.borrowings + b.leaseLiabilities - b.cash;
+      if (Math.abs(rebuilt - p.netDebt) > 0.01) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["periods"],
+          message: `${p.label}: net debt of ${p.netDebt} is not borrowings plus lease liabilities less cash, which give ${rebuilt.toFixed(2)}. The issuer may have stopped counting leases as debt.`,
+        });
+      }
+    }
+
     const km = d.governance.keyManagement;
     if (km.officersCovered >= km.officersNamed) {
       ctx.addIssue({

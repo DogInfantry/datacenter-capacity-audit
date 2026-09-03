@@ -606,6 +606,13 @@
       "fragment": "which has no balance sheet in this file"
     },
     {
+      "id": "net-debt-counts-leases",
+      "schema": "Sisl",
+      "category": "FINDING",
+      "protects": "Net debt must equal borrowings plus lease liabilities less cash. The formula the document prints for capital employed never says whether a lease is a borrowing, and the return on capital rebuild only lands on the published figures if it is, which is an inference drawn backwards from a result. This identity states the same convention forwards, from a line printed beside the one that needed it, and it holds in every filed period. If it stops holding, the claim that the issuer treats leases as debt has stopped being true.",
+      "fragment": "The issuer may have stopped counting leases as debt."
+    },
+    {
       "id": "key-management-line-understates",
       "schema": "Sisl",
       "category": "FINDING",
