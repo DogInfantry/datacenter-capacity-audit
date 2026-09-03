@@ -688,6 +688,27 @@
       "category": "RECONCILE",
       "protects": "Two audited figures the page sets against each other: the trade receivables and other financial assets the auditor drew attention to as substantially overdue and unprovided, and the capital the company has contracted to spend. The first is several times the second, and the page says so.",
       "fragment": "no longer exceed the capital the company has contracted"
+    },
+    {
+      "id": "technoe-transfer-dominates-current-borrowings",
+      "schema": "TechnoElectric",
+      "category": "FINDING",
+      "protects": "Almost everything the standalone reports as current borrowings arrived by moving a liability from trade payables to borrowings with no cash involved. The page states that share as a percentage, so it has to keep holding.",
+      "fragment": "the transfer is no longer most of what the standalone calls current borrowings"
+    },
+    {
+      "id": "technoe-supplier-finance-over-commitment",
+      "schema": "TechnoElectric",
+      "category": "RECONCILE",
+      "protects": "Financing arranged so that suppliers can be paid later is larger than everything the company has contracted to spend on capital account. Both figures are audited and in the same unit, and the page sets them against each other.",
+      "fragment": "the supplier finance has fallen below what the company has contracted to build"
+    },
+    {
+      "id": "technoe-arrangement-buys-time",
+      "schema": "TechnoElectric",
+      "category": "POSSIBLE",
+      "protects": "The filing gives two payment ranges and the whole point of the arrangement is that one is longer. The slowest comparable payable must still settle sooner than the fastest financed one, or the two ranges have been read into the wrong columns.",
+      "fragment": "the arrangement no longer buys more time than the payables it replaced"
     }
   ]
 }

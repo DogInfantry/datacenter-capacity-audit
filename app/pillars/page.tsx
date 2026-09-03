@@ -13,6 +13,8 @@ import { PeerCashConversion } from "@/components/PeerCashConversion";
 import { Leverage } from "@/components/Leverage";
 import { contractedCapital, struckOffDenial, segmentAbsence } from "@/lib/diagnostics/technoe";
 import { ContractedCapital } from "@/components/ContractedCapital";
+import { supplierFinance } from "@/lib/diagnostics/supplierFinance";
+import { SupplierFinance } from "@/components/SupplierFinance";
 
 export const metadata: Metadata = {
   title: "Pillars",
@@ -79,6 +81,8 @@ export default function PillarsPage() {
   const ct = contractedCapital(technoe, capex.low, capex.high);
   const so = struckOffDenial(technoe);
   const seg = segmentAbsence(technoe);
+  const sfd = supplierFinance(technoe);
+  const sf2 = technoe.supplierFinance;
 
   return (
     <main className="mx-auto w-full max-w-5xl px-5 py-12">
@@ -89,7 +93,9 @@ export default function PillarsPage() {
       </h1>
       <p className="mt-5 max-w-2xl leading-relaxed text-muted">
         Cash conversion is the first of the brief&rsquo;s six pillars to be built, the balance
-        sheet is the second, revenue quality is the third and governance is the fourth. The first runs two measures of one
+        sheet is the second, revenue quality is the third and governance is the fourth. Seven
+        exhibits, and the last two read one annual report that had been opened once for megawatts
+        alone. The first runs two measures of one
         idea and reports them side by side rather than averaging them, because they can disagree
         and the disagreement is worth more than either verdict alone. The bands are published on{" "}
         <Link href="/methodology" className="underline decoration-line underline-offset-4">
@@ -338,6 +344,42 @@ export default function PillarsPage() {
             consolidated note numbers two clauses ({so.clauseNumeral}). The first tables that
             balance. The second reads, in full, &ldquo;{so.denialQuote}&rdquo; Printed page{" "}
             {so.consolidatedPage}.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={7}
+          title={`A liability moved from payables to borrowings, and the cash flow statement records nothing moving`}
+          units="Two payment ranges on one scale of days, then one reported balance split by how it arrived. Millions of rupees, from the standalone statements, converted nowhere. The disclosure exists because amendments to Ind AS 7 and Ind AS 107 were notified partway through the year the report covers."
+          source={sf2.source.label}
+        >
+          <SupplierFinance data={sfd} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            Supplier finance pays a vendor early and collects from the buyer later. The buyer&rsquo;s
+            own terms lengthen and the obligation stops being a trade payable. Here the terms roughly
+            double, from{" "}
+            <span className="tnum text-foreground">{sfd.comparableDays.low}</span> to{" "}
+            <span className="tnum text-foreground">{sfd.comparableDays.high}</span> days to{" "}
+            <span className="tnum text-foreground">{sfd.arrangementDays.low}</span> to{" "}
+            <span className="tnum text-foreground">{sfd.arrangementDays.high}</span>, and{" "}
+            <span className="tnum text-foreground">
+              {sfd.shareOfStandaloneBorrowingsPct.toFixed(0)}
+            </span>{" "}
+            per cent of everything the standalone reports as current borrowings arrived by that move
+            rather than by borrowing.
+          </p>
+
+          <p className="mt-4 text-sm leading-relaxed text-muted">
+            The company classified it under borrowings rather than leaving it among payables, which is
+            the stricter of the two treatments and cuts against the reading above. Both are on the
+            page for that reason. What the treatment cannot do is put the lengthening into the cash
+            flow statement: the transfer is non cash, so neither operating nor financing activities
+            record it, and the same figure covers{" "}
+            <span className="tnum text-foreground">
+              {sfd.shareOfConsolidatedRisePct?.toFixed(0) ?? "not comparable"}
+            </span>{" "}
+            per cent of the rise in consolidated current borrowings across the year.
           </p>
         </Exhibit>
       </div>

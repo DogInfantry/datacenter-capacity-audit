@@ -2522,6 +2522,35 @@ export const TechnoElectric = z
       page: z.number().int().positive(),
     }),
     edgeNetworkSource: PagedSource,
+    /** The arrangement the accounts describe twice and the cash flow statement
+     *  records as moving nothing. Days are stored as numbers so the comparison
+     *  between the two sets of terms is made here rather than read off a string. */
+    supplierFinance: z.object({
+      carryingAmountMn: z.number().nonnegative(),
+      carryingAmountPriorMn: z.number().nonnegative(),
+      paidByProviderMn: z.number().nonnegative(),
+      reclassifiedMn: z.number().nonnegative(),
+      reclassifiedPriorMn: z.number().nonnegative(),
+      arrangementDays: z.object({ low: z.number().int().positive(), high: z.number().int().positive() }),
+      comparableDays: z.object({ low: z.number().int().positive(), high: z.number().int().positive() }),
+      interestWords: z.string().min(1),
+      collateralQuote: z.string().min(1),
+      extendedCreditQuote: z.string().min(1),
+      nonCashQuote: z.string().min(1),
+      standaloneCurrentBorrowingsMn: z.number().positive(),
+      standaloneCurrentBorrowingsPriorMn: z.number().nonnegative(),
+      consolidatedCurrentBorrowingsMn: z.number().positive(),
+      consolidatedCurrentBorrowingsPriorMn: z.number().nonnegative(),
+      tradePayablesMn: z.number().positive(),
+      tradePayablesPriorMn: z.number().positive(),
+      adoptionWords: z.string().min(1),
+      adoptionPage: z.number().int().positive(),
+      standalonePage: z.number().int().positive(),
+      consolidatedPage: z.number().int().positive(),
+      netDebtStandalonePage: z.number().int().positive(),
+      netDebtConsolidatedPage: z.number().int().positive(),
+      source: PagedSource,
+    }),
     commitments: z.object({
       capitalCommitmentMn: z.number().nonnegative(),
       capitalCommitmentPriorMn: z.number().nonnegative(),
@@ -2649,6 +2678,37 @@ export const TechnoElectric = z
         message: `the overdue balances drawn to the auditor's attention no longer exceed the capital the company has contracted`,
       });
     }
+    // Almost everything the standalone reports as current borrowings arrived by
+    // moving a liability from one line to another, with no cash involved. The
+    // page states that share, so a fall in it removes the claim.
+    const sf = d.supplierFinance;
+    if (sf.reclassifiedMn / sf.standaloneCurrentBorrowingsMn <= 0.9) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["supplierFinance"],
+        message: `the transfer is no longer most of what the standalone calls current borrowings, at ${sf.reclassifiedMn} of ${sf.standaloneCurrentBorrowingsMn}`,
+      });
+    }
+    // The comparison the page draws against the capital commitment. Financing
+    // arranged to pay suppliers later is larger than everything contracted to
+    // build anything.
+    if (sf.carryingAmountMn <= d.commitments.capitalCommitmentMn) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["supplierFinance"],
+        message: `the supplier finance has fallen below what the company has contracted to build, at ${sf.carryingAmountMn} against ${d.commitments.capitalCommitmentMn}`,
+      });
+    }
+    // The point of the arrangement, stated as a rule rather than as the two
+    // ranges. The slowest comparable payable must still settle sooner than the
+    // fastest financed one.
+    if (sf.arrangementDays.low < sf.comparableDays.high) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["supplierFinance", "arrangementDays"],
+        message: `the arrangement no longer buys more time than the payables it replaced`,
+      });
+    }
     // A printed page has to be able to exist in the document. The spread layout
     // means the printed range runs to about twice the PDF page count, and a
     // citation outside it is a misread offset rather than a typo.
@@ -2671,6 +2731,12 @@ export const TechnoElectric = z
       d.governance.struckOff.standalonePage,
       d.governance.struckOff.consolidatedPage,
       d.governance.struckOff.source.page,
+      d.supplierFinance.adoptionPage,
+      d.supplierFinance.standalonePage,
+      d.supplierFinance.consolidatedPage,
+      d.supplierFinance.netDebtStandalonePage,
+      d.supplierFinance.netDebtConsolidatedPage,
+      d.supplierFinance.source.page,
     ];
     for (const page of cited) {
       if (page > maxPrinted) {

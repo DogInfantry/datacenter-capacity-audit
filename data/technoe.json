@@ -203,5 +203,38 @@
         "verification": "PRIMARY"
       }
     }
+  },
+
+  "supplierFinance": {
+    "_note": "Note 21 to the standalone statements and note 19 to the consolidated, with the reclassification recorded in the net debt reconciliation on both sides. Amounts in millions of rupees, the unit the statements print, converted nowhere.",
+    "carryingAmountMn": 196.24,
+    "carryingAmountPriorMn": 0,
+    "paidByProviderMn": 196.24,
+    "reclassifiedMn": 194.59,
+    "reclassifiedPriorMn": 0,
+    "arrangementDays": { "low": 120, "high": 180 },
+    "comparableDays": { "low": 60, "high": 90 },
+    "interestWords": "SOFR plus 70bps",
+    "collateralQuote": "The Company has placed current assets as a collateral with the finance providers to avail such facility.",
+    "extendedCreditQuote": "the Company shall get extended credit period of 120-180 days to settle the payment with the finance providers",
+    "nonCashQuote": "changes in classification from trade payables to borrowings under supplier finance arrangement of 194.59 millions (31 March 2025 - Nil), has been considered as non cash transfers for the purpose of disclosure under Ind AS 7",
+    "standaloneCurrentBorrowingsMn": 199.90,
+    "standaloneCurrentBorrowingsPriorMn": 0,
+    "consolidatedCurrentBorrowingsMn": 713.51,
+    "consolidatedCurrentBorrowingsPriorMn": 390.92,
+    "tradePayablesMn": 11361.62,
+    "tradePayablesPriorMn": 8629.71,
+    "adoptionWords": "MCA via notification dated 13 August 2025 announced amendments to Ind AS 7, Statement of Cash Flows and Ind AS 107, Financial Instruments: Disclosures",
+    "adoptionPage": 217,
+    "standalonePage": 243,
+    "consolidatedPage": 349,
+    "netDebtStandalonePage": 267,
+    "netDebtConsolidatedPage": 369,
+    "source": {
+      "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, note 21 to the standalone financial statements at printed 243 and note 19 to the consolidated at printed 349, with the non cash reclassification recorded in the net debt reconciliations at printed 267 and 369",
+      "page": 243,
+      "asOf": "2026-09-01",
+      "verification": "PRIMARY"
+    }
   }
 }
