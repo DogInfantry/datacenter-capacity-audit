@@ -17,7 +17,7 @@ import { ContractedCapital } from "@/components/ContractedCapital";
 export const metadata: Metadata = {
   title: "Pillars",
   description:
-    "Three of the brief's six forensic pillars, built. Cash conversion across every filer whose statements are machine readable, leverage on both readings of a lease liability the filing never defines, and revenue quality on the one covered name that publishes no capacity at all.",
+    "Four of the brief's six forensic pillars, built. Cash conversion across every filer whose statements are machine readable, leverage on both readings of a lease liability the filing never defines, revenue quality on the one covered name that publishes no capacity at all, and governance on the filer whose contracted capital buys a fifth of a megawatt against a 250 megawatt target.",
 };
 
 /**
