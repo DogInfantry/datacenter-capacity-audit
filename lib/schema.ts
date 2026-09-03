@@ -1448,6 +1448,17 @@ export const Universe = z
           /** Live is not the same as handed over. Null where an operator does not split them. */
           handedOverMW: z.number().nonnegative().nullable(),
           verdict: Verdict,
+          /**
+           * Set where the operator's own filing has been read and states no
+           * power capacity at all, so the megawatt columns beside it are
+           * carried from research and cannot be upgraded by reading harder.
+           *
+           * Naming that is the point. A figure nobody has checked and a figure
+           * the company does not publish in this unit are different problems,
+           * and only the first is fixed by opening the document. The string is
+           * the reason, so a page states it rather than showing a blank.
+           */
+          capacityNotFiled: z.string().min(1).optional(),
           note: z.string().min(1),
           source: Source,
         }),
@@ -1470,6 +1481,16 @@ export const Universe = z
   })
   .superRefine((d, ctx) => {
     for (const o of d.operators) {
+      // A row whose filing states no capacity cannot claim a primary source for
+      // the capacity beside it. The filing has been read; that is what makes the
+      // claim checkable, and what it says is that the number is not in there.
+      if (o.capacityNotFiled && o.source.verification === "PRIMARY") {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["operators"],
+          message: `${o.ticker}: its filing states no power capacity, so the megawatt columns cannot claim a primary source`,
+        });
+      }
       // Nobody can have more live than announced. If that inverts, a row has been
       // read wrong or an announcement has quietly been restated downwards.
       if (o.liveMW > o.announcedMW) {

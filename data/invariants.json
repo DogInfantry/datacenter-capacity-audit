@@ -228,6 +228,13 @@
       "fragment": "revenueMix must carry exactly one"
     },
     {
+      "id": "capacity-not-filed-is-not-primary",
+      "schema": "Universe",
+      "category": "SOURCING",
+      "protects": "A coverage row whose own filing has been read and states no power capacity cannot claim a primary source for the megawatts beside it. Reading the document is what makes that checkable, and what it establishes is that the number is not in there, so the figure stays a research estimate however carefully it was read for.",
+      "fragment": "so the megawatt columns cannot claim a primary source"
+    },
+    {
       "id": "live-under-announced",
       "schema": "Universe",
       "category": "POSSIBLE",

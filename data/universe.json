@@ -133,10 +133,11 @@
       "liveMW": 10,
       "handedOverMW": null,
       "verdict": "EXECUTING",
-      "note": "GPU cloud rather than colocation, so the megawatts are its own compute rather than capacity sold to tenants. Roughly 10 MW live carrying 8,000 to 10,000 GPUs. Fiscal 2025 revenue of 164 crore, up 73 per cent, but two consecutive quarter on quarter revenue dips. The announced figure is an estimate, not a company statement.",
+      "capacityNotFiled": "Its annual report for FY2024-25 has been read and states no megawatt or kilowatt figure anywhere in 148 pages. It does not own the estate it operates from: the report describes expanding capacity by setting up GPU clusters at L&T's data centre in Chennai, and serves compute from facilities in Noida, Chennai and Mumbai. It calls itself a hyperscaler and an IaaS provider, never a data centre operator. The megawatts beside this row are a research estimate of its own compute draw, and reading the filing cannot upgrade them, because the company does not publish in that unit.",
+      "note": "GPU cloud rather than colocation, and a tenant rather than an owner. The unit its own report publishes is monthly recurring revenue: 11.2 crore in March 2025 against 10.90 crore in March 2024, up 2.75 per cent, while revenue from operations for the year rose 73.57 per cent to 163.96 crore. Annualising that exit rate gives 134.4 crore, below the year it has just finished, so the growth sits behind it rather than in front. Other income of 39.43 crore is 1.69 times the 23.36 crore the operations produced before tax.",
       "source": {
-        "label": "Blueprint research note, BharatAI Infra Scope. The announced figure is an estimate and is the least reliable number on this plot.",
-        "asOf": "2026-08",
+        "label": "E2E Networks Limited annual report FY2024-25 for the business description and the financials. The megawatt columns remain the Blueprint research note estimate, BharatAI Infra Scope, because the filing carries no figure in that unit.",
+        "asOf": "2026-09-03",
         "verification": "UNVERIFIED"
       }
     }

@@ -2,22 +2,19 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import type { Universe } from "@/lib/schema";
 import { Icon, verdictTone } from "./Visual";
 import { Logo } from "./Logo";
 
-type Op = {
-  id: string;
-  operator: string;
-  listedParent: string;
-  ticker: string;
-  exchange: string;
-  announcedMW: number;
-  liveMW: number;
-  handedOverMW: number | null;
-  verdict: string;
-  note: string;
-  source: { label: string; verification: string };
-};
+/**
+ * The schema type rather than a hand written copy of it.
+ *
+ * There was a copy here and it drifted the moment the data file gained a field:
+ * the operator row grew `capacityNotFiled` and this component could not see it,
+ * which is the failure the repository already documents for exactly this shape.
+ * Deriving it means the next field arrives for free or fails the build.
+ */
+type Op = Universe["operators"][number];
 
 type Watch = {
   name: string;
@@ -41,6 +38,10 @@ type Row = {
   verification: string;
   liveMW: number | null;
   handedOverMW: number | null;
+  /** Why the megawatts on this row cannot be upgraded by reading the filing,
+   *  where the filing has been read and does not publish in that unit. Null on
+   *  every row where the question does not arise. */
+  capacityNotFiled: string | null;
 };
 
 const VERDICT_TONE: Record<string, string> = {
@@ -94,6 +95,7 @@ export function UniverseMatrix({
         verification: o.source.verification,
         liveMW: o.liveMW,
         handedOverMW: o.handedOverMW,
+        capacityNotFiled: o.capacityNotFiled ?? null,
       })),
       ...watchlist.map((w) => ({
         key: w.ticker,
@@ -104,6 +106,7 @@ export function UniverseMatrix({
         verdict: w.verdict,
         metric: w.metric,
         note: w.note,
+        capacityNotFiled: null,
         verification: "SECONDARY",
         liveMW: null,
         handedOverMW: null,
@@ -211,7 +214,22 @@ export function UniverseMatrix({
                       only <span className="tnum">{r.handedOverMW}</span> MW handed over
                     </span>
                   )}
+                  {r.capacityNotFiled && (
+                    // The megawatts on this row are not merely unchecked. The
+                    // filing has been read and does not publish in that unit,
+                    // which is a different problem and cannot be fixed by
+                    // reading harder. Saying so beside the number rather than
+                    // in a footnote is the same rule the refusal measure follows.
+                    <span className="mt-0.5 block text-signal">
+                      its own filing states no megawatt figure
+                    </span>
+                  )}
                   <span className="mt-1 block leading-relaxed text-muted">{r.note}</span>
+                  {r.capacityNotFiled && (
+                    <span className="mt-1 block leading-relaxed text-muted">
+                      {r.capacityNotFiled}
+                    </span>
+                  )}
                 </td>
                 <td className="py-3">
                   <span

@@ -288,6 +288,50 @@ by a single page fails the build with a message naming what the document actuall
 
 ---
 
+## 1d. The fourth document read, and the one that found an absence
+
+**E2E Networks Limited, annual report for FY2024-25.** 148 pages.
+`https://nsearchives.nseindia.com/annual_reports/AR_28419_E2E_2024_2025_A_2031137_04092025160657.pdf`
+SHA256 `a9b767ac30a4258f744d7be478d513cbaf330573bdf25d468b36298a7982e3a7`
+
+Located through the exchange's own annual reports endpoint rather than guessed at, since the archive
+filenames carry a submission id and a timestamp that cannot be derived. The byte count in the
+filename matches the file, which is a free integrity check the other three did not offer.
+
+**The whole document contains no megawatt figure, and no kilowatt figure either.** That is the
+result, and it is about the coverage row rather than about the company. This was the one covered name
+with nothing read, carrying 25 MW announced against 10 MW live from the project brief, flagged in the
+data file as an estimate and the least reliable number on the plot. Reading the filing cannot upgrade
+those numbers, because the company does not publish in that unit and is not the kind of business that
+would.
+
+What it does say, in its own words: it is "the leading hyperscaler from India with a focus on
+advanced Cloud GPU infrastructure" and an IaaS provider. It never calls itself a data centre
+operator. It does not own the estate it runs on: it "has expanded its capacity by setting up GPU
+clusters at L&T's state-of-the-art data center facility in Chennai", and serves compute from
+facilities in Noida, Chennai and Mumbai. A tenant with servers in someone else's hall does not have
+announced capacity in the sense the rest of this coverage uses, which is why the row now names the
+absence beside the number instead of leaving a reader to assume the figure was merely unchecked.
+
+The unit it does publish is monthly recurring revenue, and it points the other way from the headline:
+
+| Measure | FY2024-25 | FY2023-24 | Change |
+|---|---|---|---|
+| Revenue from operations, Rs lakh | 16,396.08 | 9,446.36 | +73.57% |
+| Monthly recurring revenue at year end, Rs crore | 11.2 | 10.90 | +2.75% |
+| Depreciation, Rs lakh | 6,007.61 | 1,574.78 | +281% |
+| Other income, Rs lakh | 3,942.68 | 163.38 | +2,313% |
+
+**The exit rate is below the year it just finished.** Annualising 11.2 crore a month gives 134.4
+crore against revenue from operations of 163.96 crore, so a year reported as up 73.57 per cent ends
+at a run rate a fifth below its own average. **And most of the profit is not from operations.**
+Earnings before interest, tax and depreciation of 9,666.08 lakh, less depreciation of 6,007.61 and
+finance costs of 1,322.01, leaves 2,336.46 lakh from the business; other income of 3,942.68 lakh is
+1.69 times that and 63 per cent of the 6,279.14 lakh profit before tax. The report does not say what
+the other income is, and it is not guessed at here.
+
+---
+
 ## 2. Earnings calls, read as transcripts
 
 Coded into `data/raw/transcripts/`. The window is **1 January 2024 to 31 July 2026**, defined on the
