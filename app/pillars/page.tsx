@@ -15,6 +15,8 @@ import { contractedCapital, struckOffDenial, segmentAbsence } from "@/lib/diagno
 import { ContractedCapital } from "@/components/ContractedCapital";
 import { supplierFinance } from "@/lib/diagnostics/supplierFinance";
 import { SupplierFinance } from "@/components/SupplierFinance";
+import { payablesAgeing } from "@/lib/diagnostics/payables";
+import { PayablesAgeing } from "@/components/PayablesAgeing";
 
 export const metadata: Metadata = {
   title: "Pillars",
@@ -83,6 +85,8 @@ export default function PillarsPage() {
   const seg = segmentAbsence(technoe);
   const sfd = supplierFinance(technoe);
   const sf2 = technoe.supplierFinance;
+  const payd = payablesAgeing(technoe);
+  const pay2 = technoe.payables;
 
   return (
     <main className="mx-auto w-full max-w-5xl px-5 py-12">
@@ -93,9 +97,9 @@ export default function PillarsPage() {
       </h1>
       <p className="mt-5 max-w-2xl leading-relaxed text-muted">
         Cash conversion is the first of the brief&rsquo;s six pillars to be built, the balance
-        sheet is the second, revenue quality is the third and governance is the fourth. Seven
-        exhibits, and the last two read one annual report that had been opened once for megawatts
-        alone. The first runs two measures of one
+        sheet is the second, revenue quality is the third and governance is the fourth. Eight
+        exhibits, and the last three read one annual report that had been opened once for
+        megawatts alone. The first runs two measures of one
         idea and reports them side by side rather than averaging them, because they can disagree
         and the disagreement is worth more than either verdict alone. The bands are published on{" "}
         <Link href="/methodology" className="underline decoration-line underline-offset-4">
@@ -380,6 +384,33 @@ export default function PillarsPage() {
               {sfd.shareOfConsolidatedRisePct?.toFixed(0) ?? "not comparable"}
             </span>{" "}
             per cent of the rise in consolidated current borrowings across the year.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={8}
+          title={`One note places the whole micro and small enterprise balance past its due date. The next reports nil interest, five times over.`}
+          units="Millions of rupees from the standalone statements, converted nowhere. The ageing columns run from the due date of payment rather than from the invoice date, so every column except the first holds amounts already late."
+          source={pay2.source.label}
+        >
+          <PayablesAgeing data={payd} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            Interest on a payment made after the appointed day is automatic under the Act rather than
+            something a supplier has to claim. The filing reports{" "}
+            <span className="tnum text-foreground">{payd.nilClauseCount}</span> of{" "}
+            <span className="tnum text-foreground">{payd.clauses.length}</span> clauses as nothing, in
+            both years, one printed page after the table that placed{" "}
+            <span className="tnum text-foreground">{payd.msmePrincipalMn.toFixed(2)}</span> million
+            past its due date. This is the second time in one document that a clause tables a balance
+            and a neighbouring clause says there is none to table.
+          </p>
+
+          <p className="mt-4 text-sm leading-relaxed text-muted">
+            What the table cannot settle is stated with it rather than left out. The shortest overdue
+            bucket runs to a year and the appointed day is forty five days, so the balance being past
+            its due date is not the same as every rupee of it having passed the day the statute names.
+            The five clauses are what report that none of it did.
           </p>
         </Exhibit>
       </div>

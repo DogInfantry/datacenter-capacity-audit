@@ -709,6 +709,27 @@
       "category": "POSSIBLE",
       "protects": "The filing gives two payment ranges and the whole point of the arrangement is that one is longer. The slowest comparable payable must still settle sooner than the fastest financed one, or the two ranges have been read into the wrong columns.",
       "fragment": "the arrangement no longer buys more time than the payables it replaced"
+    },
+    {
+      "id": "technoe-msme-dues-all-past-due",
+      "schema": "TechnoElectric",
+      "category": "FINDING",
+      "protects": "The ageing table heads its columns from the due date of payment. The whole micro and small enterprise balance sits in an overdue column and nothing sits in the column for amounts not yet due, in both filed years. The page states that, so a single rupee moving into the not due column changes what it can say.",
+      "fragment": "the micro and small enterprise dues no longer sit entirely past their due date"
+    },
+    {
+      "id": "technoe-msmed-clauses-all-nil",
+      "schema": "TechnoElectric",
+      "category": "FINDING",
+      "protects": "Interest on payment after the appointed day is automatic under the Act, and all five statutory clauses report nothing in both years, one printed page after the table that placed the balance past its due date. The contradiction is the finding, so both halves have to stay as they are for the page to state it.",
+      "fragment": "so the five that report nothing are no longer five"
+    },
+    {
+      "id": "technoe-ageing-sums-to-printed-total",
+      "schema": "TechnoElectric",
+      "category": "RECONCILE",
+      "protects": "Twenty cells transcribed by hand from a printed table across two years. A single mistyped bucket would leave every derived share slightly wrong and nothing else would notice, so each year is summed against the total the filing prints.",
+      "fragment": "against a printed total of"
     }
   ]
 }

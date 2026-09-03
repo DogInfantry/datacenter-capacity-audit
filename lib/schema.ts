@@ -2522,6 +2522,46 @@ export const TechnoElectric = z
       page: z.number().int().positive(),
     }),
     edgeNetworkSource: PagedSource,
+    /** The ageing table and the statutory clauses printed one page after it.
+     *  The buckets are stored as rows rather than as named fields so the sum
+     *  against the printed total is a loop rather than five additions. */
+    payables: z.object({
+      totalMn: z.number().positive(),
+      totalPriorMn: z.number().positive(),
+      ageingHeaderWords: z.string().min(1),
+      ageing: z
+        .array(
+          z.object({
+            bucket: z.enum(["NOT_DUE", "UNDER_1Y", "Y1_2", "Y2_3", "OVER_3Y"]),
+            label: z.string().min(1),
+            msmeMn: z.number().nonnegative(),
+            othersMn: z.number().nonnegative(),
+            msmePriorMn: z.number().nonnegative(),
+            othersPriorMn: z.number().nonnegative(),
+          }),
+        )
+        .length(5),
+      msmedClauses: z
+        .array(
+          z.object({
+            clause: z.enum(["a", "b", "c", "d", "e"]),
+            label: z.string().min(1),
+            interestMn: z.number().nonnegative(),
+            interestPriorMn: z.number().nonnegative(),
+          }),
+        )
+        .length(5),
+      msmePrincipalMn: z.number().positive(),
+      msmePrincipalPriorMn: z.number().positive(),
+      letterOfCreditMn: z.number().positive(),
+      letterOfCreditPriorMn: z.number().positive(),
+      letterOfCreditQuote: z.string().min(1),
+      identificationQuote: z.string().min(1),
+      bucketLimitNote: z.string().min(1),
+      ageingPage: z.number().int().positive(),
+      clausesPage: z.number().int().positive(),
+      source: PagedSource,
+    }),
     /** The arrangement the accounts describe twice and the cash flow statement
      *  records as moving nothing. Days are stored as numbers so the comparison
      *  between the two sets of terms is made here rather than read off a string. */
@@ -2709,6 +2749,42 @@ export const TechnoElectric = z
         message: `the arrangement no longer buys more time than the payables it replaced`,
       });
     }
+    // The finding. The table heads its columns from the due date of payment, and
+    // the whole micro and small enterprise balance sits past it with nothing in
+    // the column for amounts not yet due.
+    const pay = d.payables;
+    const notDue = pay.ageing.find((r) => r.bucket === "NOT_DUE");
+    if (!notDue || notDue.msmeMn > 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["payables", "ageing"],
+        message: `the micro and small enterprise dues no longer sit entirely past their due date`,
+      });
+    }
+    // The other half of the same finding, printed one page later. Five clauses of
+    // the statute, each reporting nothing, beside a balance the table already
+    // placed past its due date.
+    if (pay.msmedClauses.some((c) => c.interestMn > 0 || c.interestPriorMn > 0)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["payables", "msmedClauses"],
+        message: `a statutory interest clause now reports an amount, so the five that report nothing are no longer five`,
+      });
+    }
+    // The buckets are transcribed from a printed table, and a transcription error
+    // in one of ten cells would otherwise be invisible.
+    for (const [sum, printed, year] of [
+      [pay.ageing.reduce((t, r) => t + r.msmeMn + r.othersMn, 0), pay.totalMn, "this year"],
+      [pay.ageing.reduce((t, r) => t + r.msmePriorMn + r.othersPriorMn, 0), pay.totalPriorMn, "the year before"],
+    ] as [number, number, string][]) {
+      if (Math.abs(sum - printed) > 0.01) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["payables", "ageing"],
+          message: `the ageing buckets for ${year} sum to ${sum.toFixed(2)} against a printed total of ${printed}`,
+        });
+      }
+    }
     // A printed page has to be able to exist in the document. The spread layout
     // means the printed range runs to about twice the PDF page count, and a
     // citation outside it is a misread offset rather than a typo.
@@ -2737,6 +2813,9 @@ export const TechnoElectric = z
       d.supplierFinance.netDebtStandalonePage,
       d.supplierFinance.netDebtConsolidatedPage,
       d.supplierFinance.source.page,
+      d.payables.ageingPage,
+      d.payables.clausesPage,
+      d.payables.source.page,
     ];
     for (const page of cited) {
       if (page > maxPrinted) {

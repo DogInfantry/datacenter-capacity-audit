@@ -236,5 +236,41 @@
       "asOf": "2026-09-01",
       "verification": "PRIMARY"
     }
+  },
+
+  "payables": {
+    "_note": "Note 22 to the standalone statements. The ageing table at printed 244 and the five statutory clauses at printed 245. Amounts in millions of rupees, the unit the statements print, converted nowhere.",
+    "totalMn": 11361.62,
+    "totalPriorMn": 8629.71,
+    "ageingHeaderWords": "Outstanding for following periods from due date of payment",
+    "ageing": [
+      { "bucket": "NOT_DUE", "label": "Not due", "msmeMn": 0, "othersMn": 2127.53, "msmePriorMn": 0, "othersPriorMn": 1163.12 },
+      { "bucket": "UNDER_1Y", "label": "Less than 1 year", "msmeMn": 403.83, "othersMn": 8402.29, "msmePriorMn": 219.87, "othersPriorMn": 6800.15 },
+      { "bucket": "Y1_2", "label": "1 to 2 years", "msmeMn": 0, "othersMn": 229.80, "msmePriorMn": 0, "othersPriorMn": 76.91 },
+      { "bucket": "Y2_3", "label": "2 to 3 years", "msmeMn": 0, "othersMn": 39.10, "msmePriorMn": 0, "othersPriorMn": 65.80 },
+      { "bucket": "OVER_3Y", "label": "More than 3 years", "msmeMn": 0, "othersMn": 159.07, "msmePriorMn": 0, "othersPriorMn": 303.86 }
+    ],
+    "msmedClauses": [
+      { "clause": "a", "label": "Principal and the interest due thereon remaining unpaid", "interestMn": 0, "interestPriorMn": 0 },
+      { "clause": "b", "label": "Interest paid under the Act along with payments made beyond the appointed day", "interestMn": 0, "interestPriorMn": 0 },
+      { "clause": "c", "label": "Interest due and payable for the period of delay", "interestMn": 0, "interestPriorMn": 0 },
+      { "clause": "d", "label": "Interest accrued and remaining unpaid at the year end", "interestMn": 0, "interestPriorMn": 0 },
+      { "clause": "e", "label": "Further interest remaining due and payable in succeeding years", "interestMn": 0, "interestPriorMn": 0 }
+    ],
+    "msmePrincipalMn": 403.83,
+    "msmePrincipalPriorMn": 219.87,
+    "letterOfCreditMn": 5343.84,
+    "letterOfCreditPriorMn": 3054.21,
+    "letterOfCreditQuote": "These letter of credits have been issued under various lending arrangements of the Company and are secured by pari-passu charge against property, plant and equipment of Engineering, Procurement and Construction (EPC) division, fixed deposits, trade receivables.",
+    "identificationQuote": "Dues to Micro and Small Enterprises have been determined to the extent such parties have been identified on the basis of information collected by the Management.",
+    "bucketLimitNote": "The shortest overdue bucket the table prints covers everything up to a year, and the appointed day under the Act is 45 days. The bucket is therefore coarser than the statute, and cannot show that every rupee passed the appointed day. What the five clauses report is that none of it did.",
+    "ageingPage": 244,
+    "clausesPage": 245,
+    "source": {
+      "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, note 22 to the standalone financial statements, trade payables ageing at printed 244 and the disclosure under the Micro, Small and Medium Enterprises Development Act 2006 at printed 245",
+      "page": 244,
+      "asOf": "2026-09-01",
+      "verification": "PRIMARY"
+    }
   }
 }
