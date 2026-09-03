@@ -585,6 +585,13 @@
       "fragment": "which this file does not cite anywhere else"
     },
     {
+      "id": "associate-exposure-has-balance-sheet",
+      "schema": "Sisl",
+      "category": "RECONCILE",
+      "protects": "Every period the associate exposure is stated for must be a period this file already carries a balance sheet for. The exhibit divides that exposure by net worth at the same date, and a period without one would either throw or, worse, quietly reach for a neighbouring year and print a plausible percentage over the wrong denominator.",
+      "fragment": "which has no balance sheet in this file"
+    },
+    {
       "id": "risk-worst-cell-measured",
       "schema": "RiskItem",
       "category": "EVIDENCE",

@@ -932,6 +932,46 @@ export const Sisl = z
         )
         .min(1),
       unservedSource: PagedSource,
+      /**
+       * The associate, and what the issuer has lent, subscribed and guaranteed
+       * to it.
+       *
+       * This block exists because of a guard three sections up. The four filed
+       * columns survive as one series only because the associate contributed
+       * nothing to profit in the standalone years, and that is asserted here as
+       * an invariant. The related party note says what else the associate is:
+       * the counterparty to a loan, a preference share subscription, a security
+       * deposit and a corporate guarantee. Immaterial to the income statement
+       * and a quarter of net worth is not a contradiction, but a reader told
+       * only the first half would draw the wrong conclusion from it.
+       */
+      associate: z.object({
+        name: z.string().min(1),
+        ownershipPct: z.number().positive().max(100),
+        exposures: z
+          .array(
+            z.object({
+              label: z.string().min(1),
+              asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+              loanReceivableMn: z.number().nonnegative(),
+              preferenceSharesMn: z.number().nonnegative(),
+              securityDepositMn: z.number().nonnegative(),
+              /** Off balance sheet, and the line whose direction the document
+               *  contradicts itself about. */
+              guaranteeGivenMn: z.number().nonnegative(),
+              page: z.number().int().positive(),
+            }),
+          )
+          .min(2),
+        /** The column heading over the guarantee row, and the footnote hanging
+         *  off the same row. They point opposite ways: one has the associate
+         *  guaranteeing the issuer, the other has the issuer guaranteeing the
+         *  associate's term loan. Both are stored because the page shows both
+         *  rather than picking the reading that suits the argument. */
+        headingWords: z.string().min(1),
+        footnoteQuote: z.string().min(1),
+        source: PagedSource,
+      }),
     }),
     basisSource: PagedSource,
     cashFlow: z.array(SislCashFlow).min(3),
@@ -1223,7 +1263,26 @@ export const Sisl = z
       d.governance.unservedSource.page,
       ...d.governance.unserved.map((u) => u.page),
       ...d.governance.quantified.map((q) => q.page),
+      d.governance.associate.source.page,
+      ...d.governance.associate.exposures.map((e) => e.page),
     ]);
+
+    // Every period the associate exposure is stated for must be a period this
+    // file already carries a balance sheet for.
+    //
+    // The exhibit divides the exposure by net worth at the same date, and a
+    // period with no balance sheet would either throw or, worse, silently pick
+    // up a neighbouring year's net worth and print a plausible percentage
+    // against the wrong denominator.
+    for (const e of d.governance.associate.exposures) {
+      if (!d.balanceSheet.some((b) => b.label === e.label)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["governance", "associate"],
+          message: `associate exposure is stated for ${e.label}, which has no balance sheet in this file`,
+        });
+      }
+    }
     for (const r of d.risks.rows) {
       if (r.page !== null && !read.has(r.page)) {
         ctx.addIssue({

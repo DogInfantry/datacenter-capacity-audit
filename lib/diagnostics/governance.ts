@@ -75,6 +75,57 @@ export function materialityThreshold(d: Sisl) {
  * cannot be quantified at all, which means the largest number in the section is
  * not necessarily the largest exposure in it.
  */
+/**
+ * What the issuer has out to its associate, against the two things a reader
+ * would size it by.
+ *
+ * The point of this measure is a juxtaposition the document never makes. The
+ * same filing says the associate contributed nothing to profit, which is what
+ * lets four columns of accounts sit in one series, and that condition is
+ * already a build guard here. The related party note says the same associate is
+ * the counterparty to a loan, a preference share subscription, a security
+ * deposit and a corporate guarantee. Both are true. A reader given only the
+ * first would conclude the associate does not matter.
+ *
+ * The guarantee is reported apart from the rest rather than summed into it,
+ * because it is off the balance sheet and because the document contradicts
+ * itself about which way it points. Folding a number into a total settles a
+ * question the source leaves open.
+ */
+export function associateExposure(d: Sisl) {
+  const a = d.governance.associate;
+  const rows = a.exposures.map((e) => {
+    const sheet = d.balanceSheet.find((b) => b.label === e.label)!;
+    const onSheet = e.loanReceivableMn + e.preferenceSharesMn + e.securityDepositMn;
+    return {
+      ...e,
+      onSheet,
+      /** Kept out of the total above. Off the balance sheet, and the direction
+       *  the filing gives it depends on which line of the same note is read. */
+      withGuarantee: onSheet + e.guaranteeGivenMn,
+      netWorth: sheet.netWorth,
+      totalAssets: sheet.totalAssets,
+      onSheetShareOfNetWorthPct: (onSheet / sheet.netWorth) * 100,
+      withGuaranteeShareOfNetWorthPct: ((onSheet + e.guaranteeGivenMn) / sheet.netWorth) * 100,
+      onSheetShareOfAssetsPct: (onSheet / sheet.totalAssets) * 100,
+    };
+  });
+  return {
+    name: a.name,
+    ownershipPct: a.ownershipPct,
+    rows,
+    latest: rows[rows.length - 1],
+    /** The associate's own contribution to profit in the same periods, which is
+     *  the figure the exposure has to be read against. */
+    shareOfProfit: d.periods
+      .filter((p) => rows.some((r) => r.label === p.label))
+      .map((p) => ({ label: p.label, amount: p.associateShareOfProfit })),
+    headingWords: a.headingWords,
+    footnoteQuote: a.footnoteQuote,
+    page: a.source.page,
+  };
+}
+
 export function disclosureReach(d: Sisl) {
   const { threshold } = materialityThreshold(d);
   const unservedCount = d.governance.unserved.reduce((t, u) => t + u.count, 0);

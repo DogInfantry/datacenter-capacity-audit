@@ -348,6 +348,40 @@
       "page": 464,
       "asOf": "2025-10-16",
       "verification": "PRIMARY"
+    },
+
+    "associate": {
+      "_note": "The 49 per cent associate is the reason the four filed columns hold together as one series: it contributed nothing to profit in the standalone years, which is asserted as a build guard elsewhere in this file. The related party note says what else it is. Every figure here is read from that note.",
+      "name": "SKVR Software Solution Private Limited",
+      "ownershipPct": 49,
+      "exposures": [
+        {
+          "label": "FY2025",
+          "asOf": "2025-03-31",
+          "loanReceivableMn": 1570.00,
+          "preferenceSharesMn": 1490.00,
+          "securityDepositMn": 0.00,
+          "guaranteeGivenMn": 1464.58,
+          "page": 410
+        },
+        {
+          "label": "Q1 FY2026",
+          "asOf": "2025-06-30",
+          "loanReceivableMn": 1700.00,
+          "preferenceSharesMn": 1490.00,
+          "securityDepositMn": 96.00,
+          "guaranteeGivenMn": 1387.50,
+          "page": 408
+        }
+      ],
+      "headingWords": "Guarantees and collaterals on behalf of the Company",
+      "footnoteQuote": "The Corporate Guarantee given by Sify Infinit Spaces Limited in favour of SKVR Software Solution Private Limited shall be a continuing one and shall remain in full force and effect till such time SKVR Software Solution Private Limited repays the loan in full.",
+      "source": {
+        "label": "Sify Infinit Spaces DRHP, note 34 to the Restated Consolidated financial information, related parties and transactions. The guarantee row sits under a heading reading on behalf of the Company and carries a footnote saying the guarantee runs the other way.",
+        "page": 408,
+        "asOf": "2025-10-16",
+        "verification": "PRIMARY"
+      }
     }
   },
 

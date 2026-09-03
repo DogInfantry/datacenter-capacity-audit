@@ -24,7 +24,12 @@ import { RiskMatrix } from "@/components/RiskMatrix";
 import { CapexVsCfo } from "@/components/CapexVsCfo";
 import { sifyRiskMeasures } from "@/lib/diagnostics/risk";
 import { sislReadings } from "@/lib/diagnostics/cashQuality";
-import { disclosureReach, materialityThreshold } from "@/lib/diagnostics/governance";
+import {
+  associateExposure,
+  disclosureReach,
+  materialityThreshold,
+} from "@/lib/diagnostics/governance";
+import { AssociateExposure } from "@/components/AssociateExposure";
 import { CashConversion } from "@/components/CashConversion";
 import { RoceCheck } from "@/components/RoceCheck";
 import { issuerCapexCover, roceReconciliation } from "@/lib/diagnostics/capital";
@@ -147,6 +152,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
   const seg = subsidiaryAgainstSegment(sisl.periods, sifyCo.segments);
   const bar = materialityThreshold(sisl);
   const reach = disclosureReach(sisl);
+  const assoc = associateExposure(sisl);
   const accrualPeak = cashReadings.reduce((a, r) =>
     Math.abs(r.metrics[1].value!) > Math.abs(a.metrics[1].value!) ? r : a,
   );
@@ -692,6 +698,54 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
             four columns. That period is also the highest of the four at{" "}
             <span className="tnum text-foreground">{highest.printed.toFixed(2)}</span> per cent, and
             it is half of what the claim to beating global peers rests on.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={14}
+          title={`The associate is ${assoc.latest.onSheetShareOfNetWorthPct.toFixed(0)} per cent of net worth on the balance sheet and ${assoc.latest.withGuaranteeShareOfNetWorthPct.toFixed(0)} per cent with the guarantee, and it returned a loss of ${Math.abs(assoc.shareOfProfit[assoc.shareOfProfit.length - 1].amount).toFixed(2)}`}
+          units={`Amounts owed by and committed to ${assoc.name}, the ${assoc.ownershipPct} per cent associate, against the issuer's own net worth at the same date. Rupees millions. A loan, a preference share subscription and a security deposit are on the balance sheet. The corporate guarantee is not, and is drawn separately.`}
+          source={sisl.governance.associate.source.label}
+          page={assoc.page}
+        >
+          <AssociateExposure data={assoc} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            This company already appears twice in this analysis, once as the reason four columns of
+            accounts can be read as one series. The statements are titled consolidated throughout
+            and two of the four periods are standalone, and what keeps them comparable is that the
+            associate contributed exactly nothing to profit in those two years. That is true and it
+            is asserted as a build guard. Read alone it invites the conclusion that the associate
+            does not matter.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The related party note says what else it is. At{" "}
+            <span className="text-foreground">{assoc.latest.asOf}</span> the issuer was owed{" "}
+            <span className="tnum text-foreground">
+              {assoc.latest.loanReceivableMn.toLocaleString("en-US")}
+            </span>{" "}
+            on loan, held{" "}
+            <span className="tnum text-foreground">
+              {assoc.latest.preferenceSharesMn.toLocaleString("en-US")}
+            </span>{" "}
+            of its preference shares and had{" "}
+            <span className="tnum text-foreground">
+              {assoc.latest.securityDepositMn.toLocaleString("en-US")}
+            </span>{" "}
+            out as a security deposit, and had guaranteed{" "}
+            <span className="tnum text-foreground">
+              {assoc.latest.guaranteeGivenMn.toLocaleString("en-US")}
+            </span>{" "}
+            more off the balance sheet. What that capital returned in the same period was{" "}
+            <span className="tnum text-foreground">
+              {assoc.shareOfProfit[assoc.shareOfProfit.length - 1].amount.toFixed(2)}
+            </span>
+            , a loss. Immaterial to the income statement and{" "}
+            <span className="tnum text-foreground">
+              {assoc.latest.onSheetShareOfNetWorthPct.toFixed(1)}
+            </span>{" "}
+            per cent of net worth are not in conflict. They are two different questions, and the
+            document answers them in two sections that never refer to each other.
           </p>
         </Exhibit>
       </section>
