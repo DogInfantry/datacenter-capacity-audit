@@ -259,8 +259,40 @@ bullet that says "Phase II capex planning is underway", so the 24 MW is the camp
 is earning, in the same way 188.04 MW and 28 MW are on the other two names. Both halves of the
 sentence are recorded and neither is resolved here.
 
-**Not taken from it:** the financial statements, the order book and the transmission business, which
-is the majority of this company. The megawatts were the question.
+**Taken from it on a second reading**, once the megawatts were settled: the capital commitment, the
+contingent liabilities, the emphasis of matter in both auditors' reports, the struck off balance and
+the absence of any segment disclosure. Those are on `/pillars` as Exhibit 6.
+
+| Printed page | Section | What was taken from it |
+|---|---|---|
+| 174 | Independent auditor's report on the standalone statements, emphasis of matter | Trade receivables and other financial assets of 896.35 million rupees, "pending settlement / realisation and are substantially overdue", carried with no impairment provision and an unmodified opinion |
+| 280 | Independent auditor's report on the consolidated statements, emphasis of matter | The same 896.35 million, in the same words, from the second report |
+| 264 | Note 38 to the standalone statements | Capital commitments of 118.05 million rupees, and contingent liabilities of 251.03 against 167.24 |
+| 368 | Note 37 to the consolidated statements | The same commitment and the same contingent total, with the prior year commitment at 29.35 |
+| 278 | Note 44 to the standalone statements, other statutory information | One balance with a company struck off the register: Pyrotech Electronics Private Ltd, trade payables, vendor, 0.02 |
+| 381 | Note 42 to the consolidated statements, other statutory information | The same balance, and directly beneath it a second clause sharing the numeral (ii) reading "The Group do not have any transactions with struck off companies" |
+| 298 | Note 1 to the consolidated statements, group overview | One business described in power infrastructure. No segment disclosure follows it, and none appears anywhere in the document |
+
+The finding is the commitment. The target of 250 MW is management commentary and the campus figures
+are too. The only line in either set of accounts recording contracts for future capital spending is
+118.05 million rupees, which at the sector build cost of 60 to 70 crore per megawatt carried in
+`data/macro.json` buys between 0.17 and 0.20 MW. It is 2.13 times smaller than the tax the company
+disputes and 7.59 times smaller than the balances its own auditor flagged as overdue.
+
+The second finding is an absence, and it is stated with the terms that were searched so it can be
+re-run. Across all 433 printed pages the accounts carry no segment disclosure: no Ind AS 108, no
+reportable segment, no operating segment, no segment information, no chief operating decision maker.
+The business the report calls "the most consequential strategic decision we have made in a
+generation" therefore has no revenue, no margin and no asset base a reader can separate from the
+engineering business that funds it. That is the answer to the question the brief's business model
+pillar was blocked on, and it is a property of what the company discloses rather than a gap to close.
+
+The extraction was checked before the absence was believed. Every printed page was recovered by
+splitting each spread on the horizontal position of its text runs, and the halves reconcile to the
+raw page totals, so the search covered text the document actually contains.
+
+**Still not taken from it:** the order book, the transmission business and the revenue and margin
+lines, which remain the majority of this company.
 
 ---
 

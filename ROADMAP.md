@@ -149,8 +149,12 @@ Recorded with the finding each one produced, because a tick is not a result.
   29 per cent of what the note itself says key management cost. And on the second operator, eleven
   counterparties struck off the register still carry balances, ten of them unchanged in a year,
   with 99.7 per cent of what they owe sitting with the one company the report does not call a
-  related party. What is still open is the other three filers, none of whose governance sections
-  have been opened.
+  related party. A third name has since been opened, and it carried two results rather
+  than one. Its auditor draws attention to 896.35 million rupees of trade receivables and other
+  financial assets as substantially overdue, unprovided, on an unmodified opinion. And one clause
+  of its statutory information note tables a balance with a company struck off the register while
+  the next clause, sharing the numeral, states there are no such transactions. What is still open
+  is the three United States filers, none of whose governance sections have been opened.
 
 - **The balance sheet pillar, built on the one operator read page by page.** It needed no new data:
   the borrowings and lease liability split was already stored. What it produced was the answer to a
@@ -233,7 +237,13 @@ Marked so rather than left looking like work.
 - **Peer segmentation will never be like for like.** Equinix and Digital Realty are pure plays, so
   group equals segment. Infosys and Wipro segment by industry vertical, not by AI. The narrative
   test therefore measures something weaker for the services names than for Sify, and that is a
-  property of what companies disclose rather than a gap to close.
+  property of what companies disclose rather than a gap to close. A fourth case has since been
+  read and it is the sharpest. Techno Electric discloses no segments at all: across 433 printed
+  pages its accounts carry no Ind AS 108, no reportable segment and no chief operating decision
+  maker, so the business it calls its most consequential strategic decision in a generation has
+  no revenue, no margin and no asset base separable from the engineering business funding it.
+  The terms searched are stored beside the result so the absence can be re-run rather than
+  trusted.
 - **Digital Realty's margin stays unreconciled from FY2023.** Not for want of trying and not
   pending more work. The three add backs needed are absent from the source: share based
   compensation is tagged in shares rather than dollars, impairment stops at 2022, transaction
