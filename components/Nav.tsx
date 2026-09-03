@@ -41,12 +41,22 @@ export function Nav() {
         <Link
           href="/"
           aria-current={pathname === "/" ? "page" : undefined}
-          className="pb-4 font-display text-lg tracking-tight transition-colors hover:text-accent"
+          className="order-1 pb-4 font-display text-lg tracking-tight transition-colors hover:text-accent"
         >
           Built, Installed, Sold
         </Link>
 
-        <ul className="flex min-w-0 flex-wrap gap-x-1 text-sm">
+        {/* Ordered rather than reordered in the markup, so the reading order and
+            the tab order stay as they are. On a narrow screen the tab list takes
+            a full row of its own and the theme control rides up beside the
+            wordmark, which is the row it was wasting: seven tabs, a wordmark and
+            a control wrapped onto three rows and stood 181 pixels tall at 375
+            wide, a fifth of the viewport before any content.
+
+            The tabs still wrap to two rows there, deliberately. One scrolling
+            row would fit and would put destinations off screen, which is the
+            failure this nav already made once by omission. */}
+        <ul className="order-3 flex min-w-0 basis-full flex-wrap gap-x-1 text-sm sm:order-2 sm:basis-auto">
           {TABS.map((t) => {
             // A deep dive keeps its own tab lit, so a reader four exhibits into
             // a company page still knows which section they are inside.
@@ -70,7 +80,7 @@ export function Nav() {
           })}
         </ul>
 
-        <span className="ml-auto pb-3.5">
+        <span className="order-2 ml-auto pb-4 sm:order-3 sm:pb-3.5">
           <ThemeToggle />
         </span>
       </nav>
