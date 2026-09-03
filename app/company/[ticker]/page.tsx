@@ -158,6 +158,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
   const bar = materialityThreshold(sisl);
   const reach = disclosureReach(sisl);
   const assoc = associateExposure(sisl);
+  const km = { ...sisl.governance.keyManagement, page: sisl.governance.keyManagement.source.page };
   const accrualPeak = cashReadings.reduce((a, r) =>
     Math.abs(r.metrics[1].value!) > Math.abs(a.metrics[1].value!) ? r : a,
   );
@@ -606,6 +607,34 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
             the largest number that could be written down, which is a different thing from the
             largest exposure in it.
           </p>
+
+          <div className="mt-6 rounded-md border border-line bg-paper p-4">
+            <p className="exhibit-label">What the remuneration line covers</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              In {km.label} the related party table shows{" "}
+              <span className="tnum text-foreground">{km.disclosedMn.toFixed(2)}</span> of key
+              management remuneration. The footnote under it says that covers{" "}
+              <span className="tnum text-foreground">{km.officersCovered}</span> of the{" "}
+              <span className="tnum text-foreground">{km.officersNamed}</span> officers the same
+              note names:{" "}
+              <span className="text-foreground">&ldquo;{km.coverageQuote}&rdquo;</span> A second
+              footnote prices what moved:{" "}
+              <span className="text-foreground">&ldquo;{km.crossChargeQuote}&rdquo;</span>
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              So the disclosed figure is{" "}
+              <span className="tnum text-foreground">
+                {((km.disclosedMn / (km.disclosedMn + km.crossChargedMn)) * 100).toFixed(0)}
+              </span>{" "}
+              per cent of what the note itself says key management cost, and the rest sits inside an
+              expense transfer of{" "}
+              <span className="tnum text-foreground">
+                {km.expenseTransferMn.toLocaleString("en-US")}
+              </span>{" "}
+              from the parent. That is a floor rather than a total: the note says the transfer
+              includes that much remuneration, not that it is all of it. Printed page {km.page}.
+            </p>
+          </div>
         </Exhibit>
 
         <Exhibit

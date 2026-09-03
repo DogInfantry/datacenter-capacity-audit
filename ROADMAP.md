@@ -136,6 +136,19 @@ Recorded with the finding each one produced, because a tick is not a result.
   which is why refusing a non-positive denominator is the measure working rather than failing. The
   data centre subsidiary underneath it converts between 2.26 and 4.33 times across the same years.
   Nowhere else here is one business measured from two documents on one pillar.
+- **The governance pillar, built on both names read by hand.** It rested on the litigation section
+  alone. It now carries the auditor's examination report, the related party notes and, for the
+  second operator, notes 41 and 45 of the annual report. Three findings came out of it and none is
+  a rating. The associate that keeps four columns of accounts comparable, because it contributed
+  exactly nothing to profit in the two standalone years, is separately 18.7 per cent of net worth
+  and 26.6 with its corporate guarantee, and the filing gives that guarantee's direction two ways
+  in one note. The disclosed key management remuneration covers one of three officers named and is
+  29 per cent of what the note itself says key management cost. And on the second operator, eleven
+  counterparties struck off the register still carry balances, ten of them unchanged in a year,
+  with 99.7 per cent of what they owe sitting with the one company the report does not call a
+  related party. What is still open is the other three filers, none of whose governance sections
+  have been opened.
+
 - **The rest of the prospectus teardown.** The document is read and partly extracted: the offer,
   the objects and deployment schedule, and the capacity definitions, each cited by printed page.
   Still to extract, with the page map already recorded in

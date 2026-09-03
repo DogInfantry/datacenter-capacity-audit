@@ -13,6 +13,75 @@ import type { AnantRaj } from "@/lib/schema";
  * Everything stays in lakhs of rupees, the unit the statements print. Nothing
  * here is rebased, rescaled or converted.
  */
+/**
+ * The struck off list, sized and split by the report's own relationship column.
+ *
+ * Note 45 sits four notes after the related party disclosures, and four of its
+ * eleven rows are related parties, so the natural reading is that this is a
+ * related party problem. The arithmetic says otherwise: one row is larger than
+ * the rest of the list put together by two orders of magnitude, and the report
+ * classifies that counterparty as Others.
+ *
+ * Receivables and payables are kept apart rather than netted. Money owed to a
+ * company struck off the register and money owed by it are not the same
+ * exposure, and a net figure would hide the larger one behind the smaller.
+ */
+export function struckOff(d: AnantRaj) {
+  const rows = [...d.governance.struckOff.rows].sort((a, b) => b.amountLakh - a.amountLakh);
+  const receivable = rows.filter((r) => r.kind === "RECEIVABLE");
+  const payable = rows.filter((r) => r.kind === "PAYABLE");
+  const sum = (rs: typeof rows) => rs.reduce((t, r) => t + r.amountLakh, 0);
+  const receivableLakh = sum(receivable);
+  const largest = rows[0];
+  return {
+    rows,
+    receivable,
+    payable,
+    receivableLakh,
+    payableLakh: sum(payable),
+    relatedCount: rows.filter((r) => r.relationship === "RELATED_PARTY").length,
+    count: rows.length,
+    largest,
+    /** What the single largest row is of everything receivable from this list.
+     *  The number the page leads on, because it is what makes the other rows a
+     *  rounding error rather than the story. */
+    largestShareOfReceivablePct: (largest.amountLakh / receivableLakh) * 100,
+    /** Unchanged balances are the second finding. A receivable from a company
+     *  struck off the register that has not moved in a year is not being
+     *  collected. */
+    unchanged: rows.filter((r) => r.amountLakh === r.amountPriorLakh).length,
+    page: d.governance.struckOff.source.page,
+  };
+}
+
+/**
+ * Related party lending, and the one row that does not roll forward.
+ *
+ * The report prints a transactions table and a balances table on facing pages.
+ * For lending to relatives of key management they behave as a reader would
+ * expect: the balance rises by roughly what was granted, less what came back.
+ * For lending to associates the balance at the close equals the amount granted
+ * during the year exactly, while the balance a year earlier was not nil and no
+ * repayment from associates is printed for the period.
+ *
+ * The gap is reported rather than explained. An associate leaving the perimeter
+ * would account for it, and so would a presentational choice in either table,
+ * and the report says neither.
+ */
+export function relatedPartyLending(d: AnantRaj) {
+  return d.governance.relatedParty.lending.map((l) => {
+    const expected = l.outstandingPriorLakh + l.grantedLakh;
+    return {
+      ...l,
+      /** Times larger the closing balance is than the one before it. */
+      growth: l.outstandingPriorLakh > 0 ? l.outstandingLakh / l.outstandingPriorLakh : null,
+      expected,
+      gap: expected - l.outstandingLakh,
+      rollsForward: Math.abs(expected - l.outstandingLakh) < 0.01,
+    };
+  });
+}
+
 export function dataCentreArm(fin: AnantRaj["financials"]) {
   const arm = fin.dataCentreArm;
   const pl = fin.profitAndLoss;

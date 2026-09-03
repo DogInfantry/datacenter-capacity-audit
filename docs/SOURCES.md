@@ -42,6 +42,8 @@ Fourteen printed pages are cited across the site. That is 2.5 per cent of the do
 | 398 | Restated consolidated financials | Notes 23 to 26, the expense stack |
 | 463 | Outstanding litigation and material developments | The policy on materiality, adopted by board resolution two days before the document is dated. Three tests, the lower of which sets the disclosure threshold |
 | 464 | Litigation involving the Company | The Visakhapatnam land writ naming the Company, and two summary criminal cases the Company says it learned of from the E-courts services website |
+| 407 | Note 33, segment reporting | One reportable segment, and the Major Customer line giving revenue from three customers as an amount in all four periods |
+| 408, 409, 410 | Note 34, related parties and transactions | The related party list and the transactions table for the stub quarter and the last full year: the associate's loan, preference shares, security deposit and corporate guarantee, the expense and revenue transfers from the parent, and the footnotes on what the key management line covers |
 | 470 | Outstanding litigation, tax and creditors | Twenty income tax appeals found by third party checks and unquantifiable for want of service, a GST show cause notice of 1,175.83 million, and the creditor materiality threshold |
 
 The seventh is about the four columns rather than about anything in them. The restated statements
@@ -94,6 +96,15 @@ public databases rather than through service, in its own words on both counts, a
 appeals among them carry no amount because the grounds and quantum are not available to a party
 nobody has served. The largest number in the section is therefore the largest number that could be
 written down rather than the largest exposure in it.
+
+The eighth is about who the disclosed remuneration is for. In the last full year the related party
+table shows 2.62 million of key management remuneration, and a footnote says that covers one of the
+three officers the same note names: the others are inside an expense transfer from the parent. A
+second footnote prices what moved, at 6.50 million inside a transfer of 526.88. So the disclosed
+figure is 29 per cent of what the note itself says key management cost, and it is a floor rather
+than a total, because the note says the transfer includes that much remuneration rather than that it
+is all of it. In the stub quarter the same line covers all three officers, so one disclosure means
+two different things in two adjacent columns of one table.
 
 **Not read**, with the page map already recorded in `drhp_extracts.json`: the rest of the restated
 financials through printed 433, and related party transactions inside those notes. The governance
@@ -153,6 +164,8 @@ consolidated statements and the notes that matter for a data centre:
 | 224 | Consolidated cash flow statement | Cash generated from operations, tax paid, net operating cash flow, the movement in current borrowings presented among the working capital adjustments, and the four capital expenditure lines |
 | 225 | Consolidated cash flow statement, continued | Cash flows from finance activities. Proceeds and repayment of borrowings, both filed years |
 | 260 | Note 40, segment reporting | The single reportable segment, and the statement that no external customer exceeds ten per cent of revenue |
+| 262, 263 | Note 41, related party disclosures | Loans granted to and outstanding from associate companies and relatives of key management, both filed years, and the company's own statement that the transactions are at arm's length |
+| 266 | Note 45, other statutory information | Every balance with a company struck off under Section 248 of the Companies Act: eleven counterparties, the relationship column the report assigns each one, and both filed years |
 | 267 | Note 47, financial ratios | Return on equity, return on capital employed and debt to equity, each with its numerator and denominator printed beside it |
 | 268 | Note 48, entities consolidated | The same subsidiary's share of consolidated net assets and profit, which ties to printed page 79 |
 
@@ -172,6 +185,22 @@ the paisa. Neither figure appears in the group income statement, because note 40
 states the business falls within a single reportable segment and that segment is real estate
 development. The capacity is disclosed in the corporate overview. The economics of it are disclosed
 only as one column in a statement of subsidiaries.
+
+The third finding came out of the notes and runs the other way from the obvious reading. **Eleven
+counterparties have been struck off the register under Section 248 and the company still carries
+balances with all of them.** Four are related parties, which invites the conclusion that this is a
+related party problem. It is not. The largest balance is 5,000.00 lakh owed to the company by
+Vibrant Softech Private Limited, which the report classifies as Others, and it is 335 times
+everything else receivable on that list put together. Ten of the eleven balances are identical to
+the year before, to the paisa.
+
+Beside it, in note 41, **related party lending stepped up sharply in one year**: loans outstanding
+to associates went from 875.29 to 3,969.54 lakh and loans to relatives of key management from 174.00
+to 1,229.10. The associates row does not roll forward. The transactions table says 3,969.54 was lent
+during the year and prints no repayment from associates, which added to the opening balance gives
+4,844.83 against a closing balance of 3,969.54. An associate leaving the perimeter would account for
+the difference and so would a presentation choice in either table. The report says neither, and what
+the gap is has not been named here.
 
 The third finding is a presentation choice rather than a number. The movement in current borrowings,
 8,189.39 lakh out, is presented inside operating activities as a working capital adjustment at printed

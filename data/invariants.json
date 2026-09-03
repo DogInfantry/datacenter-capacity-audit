@@ -179,6 +179,13 @@
       "fragment": "claims PRIMARY without naming a filed document"
     },
     {
+      "id": "struck-off-largest-is-not-related",
+      "schema": "AnantRaj",
+      "category": "FINDING",
+      "protects": "The page's claim about the struck off list. The list sits a few notes below the related party disclosures and four of its eleven rows are related parties, so the obvious reading is that this is a related party problem. It is not: the largest balance on it, by two orders of magnitude, is with a counterparty the report itself classifies as Others. If a later edit moved that row the sentence on the page would be wrong rather than merely stale.",
+      "fragment": "and the page says it is not"
+    },
+    {
       "id": "anantraj-not-primary",
       "schema": "AnantRaj",
       "category": "SOURCING",
@@ -597,6 +604,13 @@
       "category": "RECONCILE",
       "protects": "Every period the associate exposure is stated for must be a period this file already carries a balance sheet for. The exhibit divides that exposure by net worth at the same date, and a period without one would either throw or, worse, quietly reach for a neighbouring year and print a plausible percentage over the wrong denominator.",
       "fragment": "which has no balance sheet in this file"
+    },
+    {
+      "id": "key-management-line-understates",
+      "schema": "Sisl",
+      "category": "FINDING",
+      "protects": "The key management remuneration line must cover fewer officers than the note names, or the finding it carries has gone away. A disclosed figure covering every officer named is an ordinary disclosure and the page should stop calling it a shortfall. A guard on the amounts would not catch that, because the amounts would still be there.",
+      "fragment": "officers named, so it no longer understates anything"
     },
     {
       "id": "risk-worst-cell-measured",

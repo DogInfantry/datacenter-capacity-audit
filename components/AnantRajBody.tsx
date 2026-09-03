@@ -3,7 +3,13 @@
 import Link from "next/link";
 import type { AnantRaj } from "@/lib/schema";
 import { anantRajRiskMeasures, pillarCoverage } from "@/lib/diagnostics/risk";
-import { cashConversion, dataCentreArm } from "@/lib/diagnostics/anantraj";
+import {
+  cashConversion,
+  dataCentreArm,
+  relatedPartyLending,
+  struckOff,
+} from "@/lib/diagnostics/anantraj";
+import { StruckOff } from "./StruckOff";
 import { accrualRatio, cfoToPat, metricsDisagree, pillar } from "@/lib/diagnostics/cashQuality";
 import { Exhibit } from "./Exhibits";
 import { CapexVsCfo } from "./CapexVsCfo";
@@ -67,6 +73,8 @@ export function AnantRajBody({ data, sify, sifyCover }: Props) {
   // Capital spending against the cash the year produced, twice, because the
   // statement's own classification changes the answer.
   const cc = cashConversion(data.financials);
+  const struck = struckOff(data);
+  const lending = relatedPartyLending(data);
   // The pillar on both readings of the same statement, because the guard holds
   // the finding to both and a page that showed one would be choosing.
   const fin = data.financials;
@@ -528,6 +536,80 @@ export function AnantRajBody({ data, sify, sifyCover }: Props) {
             Both sit under the threshold, so the reading does not depend on settling which
             presentation is the right one.
           </p>
+        </Exhibit>
+
+        <Exhibit
+          n={9}
+          title={`${struck.count} counterparties have been struck off the register, and ${struck.largestShareOfReceivablePct.toFixed(1)} per cent of what they owe is one company the report does not call a related party`}
+          units={`Balances outstanding with companies struck off under Section 248 of the Companies Act, in ${data.financials.unit}. Receivables and payables are kept apart rather than netted: money owed to a company removed from the register and money owed by it are not the same exposure.`}
+          source={data.governance.struckOff.source.label}
+          page={struck.page}
+        >
+          <StruckOff data={struck} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            Note 45 sits a few notes below the related party disclosures and{" "}
+            <span className="tnum text-foreground">{struck.relatedCount}</span> of its{" "}
+            <span className="tnum text-foreground">{struck.count}</span> rows are related parties,
+            so the natural reading is that this is a related party problem. It is not. The largest
+            balance on the list is{" "}
+            <span className="tnum text-foreground">
+              {struck.largest.amountLakh.toLocaleString("en-US")}
+            </span>{" "}
+            owed to the company by {struck.largest.name}, which the report classifies as Others, and
+            it is larger than everything else receivable on the list put together by a factor of{" "}
+            <span className="tnum text-foreground">
+              {(struck.largest.amountLakh / (struck.receivableLakh - struck.largest.amountLakh)).toFixed(0)}
+            </span>
+            .
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The same note is where the related party lending shows up. Loans outstanding to
+            associates went from{" "}
+            <span className="tnum text-foreground">
+              {lending[0].outstandingPriorLakh.toLocaleString("en-US")}
+            </span>{" "}
+            to{" "}
+            <span className="tnum text-foreground">
+              {lending[0].outstandingLakh.toLocaleString("en-US")}
+            </span>{" "}
+            in one year, and loans to relatives of key management from{" "}
+            <span className="tnum text-foreground">
+              {lending[1].outstandingPriorLakh.toLocaleString("en-US")}
+            </span>{" "}
+            to{" "}
+            <span className="tnum text-foreground">
+              {lending[1].outstandingLakh.toLocaleString("en-US")}
+            </span>
+            . The company&apos;s own words on all of it are that{" "}
+            <span className="text-foreground">
+              &ldquo;{data.governance.relatedParty.armsLengthQuote}&rdquo;
+            </span>
+          </p>
+          {!lending[0].rollsForward && (
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              The associates row does not roll forward. The transactions table says{" "}
+              <span className="tnum text-foreground">
+                {lending[0].grantedLakh.toLocaleString("en-US")}
+              </span>{" "}
+              was lent during the year and prints no repayment from associates. Added to the balance
+              a year earlier that gives{" "}
+              <span className="tnum text-foreground">
+                {lending[0].expected.toLocaleString("en-US")}
+              </span>
+              , against a closing balance of{" "}
+              <span className="tnum text-foreground">
+                {lending[0].outstandingLakh.toLocaleString("en-US")}
+              </span>
+              , a gap of{" "}
+              <span className="tnum text-foreground">
+                {lending[0].gap.toLocaleString("en-US")}
+              </span>
+              . An associate leaving the perimeter would account for it and so would a presentation
+              choice in either table. The report says neither, and what the gap is has not been
+              named here.
+            </p>
+          )}
         </Exhibit>
       </section>
 

@@ -972,6 +972,34 @@ export const Sisl = z
         footnoteQuote: z.string().min(1),
         source: PagedSource,
       }),
+      /**
+       * Key management remuneration, and what the disclosed line leaves out.
+       *
+       * In the last full year the related party note's key management column
+       * covers one officer, and the note says in a footnote that the others are
+       * inside an expense transfer from the parent. The amount cross charged is
+       * printed, so the shortfall is a figure rather than an inference. In the
+       * stub quarter the same line covers all three officers, so the disclosure
+       * changes meaning between two adjacent columns of one table.
+       */
+      keyManagement: z.object({
+        label: z.string().min(1),
+        /** The figure the key management column actually shows. */
+        disclosedMn: z.number().nonnegative(),
+        /** How many officers that column covers in this period. */
+        officersCovered: z.number().int().positive(),
+        /** How many the company names as key management in the same note. */
+        officersNamed: z.number().int().positive(),
+        /** Remuneration the footnote says is inside the expense transfer
+         *  instead. A floor rather than a total: the note says the transfer
+         *  includes this much, not that this is all of it. */
+        crossChargedMn: z.number().nonnegative(),
+        /** The transfer it sits inside, for scale. */
+        expenseTransferMn: z.number().positive(),
+        coverageQuote: z.string().min(1),
+        crossChargeQuote: z.string().min(1),
+        source: PagedSource,
+      }),
     }),
     basisSource: PagedSource,
     cashFlow: z.array(SislCashFlow).min(3),
@@ -1313,8 +1341,25 @@ export const Sisl = z
       ...d.governance.quantified.map((q) => q.page),
       d.governance.associate.source.page,
       ...d.governance.associate.exposures.map((e) => e.page),
+      d.governance.keyManagement.source.page,
       d.majorCustomerSource.page,
     ]);
+
+    // The key management line must cover fewer officers than the note names, or
+    // the finding it carries has gone away.
+    //
+    // This is the whole point of storing both counts. A disclosed remuneration
+    // figure covering every officer named is an ordinary disclosure and the page
+    // should stop calling it a shortfall. A guard on the amounts would not catch
+    // that, since the amounts would still be there.
+    const km = d.governance.keyManagement;
+    if (km.officersCovered >= km.officersNamed) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["governance", "keyManagement"],
+        message: `the key management line now covers ${km.officersCovered} of ${km.officersNamed} officers named, so it no longer understates anything`,
+      });
+    }
 
     // Every period the associate exposure is stated for must be a period this
     // file already carries a balance sheet for.
@@ -1634,6 +1679,59 @@ export const AnantRaj = z
         .min(2),
       compositionSource: PagedSource,
     }),
+    /**
+     * Governance, from the notes rather than from a rating.
+     *
+     * Two things this report discloses that nothing else on this page reaches.
+     * Related party lending, which stepped up sharply in one year, and a list
+     * of counterparties struck off the register that the company still carries
+     * balances with. Amounts are in the unit `financials.unit` declares.
+     */
+    governance: z.object({
+      relatedParty: z.object({
+        lending: z
+          .array(
+            z.object({
+              counterparty: z.string().min(1),
+              /** The balance outstanding at each year end. */
+              outstandingLakh: z.number().nonnegative(),
+              outstandingPriorLakh: z.number().nonnegative(),
+              /** What the transactions table says was granted during each year.
+               *  Held apart from the balance because on one of these rows the
+               *  two do not roll forward into each other and the report prints
+               *  no repayment to close the gap. */
+              grantedLakh: z.number().nonnegative(),
+              grantedPriorLakh: z.number().nonnegative(),
+            }),
+          )
+          .min(2),
+        /** The company's own characterisation, quoted rather than paraphrased,
+         *  because it is an assertion rather than a figure and the page should
+         *  show it as one. */
+        armsLengthQuote: z.string().min(1),
+        source: PagedSource,
+      }),
+      /**
+       * Note 45, other statutory information: counterparties struck off under
+       * Section 248 of the Companies Act that the company still shows balances
+       * with. The relationship column is the report's own, and it matters: the
+       * largest balance on the list is not with a related party.
+       */
+      struckOff: z.object({
+        rows: z
+          .array(
+            z.object({
+              name: z.string().min(1),
+              kind: z.enum(["RECEIVABLE", "PAYABLE"]),
+              relationship: z.enum(["RELATED_PARTY", "OTHERS"]),
+              amountLakh: z.number().nonnegative(),
+              amountPriorLakh: z.number().nonnegative(),
+            }),
+          )
+          .min(2),
+        source: PagedSource,
+      }),
+    }),
   })
   .superRefine((d, ctx) => {
     // The headline capacity figure must equal its own stated parts.
@@ -1660,6 +1758,23 @@ export const AnantRaj = z
         code: z.ZodIssueCode.custom,
         path: ["ladder"],
         message: `the capacity ladder must descend, got ${mw.join(" then ")}`,
+      });
+    }
+    // The page's claim about the struck off list, asserted rather than written.
+    //
+    // The list sits inside the related party section's neighbourhood and four of
+    // its rows are related parties, so the obvious reading is that this is a
+    // related party problem. It is not: the largest balance on it, by two orders
+    // of magnitude, is with a counterparty the report itself classifies as
+    // Others. The page says so, and if a later edit moved that row the sentence
+    // would be wrong rather than merely stale.
+    const struck = d.governance.struckOff.rows;
+    const largest = struck.reduce((a, b) => (b.amountLakh > a.amountLakh ? b : a));
+    if (largest.relationship !== "OTHERS") {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["governance", "struckOff"],
+        message: `the largest struck off balance is now with a ${largest.relationship}, and the page says it is not`,
       });
     }
     // Nothing here is traced to a filing, so nothing here may claim PRIMARY.

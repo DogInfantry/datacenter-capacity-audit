@@ -395,6 +395,24 @@
         "asOf": "2025-10-16",
         "verification": "PRIMARY"
       }
+    },
+
+    "keyManagement": {
+      "_note": "The last full year. Salaries and short term benefits of 2.47 plus contributions to defined contribution plans of 0.15, and the footnote naming who that covers. The stub quarter presents the same line covering all three officers, which is why the period is stored rather than assumed.",
+      "label": "FY2025",
+      "disclosedMn": 2.62,
+      "officersCovered": 1,
+      "officersNamed": 3,
+      "crossChargedMn": 6.50,
+      "expenseTransferMn": 526.88,
+      "coverageQuote": "Represents salaries and other benefits of Key Management Personnel comprising of Mr. Devendiriya Jayaraman Poornasandar (Company Secretary) only. Other KMP's remuneration are included in Expense transfer.",
+      "crossChargeQuote": "The Expenses Transfer from Sify Technologies Limited for the FY 2024-25 includes 6.50 of KMP remuneration cross-charged to the Company.",
+      "source": {
+        "label": "Sify Infinit Spaces DRHP, note 34 to the Restated Consolidated financial information, the related party transactions table for the year ended March 31, 2025 and the footnotes printed beneath it.",
+        "page": 410,
+        "asOf": "2025-10-16",
+        "verification": "PRIMARY"
+      }
     }
   },
 

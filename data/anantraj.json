@@ -158,6 +158,56 @@
     }
   },
 
+  "governance": {
+    "_note": "Read by hand from notes 41 and 45 to the consolidated financial statements. Amounts in lakh, the unit the statements print, converted nowhere.",
+    "relatedParty": {
+      "lending": [
+        {
+          "counterparty": "Associate companies",
+          "outstandingLakh": 3969.54,
+          "outstandingPriorLakh": 875.29,
+          "grantedLakh": 3969.54,
+          "grantedPriorLakh": 172.34
+        },
+        {
+          "counterparty": "Relatives of key management personnel",
+          "outstandingLakh": 1229.10,
+          "outstandingPriorLakh": 174.00,
+          "grantedLakh": 1115.10,
+          "grantedPriorLakh": 12.00
+        }
+      ],
+      "armsLengthQuote": "The transactions with related parties are made on terms equivalent to those that prevail in arm's length transactions.",
+      "source": {
+        "label": "Anant Raj Limited annual report FY2024-25, note 41 to the consolidated financial statements, related party disclosures. Transactions during the year are printed at 262 and the amounts outstanding at 263.",
+        "page": 263,
+        "asOf": "2025-06-28",
+        "verification": "PRIMARY"
+      }
+    },
+    "struckOff": {
+      "rows": [
+        { "name": "Vibrant Softech Private Limited", "kind": "RECEIVABLE", "relationship": "OTHERS", "amountLakh": 5000.00, "amountPriorLakh": 5000.00 },
+        { "name": "Deep Buildtech Private Limited", "kind": "RECEIVABLE", "relationship": "OTHERS", "amountLakh": 10.60, "amountPriorLakh": 10.60 },
+        { "name": "Anant Raj Power Limited", "kind": "PAYABLE", "relationship": "RELATED_PARTY", "amountLakh": 9.22, "amountPriorLakh": 9.22 },
+        { "name": "Ganesha Carpet Private Limited", "kind": "RECEIVABLE", "relationship": "OTHERS", "amountLakh": 2.16, "amountPriorLakh": 2.16 },
+        { "name": "Raghunath Oils and Fats Limited", "kind": "PAYABLE", "relationship": "OTHERS", "amountLakh": 2.00, "amountPriorLakh": 2.00 },
+        { "name": "Prabhakar Sanitations Private Limited", "kind": "RECEIVABLE", "relationship": "OTHERS", "amountLakh": 1.11, "amountPriorLakh": 1.11 },
+        { "name": "Corn Flower Developers Private Limited", "kind": "PAYABLE", "relationship": "RELATED_PARTY", "amountLakh": 0.60, "amountPriorLakh": 0.60 },
+        { "name": "Aravali Propmart Private Limited", "kind": "RECEIVABLE", "relationship": "RELATED_PARTY", "amountLakh": 0.45, "amountPriorLakh": 0.61 },
+        { "name": "Corn Flower Buildcon Private Limited", "kind": "RECEIVABLE", "relationship": "RELATED_PARTY", "amountLakh": 0.44, "amountPriorLakh": 0.44 },
+        { "name": "Anant Raj Meadows Private Limited", "kind": "RECEIVABLE", "relationship": "OTHERS", "amountLakh": 0.16, "amountPriorLakh": 0.16 },
+        { "name": "Tauras Promoters and Developers Private Limited", "kind": "RECEIVABLE", "relationship": "OTHERS", "amountLakh": 0.004, "amountPriorLakh": 0.004 }
+      ],
+      "source": {
+        "label": "Anant Raj Limited annual report FY2024-25, note 45 to the consolidated financial statements, other statutory information, on transactions with companies struck off under Section 248 of the Companies Act, 2013.",
+        "page": 266,
+        "asOf": "2025-06-28",
+        "verification": "PRIMARY"
+      }
+    }
+  },
+
   "financials": {
     "_note": "The audited consolidated financial statements, read from the same annual report as the capacity ladder. Everything here is in lakhs of rupees, which is the unit the statements print, and it is not converted anywhere in this file. The reason this block exists is the data centre arm at the foot of it: the capacity figures above belong to a subsidiary whose own numbers are printed in two separate places in this report, and neither of them appears in the group income statement.",
     "unit": "INR lakh",
