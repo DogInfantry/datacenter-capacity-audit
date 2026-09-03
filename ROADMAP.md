@@ -60,7 +60,10 @@ Recorded with the finding each one produced, because a tick is not a result.
   denominator stays on the page. The single sharpest instance also runs against the thesis: asked
   for realization per megawatt, Sify declined and then described the reverse working, which is the
   calculation this project performs in `revenuePerMW`. The company confirmed the method in its own
-  words. That page has since been deleted, but the diagnostic and its denominator survive it.
+  words. That page was deleted during the drift reversal, and the register then validated at build
+  and rendered nowhere for weeks, which is the same failure caught once before with a capacity file.
+  It is on `/pillars` now, as the fourth exhibit, with the denominator drawn as the bar rather than
+  appended as a footnote.
 - **A measurement whose limit had to be written down with it.** The published elsewhere dimension
   is coded from what management says on the call, so it can detect a company naming where a figure
   lives and cannot show that a figure is unpublished. Equinix and Digital Realty both publish

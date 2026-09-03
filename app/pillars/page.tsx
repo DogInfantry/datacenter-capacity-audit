@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { companies, sisl, sifyCo } from "@/lib/data";
+import { companies, sisl, sifyCo, disclosureRegister } from "@/lib/data";
+import { refusalRate, pressurePerCall } from "@/lib/diagnostics/disclosure";
+import { DisclosureRates } from "@/components/DisclosureRates";
 import { armAgainstParent, peerCashConversion } from "@/lib/diagnostics/cashQuality";
 import { leverage } from "@/lib/diagnostics/capital";
 import { CASH_CONVERSION } from "@/lib/config";
@@ -43,6 +45,17 @@ export default function PillarsPage() {
   const armConv = armRows.map((r) => r.metrics[0].value).filter((v): v is number => v !== null);
   const lev = leverage(sisl);
   const levStub = lev.find((r) => r.annualised);
+
+  // Ranked by refusal rate so the page can name the least and the most
+  // forthcoming without either being typed into the prose.
+  const reg = [...disclosureRegister.companies].sort(
+    (a, b) => refusalRate(a).rate - refusalRate(b).rate,
+  );
+  const leastRefusing = reg[0];
+  const mostRefusing = reg[reg.length - 1];
+  const mostAsked = [...reg].sort(
+    (a, b) => pressurePerCall(b).perCall - pressurePerCall(a).perCall,
+  )[0];
   const parentConv = parentRows
     .map((r) => r.metrics[0].value)
     .filter((v): v is number => v !== null);
@@ -186,6 +199,42 @@ export default function PillarsPage() {
               unannualised. Two ratios, one period, opposite conventions, and neither is labelled.
             </p>
           )}
+        </Exhibit>
+
+        <Exhibit
+          n={4}
+          title={`${leastRefusing.name} refuses least of the three, and the reason it can is that nobody asks it much`}
+          units={`Questions pressed on unit economics and how many were refused, over ${disclosureRegister.window.start} to ${disclosureRegister.window.end}. Bars are on one scale, so the width is the asking and the filled part is the refusing. Only a declined or deflected answer counts as a refusal; a partial answer is an answer.`}
+          source={`Earnings call transcripts across ${reg.reduce((t, c) => t + c.callsCovered, 0)} calls. ${disclosureRegister.familyNote} ${disclosureRegister.window.note}`}
+        >
+          <DisclosureRates companies={reg} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            The expected shape of this measure is an Indian operator that says less than its global
+            peers. It runs the other way.{" "}
+            <span className="text-foreground">{leastRefusing.name}</span> refuses{" "}
+            <span className="tnum text-foreground">{refusalRate(leastRefusing).refused}</span> of{" "}
+            <span className="tnum text-foreground">{refusalRate(leastRefusing).pressed}</span>{" "}
+            questions on its own unit economics.{" "}
+            <span className="text-foreground">{mostRefusing.name}</span> refuses{" "}
+            <span className="tnum text-foreground">{refusalRate(mostRefusing).refused}</span> of{" "}
+            <span className="tnum text-foreground">{refusalRate(mostRefusing).pressed}</span>.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The rate alone would still mislead, which is why the denominator is the bar rather than
+            a footnote. <span className="text-foreground">{mostAsked.name}</span> is asked{" "}
+            <span className="tnum text-foreground">
+              {pressurePerCall(mostAsked).perCall.toFixed(2)}
+            </span>{" "}
+            unit economics questions a call against{" "}
+            <span className="tnum text-foreground">
+              {pressurePerCall(leastRefusing).perCall.toFixed(2)}
+            </span>
+            . A company nobody presses has little to refuse. The sharpest single instance runs
+            against the thesis too: asked for realisation per megawatt, the Indian operator declined
+            and then described the reverse working, which is the calculation this analysis performs.
+            The company confirmed the method in its own words while declining the number.
+          </p>
         </Exhibit>
       </div>
 
