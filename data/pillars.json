@@ -32,10 +32,10 @@
     {
       "id": "GOVERNANCE",
       "label": "Governance",
-      "state": "PARTIAL",
-      "covered": ["SISL", "ANANTRAJ", "TECHNOE"],
-      "exhibits": [6, 8],
-      "open": "No governance section has been opened for any of the five harvested filers, and neither E2E nor Netweb has a filing read for that purpose."
+      "state": "BUILT",
+      "covered": ["SISL", "SIFY", "ANANTRAJ", "TECHNOE", "EQIX", "DLR", "INFY", "WIT"],
+      "exhibits": [6, 8, 9],
+      "open": "Restatement is the one governance question a machine harvest can answer, and it is now asked of all five harvested filers. Everything else on this pillar still needs a document opened by hand: auditor and officer turnover, holding and pledging, and audit qualifications are unread for the five. Neither E2E nor Netweb has a filing read for that purpose at all."
     },
     {
       "id": "REVENUE_QUALITY",

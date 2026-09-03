@@ -526,4 +526,16 @@
       }
     }
   ]
+,
+  "restatements": {
+    "_note": "Restated periods as the filings store reports them, promoted from data/raw/filings so a count the page publishes is validated at build. The denominator is every annual point harvested for this filer, which is not the same across filers and is drawn on the page rather than appended to it.",
+    "annualPoints": 70,
+    "concepts": 8,
+    "rows": [],
+    "source": {
+      "label": "Restated periods as reported by the filings store for every concept harvested for DLR, recorded in data/raw/filings/DLR/facts.json",
+      "asOf": "2026-09-04",
+      "verification": "PRIMARY"
+    }
+  }
 }

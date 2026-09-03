@@ -751,6 +751,20 @@
       "category": "EVIDENCE",
       "protects": "The four states are checked against the coverage they claim rather than being labels anyone can type: built covers most of the subjects it could, terminal covers none, and the two in between cover some but not most. Without this the picture and the badge on it could drift apart silently.",
       "fragment": "so the label no longer describes the coverage"
+    },
+    {
+      "id": "restatements-fit-inside-the-harvest",
+      "schema": "CompanyDoc",
+      "category": "POSSIBLE",
+      "protects": "A filer cannot restate more annual points than were ever taken from it. The page publishes a rate over that denominator, so a count larger than the harvest would produce a percentage above a hundred and nothing else would notice.",
+      "fragment": "restates more points than were ever harvested from it"
+    },
+    {
+      "id": "restatement-counts-each-period-once",
+      "schema": "CompanyDoc",
+      "category": "RECONCILE",
+      "protects": "One concept restated in one period is one point. Counting it twice would inflate the rate the page leads on, and the rows are promoted from a raw file where the same period can appear under several concepts.",
+      "fragment": "counts one restated period of one concept more than once"
     }
   ]
 }

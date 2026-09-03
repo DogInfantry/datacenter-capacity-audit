@@ -237,6 +237,40 @@ export const CompanyDoc = z
     /** What management said the margin was, in its own words. Empty for a
      *  filer we have not checked against an outside statement. */
     statedMargins: z.array(StatedMargin).default([]),
+    /** Which harvested periods the filer went back and changed, against every
+     *  period harvested from it. The denominator is not the same across filers
+     *  and cannot be made so, because each was asked for a different number of
+     *  concepts, which is why it is drawn rather than footnoted. */
+    restatements: z.object({
+      annualPoints: z.number().int().positive(),
+      concepts: z.number().int().positive(),
+      rows: z.array(
+        z.object({
+          concept: z.string().min(1),
+          period: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+        }),
+      ),
+      source: Source,
+    }),
+  })  .superRefine((c, ctx) => {
+    const r = c.restatements;
+    // A filer cannot restate more points than were taken from it, and one point
+    // counted twice would inflate a rate the page publishes.
+    if (r.rows.length > r.annualPoints) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["restatements"],
+        message: `${c.ticker} restates more points than were ever harvested from it, ${r.rows.length} against ${r.annualPoints}`,
+      });
+    }
+    const seen = new Set(r.rows.map((x) => `${x.concept}@${x.period}`));
+    if (seen.size !== r.rows.length) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["restatements", "rows"],
+        message: `${c.ticker} counts one restated period of one concept more than once`,
+      });
+    }
   })
   .refine(
     (c) => {

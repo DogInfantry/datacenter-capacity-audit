@@ -373,4 +373,24 @@
       }
     }
   ]
+,
+  "restatements": {
+    "_note": "Restated periods as the filings store reports them, promoted from data/raw/filings so a count the page publishes is validated at build. The denominator is every annual point harvested for this filer, which is not the same across filers and is drawn on the page rather than appended to it.",
+    "annualPoints": 18,
+    "concepts": 3,
+    "rows": [
+      { "concept": "Cash flows from used in investing activities", "period": "2023-03-31" },
+      { "concept": "Assets (IFRS)", "period": "2024-03-31" },
+      { "concept": "Cash flows from used in investing activities", "period": "2024-03-31" },
+      { "concept": "Profit loss (IFRS)", "period": "2024-03-31" },
+      { "concept": "Assets (IFRS)", "period": "2025-03-31" },
+      { "concept": "Cash flows from used in investing activities", "period": "2025-03-31" },
+      { "concept": "Profit loss (IFRS)", "period": "2025-03-31" }
+    ],
+    "source": {
+      "label": "Restated periods as reported by the filings store for every concept harvested for SIFY, recorded in data/raw/filings/SIFY/facts.json",
+      "asOf": "2026-09-04",
+      "verification": "PRIMARY"
+    }
+  }
 }

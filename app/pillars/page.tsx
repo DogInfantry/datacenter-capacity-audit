@@ -28,6 +28,8 @@ import { payablesAgeing } from "@/lib/diagnostics/payables";
 import { PayablesAgeing } from "@/components/PayablesAgeing";
 import { coverageMatrix } from "@/lib/diagnostics/coverage";
 import { PillarMatrix } from "@/components/PillarMatrix";
+import { restatementRates } from "@/lib/diagnostics/restatement";
+import { RestatementRates } from "@/components/RestatementRates";
 
 export const metadata: Metadata = {
   title: "Pillars",
@@ -99,6 +101,7 @@ export default function PillarsPage() {
   const payd = payablesAgeing(technoe);
   const pay2 = technoe.payables;
   const cov = coverageMatrix(pillarCoverage);
+  const rst = restatementRates(companies);
 
   return (
     <main className="mx-auto w-full max-w-5xl px-5 py-12">
@@ -109,9 +112,9 @@ export default function PillarsPage() {
       </h1>
       <p className="mt-5 max-w-2xl leading-relaxed text-muted">
         Cash conversion is the first of the brief&rsquo;s six pillars to be built, the balance
-        sheet is the second, revenue quality is the third and governance is the fourth. Eight
-        exhibits, and the last three read one annual report that had been opened once for
-        megawatts alone. The first runs two measures of one
+        sheet is the second, revenue quality is the third and governance is the fourth. Nine
+        exhibits. Three of them read one annual report that had been opened once for megawatts
+        alone, and the ninth is the one governance question a machine harvest can answer. The first runs two measures of one
         idea and reports them side by side rather than averaging them, because they can disagree
         and the disagreement is worth more than either verdict alone. The bands are published on{" "}
         <Link href="/methodology" className="underline decoration-line underline-offset-4">
@@ -423,6 +426,39 @@ export default function PillarsPage() {
             bucket runs to a year and the appointed day is forty five days, so the balance being past
             its due date is not the same as every rupee of it having passed the day the statute names.
             The five clauses are what report that none of it did.
+          </p>
+        </Exhibit>
+
+        <Exhibit
+          n={9}
+          title={`${rst.cleanCount} of these ${rst.rows.length} filers never went back and changed a published figure. One changed ${rst.rows[0].ratePct.toFixed(0)} per cent of what it published.`}
+          units="One cell per annual data point harvested from that filer, and the track is as long as the filer was asked. Filled cells are periods the filings store reports as restated. Rates over unequal denominators, which is why both are drawn."
+          source="Restated periods as the filings store reports them per concept, promoted from data/raw/filings into each company file so the count is validated at build."
+        >
+          <RestatementRates data={rst} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            Restatement is the one governance signal in the brief that a machine harvest can answer
+            without a document being opened by hand, because the store records which periods a later
+            filing changed. Three of the five changed nothing across{" "}
+            <span className="tnum text-foreground">
+              {rst.rows.filter((r) => r.restated === 0).reduce((t, r) => t + r.points, 0)}
+            </span>{" "}
+            harvested points between them.
+          </p>
+
+          <p className="mt-4 text-sm leading-relaxed text-muted">
+            The rate has to be read against the length of the bar and not on its own. The operator
+            this coverage is built around is asked for{" "}
+            <span className="tnum text-foreground">{rst.rows[0].conceptsHarvested}</span> concepts
+            and has <span className="tnum text-foreground">{rst.rows[0].points}</span> chances to
+            restate; {rst.largestDenominator.name} is asked for{" "}
+            <span className="tnum text-foreground">{rst.largestDenominator.conceptsHarvested}</span>{" "}
+            and has <span className="tnum text-foreground">{rst.largestDenominator.points}</span>.
+            A count alone would put the second at the top and a rate alone would put the first
+            there, so both are on the page. This is the second measure here to need that correction:
+            the refusal rates in Exhibit 4 found that the company refusing least was the one asked
+            least.
           </p>
         </Exhibit>
       </div>

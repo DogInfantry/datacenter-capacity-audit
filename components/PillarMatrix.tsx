@@ -33,9 +33,14 @@ const STATE_TONE: Record<string, string> = {
   TERMINAL: "var(--muted)",
 };
 
+/**
+ * The words describe coverage rather than completeness, because that is what the
+ * guard behind them checks. A pillar asked of most of its subjects still has
+ * plenty open on each of them, and calling that Built read as finished.
+ */
 const STATE_WORD: Record<string, string> = {
-  BUILT: "Built",
-  PARTIAL: "Partly built",
+  BUILT: "Most subjects",
+  PARTIAL: "Some subjects",
   BLOCKED: "Blocked",
   TERMINAL: "Terminal",
 };
