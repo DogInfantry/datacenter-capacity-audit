@@ -21,30 +21,6 @@ export const Source = z.object({
   verification: Verification,
 });
 
-/** A claim carries its own evidence, or it does not go on the page. */
-const sourced = <T extends z.ZodTypeAny>(value: T) =>
-  z.object({ value, source: Source });
-
-export const Campus = z.object({
-  id: z.string().regex(/^[a-z0-9-]+$/),
-  operator: z.string().min(1),
-  listedParent: z.string().nullable(),
-  site: z.string().min(1),
-  state: z.string().min(1),
-  /** Precision is stated, never implied. Operators do not publish coordinates. */
-  location: z.object({
-    lat: z.number().min(6).max(37),
-    lon: z.number().min(68).max(98),
-    precision: z.enum(["SITE", "CITY", "DISTRICT", "STATE"]),
-  }),
-  liveMW: sourced(z.number().min(0)),
-  /** Live is not the same as handed over. That gap is the thesis. */
-  handedOverMW: sourced(z.number().min(0)).nullable(),
-  announcedMW: sourced(z.number().min(0)),
-  claimedLiveBy: sourced(z.string()).nullable(),
-  note: z.string().optional(),
-});
-
 export const BaseRateStats = z.object({
   n: z.number().int().positive(),
   median_months: z.number(),
@@ -2875,7 +2851,6 @@ export type PagedSource = z.infer<typeof PagedSource>;
 
 export type DrhpTriage = z.infer<typeof DrhpTriage>;
 
-export type Campus = z.infer<typeof Campus>;
 export type CompanyDoc = z.infer<typeof CompanyDoc>;
 export type CompanyFinancials = z.infer<typeof CompanyFinancials>;
 export type CompanySegment = z.infer<typeof CompanySegment>;
