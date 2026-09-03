@@ -275,6 +275,8 @@ the absence of any segment disclosure. Those are on `/pillars` as Exhibit 6.
 | 349 | Note 19 to the consolidated statements | The same arrangement, in the same words, at group level |
 | 267 and 369 | Net debt reconciliations, standalone and consolidated | 194.59 million reclassified from trade payables to borrowings and recorded as a non cash transfer under Ind AS 7, against nil a year earlier |
 | 217 | Note on standards notified in the year | The amendments to Ind AS 7 and Ind AS 107 requiring the disclosure, notified 13 August 2025, which is why the arrangement appears for the first time |
+| 244 | Note 22 to the standalone statements, trade payables ageing | The whole micro and small enterprise balance of 403.83 million in an overdue column and nothing in the column for amounts not yet due, in both years, on a table headed from the due date of payment. Letters of credit standing behind 5,343.84 of the payables against 3,054.21 |
+| 245 | Note 22 to the standalone statements, disclosure under the MSMED Act 2006 | Nil at all five statutory clauses, in both years |
 | 298 | Note 1 to the consolidated statements, group overview | One business described in power infrastructure. No segment disclosure follows it, and none appears anywhere in the document |
 
 The finding is the commitment. The target of 250 MW is management commentary and the campus figures
@@ -303,6 +305,14 @@ company chose it. What the treatment cannot do is put the lengthening into the c
 statement: the transfer is non cash, so 97 per cent of everything the standalone reports as
 current borrowings arrived without cash moving. Against the payables it came out of the amount is
 small, at 1.71 per cent of the total, and that is on the page beside the rest.
+
+A fourth result repeats the shape of the struck off one, which is why both are published rather
+than one standing for the pair. The ageing table places 403.83 million owed to micro and small
+enterprises past its due date, and the five clauses of the MSMED Act printed on the next page
+report nothing at every one of them. Interest after the appointed day is automatic under that
+statute. The limit belongs with the finding: the shortest overdue bucket runs to a year and the
+appointed day is forty five days, so the table cannot show that every rupee passed it, and what
+the five clauses report is that none of it did.
 
 **Still not taken from it:** the order book, the transmission business and the revenue and margin
 lines, which remain the majority of this company.

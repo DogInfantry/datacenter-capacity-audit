@@ -424,7 +424,7 @@ export default function PillarsPage() {
           {[
             {
               h: "Governance",
-              b: "Three names now. The materiality threshold, the associate exposure and the key management coverage on the operator whose prospectus is read page by page, eleven struck off counterparties on the second, and on the third, in Exhibit 6 above, an emphasis of matter over overdue balances and a statutory note that tables a struck off balance in one clause and denies having one in the next. The three United States filers have had no governance section opened.",
+              b: "Three names now. The materiality threshold, the associate exposure and the key management coverage on the operator whose prospectus is read page by page, eleven struck off counterparties on the second, and on the third an emphasis of matter over overdue balances in Exhibit 6, plus two notes that each table a balance in one clause and deny it in the next, in Exhibits 6 and 8. The three United States filers have had no governance section opened.",
             },
             {
               h: "Revenue quality",
