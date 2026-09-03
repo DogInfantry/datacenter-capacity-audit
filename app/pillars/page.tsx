@@ -401,7 +401,7 @@ export default function PillarsPage() {
             },
             {
               h: "Balance sheet",
-              b: "Built for the operator whose statements are read page by page, in Exhibit 3 above. The five harvested filers have total assets but no borrowings or lease liability split, so leverage cannot yet be asked of them, and no second operator has had a balance sheet read.",
+              b: "Built for the operator whose statements are read page by page, in Exhibit 3 above, and opened on a second name in Exhibit 7, where a supplier finance arrangement moves a liability from trade payables into borrowings without any cash moving. The five harvested filers have total assets but no borrowings or lease liability split, so leverage cannot yet be asked of them.",
             },
             {
               h: "Business model",

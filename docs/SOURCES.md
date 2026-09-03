@@ -271,6 +271,10 @@ the absence of any segment disclosure. Those are on `/pillars` as Exhibit 6.
 | 368 | Note 37 to the consolidated statements | The same commitment and the same contingent total, with the prior year commitment at 29.35 |
 | 278 | Note 44 to the standalone statements, other statutory information | One balance with a company struck off the register: Pyrotech Electronics Private Ltd, trade payables, vendor, 0.02 |
 | 381 | Note 42 to the consolidated statements, other statutory information | The same balance, and directly beneath it a second clause sharing the numeral (ii) reading "The Group do not have any transactions with struck off companies" |
+| 243 | Note 21 to the standalone statements | Supplier finance of 196.24 million rupees against nil a year earlier, financed terms of 120 to 180 days against 60 to 90 for comparable trade payables, at SOFR plus 70bps against collateral |
+| 349 | Note 19 to the consolidated statements | The same arrangement, in the same words, at group level |
+| 267 and 369 | Net debt reconciliations, standalone and consolidated | 194.59 million reclassified from trade payables to borrowings and recorded as a non cash transfer under Ind AS 7, against nil a year earlier |
+| 217 | Note on standards notified in the year | The amendments to Ind AS 7 and Ind AS 107 requiring the disclosure, notified 13 August 2025, which is why the arrangement appears for the first time |
 | 298 | Note 1 to the consolidated statements, group overview | One business described in power infrastructure. No segment disclosure follows it, and none appears anywhere in the document |
 
 The finding is the commitment. The target of 250 MW is management commentary and the campus figures
@@ -290,6 +294,15 @@ pillar was blocked on, and it is a property of what the company discloses rather
 The extraction was checked before the absence was believed. Every printed page was recovered by
 splitting each spread on the horizontal position of its text runs, and the halves reconcile to the
 raw page totals, so the search covered text the document actually contains.
+
+A third result came out of the same reading and it cuts two ways, so both ways are published. The
+supplier finance arrangement lengthens what the company takes to pay from 60 to 90 days to 120 to
+180, and moves 194.59 million rupees out of trade payables. Classifying that under borrowings
+rather than leaving it among payables is the stricter of the two treatments available and the
+company chose it. What the treatment cannot do is put the lengthening into the cash flow
+statement: the transfer is non cash, so 97 per cent of everything the standalone reports as
+current borrowings arrived without cash moving. Against the payables it came out of the amount is
+small, at 1.71 per cent of the total, and that is on the page beside the rest.
 
 **Still not taken from it:** the order book, the transmission business and the revenue and margin
 lines, which remain the majority of this company.
