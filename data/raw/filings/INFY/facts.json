@@ -1,0 +1,68 @@
+{
+  "_source": "FactIQ MCP, search_company_filings, search_target=facts",
+  "_company": "Infosys Limited American Depositary Shares",
+  "_harvested": "2026-09-03",
+  "_note": "Values as returned by the server, unedited. One entry per concept, with the concept string that produced it and, per period, the filing the store served the value from. That filing is not always the one recorded against the rest of the row in data/companies/, which is why each promoted field carries its own source.",
+  "concepts": {
+    "Assets (IFRS)": {
+      "query": "query=Assets (IFRS), taxonomy=ifrs-full",
+      "unit": "USD",
+      "annual": {
+        "2022-03-31": 15555000000,
+        "2023-03-31": 15312000000,
+        "2024-03-31": 16523000000,
+        "2025-03-31": 17419000000,
+        "2026-03-31": 16446000000
+      },
+      "filings": {
+        "2022-03-31": "FY2023 20-F",
+        "2023-03-31": "FY2024 20-F",
+        "2024-03-31": "FY2025 20-F",
+        "2025-03-31": "FY2026 20-F",
+        "2026-03-31": "FY2026 20-F"
+      },
+      "restated_periods": [],
+      "_harvested": "2026-09-03"
+    },
+    "Profit loss (IFRS)": {
+      "query": "query=Profit loss (IFRS), taxonomy=ifrs-full",
+      "unit": "USD",
+      "annual": {
+        "2022-03-31": 2968000000,
+        "2023-03-31": 2983000000,
+        "2024-03-31": 3169000000,
+        "2025-03-31": 3162000000,
+        "2026-03-31": 3316000000
+      },
+      "filings": {
+        "2022-03-31": "FY2024 20-F",
+        "2023-03-31": "FY2025 20-F",
+        "2024-03-31": "FY2026 20-F",
+        "2025-03-31": "FY2026 20-F",
+        "2026-03-31": "FY2026 20-F"
+      },
+      "restated_periods": [],
+      "_harvested": "2026-09-03"
+    },
+    "Cash flows from used in investing activities": {
+      "query": "query=Cash flows from used in investing activities, taxonomy=ifrs-full",
+      "unit": "USD",
+      "annual": {
+        "2022-03-31": -1005000000,
+        "2023-03-31": -218000000,
+        "2024-03-31": -708000000,
+        "2025-03-31": -361000000,
+        "2026-03-31": 10000000
+      },
+      "filings": {
+        "2022-03-31": "FY2024 20-F",
+        "2023-03-31": "FY2025 20-F",
+        "2024-03-31": "FY2026 20-F",
+        "2025-03-31": "FY2026 20-F",
+        "2026-03-31": "FY2026 20-F"
+      },
+      "restated_periods": [],
+      "_harvested": "2026-09-03"
+    }
+  }
+}

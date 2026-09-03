@@ -161,6 +161,18 @@ const FilingSource = z.object({
   restated: z.boolean(),
 });
 
+/**
+ * One figure with the filing that served it.
+ *
+ * The row below carries a single source, which was true while every field on it
+ * came from one harvest of one concept family. It stopped being true the moment
+ * the three cash conversion inputs were pulled: the store serves Equinix's total
+ * assets for 2022 from the FY2023 10-K and its investing cash for the same year
+ * from the FY2024 10-K, and the row itself is recorded against a third. A shared
+ * source would have to name one of them and be wrong about the other two.
+ */
+const HarvestedFigure = z.object({ value: z.number(), source: FilingSource });
+
 /** Values are in filing currency, unconverted. Crore is a display concern. */
 export const CompanyFinancials = z.object({
   fy: z.string().regex(/^FY\d{4}$/),
@@ -173,6 +185,17 @@ export const CompanyFinancials = z.object({
   cfo: z.number().optional(),
   capex: z.number().optional(),
   ppe: z.number().positive().optional(),
+  /** Profit after tax, signed. A loss is a negative number and not an absence,
+   *  and that distinction carries the whole finding on one of these filers. */
+  pat: HarvestedFigure.optional(),
+  /** The denominator of the accrual ratio. Absent on the most recent year of
+   *  both US filers, because a 10-K prints its balance sheet one year behind
+   *  the cash flow filed alongside it and the store serves what was printed. */
+  totalAssets: HarvestedFigure.optional(),
+  /** Net cash used in investing, with its filed sign, matching the convention
+   *  `SislCashFlow` already uses so nothing depends on remembering which way an
+   *  outflow points. */
+  cfi: HarvestedFigure.optional(),
   source: FilingSource,
   restated: z.boolean(),
 });
@@ -246,6 +269,31 @@ export const CompanyDoc = z
       return c.segments.every((s) => !g.has(s.fy) || s.revenue <= g.get(s.fy)!);
     },
     { message: "segment revenue exceeds group revenue in at least one year", path: ["segments"] },
+  )
+  .refine(
+    // Property, plant and equipment is one line inside total assets, so a total
+    // smaller than its own component means the two were harvested against
+    // different periods or different units. Both are silent failures otherwise:
+    // the accrual ratio would still divide and still return a plausible number.
+    (c) =>
+      c.financials.every((f) => !f.totalAssets || !f.ppe || f.totalAssets.value > f.ppe),
+    {
+      message: "total assets are smaller than the property, plant and equipment inside them",
+      path: ["financials"],
+    },
+  )
+  .refine(
+    // The three cash conversion inputs are harvested per period rather than per
+    // filing, and a value without the filing that served it cannot be cited on
+    // a page. An empty filing string is the shape a partial harvest leaves.
+    (c) =>
+      c.financials.every((f) =>
+        [f.pat, f.totalAssets, f.cfi].every((h) => !h || h.source.filing.length > 0),
+      ),
+    {
+      message: "a harvested figure carries no filing to cite it against",
+      path: ["financials"],
+    },
   );
 
 /**

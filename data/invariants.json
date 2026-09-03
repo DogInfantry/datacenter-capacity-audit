@@ -123,6 +123,20 @@
       "fragment": "segment revenue exceeds group revenue in at least one year"
     },
     {
+      "id": "total-assets-exceed-ppe",
+      "schema": "CompanyDoc",
+      "category": "RECONCILE",
+      "protects": "Property, plant and equipment is one line inside total assets, so a total smaller than its own component means the two were harvested against different periods or different units. Neither failure announces itself: the accrual ratio would still divide, and still return a number a reader would believe.",
+      "fragment": "total assets are smaller than the property, plant and equipment inside them"
+    },
+    {
+      "id": "harvested-figure-cites-filing",
+      "schema": "CompanyDoc",
+      "category": "SOURCING",
+      "protects": "The three cash conversion inputs are served per period rather than per filing, and often not by the filing recorded against the rest of the row. Each carries its own, and a figure without one could not be cited on a page even though it would render.",
+      "fragment": "a harvested figure carries no filing to cite it against"
+    },
+    {
       "id": "family-qualities-account",
       "schema": "DisclosureRegister",
       "category": "RECONCILE",
@@ -469,8 +483,7 @@
       "id": "anantraj-risk-cites-a-recorded-page",
       "schema": "AnantRaj",
       "category": "SOURCING",
-      "protects": "A risk row on this name may cite only a printed page the file already records, taken from the annual report block or from one of the source blocks on the audited statements. A page number appearing on a risk and nowhere else would mean a magnitude arrived without the source block that lets a reader check it. The register mixes rows resting on a research note with rows resting on the audited statements, so the rule is enforced per row rather than by banning pages outright."
-      ,
+      "protects": "A risk row on this name may cite only a printed page the file already records, taken from the annual report block or from one of the source blocks on the audited statements. A page number appearing on a risk and nowhere else would mean a magnitude arrived without the source block that lets a reader check it. The register mixes rows resting on a research note with rows resting on the audited statements, so the rule is enforced per row rather than by banning pages outright.",
       "fragment": "a risk row cites a printed page this file does not record"
     },
     {

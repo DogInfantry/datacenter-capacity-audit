@@ -2,7 +2,7 @@
   "_source": "FactIQ MCP, search_company_filings, search_target=facts",
   "_company": "EQUINIX INC",
   "_harvested": "2026-08-28",
-  "_note": "Values as returned by the server, unedited. One entry per concept, with the concept string that produced it. Annual periods are calendar years: Equinix closes 31 December.",
+  "_note": "Values as returned by the server, unedited. One entry per concept, with the concept string that produced it and, per period, the filing the store served the value from. That filing is not always the one recorded against the rest of the row in data/companies/, which is why each promoted field carries its own source.",
   "concepts": {
     "revenue": {
       "query": "concept=revenue, metric_class=financial",
@@ -27,7 +27,10 @@
         "2026-01-01/2026-03-31": 2444000000,
         "2026-04-01/2026-06-30": 2625000000
       },
-      "restated_periods": ["2022-12-31", "2023-12-31"]
+      "restated_periods": [
+        "2022-12-31",
+        "2023-12-31"
+      ]
     },
     "Operating income loss": {
       "query": "concept=Operating income loss",
@@ -125,6 +128,92 @@
         "2025-12-31": 4311000000
       },
       "_note": "Equinix splits capital spend across this line and Payments to acquire real estate. Only this line carries an annual series; the real estate line is quarterly only. This is the larger of the two and is the data centre construction spend."
+    },
+    "Assets": {
+      "query": "query=Assets, taxonomy=us-gaap",
+      "unit": "USD",
+      "annual": {
+        "2017-12-31": 18691457000,
+        "2018-12-31": 20244638000,
+        "2019-12-31": 23965615000,
+        "2020-12-31": 27006841000,
+        "2021-12-31": 27918698000,
+        "2022-12-31": 30310742000,
+        "2023-12-31": 32651000000,
+        "2024-12-31": 35085000000
+      },
+      "filings": {
+        "2017-12-31": "FY2018 10-K",
+        "2018-12-31": "FY2019 10-K",
+        "2019-12-31": "FY2020 10-K",
+        "2020-12-31": "FY2021 10-K",
+        "2021-12-31": "FY2022 10-K",
+        "2022-12-31": "FY2023 10-K",
+        "2023-12-31": "FY2024 10-K",
+        "2024-12-31": "FY2025 10-K"
+      },
+      "restated_periods": [
+        "2023-12-31"
+      ],
+      "_harvested": "2026-09-03"
+    },
+    "Net income loss": {
+      "query": "query=Net income loss, taxonomy=us-gaap",
+      "unit": "USD",
+      "annual": {
+        "2018-12-31": 365359000,
+        "2019-12-31": 507450000,
+        "2020-12-31": 369777000,
+        "2021-12-31": 500191000,
+        "2022-12-31": 705000000,
+        "2023-12-31": 969000000,
+        "2024-12-31": 815000000,
+        "2025-12-31": 1350000000
+      },
+      "filings": {
+        "2018-12-31": "FY2020 10-K",
+        "2019-12-31": "FY2021 10-K",
+        "2020-12-31": "FY2022 10-K",
+        "2021-12-31": "FY2023 10-K",
+        "2022-12-31": "FY2024 10-K",
+        "2023-12-31": "FY2025 10-K",
+        "2024-12-31": "FY2025 10-K",
+        "2025-12-31": "FY2025 10-K"
+      },
+      "restated_periods": [
+        "2022-12-31",
+        "2023-12-31"
+      ],
+      "_harvested": "2026-09-03"
+    },
+    "Net cash provided by used in investing activities": {
+      "query": "query=Net cash provided by used in investing activities, taxonomy=us-gaap",
+      "unit": "USD",
+      "annual": {
+        "2018-12-31": -3075528000,
+        "2019-12-31": -1944567000,
+        "2020-12-31": -3426972000,
+        "2021-12-31": -3006738000,
+        "2022-12-31": -3363000000,
+        "2023-12-31": -3224000000,
+        "2024-12-31": -3937000000,
+        "2025-12-31": -6484000000
+      },
+      "filings": {
+        "2018-12-31": "FY2020 10-K",
+        "2019-12-31": "FY2021 10-K",
+        "2020-12-31": "FY2022 10-K",
+        "2021-12-31": "FY2023 10-K",
+        "2022-12-31": "FY2024 10-K",
+        "2023-12-31": "FY2025 10-K",
+        "2024-12-31": "FY2025 10-K",
+        "2025-12-31": "FY2025 10-K"
+      },
+      "restated_periods": [
+        "2022-12-31",
+        "2023-12-31"
+      ],
+      "_harvested": "2026-09-03"
     }
   },
   "not_available": {

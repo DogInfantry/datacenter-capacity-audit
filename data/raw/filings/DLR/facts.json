@@ -2,7 +2,7 @@
   "_source": "FactIQ MCP, search_company_filings, search_target=facts",
   "_company": "DIGITAL REALTY TRUST, INC.",
   "_harvested": "2026-08-28",
-  "_note": "Values as returned by the server, unedited. Annual periods are calendar years: Digital Realty closes 31 December.",
+  "_note": "Values as returned by the server, unedited. One entry per concept, with the concept string that produced it and, per period, the filing the store served the value from. That filing is not always the one recorded against the rest of the row in data/companies/, which is why each promoted field carries its own source.",
   "_warning": "Do not query this filer with concept=\"revenues\". That string resolves to \"Equity method investment summarized financial information revenue\", an unrelated line roughly twenty times too small. The total revenue concept is \"Revenue\".",
   "concepts": {
     "Revenue": {
@@ -53,9 +53,12 @@
       }
     },
     "Net income loss": {
-      "query": "concept=Net income loss, report_type=annual",
+      "query": "query=Net income loss, taxonomy=us-gaap",
       "unit": "USD",
       "annual": {
+        "2017-12-31": 248259000,
+        "2018-12-31": 331246000,
+        "2019-12-31": 579761000,
         "2020-12-31": 356398000,
         "2021-12-31": 1709259000,
         "2022-12-31": 377684000,
@@ -63,7 +66,19 @@
         "2024-12-31": 602490000,
         "2025-12-31": 1308589000
       },
-      "_note": "Harvested but not used. A bottom up rebuild of adjusted EBITDA from net income would need the gain on sale of investments, which is not tagged, and FY2021 is heavily inflated by joint venture disposal gains."
+      "filings": {
+        "2017-12-31": "FY2019 10-K",
+        "2018-12-31": "FY2020 10-K",
+        "2019-12-31": "FY2021 10-K",
+        "2020-12-31": "FY2022 10-K",
+        "2021-12-31": "FY2023 10-K",
+        "2022-12-31": "FY2024 10-K",
+        "2023-12-31": "FY2025 10-K",
+        "2024-12-31": "FY2025 10-K",
+        "2025-12-31": "FY2025 10-K"
+      },
+      "restated_periods": [],
+      "_harvested": "2026-09-03"
     },
     "Net cash provided by used in operating activities": {
       "query": "concept=Net cash provided by used in operating activities, report_type=annual",
@@ -93,6 +108,60 @@
         "2025-12-31": 3181179000
       },
       "_note": "The development spend line is the right capital expenditure analogue for a real estate investment trust. Acquisitions of completed assets sit on a separate line and are not construction."
+    },
+    "Assets": {
+      "query": "query=Assets, taxonomy=us-gaap",
+      "unit": "USD",
+      "annual": {
+        "2017-12-31": 21404345000,
+        "2018-12-31": 23766695000,
+        "2019-12-31": 23068131000,
+        "2020-12-31": 36076291000,
+        "2021-12-31": 36369560000,
+        "2022-12-31": 41484998000,
+        "2023-12-31": 44113258000,
+        "2024-12-31": 45283616000
+      },
+      "filings": {
+        "2017-12-31": "FY2018 10-K",
+        "2018-12-31": "FY2019 10-K",
+        "2019-12-31": "FY2020 10-K",
+        "2020-12-31": "FY2021 10-K",
+        "2021-12-31": "FY2022 10-K",
+        "2022-12-31": "FY2023 10-K",
+        "2023-12-31": "FY2024 10-K",
+        "2024-12-31": "FY2025 10-K"
+      },
+      "restated_periods": [],
+      "_harvested": "2026-09-03"
+    },
+    "Net cash provided by used in investing activities": {
+      "query": "query=Net cash provided by used in investing activities, taxonomy=us-gaap",
+      "unit": "USD",
+      "annual": {
+        "2017-12-31": -1357153000,
+        "2018-12-31": -3035993000,
+        "2019-12-31": -274992000,
+        "2020-12-31": -2599347000,
+        "2021-12-31": -1061721000,
+        "2022-12-31": -4699403000,
+        "2023-12-31": -1115111000,
+        "2024-12-31": -1906157000,
+        "2025-12-31": -2230472000
+      },
+      "filings": {
+        "2017-12-31": "FY2019 10-K",
+        "2018-12-31": "FY2020 10-K",
+        "2019-12-31": "FY2021 10-K",
+        "2020-12-31": "FY2022 10-K",
+        "2021-12-31": "FY2023 10-K",
+        "2022-12-31": "FY2024 10-K",
+        "2023-12-31": "FY2025 10-K",
+        "2024-12-31": "FY2025 10-K",
+        "2025-12-31": "FY2025 10-K"
+      },
+      "restated_periods": [],
+      "_harvested": "2026-09-03"
     }
   },
   "not_available": {

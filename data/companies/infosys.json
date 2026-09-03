@@ -15,6 +15,33 @@
       "revenue": 16311000000,
       "cfo": 3345000000,
       "capex": 290000000,
+      "totalAssets": {
+        "value": 15555000000,
+        "source": {
+          "filing": "FY2023 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "pat": {
+        "value": 2968000000,
+        "source": {
+          "filing": "FY2024 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "cfi": {
+        "value": -1005000000,
+        "source": {
+          "filing": "FY2024 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
       "source": {
         "filing": "FY2024 20-F",
         "publisher": "SEC EDGAR",
@@ -29,6 +56,33 @@
       "revenue": 18212000000,
       "cfo": 2853000000,
       "capex": 319000000,
+      "totalAssets": {
+        "value": 15312000000,
+        "source": {
+          "filing": "FY2024 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "pat": {
+        "value": 2983000000,
+        "source": {
+          "filing": "FY2025 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "cfi": {
+        "value": -218000000,
+        "source": {
+          "filing": "FY2025 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
       "source": {
         "filing": "FY2025 20-F",
         "publisher": "SEC EDGAR",
@@ -43,6 +97,33 @@
       "revenue": 18562000000,
       "cfo": 3148000000,
       "capex": 266000000,
+      "totalAssets": {
+        "value": 16523000000,
+        "source": {
+          "filing": "FY2025 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "pat": {
+        "value": 3169000000,
+        "source": {
+          "filing": "FY2026 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "cfi": {
+        "value": -708000000,
+        "source": {
+          "filing": "FY2026 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
       "source": {
         "filing": "FY2026 20-F",
         "publisher": "SEC EDGAR",
@@ -57,6 +138,33 @@
       "revenue": 19277000000,
       "cfo": 4351000000,
       "capex": 263000000,
+      "totalAssets": {
+        "value": 17419000000,
+        "source": {
+          "filing": "FY2026 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "pat": {
+        "value": 3162000000,
+        "source": {
+          "filing": "FY2026 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "cfi": {
+        "value": -361000000,
+        "source": {
+          "filing": "FY2026 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
       "source": {
         "filing": "FY2026 20-F",
         "publisher": "SEC EDGAR",
@@ -71,6 +179,33 @@
       "revenue": 20158000000,
       "cfo": 4039000000,
       "capex": 306000000,
+      "totalAssets": {
+        "value": 16446000000,
+        "source": {
+          "filing": "FY2026 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "pat": {
+        "value": 3316000000,
+        "source": {
+          "filing": "FY2026 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
+      "cfi": {
+        "value": 10000000,
+        "source": {
+          "filing": "FY2026 20-F",
+          "publisher": "SEC EDGAR",
+          "verification": "PRIMARY",
+          "restated": false
+        }
+      },
       "source": {
         "filing": "FY2026 20-F",
         "publisher": "SEC EDGAR",
