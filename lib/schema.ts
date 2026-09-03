@@ -2091,6 +2091,7 @@ export const Netweb = z
   });
 
 export type Netweb = z.infer<typeof Netweb>;
+export type E2E = z.infer<typeof E2E>;
 
 /**
  * The method: formulas with their denominators, the known limits, and the log
@@ -2607,6 +2608,94 @@ export type TechnoElectric = z.infer<typeof TechnoElectric>;
  * there. Adding a guard without documenting it fails the tests, and so does
  * leaving a row behind after removing one.
  */
+/**
+ * E2E Networks, the fourth document read and the only filer here that publishes
+ * no capacity at all.
+ *
+ * Two measures come out of it and neither is about megawatts. The first is a
+ * growth quality question: the company reports a year up seventy three per cent
+ * and, in the same report, an exit run rate that annualises below the year it
+ * has just finished. The second is an earnings quality question: what the
+ * operations produced before tax against what arrived as other income.
+ *
+ * Amounts are in the unit the statements print, lakh, except the monthly
+ * recurring revenue, which the report gives in crore. Both are stored as
+ * printed and neither is converted, so the unit travels with the figure.
+ */
+export const E2E = z
+  .object({
+    _note: z.string().min(1),
+    entity: z.string().min(1),
+    ticker: z.string().min(1),
+    fiscalYear: z.string().min(1),
+    priorFiscalYear: z.string().min(1),
+    unit: z.string().min(1),
+    /** The income statement as the report summarises it, twice. */
+    performance: z.object({
+      revenueLakh: z.number().positive(),
+      revenueLakhPrior: z.number().positive(),
+      ebitdaLakh: z.number(),
+      depreciationLakh: z.number().nonnegative(),
+      financeCostsLakh: z.number().nonnegative(),
+      otherIncomeLakh: z.number(),
+      otherIncomeLakhPrior: z.number(),
+      profitBeforeTaxLakh: z.number(),
+      /** The report prints the same table in two sections. Both pages are
+       *  recorded, because a figure printed twice is a stronger citation than
+       *  the same figure cited once. */
+      pages: z.array(z.number().int().positive()).min(1),
+    }),
+    /** The only operating rate the company publishes, and it is in crore. */
+    recurring: z.object({
+      monthlyCrore: z.number().positive(),
+      monthlyCrorePrior: z.number().positive(),
+      asOf: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      asOfPrior: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+      quote: z.string().min(1),
+      page: z.number().int().positive(),
+    }),
+    /** What the report does not say, kept beside what it does. */
+    notRead: z.array(z.string().min(1)).min(1),
+    pagination: z.object({
+      pdfIndexOfPrintedOne: z.number().int().positive(),
+      foliosAgreeing: z.number().int().positive(),
+      pdfPages: z.number().int().positive(),
+      sha256: z.string().regex(/^[0-9a-f]{64}$/),
+      url: z.string().url(),
+    }),
+    source: PagedSource,
+  })
+  .superRefine((d, ctx) => {
+    const p = d.performance;
+    // The summary table must reconcile to the profit printed under it. Every
+    // line is typed from one page, and a mistyped one would move a ratio the
+    // page quotes while changing nothing a reader could see.
+    const built = p.ebitdaLakh - p.depreciationLakh - p.financeCostsLakh + p.otherIncomeLakh;
+    if (Math.abs(built - p.profitBeforeTaxLakh) > 0.01) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["performance"],
+        // Worded away from the Anant Raj guard on purpose. That one owns the
+        // phrase about reconciling, and the ledger test requires every
+        // documented fragment to identify exactly one guard, so two guards
+        // checking the same kind of thing must still say it differently. Do not
+        // quote the other guard's wording here either: the test greps this
+        // source, and a comment counts.
+        message: `the summary income statement does not add up to the profit before tax printed under it, building ${built.toFixed(2)} against ${p.profitBeforeTaxLakh}`,
+      });
+    }
+    // The finding, asserted rather than described: annualising the exit rate
+    // must land below the year just reported. If a later year closes that gap,
+    // the sentence on the page has stopped being true.
+    if (d.recurring.monthlyCrore * 12 * 100 >= p.revenueLakh) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["recurring"],
+        message: "the exit run rate no longer annualises below the year reported beside it",
+      });
+    }
+  });
+
 export const Invariants = z
   .object({
     categories: z

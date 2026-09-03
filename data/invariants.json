@@ -396,6 +396,20 @@
       "fragment": "does not reconcile to its own profit before tax"
     },
     {
+      "id": "e2e-summary-adds-up",
+      "schema": "E2E",
+      "category": "RECONCILE",
+      "protects": "The summary income statement must add up to the profit before tax printed under it. Every line is typed from one page, and a mistyped one would move the ratio the page quotes between operating profit and other income while changing nothing a reader could see. Worded away from the Anant Raj guard on purpose: the ledger requires each documented fragment to identify exactly one guard, so two guards checking the same kind of thing must say it differently.",
+      "fragment": "does not add up to the profit before tax printed under it"
+    },
+    {
+      "id": "e2e-exit-rate-below-year",
+      "schema": "E2E",
+      "category": "FINDING",
+      "protects": "The finding, asserted rather than described. Annualising the exit monthly recurring revenue must land below the revenue of the year reported beside it: a year described as up seventy three per cent that ends at a run rate a fifth under its own average has its growth behind it. If a later report closes that gap the claim has stopped being true and the build should fail instead of the sentence going stale.",
+      "fragment": "no longer annualises below the year reported beside it"
+    },
+    {
       "id": "anantraj-cashflow-reconciles",
       "schema": "AnantRaj",
       "category": "RECONCILE",

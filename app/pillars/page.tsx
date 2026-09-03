@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { companies, sisl, sifyCo, disclosureRegister } from "@/lib/data";
+import { companies, sisl, sifyCo, disclosureRegister, e2e } from "@/lib/data";
+import { growthQuality, earningsQuality } from "@/lib/diagnostics/e2e";
+import { RevenueQuality } from "@/components/RevenueQuality";
 import { refusalRate, pressurePerCall } from "@/lib/diagnostics/disclosure";
 import { DisclosureRates } from "@/components/DisclosureRates";
 import { armAgainstParent, peerCashConversion } from "@/lib/diagnostics/cashQuality";
@@ -13,14 +15,14 @@ import { Leverage } from "@/components/Leverage";
 export const metadata: Metadata = {
   title: "Pillars",
   description:
-    "Two of the brief's six forensic pillars, built. Cash conversion across every filer whose statements are machine readable, and leverage on both readings of a lease liability the filing never defines.",
+    "Three of the brief's six forensic pillars, built. Cash conversion across every filer whose statements are machine readable, leverage on both readings of a lease liability the filing never defines, and revenue quality on the one covered name that publishes no capacity at all.",
 };
 
 /**
- * The forensic scorecard, two pillars in.
+ * The forensic scorecard, three pillars in.
  *
- * The brief asks for six. This route carries the two that have been built and
- * names the four that have not, rather than shipping empty headings that would
+ * The brief asks for six. This route carries the three that have been built and
+ * names the three that have not, rather than shipping empty headings that would
  * read as work in progress instead of as work not done.
  *
  * The page is not a ranking. Two of these filers are IT services groups and two
@@ -53,6 +55,8 @@ export default function PillarsPage() {
   );
   const leastRefusing = reg[0];
   const mostRefusing = reg[reg.length - 1];
+  const grow = growthQuality(e2e);
+  const earn = earningsQuality(e2e);
   const mostAsked = [...reg].sort(
     (a, b) => pressurePerCall(b).perCall - pressurePerCall(a).perCall,
   )[0];
@@ -77,10 +81,10 @@ export default function PillarsPage() {
         question at all.
       </h1>
       <p className="mt-5 max-w-2xl leading-relaxed text-muted">
-        Cash conversion is the first of the brief&rsquo;s six pillars to be built and the balance
-        sheet is the second. The first runs two measures of the same idea and reports them side by
-        side rather than averaging them, because they can disagree and the disagreement is worth
-        more than either verdict alone. The bands are published on{" "}
+        Cash conversion is the first of the brief&rsquo;s six pillars to be built, the balance
+        sheet is the second and revenue quality is the third. The first runs two measures of one
+        idea and reports them side by side rather than averaging them, because they can disagree
+        and the disagreement is worth more than either verdict alone. The bands are published on{" "}
         <Link href="/methodology" className="underline decoration-line underline-offset-4">
           the methodology page
         </Link>{" "}
@@ -236,6 +240,53 @@ export default function PillarsPage() {
             The company confirmed the method in its own words while declining the number.
           </p>
         </Exhibit>
+
+        <Exhibit
+          n={5}
+          title={`A year reported up ${grow.reportedGrowthPct.toFixed(0)} per cent ends at a rate that annualises ${grow.shortfallPct.toFixed(0)} per cent below it`}
+          units={`${e2e.entity}, ${e2e.fiscalYear}. The top three bars are crore of revenue on one scale. The bar beneath them is the profit before tax, split into what the operations produced and what arrived as other income, in ${e2e.unit}. Both units are as the report prints them, two pages apart, and neither is converted into the other.`}
+          source={e2e.source.label}
+          page={e2e.source.page}
+        >
+          <RevenueQuality growth={grow} earnings={earn} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            This is the coverage name with no capacity to measure. Its report states no megawatt and
+            no kilowatt in{" "}
+            <span className="tnum text-foreground">{e2e.pagination.pdfPages}</span> pages, and it is
+            a tenant in someone else&rsquo;s hall rather than an operator, so the question this
+            analysis usually asks cannot be put to it. Two questions can, and both come out of
+            figures it prints itself.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The first is where in the year the growth happened. The only operating rate the company
+            publishes is monthly recurring revenue, in its own words:{" "}
+            <span className="text-foreground">&ldquo;{grow.quote}&rdquo;</span> That is{" "}
+            <span className="tnum text-foreground">{grow.exitGrowthPct.toFixed(2)}</span> per cent
+            against a year reported up{" "}
+            <span className="tnum text-foreground">{grow.reportedGrowthPct.toFixed(2)}</span>. A
+            year of that shape has its growth behind it rather than in front.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            The second is where the profit came from. Other income of{" "}
+            <span className="tnum text-foreground">
+              {earn.otherIncomeLakh.toLocaleString("en-US")}
+            </span>{" "}
+            is{" "}
+            <span className="tnum text-foreground">
+              {earn.otherOverOperating?.toFixed(2) ?? "not comparable"}
+            </span>{" "}
+            times the{" "}
+            <span className="tnum text-foreground">
+              {earn.operatingLakh.toLocaleString("en-US")}
+            </span>{" "}
+            the business made before tax, and{" "}
+            <span className="tnum text-foreground">{earn.otherShareOfPbtPct.toFixed(0)}</span> per
+            cent of the profit before tax. The report gives the figure and never its composition.
+            The same summary table is printed twice, in the directors&rsquo; report and again in the
+            management discussion, with identical figures and no explanation in either.
+          </p>
+        </Exhibit>
       </div>
 
       <section className="mt-12 border-t border-line pt-8">
@@ -251,7 +302,7 @@ export default function PillarsPage() {
             },
             {
               h: "Revenue quality",
-              b: "Customer concentration is read for the two Indian operators and carries its first result. One states the same concentration in three sections, including an audited note, and all three agree exactly; the other discloses no customer above a tenth of revenue. Pricing, contract duration and churn are unread for every filer.",
+              b: "Two results, in Exhibit 4 and Exhibit 5 above. Customer concentration is read for the two Indian operators, and one of them states the same concentration in three sections including an audited note, all agreeing exactly. Growth quality is read for a third, whose exit run rate annualises below the year it reported. Pricing, contract duration and churn are unread for every filer.",
             },
             {
               h: "Balance sheet",

@@ -167,6 +167,16 @@ Recorded with the finding each one produced, because a tick is not a result.
   wider is narrow: the five harvested filers carry total assets but no borrowings or lease
   liability split, and no second operator has had a balance sheet read.
 
+- **The revenue quality pillar, opened on the filer with nothing to measure.** E2E Networks
+  publishes no capacity, so the question this coverage usually asks cannot be put to it. Two others
+  can, out of figures it prints itself. Revenue rose 73.57 per cent to 163.96 crore while the exit
+  monthly recurring revenue, the only operating rate it publishes, rose 2.75 per cent, and
+  annualising that rate gives 134.4 crore, eighteen per cent below the year just reported: the
+  growth sits behind the year rather than in front of it. And of 6,279.14 lakh of profit before tax,
+  2,336.46 came from the operations and 3,942.68 from other income, which is 1.69 times the
+  operating result and 63 per cent of the total. The report gives that figure and never its
+  composition, so neither does the page. Both legs are guards.
+
 - **The rest of the prospectus teardown.** The document is read and partly extracted: the offer,
   the objects and deployment schedule, and the capacity definitions, each cited by printed page.
   Still to extract, with the page map already recorded in

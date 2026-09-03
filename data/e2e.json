@@ -1,0 +1,52 @@
+{
+  "_note": "E2E Networks Limited, annual report FY2024-25, read by hand. The document states no megawatt or kilowatt figure anywhere in its 148 pages, which is recorded against the coverage row in universe.json rather than here. What is here is what it does publish. Amounts are in lakh, the unit the statements print, except the monthly recurring revenue, which the report gives in crore. Neither is converted.",
+  "entity": "E2E Networks Limited",
+  "ticker": "E2E",
+  "fiscalYear": "FY2024-25",
+  "priorFiscalYear": "FY2023-24",
+  "unit": "INR lakh",
+
+  "performance": {
+    "revenueLakh": 16396.08,
+    "revenueLakhPrior": 9446.36,
+    "ebitdaLakh": 9666.08,
+    "depreciationLakh": 6007.61,
+    "financeCostsLakh": 1322.01,
+    "otherIncomeLakh": 3942.68,
+    "otherIncomeLakhPrior": 163.38,
+    "profitBeforeTaxLakh": 6279.14,
+    "pages": [24, 91]
+  },
+
+  "recurring": {
+    "monthlyCrore": 11.2,
+    "monthlyCrorePrior": 10.9,
+    "asOf": "2025-03-31",
+    "asOfPrior": "2024-03-31",
+    "quote": "Compared to Rs. 10.90 Crores in March 2024, the monthly recurring revenue increased to Rs. 11.2 Crores in March 2025.",
+    "page": 26
+  },
+
+  "notRead": [
+    "What the other income is. The report gives the figure and never its composition, and it is 1.69 times what the operations produced before tax",
+    "Any power capacity, in megawatts or kilowatts. The document carries no figure in that unit",
+    "Revenue by customer, or any concentration disclosure",
+    "A quarterly revenue series, which would show where in the year the growth stopped",
+    "The terms of the arrangement at the third party facility in Chennai"
+  ],
+
+  "pagination": {
+    "pdfIndexOfPrintedOne": 2,
+    "foliosAgreeing": 123,
+    "pdfPages": 148,
+    "sha256": "a9b767ac30a4258f744d7be478d513cbaf330573bdf25d468b36298a7982e3a7",
+    "url": "https://nsearchives.nseindia.com/annual_reports/AR_28419_E2E_2024_2025_A_2031137_04092025160657.pdf"
+  },
+
+  "source": {
+    "label": "E2E Networks Limited annual report FY2024-25. The financial performance summary is printed twice, in the Directors' Report and again in the management discussion, with identical figures. The monthly recurring revenue sits in the Directors' Report narrative.",
+    "page": 24,
+    "asOf": "2025-09-04",
+    "verification": "PRIMARY"
+  }
+}
