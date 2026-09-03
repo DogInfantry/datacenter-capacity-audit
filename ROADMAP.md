@@ -143,9 +143,17 @@ Recorded with the finding each one produced, because a tick is not a result.
   entity at printed 349, related party transactions inside its notes, customer concentration, and
   outstanding litigation at printed 463. The standalone accounts are the valuable one, because
   they turn the Sify Technologies segment note into something checkable rather than assumed.
-- **`concentration.ts`.** `cashQuality.ts` has its inputs and is built. Concentration was the more
-  interesting of the two anyway: Sify discloses a single customer revenue line running 2017 to 2026,
-  and that table is read for one filer and unread for the other four.
+- **`concentration.ts`, built, and the result was better than the measure.** It was queued as a
+  concentration metric. What it became is a reconciliation. The prospectus states its customer
+  concentration three times, in three sections, and joins no two of them: a client table in the risk
+  factors at printed 36, a long contract share also in the risk factors at printed 46, and note 33
+  to the restated financial information at printed 407. The first two agreeing was already a guard
+  here and is weaker evidence than it looks, since both are written by the issuer for its own
+  document. The third sits inside the accounts the auditor examined and lands on the same figure to
+  the paisa in all four periods. Three counterparties, between 64.06 and 68.34 per cent of revenue,
+  and the contract base the issuer calls durable is those same three. Both legs are guards. What is
+  still open is the rest of revenue quality: pricing, contract duration and churn are unread for
+  every filer, and Sify's single customer revenue line running 2017 to 2026 is unpulled.
 - **Disclosure rates beyond the two unit economics families.** The register measures pricing
   mechanics and cost margin bridge, chosen so that every published rate rests on topics that are
   unambiguously unit economics. Capacity milestone and capital allocation were pulled during the

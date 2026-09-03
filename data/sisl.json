@@ -275,6 +275,19 @@
     "verification": "PRIMARY"
   },
 
+  "majorCustomer": [
+    { "label": "FY2023", "amountMn": 6846.65, "customers": 3 },
+    { "label": "FY2024", "amountMn": 7137.38, "customers": 3 },
+    { "label": "FY2025", "amountMn": 9761.63, "customers": 3 },
+    { "label": "Q1 FY2026", "amountMn": 2672.06, "customers": 3 }
+  ],
+  "majorCustomerSource": {
+    "label": "Sify Infinit Spaces DRHP, note 33 to the Restated Consolidated financial information, segment reporting, under the heading Major Customer. The note aggregates three customers and gives the amount only. It is the one statement of this concentration inside the accounts the auditor examined.",
+    "page": 407,
+    "asOf": "2025-10-16",
+    "verification": "PRIMARY"
+  },
+
   "capacityDefinitions": {
     "engineeredToSupport": {
       "quote": "Built Capacity is the maximum IT load a data center is engineered to support, based on business requirements, space planning, and infrastructure feasibility.",

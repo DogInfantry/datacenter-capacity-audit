@@ -1037,6 +1037,29 @@ export const Sisl = z
       )
       .min(3),
     clientsSource: PagedSource,
+    /**
+     * Revenue from the largest customers, as the audited note states it.
+     *
+     * The client table on printed 36 and the long contract share on printed 46
+     * already describe these same counterparties, and a guard below asserts
+     * that those two agree. Both are risk factors: written by the issuer, for
+     * the issuer's document, about itself. This is the third statement of the
+     * same fact and the only one inside the examined financial information.
+     */
+    majorCustomer: z
+      .array(
+        z.object({
+          label: z.string().min(1),
+          amountMn: z.number().positive(),
+          /** How many customers the note aggregates. Stored rather than assumed
+           *  at three, because a note that changed its own count in a later
+           *  period would otherwise be compared against the wrong slice of the
+           *  client table without anything noticing. */
+          customers: z.number().int().positive(),
+        }),
+      )
+      .min(3),
+    majorCustomerSource: PagedSource,
     capacityDefinitions: z.object({
       engineeredToSupport: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
       availableToSell: z.object({ quote: z.string().min(1), page: z.number().int().positive() }),
@@ -1099,6 +1122,31 @@ export const Sisl = z
           code: z.ZodIssueCode.custom,
           path: ["clients"],
           message: `${c.label}: the filing states clients 1, 2 and 3 are Hyperscalers in every period`,
+        });
+      }
+    }
+    // The third leg, and the only audited one.
+    //
+    // The identity above joins two risk factors, which is weaker evidence than
+    // it looks: both are written by the issuer, for the issuer's document,
+    // about itself. Note 33 to the restated financial information states the
+    // same revenue as an amount, inside the accounts the auditor examined, and
+    // it lands on the same figure to the paisa in every filed period.
+    //
+    // Only this leg is asserted. Note 33 against the long contract share would
+    // be a second test of one fact, since that link already follows through the
+    // guard above.
+    for (const m of d.majorCustomer) {
+      const c = d.clients.find((x) => x.label === m.label);
+      if (!c) continue;
+      const top = c.rows
+        .filter((r) => r.rank <= m.customers)
+        .reduce((t, r) => t + r.amount, 0);
+      if (Math.abs(top - m.amountMn) > 0.01) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["majorCustomer"],
+          message: `${m.label}: the audited note reports ${m.amountMn} from ${m.customers} customers against ${top.toFixed(2)} in the client table. The risk factor and the examined accounts no longer agree.`,
         });
       }
     }
@@ -1265,6 +1313,7 @@ export const Sisl = z
       ...d.governance.quantified.map((q) => q.page),
       d.governance.associate.source.page,
       ...d.governance.associate.exposures.map((e) => e.page),
+      d.majorCustomerSource.page,
     ]);
 
     // Every period the associate exposure is stated for must be a period this

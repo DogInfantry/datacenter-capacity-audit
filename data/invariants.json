@@ -53,6 +53,13 @@
       "fragment": "the filing states clients 1, 2 and 3 are Hyperscalers in every period"
     },
     {
+      "id": "audited-note-matches-client-table",
+      "schema": "Sisl",
+      "category": "RECONCILE",
+      "protects": "The third statement of the customer concentration, and the only one inside the accounts the auditor examined. The client table and the long contract share are both risk factors, written by the issuer for its own document, so their agreeing proves less than it looks. Note 33 reports the same revenue as an amount and lands on the client table to the paisa in every filed period. If an edit breaks that, the risk factors and the examined accounts have stopped agreeing and the build should say so.",
+      "fragment": "The risk factor and the examined accounts no longer agree."
+    },
+    {
       "id": "sisl-definitions-apart",
       "schema": "Sisl",
       "category": "FINDING",

@@ -146,7 +146,7 @@ export default function PillarsPage() {
             },
             {
               h: "Revenue quality",
-              b: "Needs the customer concentration tables, read for one filer and unread for the rest.",
+              b: "Customer concentration is read for the two Indian operators and carries its first result. One states the same concentration in three sections, including an audited note, and all three agree exactly; the other discloses no customer above a tenth of revenue. Pricing, contract duration and churn are unread for every filer.",
             },
             {
               h: "Balance sheet",

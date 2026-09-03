@@ -19,6 +19,11 @@ import { CapacityVsReturns } from "@/components/CapacityVsReturns";
 import { CapacityStep } from "@/components/CapacityStep";
 import { Exhibit, Estate, RevenuePerMW } from "@/components/Exhibits";
 import { ClientConcentration } from "@/components/ClientConcentration";
+import {
+  concentrationPages,
+  concentrationTie,
+  longContractShare,
+} from "@/lib/diagnostics/concentration";
 import { SiteMap } from "@/components/SiteMap";
 import { RiskMatrix } from "@/components/RiskMatrix";
 import { CapexVsCfo } from "@/components/CapexVsCfo";
@@ -177,9 +182,10 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
   const clientsLatest = sisl.clients[0];
   const clientsFirst = sisl.clients[sisl.clients.length - 1];
   const top3 = clientsLatest.rows.filter((r) => r.rank <= 3).reduce((t, r) => t + r.share, 0);
-  const longContractShare = Object.fromEntries(
-    sisl.contracts.map((c) => [c.label, c.longContractRevenueShare]),
-  );
+  // Both the exhibit and the guard need this, so it is built in one place.
+  const contractShare = longContractShare(sisl);
+  const tie = concentrationTie(sisl);
+  const tiePages = concentrationPages(sisl);
 
   const rail: {
     icon: IconName;
@@ -224,7 +230,7 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
     ],
     [
       "The contract security and the concentration are the same three names.",
-      `Printed page ${sisl.contractsSource.page} reports ${longContractShare[clientsLatest.label].toFixed(2)}% of revenue on contracts of at least seven years and calls it durability. That is the same number, to the decimal, in all four periods. The document never joins the two tables.`,
+      `Printed page ${sisl.contractsSource.page} reports ${contractShare[clientsLatest.label].toFixed(2)}% of revenue on contracts of at least seven years and calls it durability. The audited note on printed page ${tiePages.audited} reports the same revenue as an amount. All three agree in all four periods, and the document joins no two of them.`,
     ],
     [
       "Returns fell while the estate doubled.",
@@ -302,16 +308,17 @@ export default async function CompanyPage({ params }: PageProps<"/company/[ticke
       <section className="space-y-6 border-t border-line py-12">
         <Exhibit
           n={1}
-          title="The contract book the prospectus calls durable is three Hyperscalers"
-          units="Share of revenue from operations, per cent. Four periods, most recent first."
-          source={sisl.clientsSource.label}
+          title="The contract book the prospectus calls durable is three Hyperscalers, and the audited note agrees"
+          units="Share of revenue from operations, per cent. Four periods, most recent first. Three sections of the filing describe these same counterparties and the document joins none of them."
+          source={`${sisl.clientsSource.label} ${sisl.majorCustomerSource.label}`}
           page={sisl.clientsSource.page}
         >
           <ClientConcentration
             periods={sisl.clients}
-            longContractShare={longContractShare}
-            page={sisl.clientsSource.page}
-            contractPage={sisl.contractsSource.page}
+            tie={tie}
+            page={tiePages.clients}
+            contractPage={tiePages.longContract}
+            auditedPage={tiePages.audited}
           />
         </Exhibit>
 

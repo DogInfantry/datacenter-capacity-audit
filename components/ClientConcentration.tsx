@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { PeriodTie } from "@/lib/diagnostics/concentration";
 
 type Row = { rank: number; amount: number; share: number; type: "Hyperscaler" | "Enterprise" };
 type Period = { label: string; top10Amount: number; top10Share: number; rows: Row[] };
@@ -20,14 +21,17 @@ type Period = { label: string; top10Amount: number; top10Share: number; rows: Ro
  */
 export function ClientConcentration({
   periods,
-  longContractShare,
+  tie,
   page,
   contractPage,
+  auditedPage,
 }: {
   periods: Period[];
-  longContractShare: Record<string, number>;
+  /** Carries the long contract share too, so it is not passed twice. */
+  tie: PeriodTie[];
   page: number;
   contractPage: number;
+  auditedPage: number;
 }) {
   const [hover, setHover] = useState<{ p: string; seg: string } | null>(null);
 
@@ -210,38 +214,54 @@ export function ClientConcentration({
         <div className="mt-3 overflow-x-auto">
           <table className="w-full min-w-[28rem] border-collapse text-xs">
             <caption className="sr-only">
-              Top three client share against the long contract revenue share, by period
+              The top three clients as an amount and a share, against the audited note and the long
+              contract revenue share, by period
             </caption>
             <thead>
-              <tr className="border-b border-line text-left text-muted">
+              <tr className="border-b border-line text-left align-bottom text-muted">
                 <th className="py-1.5 pr-3 font-medium">Period</th>
-                <th className="py-1.5 pr-3 text-right font-medium">Top 3 clients, page {page}</th>
                 <th className="py-1.5 pr-3 text-right font-medium">
-                  7 year contracts, page {contractPage}
+                  Top 3 clients
+                  <span className="block font-normal opacity-70">Rs mn, page {page}</span>
                 </th>
-                <th className="py-1.5 text-right font-medium">Difference</th>
+                <th className="py-1.5 pr-3 text-right font-medium">
+                  Audited note
+                  <span className="block font-normal opacity-70">Rs mn, page {auditedPage}</span>
+                </th>
+                <th className="py-1.5 pr-3 text-right font-medium">
+                  Their share
+                  <span className="block font-normal opacity-70">of revenue</span>
+                </th>
+                <th className="py-1.5 text-right font-medium">
+                  7 year contracts
+                  <span className="block font-normal opacity-70">page {contractPage}</span>
+                </th>
               </tr>
             </thead>
             <tbody>
-              {periods.map((p) => {
-                const t3 = p.rows.filter((r) => r.rank <= 3).reduce((t, r) => t + r.share, 0);
-                const lc = longContractShare[p.label];
-                return (
-                  <tr key={p.label} className="border-b border-line">
-                    <td className="py-1.5 pr-3">{p.label}</td>
-                    <td className="py-1.5 pr-3 text-right tnum">{t3.toFixed(2)}%</td>
-                    <td className="py-1.5 pr-3 text-right tnum">{lc.toFixed(2)}%</td>
-                    <td className="py-1.5 text-right tnum text-accent">{(t3 - lc).toFixed(2)}</td>
-                  </tr>
-                );
-              })}
+              {tie.map((t) => (
+                <tr key={t.label} className="border-b border-line">
+                  <td className="py-1.5 pr-3">{t.label}</td>
+                  <td className="tnum py-1.5 pr-3 text-right">{t.tableMn.toFixed(2)}</td>
+                  <td className="tnum py-1.5 pr-3 text-right">{t.auditedMn.toFixed(2)}</td>
+                  <td className="tnum py-1.5 pr-3 text-right">{t.auditedSharePct.toFixed(2)}%</td>
+                  <td className="tnum py-1.5 text-right text-accent">
+                    {t.longContractSharePct.toFixed(2)}%
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
         <p className="mt-3 text-xs leading-relaxed text-muted">
-          Identical in all four periods. The prospectus presents the contract figure as evidence of
-          revenue durability and the client figure as a risk factor, ten printed pages apart, and
-          never sets them side by side.
+          Three sections, {tie.filter((t) => t.agrees).length} of {tie.length} periods agreeing on
+          both comparisons, to the paisa and to the second decimal. Two of the three are risk
+          factors, written by the issuer for its own document, so their matching proves less than it
+          looks. The third sits in the notes to the restated financial information, inside the
+          accounts the auditor examined, and it reports the same revenue from the same{" "}
+          {tie[0].customers} customers. The contract base the prospectus calls durable
+          and the client concentration it discloses as a risk are one set of counterparties, and the
+          document sets no two of the three side by side.
         </p>
       </div>
 

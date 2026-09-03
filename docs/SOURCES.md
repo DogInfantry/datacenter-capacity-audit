@@ -329,6 +329,15 @@ statement of financial position for the year it closes and the year before, and 
 what was printed, so FY2025 has operating and investing cash on both sides and no balance sheet to
 divide by. The accrual ratio refuses those two cells and names the reason on the page.
 
+**One fact, three sections, and the document joins none of them.** Printed 36 gives revenue by
+client, in the risk factors. Printed 46 gives the share of revenue on contracts of at least seven
+years, also a risk factor, offered as evidence of durability. Printed 407 is note 33 to the restated
+financial information, which reports revenue from three customers as an amount. The top three
+clients equal the audited amount to the paisa in all four filed periods, and that amount over
+restated revenue equals the long contract share to the second decimal. Two of the three are written
+by the issuer for its own document, so their agreeing proves little; the third sits inside the
+accounts the auditor examined, which is a different kind of claim. Both legs are build guards.
+
 **The Sify harvest is now used for a second check, against the prospectus rather than against a
 call.** Sify Technologies reports a data centre segment in its 20-F; Sify Infinit Spaces reports its
 own revenue in the prospectus. Both describe the same business, neither cites the other, and neither
