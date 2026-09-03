@@ -660,6 +660,34 @@
       "category": "EVIDENCE",
       "protects": "The same rule inside the measured register: a refusal that points somewhere must say where it points.",
       "fragment": "a refusal that points somewhere must say where"
+    },
+    {
+      "id": "technoe-commitment-under-tax-disputed",
+      "schema": "TechnoElectric",
+      "category": "FINDING",
+      "protects": "The filer targets 250 MW and calls the business its most consequential decision in a generation, and the only line in either set of accounts that records contracted future capital spending is smaller than the tax demands it is disputing. The page draws the two against each other, so a reversal removes the comparison rather than weakening it.",
+      "fragment": "contracted capital now exceeds the tax it disputes"
+    },
+    {
+      "id": "technoe-reports-no-segment",
+      "schema": "TechnoElectric",
+      "category": "FINDING",
+      "protects": "No segment disclosure appears anywhere in 433 printed pages, so the data centre business cannot be sized apart from the engineering business funding it. The guard fires when that improves, because the page states the absence and would need rewriting.",
+      "fragment": "the report now separates the data centre business"
+    },
+    {
+      "id": "technoe-struck-off-denial-stands-beside-balance",
+      "schema": "TechnoElectric",
+      "category": "FINDING",
+      "protects": "One clause of the consolidated statutory information note tables a balance with a company struck off the register, and the next clause, sharing its numeral, states the Group has no such transactions. The contradiction is the finding, so the balance has to be present for the page to say so.",
+      "fragment": "no longer tables a balance beside the sentence denying there is one"
+    },
+    {
+      "id": "technoe-overdue-exceeds-contracted-capital",
+      "schema": "TechnoElectric",
+      "category": "RECONCILE",
+      "protects": "Two audited figures the page sets against each other: the trade receivables and other financial assets the auditor drew attention to as substantially overdue and unprovided, and the capital the company has contracted to spend. The first is several times the second, and the page says so.",
+      "fragment": "no longer exceed the capital the company has contracted"
     }
   ]
 }

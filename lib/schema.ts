@@ -2546,6 +2546,69 @@ export const TechnoElectric = z
       page: z.number().int().positive(),
     }),
     edgeNetworkSource: PagedSource,
+    commitments: z.object({
+      capitalCommitmentMn: z.number().nonnegative(),
+      capitalCommitmentPriorMn: z.number().nonnegative(),
+      capitalWords: z.string().min(1),
+      contingent: z
+        .array(
+          z.object({
+            head: z.string().min(1),
+            amountMn: z.number().nonnegative(),
+            amountPriorMn: z.number().nonnegative(),
+            paidUnderProtestMn: z.number().nonnegative(),
+            paidUnderProtestPriorMn: z.number().nonnegative(),
+          }),
+        )
+        .min(1),
+      contingentTotalMn: z.number().positive(),
+      contingentTotalPriorMn: z.number().positive(),
+      provisionQuote: z.string().min(1),
+      standalonePage: z.number().int().positive(),
+      consolidatedPage: z.number().int().positive(),
+      source: PagedSource,
+    }),
+    /** What the accounts separate, which for this filer is nothing. The terms
+     *  searched are stored beside the result so the absence can be re-run. */
+    segmentation: z.object({
+      reported: z.boolean(),
+      termsSearched: z.array(z.string().min(1)).min(3),
+      printedPagesSearched: z.number().int().positive(),
+      ambitionWords: z.string().min(1),
+      ambitionPage: z.number().int().positive(),
+      source: PagedSource,
+    }),
+    governance: z.object({
+      emphasisOfMatter: z.object({
+        amountMn: z.number().positive(),
+        subject: z.string().min(1),
+        overdueQuote: z.string().min(1),
+        provisionQuote: z.string().min(1),
+        opinionQuote: z.string().min(1),
+        standalonePage: z.number().int().positive(),
+        consolidatedPage: z.number().int().positive(),
+        source: PagedSource,
+      }),
+      struckOff: z.object({
+        rows: z
+          .array(
+            z.object({
+              name: z.string().min(1),
+              kind: z.enum(["RECEIVABLE", "PAYABLE"]),
+              relationship: z.enum(["RELATED_PARTY", "OTHERS"]),
+              amountMn: z.number().nonnegative(),
+              natureWords: z.string().min(1),
+              relationshipWords: z.string().min(1),
+            }),
+          )
+          .min(1),
+        denialQuote: z.string().min(1),
+        clauseNumeral: z.string().min(1),
+        standalonePage: z.number().int().positive(),
+        consolidatedPage: z.number().int().positive(),
+        source: PagedSource,
+      }),
+    }),
   })
   .superRefine((d, ctx) => {
     const live = d.campuses.filter((c) => c.status === "LIVE").reduce((t, c) => t + c.mw, 0);
@@ -2572,6 +2635,44 @@ export const TechnoElectric = z
         });
       }
     }
+    // The comparison the page leads on. A filer targeting 250 MW prints, in both
+    // sets of accounts, contracts for future capital spending smaller than the
+    // tax demands it is disputing. A reversal removes the comparison.
+    if (d.commitments.capitalCommitmentMn >= d.commitments.contingentTotalMn) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["commitments"],
+        message: `contracted capital now exceeds the tax it disputes, at ${d.commitments.capitalCommitmentMn} against ${d.commitments.contingentTotalMn}`,
+      });
+    }
+    // Fires when the disclosure improves, which is the point. The page states
+    // that the data centre business cannot be sized apart from the engineering
+    // business funding it, and a segment note settles that the other way.
+    if (d.segmentation.reported) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["segmentation"],
+        message: `the report now separates the data centre business, so a reader can size it apart from the rest`,
+      });
+    }
+    // The contradiction is the finding, so both halves are asserted rather than
+    // either alone. One clause tables a balance and the next denies there is one.
+    if (d.governance.struckOff.rows.length === 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["governance", "struckOff"],
+        message: `the struck off note no longer tables a balance beside the sentence denying there is one`,
+      });
+    }
+    // The two figures the page sets against each other, both audited, one drawn
+    // to the auditor's attention and one the company committed to spend.
+    if (d.governance.emphasisOfMatter.amountMn <= d.commitments.capitalCommitmentMn) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["governance", "emphasisOfMatter"],
+        message: `the overdue balances drawn to the auditor's attention no longer exceed the capital the company has contracted`,
+      });
+    }
     // A printed page has to be able to exist in the document. The spread layout
     // means the printed range runs to about twice the PDF page count, and a
     // citation outside it is a misread offset rather than a typo.
@@ -2583,6 +2684,17 @@ export const TechnoElectric = z
       d.campusesSource.page,
       d.targetSource.page,
       d.edgeNetworkSource.page,
+      d.commitments.standalonePage,
+      d.commitments.consolidatedPage,
+      d.commitments.source.page,
+      d.segmentation.ambitionPage,
+      d.segmentation.source.page,
+      d.governance.emphasisOfMatter.standalonePage,
+      d.governance.emphasisOfMatter.consolidatedPage,
+      d.governance.emphasisOfMatter.source.page,
+      d.governance.struckOff.standalonePage,
+      d.governance.struckOff.consolidatedPage,
+      d.governance.struckOff.source.page,
     ];
     for (const page of cited) {
       if (page > maxPrinted) {

@@ -107,5 +107,101 @@
     "page": 73,
     "asOf": "2026-09-01",
     "verification": "PRIMARY"
+  },
+
+  "commitments": {
+    "_note": "Note 38 to the standalone statements and note 37 to the consolidated statements print the same capital commitment, so the figure covers the whole group. Amounts in millions of rupees, the unit the statements print, converted nowhere.",
+    "capitalCommitmentMn": 118.05,
+    "capitalCommitmentPriorMn": 29.35,
+    "capitalWords": "Estimated amount of contracts remaining to be executed on capital account and not provided for (net off capital advance)",
+    "contingent": [
+      {
+        "head": "Indirect tax demands (GST/VAT/CST/Entry tax)",
+        "amountMn": 164.97,
+        "amountPriorMn": 20.92,
+        "paidUnderProtestMn": 9.10,
+        "paidUnderProtestPriorMn": 0.70
+      },
+      {
+        "head": "Income tax demands",
+        "amountMn": 86.06,
+        "amountPriorMn": 146.32,
+        "paidUnderProtestMn": 8.64,
+        "paidUnderProtestPriorMn": 100.47
+      }
+    ],
+    "contingentTotalMn": 251.03,
+    "contingentTotalPriorMn": 167.24,
+    "provisionQuote": "In the opinion of the management, no provision is considered necessary for the disputes mentioned above on the ground that there are fair chances of successful outcome of appeals.",
+    "standalonePage": 264,
+    "consolidatedPage": 368,
+    "source": {
+      "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, note 38 to the standalone financial statements and note 37 to the consolidated financial statements, contingent liabilities and commitments",
+      "page": 368,
+      "asOf": "2026-09-01",
+      "verification": "PRIMARY"
+    }
+  },
+
+  "segmentation": {
+    "_note": "A search of all 433 printed pages for the vocabulary of Ind AS 108 returns nothing. The terms searched are recorded beside the result so the claim can be re-run rather than trusted.",
+    "reported": false,
+    "termsSearched": [
+      "Ind AS 108",
+      "reportable segment",
+      "operating segment",
+      "segment information",
+      "chief operating decision maker"
+    ],
+    "printedPagesSearched": 433,
+    "ambitionWords": "Our data centre business is the most consequential strategic decision we have made in a generation",
+    "ambitionPage": 72,
+    "source": {
+      "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, notes to the consolidated financial statements. Note 1 describes one business in power infrastructure and the notes carry no segment disclosure",
+      "page": 298,
+      "asOf": "2026-09-01",
+      "verification": "PRIMARY"
+    }
+  },
+
+  "governance": {
+    "_note": "Read by hand from the two auditors' reports and the statutory information notes. Amounts in millions of rupees, the unit the statements print, converted nowhere.",
+    "emphasisOfMatter": {
+      "amountMn": 896.35,
+      "subject": "trade receivables and other financial assets",
+      "overdueQuote": "which are pending settlement / realisation and are substantially overdue as on 31 March 2026",
+      "provisionQuote": "no provision for impairment is required to be recognised in respect of such balances as on 31 March 2026",
+      "opinionQuote": "Our opinion is not modified in respect of these matters.",
+      "standalonePage": 174,
+      "consolidatedPage": 280,
+      "source": {
+        "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, emphasis of matter in the independent auditor's report on the standalone financial statements at printed 174 and on the consolidated financial statements at printed 280",
+        "page": 174,
+        "asOf": "2026-09-01",
+        "verification": "PRIMARY"
+      }
+    },
+    "struckOff": {
+      "rows": [
+        {
+          "name": "Pyrotech Electronics Private Ltd",
+          "kind": "PAYABLE",
+          "relationship": "OTHERS",
+          "amountMn": 0.02,
+          "natureWords": "Trade payables",
+          "relationshipWords": "Vendor"
+        }
+      ],
+      "denialQuote": "The Group do not have any transactions with struck off companies.",
+      "clauseNumeral": "ii",
+      "standalonePage": 278,
+      "consolidatedPage": 381,
+      "source": {
+        "label": "Techno Electric & Engineering Company Limited annual report FY2025-26, note 44 to the standalone financial statements at printed 278 and note 42 to the consolidated financial statements at printed 381, other statutory information",
+        "page": 381,
+        "asOf": "2026-09-01",
+        "verification": "PRIMARY"
+      }
+    }
   }
 }

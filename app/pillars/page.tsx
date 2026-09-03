@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { companies, sisl, sifyCo, disclosureRegister, e2e } from "@/lib/data";
+import { companies, sisl, sifyCo, disclosureRegister, e2e, technoe, macro } from "@/lib/data";
 import { growthQuality, earningsQuality } from "@/lib/diagnostics/e2e";
 import { RevenueQuality } from "@/components/RevenueQuality";
 import { refusalRate, pressurePerCall } from "@/lib/diagnostics/disclosure";
@@ -11,6 +11,8 @@ import { CASH_CONVERSION } from "@/lib/config";
 import { Exhibit } from "@/components/Exhibits";
 import { PeerCashConversion } from "@/components/PeerCashConversion";
 import { Leverage } from "@/components/Leverage";
+import { contractedCapital, struckOffDenial, segmentAbsence } from "@/lib/diagnostics/technoe";
+import { ContractedCapital } from "@/components/ContractedCapital";
 
 export const metadata: Metadata = {
   title: "Pillars",
@@ -73,6 +75,11 @@ export default function PillarsPage() {
   const patFirst = parentPat[0];
   const patLast = parentPat[parentPat.length - 1];
 
+  const capex = macro.unitEconomics.capexCrPerMW;
+  const ct = contractedCapital(technoe, capex.low, capex.high);
+  const so = struckOffDenial(technoe);
+  const seg = segmentAbsence(technoe);
+
   return (
     <main className="mx-auto w-full max-w-5xl px-5 py-12">
       <p className="sc text-accent">The forensic scorecard</p>
@@ -82,7 +89,7 @@ export default function PillarsPage() {
       </h1>
       <p className="mt-5 max-w-2xl leading-relaxed text-muted">
         Cash conversion is the first of the brief&rsquo;s six pillars to be built, the balance
-        sheet is the second and revenue quality is the third. The first runs two measures of one
+        sheet is the second, revenue quality is the third and governance is the fourth. The first runs two measures of one
         idea and reports them side by side rather than averaging them, because they can disagree
         and the disagreement is worth more than either verdict alone. The bands are published on{" "}
         <Link href="/methodology" className="underline decoration-line underline-offset-4">
@@ -287,18 +294,59 @@ export default function PillarsPage() {
             management discussion, with identical figures and no explanation in either.
           </p>
         </Exhibit>
+
+        <Exhibit
+          n={6}
+          title={`The target is ${ct.targetMW} megawatts. The contracts signed for capital spending buy ${ct.mwHigh.toFixed(2)}.`}
+          units="Three lines from one annual report, in millions of rupees, none of them converted. The megawatt band underneath divides the contracted capital by the sector build cost of 60 to 70 crore per megawatt, which is a sector figure rather than this filer's, because no operator in this coverage publishes its own."
+          source={`${technoe.commitments.source.label}. The auditor's paragraph is quoted from the independent auditor's report on the standalone financial statements.`}
+          page={technoe.commitments.consolidatedPage}
+        >
+          <ContractedCapital data={ct} segment={seg} />
+
+          <p className="mt-6 border-t border-line pt-4 text-sm leading-relaxed text-muted">
+            The capacity target and the campus megawatts are management commentary, printed in the
+            management discussion. The three bars are audited. Setting them beside each other is the
+            whole measure: the only line in either set of accounts recording contracts for future
+            capital spending is{" "}
+            <span className="tnum text-foreground">{ct.contingentOverCommitment.toFixed(2)}</span>{" "}
+            times smaller than the tax the company is disputing, and{" "}
+            <span className="tnum text-foreground">{ct.overdueOverCommitment.toFixed(2)}</span> times
+            smaller than the balances its auditor drew attention to as substantially overdue and
+            carrying no impairment provision.
+          </p>
+
+          <p className="mt-4 text-sm leading-relaxed text-muted">
+            The commitment did rise, from{" "}
+            <span className="tnum text-foreground">{ct.commitmentPriorMn.toFixed(2)}</span> million a
+            year earlier to <span className="tnum text-foreground">{ct.commitmentMn.toFixed(2)}</span>
+            , which is a fourfold increase on a base small enough that fourfold changes nothing. A
+            campus at the sector rate costs about sixty times the whole commitment.
+          </p>
+
+          <p className="mt-4 text-sm leading-relaxed text-muted">
+            The struck off disclosure on the same filer runs to{" "}
+            <span className="tnum text-foreground">{so.count}</span> counterparty, a{" "}
+            {so.largest.natureWords.toLowerCase()} balance of{" "}
+            <span className="tnum text-foreground">{so.largest.amountMn.toFixed(2)}</span> million
+            with {so.largest.name}, against eleven on the other annual report read here. The
+            consolidated note numbers two clauses ({so.clauseNumeral}). The first tables that
+            balance. The second reads, in full, &ldquo;{so.denialQuote}&rdquo; Printed page{" "}
+            {so.consolidatedPage}.
+          </p>
+        </Exhibit>
       </div>
 
       <section className="mt-12 border-t border-line pt-8">
         <p className="sc text-accent">What is not here</p>
         <h2 className="mt-3 max-w-3xl font-display text-2xl leading-tight tracking-tight">
-          Five pillars, and the reason each is still empty
+          Five pillars, and how far each one has got
         </h2>
         <dl className="mt-6 grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2">
           {[
             {
               h: "Governance",
-              b: "Carries its first row on the Indian operator, built from the litigation section of the prospectus. The auditor's report and the related party notes inside the restated financial information are not cited yet.",
+              b: "Three names now. The materiality threshold, the associate exposure and the key management coverage on the operator whose prospectus is read page by page, eleven struck off counterparties on the second, and on the third, in Exhibit 6 above, an emphasis of matter over overdue balances and a statutory note that tables a struck off balance in one clause and denies having one in the next. The three United States filers have had no governance section opened.",
             },
             {
               h: "Revenue quality",
@@ -310,7 +358,7 @@ export default function PillarsPage() {
             },
             {
               h: "Business model",
-              b: "Rests on segment disclosure, and the segmentation is not like for like across this set. Two filers are pure plays, two segment by industry vertical and one by service line.",
+              b: "Rests on segment disclosure, and the segmentation is not like for like across this set. Two filers are pure plays, two segment by industry vertical and one by service line. The sixth, in Exhibit 6 above, discloses no segments at all across 433 printed pages, so the business it calls its most consequential decision in a generation cannot be sized apart from the engineering business funding it.",
             },
             {
               h: "Valuation",
