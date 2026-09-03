@@ -3,6 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
+  "description": "Reconciling India's announced data centre capacity with what company filings actually support. Announced capacity and delivered capacity kept in separate columns, with the printed page behind every figure.",
+  "keywords": [
+    "data-centers",
+    "india",
+    "equity-research",
+    "financial-analysis",
+    "sec-filings",
+    "forensic-accounting",
+    "open-data",
+    "nextjs"
+  ],
+  "homepage": "https://datacenter-capacity-audit.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DogInfantry/datacenter-capacity-audit.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
