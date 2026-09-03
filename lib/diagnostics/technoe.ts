@@ -23,6 +23,7 @@ export function contractedCapital(d: TechnoElectric, crPerMwLow: number, crPerMw
   const commitmentCr = c.capitalCommitmentMn / MN_PER_CRORE;
   const priorCr = c.capitalCommitmentPriorMn / MN_PER_CRORE;
   const live = d.campuses.filter((x) => x.status === "LIVE").reduce((t, x) => t + x.mw, 0);
+  const smallest = [...d.campuses].sort((a, b) => a.mw - b.mw)[0];
 
   return {
     commitmentMn: c.capitalCommitmentMn,
@@ -42,6 +43,12 @@ export function contractedCapital(d: TechnoElectric, crPerMwLow: number, crPerMw
      *  capital. Both are audited and both are in the same unit. */
     overdueOverCommitment: d.governance.emphasisOfMatter.amountMn / c.capitalCommitmentMn,
     contingentOverCommitment: c.contingentTotalMn / c.capitalCommitmentMn,
+    /** The smallest campus the report names, and what it costs at the low end
+     *  of the sector rate against the whole commitment. The smallest is used
+     *  because it is the least favourable comparison to the point being made. */
+    smallestCampusMW: smallest.mw,
+    smallestCampusName: smallest.name,
+    smallestCampusOverCommitment: (smallest.mw * crPerMwLow * MN_PER_CRORE) / c.capitalCommitmentMn,
     standalonePage: c.standalonePage,
     consolidatedPage: c.consolidatedPage,
     emphasisPage: d.governance.emphasisOfMatter.standalonePage,

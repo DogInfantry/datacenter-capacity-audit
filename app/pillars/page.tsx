@@ -320,8 +320,13 @@ export default function PillarsPage() {
             The commitment did rise, from{" "}
             <span className="tnum text-foreground">{ct.commitmentPriorMn.toFixed(2)}</span> million a
             year earlier to <span className="tnum text-foreground">{ct.commitmentMn.toFixed(2)}</span>
-            , which is a fourfold increase on a base small enough that fourfold changes nothing. A
-            campus at the sector rate costs about sixty times the whole commitment.
+, a fourfold rise on a base small enough that fourfold changes
+            nothing. The smallest campus the report names, {ct.smallestCampusName} at{" "}
+            <span className="tnum text-foreground">{ct.smallestCampusMW}</span> MW, costs{" "}
+            <span className="tnum text-foreground">
+              {ct.smallestCampusOverCommitment.toFixed(0)}
+            </span>{" "}
+            times the whole commitment at the low end of the sector rate.
           </p>
 
           <p className="mt-4 text-sm leading-relaxed text-muted">
