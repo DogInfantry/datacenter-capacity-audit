@@ -253,7 +253,7 @@ python pipeline/ists_base_rate.py
 
 ## Licence and data
 
-Code is MIT, see [LICENSE](LICENSE).
+Code is Apache 2.0, see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
 The figures are facts drawn from public filings, government datasets and earnings calls. Quoted
 excerpts remain the property of their publishers and are used as short attributed quotations for

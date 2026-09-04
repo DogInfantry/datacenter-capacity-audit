@@ -59,7 +59,7 @@ export function datasetLd(input: {
     name: `${SITE.name}: announced against delivered data centre capacity in India`,
     description: `Hand verified capacity, financial and disclosure data on India's listed data centre and AI infrastructure names, drawn from ${input.documentsRead} filings read page by page, five machine harvested filers and one government dataset. ${input.invariants} build invariants fail the build when a published claim stops being true.`,
     url: SITE.url,
-    license: "https://opensource.org/licenses/MIT",
+    license: "https://www.apache.org/licenses/LICENSE-2.0",
     isAccessibleForFree: true,
     creator: { "@type": "Person", name: "DogInfantry" },
     keywords: [

@@ -1,8 +1,8 @@
 {
-  "name": "ground-truth",
+  "name": "datacentre-announced-vs-delivered",
   "version": "0.1.0",
   "private": true,
-  "license": "MIT",
+  "license": "Apache-2.0",
   "description": "Reconciling India's announced data centre capacity with what company filings actually support. Announced capacity and delivered capacity kept in separate columns, with the printed page behind every figure.",
   "keywords": [
     "data-centers",
@@ -17,7 +17,7 @@
   "homepage": "https://datacenter-capacity-audit.vercel.app",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DogInfantry/ground-truth.git"
+    "url": "git+https://github.com/DogInfantry/datacentre-announced-vs-delivered.git"
   },
   "scripts": {
     "dev": "next dev",
