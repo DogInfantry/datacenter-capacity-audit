@@ -5,8 +5,16 @@
 India plans in gigawatts. The filings are written in megawatts, and the words in them do not mean
 what a capacity table implies. This reads the primary documents and puts the two side by side.
 
-[**See it live**](https://datacenter-capacity-audit.vercel.app) · 11 routes · 104 build invariants ·
-every figure carries the printed page it came from
+[![live](https://img.shields.io/badge/live-datacenter--capacity--audit.vercel.app-2f5fd0)](https://datacenter-capacity-audit.vercel.app)
+[![tests](https://img.shields.io/badge/tests-139%20passing-2f5fd0)](lib/diagnostics/diagnostics.test.mjs)
+[![build invariants](https://img.shields.io/badge/build%20invariants-104-2f5fd0)](https://datacenter-capacity-audit.vercel.app/methodology)
+[![documents read](https://img.shields.io/badge/filings%20read%20page%20by%20page-4-6b7280)](docs/SOURCES.md)
+[![licence](https://img.shields.io/badge/licence-Apache%202.0-6b7280)](LICENSE)
+
+![India's listed data centre buildout. 10,638 MW announced against 618.67 MW live, which is 5.8 per cent of what has been announced carrying load today.](docs/img/hero.svg)
+
+**5.8 per cent** of India's announced listed data centre capacity is carrying load today. Every
+figure below is the operator's own, read from a filing, with the printed page recorded.
 
 ---
 
@@ -34,6 +42,13 @@ That is the research question: when a company says X MW, which X is it?
 handed over** to customers, which is 2.6 per cent of what was announced. The 28 breaks down as 6 MW
 operationalised, 15 ready to operationalise and 7 at advance stage: three states of readiness inside
 one headline.
+
+### A promise has a date, so it can be marked
+
+![Dated capacity promises against commissioned capacity for Sify Technologies. Commissioned capacity rises from 72 MW in July 2021 to 130 MW in October 2025. Two dated promises fell due in April 2024 and both were missed.](docs/img/promises-vs-delivery.svg)
+
+Two promises made on earnings calls carried their own deadlines. Both fell due in April 2024. Neither
+was met, and the capacity line is flat through the eighteen months either was running.
 
 **E2E Networks** publishes no capacity at all. Its annual report contains **no megawatt or kilowatt
 figure anywhere in 148 pages**. It is a tenant in someone else's hall. That row stays tagged
@@ -74,10 +89,13 @@ made in a generation". Reading all **433 printed pages** of the annual report:
 A project that only ever finds companies wanting is editorialising rather than measuring.
 
 **Asked how often each operator refuses a unit economics question, the Indian operator refuses
-least.** Sify 2 of 15, Equinix 9 of 20, Digital Realty 9 of 34. And the rate alone still misleads,
-because Sify is asked 0.43 such questions a call against Digital Realty's 0.81. **A company nobody
-presses has little to refuse**, so the denominator is drawn as the bar rather than tucked into a
-footnote.
+least.**
+
+![Refusal against the number of questions actually pressed. Digital Realty 9 refused of 34 pressed at 0.81 a call, Equinix 9 of 20 at 0.48, Sify 2 of 15 at 0.43. Bar length is the asking, the filled part is the refusing.](docs/img/who-refuses.svg)
+
+The rate alone still misleads, because Sify is asked 0.43 such questions a call against Digital
+Realty's 0.81. **A company nobody presses has little to refuse**, so the asking is the bar and the
+refusing is the fill.
 
 **The same correction was needed a second time**, on restatement rates, where one filer was harvested
 for 18 data points and another for 76.

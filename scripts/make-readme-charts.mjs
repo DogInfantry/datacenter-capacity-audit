@@ -112,3 +112,97 @@ const rect = (x, y, w, h, fill, r = 2) =>
       `Target ${target} MW, live ${live} MW, and contracted capital of ${te.commitments.capitalCommitmentMn} million rupees buying about ${mwHigh.toFixed(2)} MW.`));
   console.log("target-vs-contracted.svg");
 }
+
+/* 4. The hero. Every operator's announcement summed, against what is live. */
+{
+  const ops = uni.operators;
+  const announced = ops.reduce((t, o) => t + o.announcedMW, 0);
+  const live = ops.reduce((t, o) => t + o.liveMW, 0);
+  const pct = (live / announced) * 100;
+  const W = 880, H = 216, PAD = 30, BARW = W - PAD * 2;
+  let out = "";
+  out += text(PAD, 44, "India's listed data centre buildout", { size: 13, fill: MUTE, weight: 600 });
+  out += text(PAD, 84, `${announced.toLocaleString("en-US")} MW announced.`, { size: 30, weight: 700 });
+  out += text(PAD + 300, 84, `${live.toLocaleString("en-US")} MW live.`, { size: 30, weight: 700, fill: SIGNAL });
+  out += rect(PAD, 106, BARW, 30, PALE);
+  out += rect(PAD, 106, (live / announced) * BARW, 30, SIGNAL);
+  out += text(PAD, 160, `${pct.toFixed(1)} per cent of what has been announced is carrying load today.`, { size: 15, weight: 600 });
+  out += text(PAD, 184, `Eight operators, every figure the operator's own. The red sliver is the whole of the delivered estate.`, { size: 12, fill: MUTE });
+  writeFileSync(new URL("../docs/img/hero.svg", import.meta.url),
+    svg(W, H, out, "Announced against live capacity across eight Indian operators",
+      `${announced} MW announced against ${live} MW live, which is ${pct.toFixed(1)} per cent.`));
+  console.log("hero.svg");
+}
+
+/* 5. What one operator promised on a call, against what it then commissioned. */
+{
+  const sify = d("sify_capacity.json");
+  const obs = sify.observations.map((o) => ({ date: o.date, mw: o.commissioned_mw ?? o.built_mw }))
+    .filter((o) => Number.isFinite(o.mw));
+  const claims = sify.claims.filter((c) => c.status === "MISSED");
+  const W = 880, H = 380, PAD = 34, L = 58, B = H - 74;
+  const t0 = Date.parse(obs[0].date);
+  const t1 = Math.max(Date.parse(obs[obs.length - 1].date), ...claims.map((c) => Date.parse(c.horizon_end)));
+  const top = Math.max(...obs.map((o) => o.mw), ...claims.map((c) => c.value)) * 1.15;
+  const X = (d0) => L + ((Date.parse(d0) - t0) / (t1 - t0)) * (W - L - PAD);
+  const Y = (mw) => B - (mw / top) * (B - 96);
+  let out = "";
+  out += text(PAD, 40, "What was promised on a call, against what was then commissioned", { size: 19, weight: 600 });
+  out += text(PAD, 64, "Sify Technologies. Blue line is capacity management said was commissioned. Red marks are dated promises.", { size: 12.5, fill: MUTE });
+  for (const g of [0, 50, 100, 150]) {
+    if (g > top) continue;
+    out += `<line x1="${L}" y1="${px(Y(g))}" x2="${W - PAD}" y2="${px(Y(g))}" stroke="${LINE}"/>`;
+    out += text(L - 8, Y(g) + 4, String(g), { size: 11, fill: MUTE, anchor: "end", mono: true });
+  }
+  out += `<polyline fill="none" stroke="${ACCENT}" stroke-width="2.5" points="${obs.map((o) => `${px(X(o.date))},${px(Y(o.mw))}`).join(" ")}"/>`;
+  for (const o of obs) out += `<circle cx="${px(X(o.date))}" cy="${px(Y(o.mw))}" r="3.5" fill="${ACCENT}"/>`;
+  // The promises are drawn as dated markers, not as points on the megawatt axis.
+  // One of them is incremental ("100 MW of the announced 200 MW expansion goes
+  // live"), so giving it a y position would invite a comparison against total
+  // commissioned capacity that the claim does not support. What is true of both
+  // is the date they fell due and that neither was met.
+  claims.forEach((c, i) => {
+    const x = X(c.horizon_end);
+    out += `<line x1="${px(x)}" y1="88" x2="${px(x)}" y2="${px(B)}" stroke="${SIGNAL}" stroke-width="1.4" stroke-dasharray="4 3"/>`;
+    out += `<path d="M ${px(x - 5)} ${px(94 + i * 20)} L ${px(x + 5)} ${px(104 + i * 20)} M ${px(x + 5)} ${px(94 + i * 20)} L ${px(x - 5)} ${px(104 + i * 20)}" stroke="${SIGNAL}" stroke-width="2"/>`;
+    out += text(x - 11, 103 + i * 20, `${c.claim} · missed`, { size: 11, fill: SIGNAL, weight: 600, anchor: "end" });
+  });
+  out += text(L, B + 20, obs[0].date, { size: 11, fill: MUTE, mono: true });
+  out += text(W - PAD, B + 20, obs[obs.length - 1].date, { size: 11, fill: MUTE, anchor: "end", mono: true });
+  out += `<line x1="${PAD}" y1="${B + 34}" x2="${W - PAD}" y2="${B + 34}" stroke="${LINE}"/>`;
+  out += text(PAD, B + 56, `Both dated promises were missed. Commissioned capacity went from ${obs[0].mw} MW to ${obs[obs.length - 1].mw} MW over the window.`, { size: 12.5, weight: 600 });
+  writeFileSync(new URL("../docs/img/promises-vs-delivery.svg", import.meta.url),
+    svg(W, H, out, "Dated capacity promises against commissioned capacity",
+      claims.map((c) => `${c.claim}, status ${c.status}`).join("; ")));
+  console.log("promises-vs-delivery.svg");
+}
+
+/* 6. Refusal, with the asking drawn rather than footnoted. */
+{
+  const reg = d("disclosure_register.json");
+  const rows = reg.companies.map((c) => {
+    const pressed = c.families.reduce((t, f) => t + f.pressed, 0);
+    const refused = c.families.reduce((t, f) => t + f.deflected + f.declined, 0);
+    return { name: c.name, calls: c.callsCovered, pressed, refused, perCall: pressed / c.callsCovered };
+  }).sort((a, b) => b.pressed - a.pressed);
+  const W = 880, PAD = 30, LAB = 190, BARW = W - PAD * 2 - LAB - 168;
+  const top = Math.max(...rows.map((r) => r.pressed));
+  let y = 104, out = "";
+  out += text(PAD, 40, "Who refuses, and who was actually asked", { size: 19, weight: 600 });
+  out += text(PAD, 64, "Bar length is how often the question was pressed. The filled part is how often it was refused.", { size: 12.5, fill: MUTE });
+  out += text(PAD, 82, "A company nobody presses has little to refuse, so the denominator is drawn rather than footnoted.", { size: 12.5, fill: MUTE });
+  for (const r of rows) {
+    out += text(PAD, y + 15, r.name, { size: 12.5 });
+    out += rect(PAD + LAB, y, (r.pressed / top) * BARW, 22, PALE);
+    out += rect(PAD + LAB, y, (r.refused / top) * BARW, 22, SIGNAL);
+    out += text(PAD + LAB + (r.pressed / top) * BARW + 10, y + 16,
+      `${r.refused} refused of ${r.pressed} pressed   ${r.perCall.toFixed(2)} a call`, { size: 12, mono: true });
+    y += 34;
+  }
+  out += `<line x1="${PAD}" y1="${y + 4}" x2="${W - PAD}" y2="${y + 4}" stroke="${LINE}"/>`;
+  out += text(PAD, y + 28, "The Indian operator refuses least by rate. It is also the one asked least.", { size: 13, weight: 600 });
+  writeFileSync(new URL("../docs/img/who-refuses.svg", import.meta.url),
+    svg(W, y + 46, out, "Refusal rates over the number of questions actually pressed",
+      rows.map((r) => `${r.name}: ${r.refused} refused of ${r.pressed} pressed, ${r.perCall.toFixed(2)} per call`).join("; ")));
+  console.log("who-refuses.svg");
+}
