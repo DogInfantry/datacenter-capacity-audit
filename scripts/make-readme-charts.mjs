@@ -113,24 +113,33 @@ const rect = (x, y, w, h, fill, r = 2) =>
   console.log("target-vs-contracted.svg");
 }
 
-/* 4. The hero. Every operator's announcement summed, against what is live. */
+/* 4. The hero. Every operator's announcement summed, against what is live.
+ *
+ * Nothing here is positioned at a guessed x offset. The first version put the
+ * second figure at a fixed 300px and the first one ran straight through it,
+ * because SVG has no text metrics at generation time. Anything that could
+ * collide is either on its own line or anchored to the opposite edge. */
 {
   const ops = uni.operators;
   const announced = ops.reduce((t, o) => t + o.announcedMW, 0);
   const live = ops.reduce((t, o) => t + o.liveMW, 0);
   const pct = (live / announced) * 100;
-  const W = 880, H = 216, PAD = 30, BARW = W - PAD * 2;
+  const W = 880, H = 250, PAD = 32, BARW = W - PAD * 2;
+  const nf = (n) => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
   let out = "";
-  out += text(PAD, 44, "India's listed data centre buildout", { size: 13, fill: MUTE, weight: 600 });
-  out += text(PAD, 84, `${announced.toLocaleString("en-US")} MW announced.`, { size: 30, weight: 700 });
-  out += text(PAD + 300, 84, `${live.toLocaleString("en-US")} MW live.`, { size: 30, weight: 700, fill: SIGNAL });
-  out += rect(PAD, 106, BARW, 30, PALE);
-  out += rect(PAD, 106, (live / announced) * BARW, 30, SIGNAL);
-  out += text(PAD, 160, `${pct.toFixed(1)} per cent of what has been announced is carrying load today.`, { size: 15, weight: 600 });
-  out += text(PAD, 184, `Eight operators, every figure the operator's own. The red sliver is the whole of the delivered estate.`, { size: 12, fill: MUTE });
+  out += text(PAD, 46, "INDIA'S LISTED DATA CENTRE BUILDOUT", { size: 12, fill: MUTE, weight: 700 });
+  out += text(PAD, 112, `${pct.toFixed(1)}%`, { size: 58, weight: 700, fill: SIGNAL });
+  out += text(PAD + 152, 92, "of everything announced", { size: 20, weight: 600 });
+  out += text(PAD + 152, 116, "is carrying load today", { size: 20, weight: 600 });
+  out += rect(PAD, 146, BARW, 26, PALE);
+  out += rect(PAD, 146, (live / announced) * BARW, 26, SIGNAL);
+  out += text(PAD, 196, `${nf(announced)} MW announced`, { size: 15, weight: 600, mono: true });
+  out += text(W - PAD, 196, `${live.toFixed(2)} MW live`, { size: 15, weight: 600, fill: SIGNAL, anchor: "end", mono: true });
+  out += `<line x1="${PAD}" y1="212" x2="${W - PAD}" y2="212" stroke="${LINE}"/>`;
+  out += text(PAD, 232, `${ops.length} operators. Every figure is the operator's own. The red sliver is the whole of the delivered estate.`, { size: 12, fill: MUTE });
   writeFileSync(new URL("../docs/img/hero.svg", import.meta.url),
-    svg(W, H, out, "Announced against live capacity across eight Indian operators",
-      `${announced} MW announced against ${live} MW live, which is ${pct.toFixed(1)} per cent.`));
+    svg(W, H, out, "Announced against live capacity across India's listed data centre operators",
+      `${nf(announced)} MW announced against ${live.toFixed(2)} MW live, which is ${pct.toFixed(1)} per cent.`));
   console.log("hero.svg");
 }
 

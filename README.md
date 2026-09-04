@@ -5,11 +5,11 @@
 India plans in gigawatts. The filings are written in megawatts, and the words in them do not mean
 what a capacity table implies. This reads the primary documents and puts the two side by side.
 
-[![live](https://img.shields.io/badge/live-datacenter--capacity--audit.vercel.app-2f5fd0)](https://datacenter-capacity-audit.vercel.app)
-[![tests](https://img.shields.io/badge/tests-139%20passing-2f5fd0)](lib/diagnostics/diagnostics.test.mjs)
-[![build invariants](https://img.shields.io/badge/build%20invariants-104-2f5fd0)](https://datacenter-capacity-audit.vercel.app/methodology)
-[![documents read](https://img.shields.io/badge/filings%20read%20page%20by%20page-4-6b7280)](docs/SOURCES.md)
-[![licence](https://img.shields.io/badge/licence-Apache%202.0-6b7280)](LICENSE)
+[![5.8 per cent delivered](https://img.shields.io/badge/delivered-5.8%25-c8443c?style=flat-square)](https://datacenter-capacity-audit.vercel.app/universe)
+[![4 filings read page by page](https://img.shields.io/badge/filings%20read%20page%20by%20page-4-b26b00?style=flat-square)](docs/SOURCES.md)
+[![104 build invariants](https://img.shields.io/badge/claims%20guarded%20at%20build-104-2f5fd0?style=flat-square)](https://datacenter-capacity-audit.vercel.app/methodology)
+[![139 tests passing](https://img.shields.io/badge/tests-139%20passing-2e7d32?style=flat-square)](lib/diagnostics/diagnostics.test.mjs)
+[![Apache 2.0](https://img.shields.io/badge/licence-Apache%202.0-6b7280?style=flat-square)](LICENSE)
 
 ![India's listed data centre buildout. 10,638 MW announced against 618.67 MW live, which is 5.8 per cent of what has been announced carrying load today.](docs/img/hero.svg)
 
