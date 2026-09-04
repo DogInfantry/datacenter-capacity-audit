@@ -1,6 +1,7 @@
-# Built, Installed, Sold
+# Ground Truth
 
-**Reconciling India's announced data centre capacity with what the filings actually support.**
+**India's data centre buildout, announced against delivered. Reconciling what companies say
+with what their filings support.**
 
 India is planning its data centre and AI infrastructure buildout in gigawatts. The filings are
 written in megawatts, and the words in them do not mean what a capacity table implies. This reads
@@ -129,7 +130,7 @@ fails rather than the page going stale. Every one is listed on
 [the methodology page](https://datacenter-capacity-audit.vercel.app/methodology) with what it
 protects and the message it emits.
 
-134 tests. Four documents read page by page, all checksum pinned. 119 earnings calls coded. Five SEC
+139 tests. Four documents read page by page, all checksum pinned. 119 earnings calls coded. Five SEC
 filers harvested. One government dataset.
 
 ---

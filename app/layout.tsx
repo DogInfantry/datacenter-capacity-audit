@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
     default: SITE.name,
-    // So a subpage reads "Pillars, Built, Installed, Sold" rather than a bare
+    // So a subpage reads "Pillars, Ground Truth" rather than a bare
     // "Pillars", which says nothing in a search result or a browser tab.
     template: `%s, ${SITE.name}`,
   },

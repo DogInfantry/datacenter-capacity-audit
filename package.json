@@ -1,5 +1,5 @@
 {
-  "name": "india-gigawatt-gap",
+  "name": "ground-truth",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
@@ -17,7 +17,7 @@
   "homepage": "https://datacenter-capacity-audit.vercel.app",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DogInfantry/datacenter-capacity-audit.git"
+    "url": "git+https://github.com/DogInfantry/ground-truth.git"
   },
   "scripts": {
     "dev": "next dev",

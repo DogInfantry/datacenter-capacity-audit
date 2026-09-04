@@ -43,7 +43,7 @@ export function Nav() {
           aria-current={pathname === "/" ? "page" : undefined}
           className="order-1 pb-4 font-display text-lg tracking-tight transition-colors hover:text-accent"
         >
-          Built, Installed, Sold
+          Ground Truth
         </Link>
 
         {/* Ordered rather than reordered in the markup, so the reading order and

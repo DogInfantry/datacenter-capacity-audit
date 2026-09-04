@@ -8,7 +8,7 @@ import { COVERED_TICKERS } from "@/lib/data";
  * Every route that carries metadata reads it from here.
  */
 export const SITE = {
-  name: "Built, Installed, Sold",
+  name: "Ground Truth",
   url: "https://datacenter-capacity-audit.vercel.app",
   locale: "en_IN",
   description:
